@@ -778,6 +778,9 @@
             <button class="nav-tab" onclick="switchTab('bridge')">
                 <i class="fas fa-bridge"></i> Bridge
             </button>
+            <button class="nav-tab" onclick="switchTab('vlan')">
+                <i class="fas fa-layer-group"></i> VLAN
+            </button>
             <button class="nav-tab" onclick="switchTab('cbs')">
                 <i class="fas fa-chart-line"></i> CBS
             </button>
@@ -946,6 +949,99 @@
                     </h3>
                     <div id="bridge-info">
                         <p style="color: var(--text-secondary);">Click Refresh to load bridge configuration...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VLAN Tab -->
+        <div id="vlan-tab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-layer-group"></i> VLAN Configuration
+                    </h2>
+                    <button class="btn btn-primary" onclick="loadVlanConfig()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-box-title">
+                        <i class="fas fa-info-circle"></i> VLAN Management
+                    </div>
+                    <p>Configure VLAN registration entries and port VLAN membership.</p>
+                </div>
+
+                <!-- VLAN Registration -->
+                <div style="margin-bottom: 24px;">
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--keti-blue); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-plus-circle"></i> Register VLAN
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+                        <div>
+                            <label class="input-label">Bridge Name</label>
+                            <input type="text" id="vlan-bridge" class="input-field" placeholder="b0" value="b0">
+                        </div>
+                        <div>
+                            <label class="input-label">Component Name</label>
+                            <input type="text" id="vlan-component" class="input-field" placeholder="c0" value="c0">
+                        </div>
+                        <div>
+                            <label class="input-label">VLAN ID</label>
+                            <input type="number" id="vlan-id" class="input-field" placeholder="100" min="1" max="4094">
+                        </div>
+                        <div>
+                            <label class="input-label">Database ID</label>
+                            <input type="number" id="vlan-database-id" class="input-field" placeholder="0" value="0">
+                        </div>
+                    </div>
+                    <div style="margin-top: 16px;">
+                        <button class="btn btn-primary" onclick="registerVlan()">
+                            <i class="fas fa-plus"></i> Register VLAN
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Port VLAN Membership -->
+                <div style="margin-bottom: 24px;">
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--keti-blue); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-ethernet"></i> Port VLAN Settings
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+                        <div>
+                            <label class="input-label">Interface Name</label>
+                            <input type="text" id="port-vlan-interface" class="input-field" placeholder="1" value="1">
+                        </div>
+                        <div>
+                            <label class="input-label">PVID (Port VLAN ID)</label>
+                            <input type="number" id="port-pvid" class="input-field" placeholder="1" min="1" max="4094" value="1">
+                        </div>
+                        <div>
+                            <label class="input-label">Ingress Filtering</label>
+                            <select id="port-ingress-filtering" class="input-field">
+                                <option value="false">Disabled</option>
+                                <option value="true">Enabled</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="margin-top: 16px; display: flex; gap: 12px;">
+                        <button class="btn btn-secondary" onclick="getPortVlanConfig()">
+                            <i class="fas fa-search"></i> Get Config
+                        </button>
+                        <button class="btn btn-primary" onclick="setPortVlanConfig()">
+                            <i class="fas fa-save"></i> Apply Config
+                        </button>
+                    </div>
+                </div>
+
+                <!-- VLAN List -->
+                <div>
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--keti-blue); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-list"></i> VLAN Registration Entries
+                    </h3>
+                    <div id="vlan-info">
+                        <p style="color: var(--text-secondary);">Click Refresh to load VLAN configuration...</p>
                     </div>
                 </div>
             </div>
@@ -1404,6 +1500,139 @@
             }
         }
 
+        async function loadVlanConfig() {
+            const infoEl = document.getElementById('vlan-info');
+            infoEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading VLAN configuration...</span>';
+
+            try {
+                const path = '/ieee802-dot1q-bridge:bridges/bridge[name=\'b0\']/component[name=\'c0\']/filtering-database';
+                const response = await fetch(`${API_BASE}/get`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path })
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    infoEl.innerHTML = `
+                        <div style="background: var(--bg-secondary); padding: 20px; border-radius: 12px;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                                <div style="width: 12px; height: 12px; background: #34C759; border-radius: 50%;"></div>
+                                <span style="font-weight: 600; color: var(--keti-blue);">VLAN Data Retrieved</span>
+                            </div>
+                            <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 13px; line-height: 1.8; margin: 0;">${result.stdout}</pre>
+                        </div>
+                    `;
+                } else {
+                    infoEl.innerHTML = `<p style="color: var(--apple-red);"><i class="fas fa-exclamation-triangle"></i> Failed to load VLAN configuration</p>`;
+                }
+            } catch (error) {
+                infoEl.innerHTML = `<p style="color: var(--apple-red);"><i class="fas fa-exclamation-triangle"></i> Error: ${error.message}</p>`;
+            }
+        }
+
+        async function registerVlan() {
+            const bridge = document.getElementById('vlan-bridge').value;
+            const component = document.getElementById('vlan-component').value;
+            const vlanId = document.getElementById('vlan-id').value;
+            const databaseId = document.getElementById('vlan-database-id').value;
+
+            if (!vlanId) {
+                alert('Please enter a VLAN ID');
+                return;
+            }
+
+            const path = `/ieee802-dot1q-bridge:bridges/bridge[name='${bridge}']/component[name='${component}']/filtering-database/vlan-registration-entry[database-id='${databaseId}'][vlan-id='${vlanId}']`;
+
+            addToConsole(`Registering VLAN ${vlanId} on bridge ${bridge}/${component}`, 'info');
+
+            try {
+                const response = await fetch(`${API_BASE}/set`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        path,
+                        value: `vlan-id: ${vlanId}\\ndatabase-id: ${databaseId}`
+                    })
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    addToConsole(`✓ VLAN ${vlanId} registered successfully`, 'success');
+                    alert(`Success!\nVLAN ${vlanId} has been registered`);
+                    loadVlanConfig();
+                } else {
+                    addToConsole(`Failed: ${result.stderr}`, 'error');
+                }
+            } catch (error) {
+                addToConsole(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        async function getPortVlanConfig() {
+            const iface = document.getElementById('port-vlan-interface').value;
+            const path = `/ietf-interfaces:interfaces/interface[name='${iface}']/ieee802-dot1q-bridge:bridge-port`;
+
+            addToConsole(`Getting VLAN config for port ${iface}`, 'info');
+
+            try {
+                const response = await fetch(`${API_BASE}/get`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path })
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    addToConsole(`Port ${iface} VLAN config retrieved`, 'success');
+                    alert(`Port ${iface} VLAN Configuration:\n\n${result.stdout}`);
+                } else {
+                    addToConsole(`Failed to get VLAN config: ${result.stderr}`, 'error');
+                }
+            } catch (error) {
+                addToConsole(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        async function setPortVlanConfig() {
+            const iface = document.getElementById('port-vlan-interface').value;
+            const pvid = document.getElementById('port-pvid').value;
+            const ingressFiltering = document.getElementById('port-ingress-filtering').value;
+
+            addToConsole(`Setting PVID=${pvid}, ingress-filtering=${ingressFiltering} for port ${iface}`, 'info');
+
+            try {
+                const results = [];
+
+                // Set PVID
+                const pvidPath = `/ietf-interfaces:interfaces/interface[name='${iface}']/ieee802-dot1q-bridge:bridge-port/pvid`;
+                const r1 = await fetch(`${API_BASE}/set`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path: pvidPath, value: pvid })
+                });
+                results.push(await r1.json());
+
+                // Set ingress filtering
+                const filterPath = `/ietf-interfaces:interfaces/interface[name='${iface}']/ieee802-dot1q-bridge:bridge-port/enable-ingress-filtering`;
+                const r2 = await fetch(`${API_BASE}/set`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path: filterPath, value: ingressFiltering })
+                });
+                results.push(await r2.json());
+
+                if (results.every(r => r.success)) {
+                    addToConsole(`✓ Port VLAN config applied successfully`, 'success');
+                    alert(`Success!\nPort ${iface} VLAN settings updated`);
+                } else {
+                    addToConsole(`Some operations failed`, 'error');
+                }
+            } catch (error) {
+                addToConsole(`Error: ${error.message}`, 'error');
+            }
+        }
+
         // Icon mapping for YANG nodes
         const iconMap = {
             'interfaces': 'network-wired',
@@ -1438,39 +1667,272 @@
             return iconMap[cleanName] || 'folder';
         }
 
+        // Complete YANG tree structure based on VelocityDRIVE documentation
+        const completeYangTree = {
+            'ietf-interfaces:interfaces': {
+                name: 'Interfaces',
+                icon: 'network-wired',
+                children: {
+                    'interface': {
+                        name: 'Interface',
+                        icon: 'ethernet',
+                        type: 'list',
+                        children: {
+                            'name': { name: 'Name', icon: 'tag', type: 'leaf' },
+                            'type': { name: 'Type', icon: 'info', type: 'leaf' },
+                            'enabled': { name: 'Enabled', icon: 'toggle-on', type: 'leaf' },
+                            'oper-status': { name: 'Oper Status', icon: 'signal', type: 'leaf' },
+                            'statistics': {
+                                name: 'Statistics',
+                                icon: 'chart-bar',
+                                children: {
+                                    'in-octets': { name: 'RX Octets', icon: 'download', type: 'leaf' },
+                                    'out-octets': { name: 'TX Octets', icon: 'upload', type: 'leaf' },
+                                    'in-unicast-pkts': { name: 'RX Unicast', icon: 'arrow-down', type: 'leaf' },
+                                    'out-unicast-pkts': { name: 'TX Unicast', icon: 'arrow-up', type: 'leaf' },
+                                    'in-multicast-pkts': { name: 'RX Multicast', icon: 'broadcast-tower', type: 'leaf' },
+                                    'out-multicast-pkts': { name: 'TX Multicast', icon: 'broadcast-tower', type: 'leaf' },
+                                    'in-errors': { name: 'RX Errors', icon: 'exclamation-triangle', type: 'leaf' },
+                                    'out-errors': { name: 'TX Errors', icon: 'exclamation-triangle', type: 'leaf' }
+                                }
+                            },
+                            'ieee802-dot1q-bridge:bridge-port': {
+                                name: 'Bridge Port',
+                                icon: 'door-open',
+                                children: {
+                                    'pvid': { name: 'PVID', icon: 'hashtag', type: 'leaf' },
+                                    'default-priority': { name: 'Default Priority', icon: 'sort-numeric-down', type: 'leaf' },
+                                    'mchp-velocitysp-bridge:forwarding-disable': { name: 'Forwarding Disable', icon: 'ban', type: 'leaf' },
+                                    'pcp-decoding-table': {
+                                        name: 'PCP Decoding',
+                                        icon: 'table',
+                                        children: {
+                                            'pcp-decoding-map': { name: 'PCP Map', icon: 'map', type: 'list' }
+                                        }
+                                    },
+                                    'pcp-encoding-table': {
+                                        name: 'PCP Encoding',
+                                        icon: 'table',
+                                        children: {
+                                            'pcp-encoding-map': { name: 'PCP Map', icon: 'map', type: 'list' }
+                                        }
+                                    },
+                                    'ieee802-dot1q-sched-bridge:gate-parameter-table': {
+                                        name: 'Gate Parameters (TAS)',
+                                        icon: 'door-closed',
+                                        children: {
+                                            'gate-enabled': { name: 'Gate Enabled', icon: 'toggle-on', type: 'leaf' },
+                                            'admin-gate-states': { name: 'Admin Gate States', icon: 'sliders-h', type: 'leaf' },
+                                            'admin-base-time': { name: 'Admin Base Time', icon: 'clock', type: 'container' },
+                                            'admin-cycle-time': { name: 'Admin Cycle Time', icon: 'redo', type: 'container' },
+                                            'admin-control-list': {
+                                                name: 'Admin Control List (GCL)',
+                                                icon: 'list',
+                                                type: 'list'
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            'ieee802-ethernet-interface:ethernet': {
+                                name: 'Ethernet',
+                                icon: 'ethernet',
+                                children: {
+                                    'speed': { name: 'Speed', icon: 'tachometer-alt', type: 'leaf' },
+                                    'duplex': { name: 'Duplex', icon: 'exchange-alt', type: 'leaf' },
+                                    'auto-negotiation': { name: 'Auto-Negotiation', icon: 'handshake', type: 'container' }
+                                }
+                            },
+                            'mchp-velocitysp-port:eth-qos': {
+                                name: 'QoS',
+                                icon: 'tachometer-alt',
+                                children: {
+                                    'config': {
+                                        name: 'Config',
+                                        icon: 'cog',
+                                        children: {
+                                            'traffic-class-shapers': { name: 'Traffic Class Shapers (CBS)', icon: 'filter', type: 'list' },
+                                            'traffic-class-schedulers-bandwidth': { name: 'Scheduler Bandwidth', icon: 'percentage', type: 'list' }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            'ieee802-dot1q-bridge:bridges': {
+                name: 'Bridges',
+                icon: 'project-diagram',
+                children: {
+                    'bridge': {
+                        name: 'Bridge',
+                        icon: 'bridge',
+                        type: 'list',
+                        children: {
+                            'name': { name: 'Name', icon: 'tag', type: 'leaf' },
+                            'address': { name: 'MAC Address', icon: 'fingerprint', type: 'leaf' },
+                            'component': {
+                                name: 'Component',
+                                icon: 'microchip',
+                                type: 'list',
+                                children: {
+                                    'name': { name: 'Name', icon: 'tag', type: 'leaf' },
+                                    'type': { name: 'Type', icon: 'info', type: 'leaf' },
+                                    'filtering-database': {
+                                        name: 'Filtering Database (FDB)',
+                                        icon: 'database',
+                                        children: {
+                                            'filtering-entry': { name: 'FDB Entry', icon: 'table', type: 'list' },
+                                            'vlan-registration-entry': { name: 'VLAN Entry', icon: 'layer-group', type: 'list' }
+                                        }
+                                    },
+                                    'traffic-class-table': {
+                                        name: 'Traffic Class Table',
+                                        icon: 'table',
+                                        children: {
+                                            'traffic-class-map': { name: 'PCP to Priority Map', icon: 'map', type: 'list' }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            'ieee802-dot1q-sched:interfaces': {
+                name: 'Scheduler (TAS)',
+                icon: 'clock',
+                children: {
+                    'interface': {
+                        name: 'Interface',
+                        icon: 'ethernet',
+                        type: 'list',
+                        children: {
+                            'scheduler': {
+                                name: 'Scheduler',
+                                icon: 'calendar-alt',
+                                children: {
+                                    'gate-enabled': { name: 'Gate Enabled', icon: 'toggle-on', type: 'leaf' },
+                                    'admin-base-time': { name: 'Base Time', icon: 'clock', type: 'container' },
+                                    'admin-cycle-time': { name: 'Cycle Time', icon: 'redo', type: 'container' },
+                                    'admin-control-list': { name: 'Gate Control List', icon: 'list', type: 'list' },
+                                    'traffic-class': {
+                                        name: 'Traffic Class',
+                                        icon: 'stream',
+                                        type: 'list',
+                                        children: {
+                                            'credit-based-shaper': {
+                                                name: 'CBS',
+                                                icon: 'filter',
+                                                children: {
+                                                    'idle-slope': { name: 'Idle Slope', icon: 'arrow-up', type: 'leaf' },
+                                                    'send-slope': { name: 'Send Slope', icon: 'arrow-down', type: 'leaf' },
+                                                    'admin-idleslope-enabled': { name: 'CBS Enabled', icon: 'toggle-on', type: 'leaf' }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            'ietf-system:system': {
+                name: 'System',
+                icon: 'server',
+                children: {
+                    'hostname': { name: 'Hostname', icon: 'tag', type: 'leaf' },
+                    'clock': {
+                        name: 'Clock',
+                        icon: 'clock',
+                        children: {
+                            'timezone-name': { name: 'Timezone', icon: 'globe', type: 'leaf' }
+                        }
+                    },
+                    'ntp': {
+                        name: 'NTP',
+                        icon: 'sync',
+                        children: {
+                            'enabled': { name: 'Enabled', icon: 'toggle-on', type: 'leaf' },
+                            'server': { name: 'Server', icon: 'server', type: 'list' }
+                        }
+                    }
+                }
+            },
+            'ietf-system:system-state': {
+                name: 'System State',
+                icon: 'info-circle',
+                children: {
+                    'platform': {
+                        name: 'Platform',
+                        icon: 'microchip',
+                        children: {
+                            'os-name': { name: 'OS Name', icon: 'linux', type: 'leaf' },
+                            'os-version': { name: 'OS Version', icon: 'code-branch', type: 'leaf' },
+                            'machine': { name: 'Machine', icon: 'hdd', type: 'leaf' }
+                        }
+                    },
+                    'clock': {
+                        name: 'Clock',
+                        icon: 'clock',
+                        children: {
+                            'current-datetime': { name: 'Current Time', icon: 'calendar', type: 'leaf' },
+                            'boot-datetime': { name: 'Boot Time', icon: 'power-off', type: 'leaf' }
+                        }
+                    }
+                }
+            }
+        };
+
+        function buildYangTreeFromStructure(structure, parentPath = '') {
+            const nodes = [];
+
+            Object.keys(structure).forEach(key => {
+                const node = structure[key];
+                const fullPath = parentPath ? `${parentPath}/${key}` : key;
+
+                const treeNode = {
+                    name: node.name || key,
+                    path: fullPath,
+                    icon: node.icon || 'folder',
+                    type: node.type,
+                    children: node.children ? buildYangTreeFromStructure(node.children, fullPath) : []
+                };
+
+                nodes.push(treeNode);
+            });
+
+            return nodes;
+        }
+
         async function buildYangTree() {
             const treeEl = document.getElementById('yang-tree');
-            treeEl.innerHTML = '<div style="padding: 20px; text-align: center;"><div class="loading"></div><div style="margin-top: 12px; color: var(--text-secondary);">Loading YANG tree...</div></div>';
+            treeEl.innerHTML = '<div style="padding: 20px; text-align: center;"><div class="loading"></div><div style="margin-top: 12px; color: var(--text-secondary);">Building YANG tree...</div></div>';
 
             try {
-                // Load root modules
-                const rootModules = [
-                    { path: 'ietf-interfaces:interfaces', name: 'Interfaces', icon: 'network-wired' },
-                    { path: 'ieee802-dot1q-bridge:bridges', name: 'Bridges', icon: 'project-diagram' },
-                    { path: 'ieee802-dot1q-sched:interfaces', name: 'Scheduler', icon: 'clock' },
-                    { path: 'ietf-system:system', name: 'System', icon: 'server' },
-                    { path: 'ietf-system:system-state', name: 'System State', icon: 'info-circle' }
-                ];
-
                 treeEl.innerHTML = '';
 
-                for (const module of rootModules) {
-                    const nodeEl = createYangNode(module.name, module.path, module.icon, true);
+                Object.keys(completeYangTree).forEach(rootKey => {
+                    const rootNode = completeYangTree[rootKey];
+                    const nodeEl = createYangNodeFromStructure(rootNode.name, rootKey, rootNode.icon, rootNode.children);
                     treeEl.appendChild(nodeEl);
-                }
+                });
             } catch (error) {
                 treeEl.innerHTML = `<p style="color: var(--apple-red); padding: 20px;"><i class="fas fa-exclamation-triangle"></i> Error: ${error.message}</p>`;
             }
         }
 
-        function createYangNode(displayName, fullPath, icon, isRoot = false, hasChildren = true) {
+        function createYangNodeFromStructure(displayName, fullPath, icon, children = null, nodeType = null) {
             const div = document.createElement('div');
             div.className = 'yang-node';
             div.dataset.path = fullPath;
-            div.dataset.loaded = 'false';
 
             const header = document.createElement('div');
             header.className = 'yang-node-header';
+
+            const hasChildren = children && Object.keys(children).length > 0;
 
             const iconSpan = document.createElement('span');
             iconSpan.className = 'yang-node-icon';
@@ -1478,21 +1940,39 @@
 
             const label = document.createElement('span');
             label.className = 'yang-node-label';
-            label.innerHTML = `<i class="fas fa-${icon}"></i><span>${displayName}</span>`;
+            label.innerHTML = `
+                <i class="fas fa-${icon}"></i>
+                <span>${displayName}</span>
+                ${nodeType ? `<span class="yang-node-type">${nodeType}</span>` : ''}
+            `;
 
             header.appendChild(iconSpan);
             header.appendChild(label);
             div.appendChild(header);
 
-            // Children container (lazy loaded)
+            // Pre-build children
             if (hasChildren) {
                 const childrenDiv = document.createElement('div');
                 childrenDiv.className = 'yang-node-children';
+
+                Object.keys(children).forEach(childKey => {
+                    const child = children[childKey];
+                    const childPath = `${fullPath}/${childKey}`;
+                    const childNode = createYangNodeFromStructure(
+                        child.name || childKey,
+                        childPath,
+                        child.icon || 'folder',
+                        child.children,
+                        child.type
+                    );
+                    childrenDiv.appendChild(childNode);
+                });
+
                 div.appendChild(childrenDiv);
             }
 
             // Click handler
-            header.onclick = async (e) => {
+            header.onclick = (e) => {
                 e.stopPropagation();
 
                 // Deselect all
@@ -1505,120 +1985,12 @@
                 // Toggle children
                 if (hasChildren) {
                     const childrenDiv = div.querySelector('.yang-node-children');
-                    const isExpanded = iconSpan.classList.contains('expanded');
-
-                    if (!isExpanded) {
-                        // Expand and lazy load children
-                        iconSpan.classList.add('expanded');
-                        childrenDiv.classList.add('show');
-
-                        // Load children if not yet loaded
-                        if (div.dataset.loaded === 'false') {
-                            div.dataset.loaded = 'true';
-                            await loadYangChildren(fullPath, childrenDiv);
-                        }
-                    } else {
-                        // Collapse
-                        iconSpan.classList.remove('expanded');
-                        childrenDiv.classList.remove('show');
-                    }
+                    iconSpan.classList.toggle('expanded');
+                    childrenDiv.classList.toggle('show');
                 }
             };
 
             return div;
-        }
-
-        async function loadYangChildren(parentPath, containerEl) {
-            containerEl.innerHTML = '<div style="padding: 8px; color: var(--text-secondary); font-size: 12px;"><i class="fas fa-spinner fa-spin"></i> Loading...</div>';
-
-            try {
-                const response = await fetch(`${API_BASE}/get`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ path: `/${parentPath}` })
-                });
-                const result = await response.json();
-
-                containerEl.innerHTML = '';
-
-                if (result.success && result.stdout) {
-                    // Parse YAML to extract child nodes
-                    const children = parseYamlToNodes(result.stdout, parentPath);
-
-                    if (children.length > 0) {
-                        children.forEach(child => {
-                            const childNode = createYangNode(
-                                child.name,
-                                child.path,
-                                getIconForNode(child.name),
-                                false,
-                                child.hasChildren
-                            );
-                            containerEl.appendChild(childNode);
-                        });
-                    } else {
-                        containerEl.innerHTML = '<div style="padding: 8px; color: var(--text-secondary); font-size: 12px;"><i class="fas fa-info-circle"></i> No children</div>';
-                    }
-                } else {
-                    containerEl.innerHTML = '<div style="padding: 8px; color: var(--apple-red); font-size: 12px;"><i class="fas fa-exclamation-triangle"></i> Failed to load</div>';
-                }
-            } catch (error) {
-                containerEl.innerHTML = `<div style="padding: 8px; color: var(--apple-red); font-size: 12px;"><i class="fas fa-exclamation-triangle"></i> Error</div>`;
-            }
-        }
-
-        function parseYamlToNodes(yamlText, parentPath) {
-            const children = [];
-            const lines = yamlText.split('\n');
-
-            // Simple YAML parser for detecting child nodes
-            let currentIndent = -1;
-            const seenKeys = new Set();
-
-            for (let i = 0; i < lines.length; i++) {
-                const line = lines[i];
-                if (!line.trim() || line.trim().startsWith('#')) continue;
-
-                const match = line.match(/^(\s*)([a-zA-Z0-9_-]+):/);
-                if (match) {
-                    const indent = match[1].length;
-                    const key = match[2];
-
-                    // Skip if already seen (avoid duplicates)
-                    if (seenKeys.has(key)) continue;
-
-                    // Only get direct children (one level deeper)
-                    if (currentIndent === -1) {
-                        currentIndent = indent;
-                    }
-
-                    if (indent === currentIndent + 2 || (currentIndent === -1 && indent === 0)) {
-                        seenKeys.add(key);
-
-                        // Check if this node has children by looking ahead
-                        let hasChildren = false;
-                        for (let j = i + 1; j < Math.min(i + 10, lines.length); j++) {
-                            const nextLine = lines[j];
-                            const nextMatch = nextLine.match(/^(\s*)([a-zA-Z0-9_-]+):/);
-                            if (nextMatch && nextMatch[1].length > indent) {
-                                hasChildren = true;
-                                break;
-                            }
-                            if (nextMatch && nextMatch[1].length <= indent) {
-                                break;
-                            }
-                        }
-
-                        children.push({
-                            name: key,
-                            path: `${parentPath}/${key}`,
-                            hasChildren: hasChildren
-                        });
-                    }
-                }
-            }
-
-            return children.slice(0, 50); // Limit to 50 children for performance
         }
 
         async function loadYangCatalog() {

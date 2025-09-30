@@ -581,9 +581,9 @@
 
         .yang-browser {
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columns: 350px 1fr;
             gap: 24px;
-            height: 600px;
+            height: 700px;
         }
 
         .yang-sidebar {
@@ -594,26 +594,76 @@
             border: 1px solid var(--border-color);
         }
 
-        .yang-module {
-            padding: 10px 12px;
-            margin-bottom: 4px;
-            border-radius: 8px;
+        .yang-tree {
+            font-family: 'SF Mono', 'Courier New', monospace;
+            font-size: 13px;
+        }
+
+        .yang-node {
+            user-select: none;
+        }
+
+        .yang-node-header {
+            padding: 8px 12px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 14px;
             display: flex;
             align-items: center;
             gap: 8px;
+            border-radius: 6px;
+            transition: all 0.15s ease;
         }
 
-        .yang-module:hover {
-            background: rgba(0, 102, 204, 0.1);
+        .yang-node-header:hover {
+            background: rgba(0, 102, 204, 0.08);
         }
 
-        .yang-module.active {
+        .yang-node-header.selected {
             background: var(--keti-blue);
             color: white;
+        }
+
+        .yang-node-icon {
+            width: 16px;
+            text-align: center;
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .yang-node-icon.expanded {
+            transform: rotate(90deg);
+        }
+
+        .yang-node-children {
+            margin-left: 20px;
+            display: none;
+            border-left: 1px solid var(--border-color);
+            padding-left: 8px;
+            margin-top: 4px;
+        }
+
+        .yang-node-children.show {
+            display: block;
+        }
+
+        .yang-node-label {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .yang-node-type {
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(0, 102, 204, 0.1);
+            color: var(--keti-blue);
             font-weight: 600;
+        }
+
+        .yang-node-header.selected .yang-node-type {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
         }
 
         .yang-content {
@@ -622,6 +672,17 @@
             padding: 24px;
             overflow-y: auto;
             border: 1px solid var(--border-color);
+        }
+
+        .path-breadcrumb {
+            background: var(--bg-secondary);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-family: 'SF Mono', monospace;
+            font-size: 13px;
+            color: var(--text-secondary);
+            word-break: break-all;
         }
 
         .loading {
@@ -808,9 +869,14 @@
                 </div>
 
                 <div class="yang-browser">
-                    <div class="yang-sidebar" id="yang-modules">
-                        <div style="color: var(--text-secondary); padding: 20px; text-align: center;">
-                            Loading YANG modules...
+                    <div class="yang-sidebar">
+                        <div style="margin-bottom: 16px; padding: 8px 12px; background: var(--bg-secondary); border-radius: 6px; font-weight: 600; color: var(--keti-blue);">
+                            <i class="fas fa-sitemap"></i> YANG Tree Browser
+                        </div>
+                        <div id="yang-tree" class="yang-tree">
+                            <div style="color: var(--text-secondary); padding: 20px; text-align: center;">
+                                Loading YANG tree...
+                            </div>
                         </div>
                     </div>
                     <div class="yang-content" id="yang-module-content">
@@ -818,8 +884,8 @@
                             <div style="font-size: 48px; margin-bottom: 16px;">
                                 <i class="fas fa-sitemap"></i>
                             </div>
-                            <div style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Select YANG Module</div>
-                            <div>Choose a module from the left sidebar</div>
+                            <div style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">YANG Data Browser</div>
+                            <div>Click on any node in the tree to explore device configuration</div>
                         </div>
                     </div>
                 </div>
@@ -831,14 +897,56 @@
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">
-                        <i class="fas fa-bridge"></i> Bridge Configuration
+                        <i class="fas fa-project-diagram"></i> Bridge & L2 Forwarding
                     </h2>
                     <button class="btn btn-primary" onclick="loadBridgeConfig()">
                         <i class="fas fa-sync-alt"></i> Refresh
                     </button>
                 </div>
-                <div id="bridge-info">
-                    <p style="color: var(--text-secondary);">Loading bridge configuration...</p>
+
+                <div class="info-box">
+                    <div class="info-box-title">
+                        <i class="fas fa-info-circle"></i> L2 Forwarding Control
+                    </div>
+                    <p>Control port forwarding state, VLAN configuration, and FDB management for LAN9662 switch.</p>
+                </div>
+
+                <!-- Port Forwarding Control -->
+                <div style="margin-bottom: 24px;">
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--keti-blue); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-toggle-on"></i> Port Forwarding State
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
+                        <div>
+                            <label class="input-label">Port/Interface Name</label>
+                            <input type="text" id="bridge-port-name" class="input-field" placeholder="1" value="1">
+                        </div>
+                        <div>
+                            <label class="input-label">Forwarding State</label>
+                            <select id="bridge-forwarding-state" class="input-field">
+                                <option value="false">Enabled (false)</option>
+                                <option value="true">Disabled (true)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="margin-top: 16px; display: flex; gap: 12px;">
+                        <button class="btn btn-secondary" onclick="getForwardingState()">
+                            <i class="fas fa-search"></i> Get Current State
+                        </button>
+                        <button class="btn btn-primary" onclick="setForwardingState()">
+                            <i class="fas fa-save"></i> Apply Forwarding State
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bridge Info -->
+                <div>
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--keti-blue); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-info-circle"></i> Bridge Configuration
+                    </h3>
+                    <div id="bridge-info">
+                        <p style="color: var(--text-secondary);">Click Refresh to load bridge configuration...</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1227,7 +1335,15 @@
                 const result = await response.json();
 
                 if (result.success) {
-                    infoEl.innerHTML = `<pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 13px; line-height: 1.6; background: var(--bg-secondary); padding: 20px; border-radius: 12px;">${result.stdout}</pre>`;
+                    infoEl.innerHTML = `
+                        <div style="background: var(--bg-secondary); padding: 20px; border-radius: 12px;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                                <div style="width: 12px; height: 12px; background: #34C759; border-radius: 50%;"></div>
+                                <span style="font-weight: 600; color: var(--keti-blue);">Bridge Data Retrieved</span>
+                            </div>
+                            <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 13px; line-height: 1.8; margin: 0;">${result.stdout}</pre>
+                        </div>
+                    `;
                 } else {
                     infoEl.innerHTML = `<p style="color: var(--apple-red);"><i class="fas fa-exclamation-triangle"></i> Failed to load bridge configuration</p>`;
                 }
@@ -1236,50 +1352,240 @@
             }
         }
 
-        async function loadYangCatalog() {
-            const modulesEl = document.getElementById('yang-modules');
-            modulesEl.innerHTML = '<div class="loading" style="margin: 20px auto;"></div>';
+        async function getForwardingState() {
+            const portName = document.getElementById('bridge-port-name').value;
+            const path = `/ietf-interfaces:interfaces/interface[name='${portName}']/ieee802-dot1q-bridge:bridge-port/mchp-velocitysp-bridge:forwarding-disable`;
+
+            addToConsole(`Getting forwarding state for port ${portName}`, 'info');
 
             try {
-                const response = await fetch(`${API_BASE}/yang/catalog`);
+                const response = await fetch(`${API_BASE}/get`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path })
+                });
                 const result = await response.json();
 
-                if (result.modules && result.modules.length > 0) {
-                    modulesEl.innerHTML = '';
-                    result.modules.forEach(module => {
-                        const div = document.createElement('div');
-                        div.className = 'yang-module';
-                        div.innerHTML = `<i class="fas fa-file-code"></i> ${module.name}`;
-                        div.onclick = () => loadYangModule(module.file);
-                        modulesEl.appendChild(div);
-                    });
+                if (result.success) {
+                    const state = result.stdout.includes('true') ? 'Disabled' : 'Enabled';
+                    addToConsole(`Port ${portName} forwarding: ${state}`, 'success');
+                    alert(`Port ${portName} Forwarding State: ${state}\n\nRaw: ${result.stdout}`);
                 } else {
-                    modulesEl.innerHTML = '<p style="color: var(--text-secondary); padding: 20px;">No YANG modules found</p>';
+                    addToConsole(`Failed to get forwarding state: ${result.stderr}`, 'error');
                 }
             } catch (error) {
-                modulesEl.innerHTML = `<p style="color: var(--apple-red); padding: 20px;"><i class="fas fa-exclamation-triangle"></i> Error: ${error.message}</p>`;
+                addToConsole(`Error: ${error.message}`, 'error');
             }
         }
 
-        async function loadYangModule(filename) {
-            const contentEl = document.getElementById('yang-module-content');
-            contentEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading module...</span>';
+        async function setForwardingState() {
+            const portName = document.getElementById('bridge-port-name').value;
+            const state = document.getElementById('bridge-forwarding-state').value;
+            const path = `/ietf-interfaces:interfaces/interface[name='${portName}']/ieee802-dot1q-bridge:bridge-port/mchp-velocitysp-bridge:forwarding-disable`;
 
-            document.querySelectorAll('.yang-module').forEach(el => el.classList.remove('active'));
-            event.target.classList.add('active');
+            addToConsole(`Setting forwarding state for port ${portName} to ${state === 'true' ? 'Disabled' : 'Enabled'}`, 'info');
 
             try {
-                const response = await fetch(`${API_BASE}/yang/module/${filename}`);
-                const content = await response.text();
+                const response = await fetch(`${API_BASE}/set`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path, value: state })
+                });
+                const result = await response.json();
 
-                contentEl.innerHTML = `
-                    <h3 style="margin-bottom: 16px; font-size: 18px; font-weight: 700; color: var(--keti-blue); display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-file-code"></i> ${filename}
-                    </h3>
-                    <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 13px; line-height: 1.6; background: var(--bg-secondary); padding: 20px; border-radius: 12px; overflow-x: auto;">${content}</pre>
-                `;
+                if (result.success) {
+                    addToConsole(`✓ Forwarding state applied successfully`, 'success');
+                    alert(`Success!\nPort ${portName} forwarding is now ${state === 'true' ? 'Disabled' : 'Enabled'}`);
+                } else {
+                    addToConsole(`Failed: ${result.stderr}`, 'error');
+                }
             } catch (error) {
-                contentEl.innerHTML = `<p style="color: var(--apple-red);"><i class="fas fa-exclamation-triangle"></i> Error: ${error.message}</p>`;
+                addToConsole(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        // YANG Tree structure based on common paths
+        const yangTreeStructure = {
+            'ietf-interfaces:interfaces': {
+                icon: 'network-wired',
+                children: {
+                    'interface': { icon: 'ethernet', type: 'list' }
+                }
+            },
+            'ieee802-dot1q-bridge:bridges': {
+                icon: 'project-diagram',
+                children: {
+                    'bridge': {
+                        icon: 'bridge',
+                        type: 'list',
+                        children: {
+                            'component': { icon: 'microchip', type: 'list' },
+                            'address': { icon: 'fingerprint' }
+                        }
+                    }
+                }
+            },
+            'ieee802-dot1q-sched:interfaces': {
+                icon: 'clock',
+                children: {
+                    'interface': {
+                        icon: 'ethernet',
+                        type: 'list',
+                        children: {
+                            'scheduler': { icon: 'calendar-alt' }
+                        }
+                    }
+                }
+            },
+            'ietf-system:system': {
+                icon: 'server',
+                children: {
+                    'clock': { icon: 'clock' },
+                    'ntp': { icon: 'sync' }
+                }
+            },
+            'ietf-system:system-state': {
+                icon: 'info-circle',
+                children: {
+                    'platform': { icon: 'microchip' },
+                    'clock': { icon: 'clock' }
+                }
+            }
+        };
+
+        function buildYangTree() {
+            const treeEl = document.getElementById('yang-tree');
+            treeEl.innerHTML = '';
+
+            Object.keys(yangTreeStructure).forEach(path => {
+                const node = yangTreeStructure[path];
+                const nodeEl = createYangNode(path, node, path);
+                treeEl.appendChild(nodeEl);
+            });
+        }
+
+        function createYangNode(name, nodeData, fullPath, level = 0) {
+            const div = document.createElement('div');
+            div.className = 'yang-node';
+
+            const header = document.createElement('div');
+            header.className = 'yang-node-header';
+
+            const hasChildren = nodeData.children && Object.keys(nodeData.children).length > 0;
+
+            const iconSpan = document.createElement('span');
+            iconSpan.className = 'yang-node-icon';
+            if (hasChildren) {
+                iconSpan.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            } else {
+                iconSpan.innerHTML = '<i class="fas fa-circle" style="font-size: 6px;"></i>';
+            }
+
+            const label = document.createElement('span');
+            label.className = 'yang-node-label';
+            label.innerHTML = `
+                <i class="fas fa-${nodeData.icon || 'folder'}"></i>
+                <span>${name.split(':').pop()}</span>
+                ${nodeData.type ? `<span class="yang-node-type">${nodeData.type}</span>` : ''}
+            `;
+
+            header.appendChild(iconSpan);
+            header.appendChild(label);
+            div.appendChild(header);
+
+            // Click handler
+            header.onclick = (e) => {
+                e.stopPropagation();
+
+                // Deselect all
+                document.querySelectorAll('.yang-node-header').forEach(el => el.classList.remove('selected'));
+                header.classList.add('selected');
+
+                // Load node data
+                loadYangNodeData(fullPath);
+
+                // Toggle children
+                if (hasChildren) {
+                    const childrenDiv = div.querySelector('.yang-node-children');
+                    if (childrenDiv) {
+                        childrenDiv.classList.toggle('show');
+                        iconSpan.classList.toggle('expanded');
+                    }
+                }
+            };
+
+            // Add children
+            if (hasChildren) {
+                const childrenDiv = document.createElement('div');
+                childrenDiv.className = 'yang-node-children';
+
+                Object.keys(nodeData.children).forEach(childName => {
+                    const childNode = nodeData.children[childName];
+                    const childPath = `${fullPath}/${childName}`;
+                    const childEl = createYangNode(childName, childNode, childPath, level + 1);
+                    childrenDiv.appendChild(childEl);
+                });
+
+                div.appendChild(childrenDiv);
+            }
+
+            return div;
+        }
+
+        async function loadYangCatalog() {
+            buildYangTree();
+        }
+
+        async function loadYangNodeData(path) {
+            const contentEl = document.getElementById('yang-module-content');
+            contentEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading data...</span>';
+
+            try {
+                const response = await fetch(`${API_BASE}/get`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path: `/${path}` })
+                });
+                const result = await response.json();
+
+                let content = `
+                    <div class="path-breadcrumb">
+                        <i class="fas fa-route"></i> /${path}
+                    </div>
+                `;
+
+                if (result.success) {
+                    content += `
+                        <div style="background: var(--bg-secondary); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                                <div style="width: 12px; height: 12px; background: #34C759; border-radius: 50%;"></div>
+                                <span style="font-weight: 600; color: var(--keti-blue);">Data Retrieved Successfully</span>
+                            </div>
+                            <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 13px; line-height: 1.8; margin: 0;">${result.stdout}</pre>
+                        </div>
+                    `;
+                } else {
+                    content += `
+                        <div style="background: var(--bg-secondary); padding: 20px; border-radius: 12px;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                                <div style="width: 12px; height: 12px; background: var(--apple-red); border-radius: 50%;"></div>
+                                <span style="font-weight: 600; color: var(--apple-red);">Failed to Retrieve Data</span>
+                            </div>
+                            <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 13px; line-height: 1.6; color: var(--apple-red);">${result.stderr || 'No data available'}</pre>
+                        </div>
+                    `;
+                }
+
+                contentEl.innerHTML = content;
+            } catch (error) {
+                contentEl.innerHTML = `
+                    <div class="path-breadcrumb">
+                        <i class="fas fa-route"></i> /${path}
+                    </div>
+                    <p style="color: var(--apple-red);">
+                        <i class="fas fa-exclamation-triangle"></i> Error: ${error.message}
+                    </p>
+                `;
             }
         }
 

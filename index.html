@@ -1055,49 +1055,169 @@
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">
-                        <i class="fas fa-chart-line"></i> CBS (Credit-Based Shaper)
+                        <i class="fas fa-chart-line"></i> Traffic Class Shaper Configuration
                     </h2>
+                    <button class="btn btn-primary" onclick="loadCurrentShapers()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
                 </div>
 
                 <div class="info-box">
                     <div class="info-box-title">
-                        <i class="fas fa-info-circle"></i> About CBS
+                        <i class="fas fa-info-circle"></i> About Traffic Class Shapers
                     </div>
-                    <p>IEEE 802.1Qav Credit-Based Shaper guarantees bandwidth for AVB (Audio Video Bridging) traffic.</p>
+                    <p><strong>CBS (Credit-Based Shaper)</strong>: IEEE 802.1Qav - Guarantees bandwidth for AVB traffic using idle-slope parameter.</p>
+                    <p><strong>SLB (Single Leaky Bucket)</strong>: Standard token bucket shaper using CIR (Committed Information Rate) and CBS (Committed Burst Size).</p>
+                    <p><strong>Important</strong>: Each traffic class can only have ONE shaper mode. Clear existing config before switching modes.</p>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">Interface</label>
-                    <input type="text" class="form-input" id="cbs-interface" value="1" placeholder="1">
+                <!-- Current Shapers Display -->
+                <div style="margin-bottom: 24px;">
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--keti-blue); margin-bottom: 12px;">
+                        <i class="fas fa-list"></i> Current Shaper Configuration
+                    </h3>
+                    <div id="current-shapers-display">
+                        <p style="color: var(--text-secondary); text-align: center; padding: 20px;">Click Refresh to load current configuration</p>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">Traffic Class</label>
-                    <select class="form-select" id="cbs-tc">
-                        <option value="0">TC0</option>
-                        <option value="1">TC1</option>
-                        <option value="2">TC2</option>
-                        <option value="3">TC3</option>
-                        <option value="4">TC4</option>
-                        <option value="5">TC5</option>
-                        <option value="6">TC6</option>
-                        <option value="7">TC7</option>
-                    </select>
+                <!-- Configuration Section -->
+                <div style="margin-bottom: 24px;">
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--keti-blue); margin-bottom: 12px;">
+                        <i class="fas fa-cog"></i> Configure Shaper
+                    </h3>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 16px;">
+                        <div>
+                            <label class="input-label">Interface/Port</label>
+                            <input type="text" id="cbs-interface" class="input-field" value="1" placeholder="1">
+                        </div>
+                        <div>
+                            <label class="input-label">Traffic Class (TC)</label>
+                            <select id="cbs-tc" class="input-field">
+                                <option value="0">TC0</option>
+                                <option value="1">TC1</option>
+                                <option value="2">TC2</option>
+                                <option value="3" selected>TC3</option>
+                                <option value="4">TC4</option>
+                                <option value="5">TC5</option>
+                                <option value="6">TC6</option>
+                                <option value="7">TC7</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="input-label">Shaper Mode</label>
+                            <select id="cbs-mode" class="input-field" onchange="toggleShaperFields()">
+                                <option value="none">None (Disable)</option>
+                                <option value="cbs" selected>CBS (Credit-Based)</option>
+                                <option value="slb">SLB (Leaky Bucket)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- CBS Mode Fields -->
+                    <div id="cbs-mode-fields" style="display: block;">
+                        <div style="background: var(--bg-secondary); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+                            <div style="font-weight: 600; margin-bottom: 12px; color: var(--keti-blue);">
+                                <i class="fas fa-sliders-h"></i> CBS Parameters
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                                <div>
+                                    <label class="input-label">
+                                        Idle Slope (kbps)
+                                        <span style="font-size: 11px; color: var(--text-secondary); font-weight: normal;">
+                                            - Service rate when credit available
+                                        </span>
+                                    </label>
+                                    <input type="number" id="cbs-idle-slope" class="input-field" value="100000" placeholder="100000" min="0" max="1000000">
+                                    <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">
+                                        Range: 0 - 1,000,000 kbps (0 - 1 Gbps)
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="input-label">
+                                        Presets
+                                    </label>
+                                    <select class="input-field" onchange="applyCBSPreset(this.value)">
+                                        <option value="">-- Select Preset --</option>
+                                        <option value="25000">25 Mbps (Low Priority AVB)</option>
+                                        <option value="75000">75 Mbps (Medium AVB)</option>
+                                        <option value="100000">100 Mbps (Standard CBS)</option>
+                                        <option value="250000">250 Mbps (High Priority)</option>
+                                        <option value="500000">500 Mbps (Very High)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SLB Mode Fields -->
+                    <div id="slb-mode-fields" style="display: none;">
+                        <div style="background: var(--bg-secondary); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+                            <div style="font-weight: 600; margin-bottom: 12px; color: var(--keti-blue);">
+                                <i class="fas fa-tachometer-alt"></i> SLB Parameters
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                                <div>
+                                    <label class="input-label">
+                                        CIR - Committed Information Rate (kbps)
+                                    </label>
+                                    <input type="number" id="slb-cir" class="input-field" value="50000" placeholder="50000" min="0">
+                                </div>
+                                <div>
+                                    <label class="input-label">
+                                        CBS - Committed Burst Size (bytes)
+                                    </label>
+                                    <input type="number" id="slb-cbs" class="input-field" value="2000" placeholder="2000" min="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <button class="btn btn-secondary" onclick="clearShaperForTC()">
+                            <i class="fas fa-eraser"></i> Clear Shaper (Disable TC)
+                        </button>
+                        <button class="btn btn-primary" onclick="applyShaperConfig()">
+                            <i class="fas fa-check"></i> Apply Configuration
+                        </button>
+                        <button class="btn btn-secondary" onclick="loadTCStatistics()">
+                            <i class="fas fa-chart-bar"></i> View TC Statistics
+                        </button>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">Idle Slope (kbps)</label>
-                    <input type="number" class="form-input" id="cbs-idle-slope" value="100000" placeholder="100000">
+                <!-- TC Statistics Display -->
+                <div id="tc-statistics-section" style="display: none; margin-bottom: 24px;">
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--keti-blue); margin-bottom: 12px;">
+                        <i class="fas fa-chart-bar"></i> Traffic Class Statistics
+                    </h3>
+                    <div id="tc-statistics-display">
+                        <!-- Will be populated by loadTCStatistics() -->
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">Send Slope (kbps, negative)</label>
-                    <input type="number" class="form-input" id="cbs-send-slope" value="-100000" placeholder="-100000">
-                </div>
-
-                <button class="btn btn-primary" onclick="applyCBS()">
-                    <i class="fas fa-check"></i> Apply CBS Configuration
-                </button>
+                <!-- Quick Actions -->
+                <details style="margin-top: 20px;">
+                    <summary style="cursor: pointer; padding: 12px; background: var(--bg-secondary); border-radius: 8px; font-weight: 600;">
+                        <i class="fas fa-bolt"></i> Quick Configuration Examples
+                    </summary>
+                    <div style="margin-top: 12px; padding: 12px; background: var(--bg-secondary); border-radius: 8px; font-family: 'SF Mono', monospace; font-size: 13px;">
+                        <div style="margin-bottom: 12px;">
+                            <strong>Example 1: High Priority AVB (TC7)</strong><br>
+                            Interface: 1, TC: 7, Mode: CBS, Idle Slope: 250,000 kbps (250 Mbps)
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <strong>Example 2: Standard CBS (TC3)</strong><br>
+                            Interface: 1, TC: 3, Mode: CBS, Idle Slope: 100,000 kbps (100 Mbps)
+                        </div>
+                        <div>
+                            <strong>Example 3: Rate Limiter (TC2)</strong><br>
+                            Interface: 1, TC: 2, Mode: SLB, CIR: 50,000 kbps, CBS: 2000 bytes
+                        </div>
+                    </div>
+                </details>
             </div>
         </div>
 
@@ -2545,35 +2665,293 @@
             }
         }
 
-        async function applyCBS() {
-            const iface = document.getElementById('cbs-interface').value;
-            const tc = document.getElementById('cbs-tc').value;
-            const idleSlope = document.getElementById('cbs-idle-slope').value;
-            const sendSlope = document.getElementById('cbs-send-slope').value;
+        // ============================================
+        // CBS/Shaper Configuration Functions
+        // ============================================
 
-            addToConsole(`Applying CBS: interface=${iface}, tc=${tc}, idle-slope=${idleSlope}, send-slope=${sendSlope}`, 'info');
+        function toggleShaperFields() {
+            const mode = document.getElementById('cbs-mode').value;
+            document.getElementById('cbs-mode-fields').style.display = mode === 'cbs' ? 'block' : 'none';
+            document.getElementById('slb-mode-fields').style.display = mode === 'slb' ? 'block' : 'none';
+        }
+
+        function applyCBSPreset(value) {
+            if (value) {
+                document.getElementById('cbs-idle-slope').value = value;
+            }
+        }
+
+        async function loadCurrentShapers() {
+            const displayEl = document.getElementById('current-shapers-display');
+            displayEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary);">Loading shaper configuration...</span>';
 
             try {
-                const response = await fetch(`${API_BASE}/cbs/configure`, {
+                const iface = document.getElementById('cbs-interface').value;
+                const path = `/ietf-interfaces:interfaces/interface[name='${iface}']/mchp-velocitysp-port:eth-qos/config/traffic-class-shapers`;
+
+                const response = await fetch(`${API_BASE}/get`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        interface: iface,
-                        tc: parseInt(tc),
-                        idleSlope: parseInt(idleSlope),
-                        sendSlope: parseInt(sendSlope)
-                    })
+                    body: JSON.stringify({ path })
+                });
+
+                const result = await response.json();
+                if (result.success && result.stdout) {
+                    const shapers = parseShaperConfig(result.stdout);
+                    displayShapers(shapers);
+                } else {
+                    displayEl.innerHTML = '<p style="color: var(--apple-red);">No shapers configured or failed to load</p>';
+                }
+            } catch (error) {
+                displayEl.innerHTML = `<p style="color: var(--apple-red);">Error: ${error.message}</p>`;
+            }
+        }
+
+        function parseShaperConfig(yamlText) {
+            const shapers = [];
+            const lines = yamlText.split('\n');
+            let currentShaper = null;
+
+            for (const line of lines) {
+                if (line.includes('traffic-class:')) {
+                    if (currentShaper) shapers.push(currentShaper);
+                    const match = line.match(/traffic-class:\s*(\d+)/);
+                    currentShaper = { tc: match ? match[1] : '?', mode: 'unknown', params: {} };
+                }
+                if (!currentShaper) continue;
+
+                if (line.includes('idle-slope:')) {
+                    currentShaper.mode = 'CBS';
+                    const match = line.match(/idle-slope:\s*([\d]+)/);
+                    if (match) currentShaper.params.idleSlope = parseInt(match[1]);
+                }
+                if (line.includes('committed-information-rate:')) {
+                    currentShaper.mode = 'SLB';
+                    const match = line.match(/committed-information-rate:\s*([\d]+)/);
+                    if (match) currentShaper.params.cir = parseInt(match[1]);
+                }
+                if (line.includes('committed-burst-size:')) {
+                    const match = line.match(/committed-burst-size:\s*([\d]+)/);
+                    if (match) currentShaper.params.cbs = parseInt(match[1]);
+                }
+            }
+            if (currentShaper) shapers.push(currentShaper);
+            return shapers;
+        }
+
+        function displayShapers(shapers) {
+            const displayEl = document.getElementById('current-shapers-display');
+
+            if (shapers.length === 0) {
+                displayEl.innerHTML = '<p style="color: var(--text-secondary); text-align: center; padding: 20px;">No shapers configured</p>';
+                return;
+            }
+
+            displayEl.innerHTML = `
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead style="background: var(--bg-secondary);">
+                        <tr>
+                            <th style="padding: 12px; text-align: left;">Traffic Class</th>
+                            <th style="padding: 12px; text-align: left;">Mode</th>
+                            <th style="padding: 12px; text-align: left;">Parameters</th>
+                            <th style="padding: 12px; text-align: center;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${shapers.map(s => `
+                            <tr style="border-top: 1px solid var(--border-color);">
+                                <td style="padding: 12px; font-weight: 600;">TC${s.tc}</td>
+                                <td style="padding: 12px;">
+                                    <span style="padding: 4px 8px; background: ${s.mode === 'CBS' ? '#3498db' : '#9b59b6'}; color: white; border-radius: 4px; font-size: 12px; font-weight: 600;">
+                                        ${s.mode}
+                                    </span>
+                                </td>
+                                <td style="padding: 12px; font-family: 'SF Mono', monospace; font-size: 13px;">
+                                    ${s.mode === 'CBS' ? `Idle Slope: ${(s.params.idleSlope / 1000).toFixed(0)} Mbps` :
+                                      `CIR: ${(s.params.cir / 1000).toFixed(0)} Mbps, CBS: ${s.params.cbs} bytes`}
+                                </td>
+                                <td style="padding: 12px; text-align: center;">
+                                    <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;" onclick="loadShaperToForm(${s.tc}, '${s.mode}', ${JSON.stringify(s.params).replace(/"/g, '&quot;')})">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        function loadShaperToForm(tc, mode, params) {
+            document.getElementById('cbs-tc').value = tc;
+            document.getElementById('cbs-mode').value = mode.toLowerCase();
+
+            if (mode === 'CBS') {
+                document.getElementById('cbs-idle-slope').value = params.idleSlope || 100000;
+            } else {
+                document.getElementById('slb-cir').value = params.cir || 50000;
+                document.getElementById('slb-cbs').value = params.cbs || 2000;
+            }
+
+            toggleShaperFields();
+            window.scrollTo({ top: document.getElementById('cbs-mode').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        async function clearShaperForTC() {
+            const iface = document.getElementById('cbs-interface').value;
+            const tc = document.getElementById('cbs-tc').value;
+
+            if (!confirm(`Clear shaper for Interface ${iface}, TC${tc}?`)) return;
+
+            try {
+                const path = `/ietf-interfaces:interfaces/interface[name='${iface}']/mchp-velocitysp-port:eth-qos/config/traffic-class-shapers[traffic-class='${tc}']`;
+
+                const response = await fetch(`${API_BASE}/set`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path, value: null })
                 });
 
                 const result = await response.json();
                 if (result.success) {
-                    addToConsole('CBS configuration applied successfully', 'success');
+                    alert(`✓ Cleared shaper for TC${tc}`);
+                    loadCurrentShapers();
                 } else {
-                    addToConsole('CBS configuration failed', 'error');
+                    alert(`✗ Failed: ${result.stderr || result.error}`);
                 }
             } catch (error) {
-                addToConsole(`Error: ${error.message}`, 'error');
+                alert(`✗ Error: ${error.message}`);
             }
+        }
+
+        async function applyShaperConfig() {
+            const iface = document.getElementById('cbs-interface').value;
+            const tc = document.getElementById('cbs-tc').value;
+            const mode = document.getElementById('cbs-mode').value;
+
+            if (mode === 'none') {
+                return clearShaperForTC();
+            }
+
+            try {
+                let configData = { 'traffic-class': parseInt(tc) };
+
+                if (mode === 'cbs') {
+                    const idleSlope = parseInt(document.getElementById('cbs-idle-slope').value);
+                    configData['credit-based'] = { 'idle-slope': idleSlope };
+                } else if (mode === 'slb') {
+                    const cir = parseInt(document.getElementById('slb-cir').value);
+                    const cbs = parseInt(document.getElementById('slb-cbs').value);
+                    configData['single-leaky-bucket'] = {
+                        'committed-information-rate': cir,
+                        'committed-burst-size': cbs
+                    };
+                }
+
+                const path = `/ietf-interfaces:interfaces/interface[name='${iface}']/mchp-velocitysp-port:eth-qos/config/traffic-class-shapers`;
+
+                const response = await fetch(`${API_BASE}/set`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path, value: configData })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    alert(`✓ Applied ${mode.toUpperCase()} shaper to TC${tc}`);
+                    loadCurrentShapers();
+                } else {
+                    alert(`✗ Failed: ${result.stderr || result.error}`);
+                }
+            } catch (error) {
+                alert(`✗ Error: ${error.message}`);
+            }
+        }
+
+        async function loadTCStatistics() {
+            const iface = document.getElementById('cbs-interface').value;
+            const section = document.getElementById('tc-statistics-section');
+            const displayEl = document.getElementById('tc-statistics-display');
+
+            section.style.display = 'block';
+            displayEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary);">Loading TC statistics...</span>';
+
+            try {
+                const path = `/ietf-interfaces:interfaces/interface[name='${iface}']/mchp-velocitysp-port:eth-port/statistics/traffic-class`;
+
+                const response = await fetch(`${API_BASE}/get`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path })
+                });
+
+                const result = await response.json();
+                if (result.success && result.stdout) {
+                    const stats = parseTCStats(result.stdout);
+                    displayTCStats(stats);
+                } else {
+                    displayEl.innerHTML = '<p style="color: var(--apple-red);">Failed to load statistics</p>';
+                }
+            } catch (error) {
+                displayEl.innerHTML = `<p style="color: var(--apple-red);">Error: ${error.message}</p>`;
+            }
+        }
+
+        function parseTCStats(yamlText) {
+            const stats = [];
+            const lines = yamlText.split('\n');
+            let currentTC = null;
+
+            for (const line of lines) {
+                if (line.includes('- rx-packets:')) {
+                    if (currentTC) stats.push(currentTC);
+                    const rxMatch = line.match(/rx-packets:\s*(\d+)/);
+                    const tcMatch = line.match(/traffic-class:\s*(\d+)/);
+                    currentTC = {
+                        tc: tcMatch ? tcMatch[1] : '?',
+                        rxPackets: rxMatch ? parseInt(rxMatch[1]) : 0,
+                        txPackets: 0
+                    };
+                }
+                if (currentTC && line.includes('tx-packets:')) {
+                    const match = line.match(/tx-packets:\s*(\d+)/);
+                    if (match) currentTC.txPackets = parseInt(match[1]);
+                }
+            }
+            if (currentTC) stats.push(currentTC);
+            return stats;
+        }
+
+        function displayTCStats(stats) {
+            const displayEl = document.getElementById('tc-statistics-display');
+
+            displayEl.innerHTML = `
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead style="background: var(--bg-secondary);">
+                        <tr>
+                            <th style="padding: 12px; text-align: left;">TC</th>
+                            <th style="padding: 12px; text-align: right;">RX Packets</th>
+                            <th style="padding: 12px; text-align: right;">TX Packets</th>
+                            <th style="padding: 12px; text-align: right;">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${stats.map(s => `
+                            <tr style="border-top: 1px solid var(--border-color);">
+                                <td style="padding: 12px; font-weight: 600;">TC${s.tc}</td>
+                                <td style="padding: 12px; text-align: right; font-family: 'SF Mono', monospace;">${s.rxPackets.toLocaleString()}</td>
+                                <td style="padding: 12px; text-align: right; font-family: 'SF Mono', monospace;">${s.txPackets.toLocaleString()}</td>
+                                <td style="padding: 12px; text-align: right; font-family: 'SF Mono', monospace; font-weight: 600;">${(s.rxPackets + s.txPackets).toLocaleString()}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        // Legacy function for backward compatibility
+        async function applyCBS() {
+            return applyShaperConfig();
         }
 
         let gclCounter = 0;

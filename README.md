@@ -369,10 +369,24 @@ chmod +x mvdct
 
 ## Performance Notes
 
-- Command timeout: 10 seconds
+### Optimization Features
+- **Request Queue**: Serializes CLI executions to prevent simultaneous serial port access conflicts
+- **Result Caching**: GET requests are cached for 2 seconds to reduce hardware queries
+- **Execution Logging**: All commands logged with execution time for performance monitoring
+- **Improved Timeout**: Extended to 15 seconds with graceful SIGTERM/SIGKILL handling
+
+### Performance Statistics
+- Command timeout: 15 seconds (graceful)
 - History limit: 100 commands
-- Concurrent connections: Unlimited
+- Cache size limit: 100 entries
+- Cache TTL: 2 seconds
+- Concurrent connections: Unlimited (queued internally)
 - CORS: Enabled for all origins
+- Average execution time: ~900ms per CLI call
+
+### Monitoring
+- `GET /api/stats/performance` - View cache hit rate, queue length, and average execution time
+- `DELETE /api/cache` - Clear result cache
 
 ## Related Projects
 
@@ -410,6 +424,12 @@ For issues and questions:
 - KETI Contact: [Your contact information]
 
 ## Changelog
+
+### Version 1.3.0 (2025-09-30)
+- **Performance Optimization**: Request queue + result caching system
+- **Detailed Interface View**: Comprehensive port statistics, ethernet config, traffic class distribution
+- **Execution Monitoring**: Performance stats API with cache hit rate tracking
+- **Improved Error Handling**: Graceful timeout with SIGTERM/SIGKILL fallback
 
 ### Version 1.2.0 (2025-09-30)
 - Complete YANG tree structure with 60+ paths

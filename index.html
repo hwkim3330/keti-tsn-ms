@@ -1412,49 +1412,185 @@
             infoEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading interfaces...</span>';
 
             try {
-                const response = await fetch(`${API_BASE}/interfaces`);
+                const response = await fetch(`${API_BASE}/get`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path: '/ietf-interfaces:interfaces' })
+                });
                 const result = await response.json();
 
                 if (result.success && result.stdout) {
-                    // Parse interface info
-                    const interfaces = [];
-                    let currentInterface = null;
-
-                    result.stdout.split('\n').forEach(line => {
-                        if (line.includes('- name:')) {
-                            const name = line.split(':')[1].trim();
-                            currentInterface = { name, type: 'ethernet', status: 'up' };
-                            interfaces.push(currentInterface);
-                        }
-                    });
-
-                    // Default interfaces for LAN9662 if parsing fails
-                    if (interfaces.length === 0) {
-                        interfaces.push(
-                            { name: '0', type: 'ethernet', status: 'up' },
-                            { name: '1', type: 'ethernet', status: 'up' }
-                        );
-                    }
+                    const interfaces = parseInterfacesYAML(result.stdout);
 
                     infoEl.innerHTML = `
-                        <div class="interface-grid">
+                        <div style="display: flex; flex-direction: column; gap: 24px;">
                             ${interfaces.map(iface => `
-                                <div class="interface-card">
-                                    <div class="interface-icon">
-                                        <i class="fas fa-ethernet"></i>
+                                <div class="card" style="margin: 0; background: var(--bg-secondary);">
+                                    <div class="card-header" style="background: ${iface.operStatus === 'up' ? 'linear-gradient(135deg, #2ecc71 0%, #27ae60 100%)' : 'linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%)'}; color: white;">
+                                        <h3 style="font-size: 18px; font-weight: 700; margin: 0; display: flex; align-items: center; gap: 12px;">
+                                            <i class="fas fa-ethernet"></i>
+                                            Interface ${iface.name}
+                                            <span style="margin-left: auto; font-size: 14px; opacity: 0.9;">
+                                                <i class="fas fa-circle" style="font-size: 8px;"></i> ${iface.operStatus.toUpperCase()}
+                                            </span>
+                                        </h3>
                                     </div>
-                                    <div class="interface-name">Port ${iface.name}</div>
-                                    <div class="interface-status ${iface.status}">
-                                        <i class="fas fa-circle"></i> ${iface.status.toUpperCase()}
+                                    <div style="padding: 20px;">
+                                        <!-- Basic Info -->
+                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px;">
+                                            <div class="stat-card" style="background: var(--bg-primary); padding: 12px; border-radius: 8px;">
+                                                <div style="color: var(--text-secondary); font-size: 12px; margin-bottom: 4px;">
+                                                    <i class="fas fa-tag"></i> Type
+                                                </div>
+                                                <div style="font-weight: 600; font-size: 16px;">${iface.type}</div>
+                                            </div>
+                                            <div class="stat-card" style="background: var(--bg-primary); padding: 12px; border-radius: 8px;">
+                                                <div style="color: var(--text-secondary); font-size: 12px; margin-bottom: 4px;">
+                                                    <i class="fas fa-fingerprint"></i> MAC Address
+                                                </div>
+                                                <div style="font-weight: 600; font-size: 14px; font-family: 'SF Mono', monospace;">${iface.macAddress}</div>
+                                            </div>
+                                            <div class="stat-card" style="background: var(--bg-primary); padding: 12px; border-radius: 8px;">
+                                                <div style="color: var(--text-secondary); font-size: 12px; margin-bottom: 4px;">
+                                                    <i class="fas fa-toggle-${iface.enabled ? 'on' : 'off'}"></i> Admin State
+                                                </div>
+                                                <div style="font-weight: 600; font-size: 16px;">${iface.enabled ? 'Enabled' : 'Disabled'}</div>
+                                            </div>
+                                            <div class="stat-card" style="background: var(--bg-primary); padding: 12px; border-radius: 8px;">
+                                                <div style="color: var(--text-secondary); font-size: 12px; margin-bottom: 4px;">
+                                                    <i class="fas fa-hashtag"></i> PVID
+                                                </div>
+                                                <div style="font-weight: 600; font-size: 16px;">${iface.pvid}</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Ethernet Info -->
+                                        <div style="margin-bottom: 20px;">
+                                            <h4 style="font-size: 14px; font-weight: 700; color: var(--keti-blue); margin-bottom: 12px;">
+                                                <i class="fas fa-network-wired"></i> Ethernet Configuration
+                                            </h4>
+                                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px;">
+                                                <div class="stat-card" style="background: var(--bg-primary); padding: 10px; border-radius: 6px;">
+                                                    <div style="color: var(--text-secondary); font-size: 11px;">Speed</div>
+                                                    <div style="font-weight: 600; font-size: 14px;">${iface.speed} Gbps</div>
+                                                </div>
+                                                <div class="stat-card" style="background: var(--bg-primary); padding: 10px; border-radius: 6px;">
+                                                    <div style="color: var(--text-secondary); font-size: 11px;">Duplex</div>
+                                                    <div style="font-weight: 600; font-size: 14px;">${iface.duplex}</div>
+                                                </div>
+                                                <div class="stat-card" style="background: var(--bg-primary); padding: 10px; border-radius: 6px;">
+                                                    <div style="color: var(--text-secondary); font-size: 11px;">Auto-Neg</div>
+                                                    <div style="font-weight: 600; font-size: 14px;">${iface.autoNeg ? 'Enabled' : 'Disabled'}</div>
+                                                </div>
+                                                <div class="stat-card" style="background: var(--bg-primary); padding: 10px; border-radius: 6px;">
+                                                    <div style="color: var(--text-secondary); font-size: 11px;">Max Frame</div>
+                                                    <div style="font-weight: 600; font-size: 14px;">${iface.maxFrameLength} bytes</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Statistics -->
+                                        <div style="margin-bottom: 20px;">
+                                            <h4 style="font-size: 14px; font-weight: 700; color: var(--keti-blue); margin-bottom: 12px;">
+                                                <i class="fas fa-chart-bar"></i> Traffic Statistics
+                                            </h4>
+                                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                                                <div style="background: var(--bg-primary); padding: 16px; border-radius: 8px;">
+                                                    <div style="font-weight: 700; color: #3498db; margin-bottom: 12px;">
+                                                        <i class="fas fa-download"></i> RX (Receive)
+                                                    </div>
+                                                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                                                        <div style="display: flex; justify-content: space-between;">
+                                                            <span style="color: var(--text-secondary); font-size: 13px;">Octets:</span>
+                                                            <span style="font-weight: 600; font-family: 'SF Mono', monospace; font-size: 13px;">${iface.stats.inOctets.toLocaleString()}</span>
+                                                        </div>
+                                                        <div style="display: flex; justify-content: space-between;">
+                                                            <span style="color: var(--text-secondary); font-size: 13px;">Unicast:</span>
+                                                            <span style="font-weight: 600; font-family: 'SF Mono', monospace; font-size: 13px;">${iface.stats.inUnicast.toLocaleString()}</span>
+                                                        </div>
+                                                        <div style="display: flex; justify-content: space-between;">
+                                                            <span style="color: var(--text-secondary); font-size: 13px;">Multicast:</span>
+                                                            <span style="font-weight: 600; font-family: 'SF Mono', monospace; font-size: 13px;">${iface.stats.inMulticast.toLocaleString()}</span>
+                                                        </div>
+                                                        <div style="display: flex; justify-content: space-between;">
+                                                            <span style="color: var(--text-secondary); font-size: 13px;">Broadcast:</span>
+                                                            <span style="font-weight: 600; font-family: 'SF Mono', monospace; font-size: 13px;">${iface.stats.inBroadcast.toLocaleString()}</span>
+                                                        </div>
+                                                        <div style="display: flex; justify-content: space-between; ${iface.stats.inErrors > 0 ? 'color: #e74c3c;' : ''}">
+                                                            <span style="font-size: 13px;"><i class="fas fa-exclamation-triangle"></i> Errors:</span>
+                                                            <span style="font-weight: 700; font-family: 'SF Mono', monospace; font-size: 13px;">${iface.stats.inErrors.toLocaleString()}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="background: var(--bg-primary); padding: 16px; border-radius: 8px;">
+                                                    <div style="font-weight: 700; color: #9b59b6; margin-bottom: 12px;">
+                                                        <i class="fas fa-upload"></i> TX (Transmit)
+                                                    </div>
+                                                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                                                        <div style="display: flex; justify-content: space-between;">
+                                                            <span style="color: var(--text-secondary); font-size: 13px;">Octets:</span>
+                                                            <span style="font-weight: 600; font-family: 'SF Mono', monospace; font-size: 13px;">${iface.stats.outOctets.toLocaleString()}</span>
+                                                        </div>
+                                                        <div style="display: flex; justify-content: space-between;">
+                                                            <span style="color: var(--text-secondary); font-size: 13px;">Unicast:</span>
+                                                            <span style="font-weight: 600; font-family: 'SF Mono', monospace; font-size: 13px;">${iface.stats.outUnicast.toLocaleString()}</span>
+                                                        </div>
+                                                        <div style="display: flex; justify-content: space-between;">
+                                                            <span style="color: var(--text-secondary); font-size: 13px;">Multicast:</span>
+                                                            <span style="font-weight: 600; font-family: 'SF Mono', monospace; font-size: 13px;">${iface.stats.outMulticast.toLocaleString()}</span>
+                                                        </div>
+                                                        <div style="display: flex; justify-content: space-between;">
+                                                            <span style="color: var(--text-secondary); font-size: 13px;">Broadcast:</span>
+                                                            <span style="font-weight: 600; font-family: 'SF Mono', monospace; font-size: 13px;">${iface.stats.outBroadcast.toLocaleString()}</span>
+                                                        </div>
+                                                        <div style="display: flex; justify-content: space-between; ${iface.stats.outErrors > 0 ? 'color: #e74c3c;' : ''}">
+                                                            <span style="font-size: 13px;"><i class="fas fa-exclamation-triangle"></i> Errors:</span>
+                                                            <span style="font-weight: 700; font-family: 'SF Mono', monospace; font-size: 13px;">${iface.stats.outErrors.toLocaleString()}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Traffic Class Distribution -->
+                                        ${iface.trafficClass && iface.trafficClass.length > 0 ? `
+                                        <div>
+                                            <h4 style="font-size: 14px; font-weight: 700; color: var(--keti-blue); margin-bottom: 12px;">
+                                                <i class="fas fa-layer-group"></i> Traffic Class Distribution (TC0-TC7)
+                                            </h4>
+                                            <div style="overflow-x: auto;">
+                                                <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                                                    <thead>
+                                                        <tr style="background: var(--bg-primary);">
+                                                            <th style="padding: 10px; text-align: left; font-weight: 600; color: var(--text-secondary);">TC</th>
+                                                            <th style="padding: 10px; text-align: right; font-weight: 600; color: var(--text-secondary);">RX Packets</th>
+                                                            <th style="padding: 10px; text-align: right; font-weight: 600; color: var(--text-secondary);">TX Packets</th>
+                                                            <th style="padding: 10px; text-align: right; font-weight: 600; color: var(--text-secondary);">Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        ${iface.trafficClass.map((tc, idx) => `
+                                                            <tr style="border-top: 1px solid var(--border-color);">
+                                                                <td style="padding: 10px; font-weight: 600;">TC${tc.class}</td>
+                                                                <td style="padding: 10px; text-align: right; font-family: 'SF Mono', monospace;">${tc.rxPackets.toLocaleString()}</td>
+                                                                <td style="padding: 10px; text-align: right; font-family: 'SF Mono', monospace;">${tc.txPackets.toLocaleString()}</td>
+                                                                <td style="padding: 10px; text-align: right; font-family: 'SF Mono', monospace; font-weight: 600;">${(tc.rxPackets + tc.txPackets).toLocaleString()}</td>
+                                                            </tr>
+                                                        `).join('')}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        ` : ''}
                                     </div>
                                 </div>
                             `).join('')}
                         </div>
-                        <details style="margin-top: 20px;">
-                            <summary style="cursor: pointer; padding: 10px; background: var(--bg-secondary); border-radius: 8px; font-weight: 600;">
-                                <i class="fas fa-code"></i> Raw Output
+                        <details style="margin-top: 24px;">
+                            <summary style="cursor: pointer; padding: 12px; background: var(--bg-secondary); border-radius: 8px; font-weight: 600;">
+                                <i class="fas fa-code"></i> Raw YAML Output
                             </summary>
-                            <pre style="margin-top: 10px; white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 13px; line-height: 1.6; background: var(--bg-secondary); padding: 16px; border-radius: 8px;">${result.stdout}</pre>
+                            <pre style="margin-top: 12px; white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 12px; line-height: 1.6; background: var(--bg-secondary); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">${result.stdout}</pre>
                         </details>
                     `;
                 } else {
@@ -1701,6 +1837,149 @@
             } catch (error) {
                 displayEl.innerHTML = `<p style="color: var(--apple-red); padding: 40px; text-align: center;"><i class="fas fa-exclamation-triangle"></i> Error: ${error.message}</p>`;
             }
+        }
+
+        function parseInterfacesYAML(yamlText) {
+            const interfaces = [];
+            const lines = yamlText.split('\n');
+            let currentInterface = null;
+
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+
+                // Detect new interface
+                if (line.includes('- enabled:') || line.includes('- name:')) {
+                    if (currentInterface && currentInterface.name) {
+                        interfaces.push(currentInterface);
+                    }
+                    currentInterface = {
+                        name: '',
+                        type: 'ethernetCsmacd',
+                        enabled: true,
+                        operStatus: 'down',
+                        macAddress: '00:00:00:00:00:00',
+                        pvid: 1,
+                        speed: '1.000',
+                        duplex: 'full',
+                        autoNeg: true,
+                        maxFrameLength: 10240,
+                        stats: {
+                            inOctets: 0,
+                            outOctets: 0,
+                            inUnicast: 0,
+                            outUnicast: 0,
+                            inMulticast: 0,
+                            outMulticast: 0,
+                            inBroadcast: 0,
+                            outBroadcast: 0,
+                            inErrors: 0,
+                            outErrors: 0
+                        },
+                        trafficClass: []
+                    };
+                }
+
+                if (!currentInterface) continue;
+
+                // Parse interface fields
+                if (line.includes('name:') && !line.includes('actor-') && !line.includes('aggr-') && !line.includes('partner-')) {
+                    const match = line.match(/name:\s*['"]?(\d+)['"]?/);
+                    if (match) currentInterface.name = match[1];
+                }
+                if (line.includes('enabled:')) currentInterface.enabled = line.includes('true');
+                if (line.includes('oper-status:')) currentInterface.operStatus = line.includes('up') ? 'up' : 'down';
+                if (line.includes('phys-address:')) {
+                    const match = line.match(/phys-address:\s*(.+)/);
+                    if (match) currentInterface.macAddress = match[1].trim();
+                }
+                if (line.includes('pvid:')) {
+                    const match = line.match(/pvid:\s*(\d+)/);
+                    if (match) currentInterface.pvid = parseInt(match[1]);
+                }
+                if (line.includes('speed:') && !line.includes('oper_speed')) {
+                    const match = line.match(/speed:\s*([\d.]+)/);
+                    if (match) currentInterface.speed = match[1];
+                }
+                if (line.includes('duplex:')) currentInterface.duplex = line.includes('full') ? 'full' : 'half';
+                if (line.includes('enable:') && line.includes('auto-negotiation')) {
+                    currentInterface.autoNeg = line.includes('true');
+                }
+                if (line.includes('max-frame-length:')) {
+                    const match = line.match(/max-frame-length:\s*(\d+)/);
+                    if (match) currentInterface.maxFrameLength = parseInt(match[1]);
+                }
+
+                // Parse statistics
+                if (line.includes('in-octets:')) {
+                    const match = line.match(/in-octets:\s*(\d+)/);
+                    if (match) currentInterface.stats.inOctets = parseInt(match[1]);
+                }
+                if (line.includes('out-octets:')) {
+                    const match = line.match(/out-octets:\s*(\d+)/);
+                    if (match) currentInterface.stats.outOctets = parseInt(match[1]);
+                }
+                if (line.includes('in-unicast-pkts:')) {
+                    const match = line.match(/in-unicast-pkts:\s*(\d+)/);
+                    if (match) currentInterface.stats.inUnicast = parseInt(match[1]);
+                }
+                if (line.includes('out-unicast-pkts:')) {
+                    const match = line.match(/out-unicast-pkts:\s*(\d+)/);
+                    if (match) currentInterface.stats.outUnicast = parseInt(match[1]);
+                }
+                if (line.includes('in-multicast-pkts:')) {
+                    const match = line.match(/in-multicast-pkts:\s*(\d+)/);
+                    if (match) currentInterface.stats.inMulticast = parseInt(match[1]);
+                }
+                if (line.includes('out-multicast-pkts:')) {
+                    const match = line.match(/out-multicast-pkts:\s*(\d+)/);
+                    if (match) currentInterface.stats.outMulticast = parseInt(match[1]);
+                }
+                if (line.includes('in-broadcast-pkts:')) {
+                    const match = line.match(/in-broadcast-pkts:\s*(\d+)/);
+                    if (match) currentInterface.stats.inBroadcast = parseInt(match[1]);
+                }
+                if (line.includes('out-broadcast-pkts:')) {
+                    const match = line.match(/out-broadcast-pkts:\s*(\d+)/);
+                    if (match) currentInterface.stats.outBroadcast = parseInt(match[1]);
+                }
+                if (line.includes('in-errors:')) {
+                    const match = line.match(/in-errors:\s*(\d+)/);
+                    if (match) currentInterface.stats.inErrors = parseInt(match[1]);
+                }
+                if (line.includes('out-errors:')) {
+                    const match = line.match(/out-errors:\s*(\d+)/);
+                    if (match) currentInterface.stats.outErrors = parseInt(match[1]);
+                }
+
+                // Parse traffic class
+                if (line.includes('- rx-packets:') && line.includes('traffic-class:')) {
+                    const rxMatch = line.match(/rx-packets:\s*(\d+)/);
+                    const tcMatch = line.match(/traffic-class:\s*(\d+)/);
+                    const txMatch = lines[i].match(/tx-packets:\s*(\d+)/);
+
+                    if (rxMatch && tcMatch) {
+                        currentInterface.trafficClass.push({
+                            class: parseInt(tcMatch[1]),
+                            rxPackets: parseInt(rxMatch[1]),
+                            txPackets: txMatch ? parseInt(txMatch[1]) : 0
+                        });
+                    }
+                }
+                if (line.includes('tx-packets:') && currentInterface.trafficClass.length > 0) {
+                    const match = line.match(/tx-packets:\s*(\d+)/);
+                    if (match) {
+                        const lastTC = currentInterface.trafficClass[currentInterface.trafficClass.length - 1];
+                        lastTC.txPackets = parseInt(match[1]);
+                    }
+                }
+            }
+
+            // Push last interface
+            if (currentInterface && currentInterface.name) {
+                interfaces.push(currentInterface);
+            }
+
+            return interfaces;
         }
 
         function parseInterfaceStats(yamlText) {

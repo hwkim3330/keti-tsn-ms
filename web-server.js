@@ -33,11 +33,81 @@ let commandHistory = [];
 // YANG 카탈로그 캐시
 let yangCatalog = null;
 
+// ============================================
+// Performance Optimization Layer
+// ============================================
+
+// Result Cache - 동일한 GET 요청 결과를 캐싱
+const resultCache = new Map();
+const CACHE_TTL = 2000; // 2초 TTL (하드웨어 상태는 빠르게 변할 수 있음)
+
+// Request Queue - 직렬 포트는 동시 접근 불가능하므로 큐로 순서 보장
+const requestQueue = [];
+let isProcessing = false;
+
 /**
- * mvdct 명령어 실행
+ * Request Queue 처리기
+ */
+async function processQueue() {
+    if (isProcessing || requestQueue.length === 0) {
+        return;
+    }
+
+    isProcessing = true;
+    const { args, resolve, reject } = requestQueue.shift();
+
+    try {
+        const result = await executeMvdctRaw(args);
+        resolve(result);
+    } catch (error) {
+        reject(error);
+    } finally {
+        isProcessing = false;
+        // 다음 요청 처리
+        if (requestQueue.length > 0) {
+            setImmediate(processQueue);
+        }
+    }
+}
+
+/**
+ * Queued mvdct 실행 (캐싱 + 큐잉)
  */
 function executeMvdct(args) {
+    // Cache key 생성 (GET 요청만 캐싱)
+    const isGetCommand = args.includes('get') && !args.includes('set');
+    const cacheKey = isGetCommand ? JSON.stringify(args) : null;
+
+    // 캐시 확인
+    if (cacheKey && resultCache.has(cacheKey)) {
+        const cached = resultCache.get(cacheKey);
+        const age = Date.now() - cached.timestamp;
+        if (age < CACHE_TTL) {
+            console.log(`[CACHE HIT] ${cacheKey.substring(0, 80)}... (age: ${age}ms)`);
+            return Promise.resolve({
+                ...cached.result,
+                cached: true,
+                cacheAge: age
+            });
+        } else {
+            // TTL 만료
+            resultCache.delete(cacheKey);
+        }
+    }
+
+    // 큐에 추가
     return new Promise((resolve, reject) => {
+        requestQueue.push({ args, resolve, reject, cacheKey });
+        processQueue();
+    });
+}
+
+/**
+ * 실제 mvdct 명령어 실행 (Raw, 캐싱 없음)
+ */
+function executeMvdctRaw(args) {
+    return new Promise((resolve, reject) => {
+        const startTime = Date.now();
         const proc = spawn(MVDCT_PATH, args);
 
         let stdout = '';
@@ -52,14 +122,17 @@ function executeMvdct(args) {
         });
 
         proc.on('close', (code) => {
+            const executionTime = Date.now() - startTime;
             const result = {
                 success: code === 0,
                 stdout: stdout.trim(),
                 stderr: stderr.trim(),
                 code,
+                executionTime, // 실행 시간 추가
                 timestamp: new Date().toISOString()
             };
 
+            // 히스토리 저장
             commandHistory.push({
                 args,
                 result,
@@ -70,26 +143,59 @@ function executeMvdct(args) {
                 commandHistory = commandHistory.slice(-100);
             }
 
+            // GET 명령어 결과 캐싱
+            const isGetCommand = args.includes('get') && !args.includes('set');
+            if (isGetCommand && result.success) {
+                const cacheKey = JSON.stringify(args);
+                resultCache.set(cacheKey, {
+                    result,
+                    timestamp: Date.now()
+                });
+
+                // 캐시 크기 제한 (최대 100개)
+                if (resultCache.size > 100) {
+                    const firstKey = resultCache.keys().next().value;
+                    resultCache.delete(firstKey);
+                }
+            }
+
+            console.log(`[EXEC] mvdct ${args.join(' ')} → ${code === 0 ? 'OK' : 'FAIL'} (${executionTime}ms)`);
             resolve(result);
         });
 
         proc.on('error', (error) => {
+            const executionTime = Date.now() - startTime;
+            console.error(`[ERROR] mvdct ${args.join(' ')} → ${error.message} (${executionTime}ms)`);
             reject({
                 success: false,
                 error: error.message,
+                executionTime,
                 timestamp: new Date().toISOString()
             });
         });
 
-        // 10초 타임아웃
-        setTimeout(() => {
-            proc.kill();
+        // 15초 타임아웃 (일부 명령어는 오래 걸릴 수 있음)
+        const timeoutId = setTimeout(() => {
+            proc.kill('SIGTERM');
+            // 3초 후에도 종료 안되면 SIGKILL
+            setTimeout(() => {
+                if (!proc.killed) {
+                    proc.kill('SIGKILL');
+                }
+            }, 3000);
+
+            const executionTime = Date.now() - startTime;
+            console.error(`[TIMEOUT] mvdct ${args.join(' ')} (${executionTime}ms)`);
             reject({
                 success: false,
-                error: 'Command timeout',
+                error: 'Command timeout (15s)',
+                executionTime,
                 timestamp: new Date().toISOString()
             });
-        }, 10000);
+        }, 15000);
+
+        // 프로세스 종료 시 타임아웃 해제
+        proc.on('close', () => clearTimeout(timeoutId));
     });
 }
 
@@ -371,6 +477,42 @@ app.get('/api/history', (req, res) => {
 app.delete('/api/history', (req, res) => {
     commandHistory = [];
     res.json({ success: true });
+});
+
+/**
+ * API: 성능 통계 및 캐시 상태
+ */
+app.get('/api/stats/performance', (req, res) => {
+    const totalRequests = commandHistory.length;
+    const cacheHits = commandHistory.filter(h => h.result && h.result.cached).length;
+    const avgExecutionTime = commandHistory
+        .filter(h => h.result && h.result.executionTime)
+        .reduce((sum, h, _, arr) => sum + h.result.executionTime / arr.length, 0);
+
+    res.json({
+        success: true,
+        stats: {
+            totalRequests,
+            cacheHits,
+            cacheHitRate: totalRequests > 0 ? ((cacheHits / totalRequests) * 100).toFixed(2) + '%' : '0%',
+            cacheSize: resultCache.size,
+            queueLength: requestQueue.length,
+            isProcessing,
+            avgExecutionTime: avgExecutionTime ? Math.round(avgExecutionTime) + 'ms' : 'N/A'
+        }
+    });
+});
+
+/**
+ * API: 캐시 초기화
+ */
+app.delete('/api/cache', (req, res) => {
+    const cacheSize = resultCache.size;
+    resultCache.clear();
+    res.json({
+        success: true,
+        message: `Cleared ${cacheSize} cached entries`
+    });
 });
 
 /**

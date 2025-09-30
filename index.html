@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KETI TSN Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --keti-blue: #0066CC;
+            --keti-navy: #003366;
+            --apple-blue: #007AFF;
+            --apple-green: #34C759;
+            --apple-red: #FF3B30;
+            --apple-orange: #FF9500;
+            --apple-gray: #8E8E93;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F5F5F7;
+            --text-primary: #000000;
+            --text-secondary: #6E6E73;
+            --border-color: #D2D2D7;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 12px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-image {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .logo-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--keti-navy);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-subtitle {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .status-badge.connected {
+            background: rgba(52, 199, 89, 0.15);
+            color: var(--apple-green);
+        }
+
+        .status-badge.disconnected {
+            background: rgba(255, 59, 48, 0.15);
+            color: var(--apple-red);
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .status-badge.connected .status-dot {
+            background: var(--apple-green);
+            box-shadow: 0 0 8px var(--apple-green);
+        }
+
+        .status-badge.disconnected .status-dot {
+            background: var(--apple-red);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+
+        .nav-container {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .nav-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-tab {
+            padding: 12px 24px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-tab:hover {
+            background: rgba(0, 102, 204, 0.1);
+            color: var(--keti-blue);
+        }
+
+        .nav-tab.active {
+            background: var(--keti-blue);
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .quick-action-card {
+            background: linear-gradient(135deg, var(--keti-blue) 0%, var(--keti-navy) 100%);
+            color: white;
+            padding: 32px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-action-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .quick-action-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 32px rgba(0, 102, 204, 0.3);
+        }
+
+        .quick-action-card:hover::before {
+            opacity: 1;
+        }
+
+        .quick-action-icon {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .quick-action-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .quick-action-desc {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        /* Device Info Card */
+        .device-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .device-stat {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--keti-blue);
+        }
+
+        .device-stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .device-stat-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Interface Visualization */
+        .interface-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .interface-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .interface-card:hover {
+            border-color: var(--keti-blue);
+            transform: translateY(-4px);
+        }
+
+        .interface-icon {
+            font-size: 48px;
+            color: var(--keti-blue);
+            margin-bottom: 12px;
+        }
+
+        .interface-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .interface-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .interface-status.up {
+            background: rgba(52, 199, 89, 0.15);
+            color: var(--apple-green);
+        }
+
+        .interface-status.down {
+            background: rgba(142, 142, 147, 0.15);
+            color: var(--apple-gray);
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 15px;
+            background: var(--bg-primary);
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--keti-blue);
+            box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--keti-blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--keti-navy);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: rgba(0, 102, 204, 0.1);
+            color: var(--keti-blue);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 102, 204, 0.2);
+        }
+
+        .btn-success {
+            background: var(--apple-green);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--apple-red);
+            color: white;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .console {
+            background: #1e293b;
+            color: #00FF00;
+            padding: 20px;
+            border-radius: 12px;
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+            max-height: 500px;
+            overflow-y: auto;
+            margin-top: 20px;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .console::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .console::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+            border-radius: 4px;
+        }
+
+        .console::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+        }
+
+        .console-line {
+            margin-bottom: 6px;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+
+        .console-line.info { color: #94a3b8; }
+        .console-line.success { color: var(--apple-green); }
+        .console-line.error { color: var(--apple-red); }
+        .console-line.warning { color: var(--apple-orange); }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.1) 0%, rgba(0, 122, 255, 0.05) 100%);
+            border-left: 4px solid var(--apple-blue);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .info-box-title {
+            font-weight: 700;
+            color: var(--apple-blue);
+            margin-bottom: 8px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .priority-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .priority-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(0, 102, 204, 0.05);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .priority-item label {
+            min-width: 70px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .priority-item input {
+            flex: 1;
+        }
+
+        .gcl-entries {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .gcl-entry {
+            display: grid;
+            grid-template-columns: 70px 1fr 1fr 100px;
+            gap: 12px;
+            align-items: center;
+            padding: 16px;
+            background: rgba(0, 102, 204, 0.05);
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .gcl-entry:hover {
+            border-color: var(--keti-blue);
+            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+        }
+
+        .gcl-entry label {
+            font-weight: 700;
+            color: var(--keti-blue);
+            font-size: 14px;
+        }
+
+        .yang-browser {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 24px;
+            height: 600px;
+        }
+
+        .yang-sidebar {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 16px;
+            overflow-y: auto;
+            border: 1px solid var(--border-color);
+        }
+
+        .yang-module {
+            padding: 10px 12px;
+            margin-bottom: 4px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .yang-module:hover {
+            background: rgba(0, 102, 204, 0.1);
+        }
+
+        .yang-module.active {
+            background: var(--keti-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        .yang-content {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 24px;
+            overflow-y: auto;
+            border: 1px solid var(--border-color);
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--keti-blue);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+
+            .header-inner {
+                padding: 12px 16px;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .yang-browser {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .yang-sidebar {
+                max-height: 300px;
+            }
+
+            .gcl-entry {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 102, 204, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--apple-gray);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6E6E73;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <img src="https://keti.re.kr/m/img/main/logo02.png" alt="KETI" class="logo-image">
+                <div class="logo-text">
+                    <div class="logo-title">TSN Management System</div>
+                    <div class="logo-subtitle">LAN9662 VelocityDRIVE Control</div>
+                </div>
+            </div>
+            <div id="status-indicator" class="status-badge disconnected">
+                <span class="status-dot"></span>
+                <span>Checking...</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="nav-container">
+            <button class="nav-tab active" onclick="switchTab('overview')">
+                <i class="fas fa-home"></i> Overview
+            </button>
+            <button class="nav-tab" onclick="switchTab('yang')">
+                <i class="fas fa-sitemap"></i> YANG Browser
+            </button>
+            <button class="nav-tab" onclick="switchTab('interfaces')">
+                <i class="fas fa-network-wired"></i> Interfaces
+            </button>
+            <button class="nav-tab" onclick="switchTab('bridge')">
+                <i class="fas fa-bridge"></i> Bridge
+            </button>
+            <button class="nav-tab" onclick="switchTab('cbs')">
+                <i class="fas fa-chart-line"></i> CBS
+            </button>
+            <button class="nav-tab" onclick="switchTab('tas')">
+                <i class="fas fa-clock"></i> TAS
+            </button>
+            <button class="nav-tab" onclick="switchTab('priority')">
+                <i class="fas fa-layer-group"></i> Priority
+            </button>
+            <button class="nav-tab" onclick="switchTab('terminal')">
+                <i class="fas fa-terminal"></i> Terminal
+            </button>
+        </div>
+
+        <!-- Overview Tab -->
+        <div id="overview-tab" class="tab-content active">
+            <div class="quick-actions">
+                <div class="quick-action-card" onclick="switchTab('yang')">
+                    <div class="quick-action-icon"><i class="fas fa-sitemap"></i></div>
+                    <div class="quick-action-title">YANG Browser</div>
+                    <div class="quick-action-desc">Explore YANG modules and configuration</div>
+                </div>
+                <div class="quick-action-card" onclick="switchTab('interfaces')">
+                    <div class="quick-action-icon"><i class="fas fa-network-wired"></i></div>
+                    <div class="quick-action-title">Network Interfaces</div>
+                    <div class="quick-action-desc">View and manage network interfaces</div>
+                </div>
+                <div class="quick-action-card" onclick="switchTab('cbs')">
+                    <div class="quick-action-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="quick-action-title">CBS Configuration</div>
+                    <div class="quick-action-desc">Credit-Based Shaper settings</div>
+                </div>
+                <div class="quick-action-card" onclick="switchTab('tas')">
+                    <div class="quick-action-icon"><i class="fas fa-clock"></i></div>
+                    <div class="quick-action-title">TAS Configuration</div>
+                    <div class="quick-action-desc">Time-Aware Shaper settings</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-microchip"></i> Device Information
+                    </h2>
+                    <button class="btn btn-primary" onclick="loadDeviceInfo()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+                <div id="device-info">
+                    <p style="color: var(--text-secondary);">Loading device information...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interfaces Tab -->
+        <div id="interfaces-tab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-network-wired"></i> Network Interfaces
+                    </h2>
+                    <button class="btn btn-primary" onclick="loadInterfaces()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+                <div id="interfaces-info">
+                    <p style="color: var(--text-secondary);">Loading interfaces...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- YANG Browser Tab -->
+        <div id="yang-tab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-sitemap"></i> YANG Browser
+                    </h2>
+                    <button class="btn btn-primary" onclick="loadYangCatalog()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-box-title">
+                        <i class="fas fa-info-circle"></i> YANG Browser
+                    </div>
+                    <p>Explore LAN9662 device YANG models and manage configuration.</p>
+                </div>
+
+                <div class="yang-browser">
+                    <div class="yang-sidebar" id="yang-modules">
+                        <div style="color: var(--text-secondary); padding: 20px; text-align: center;">
+                            Loading YANG modules...
+                        </div>
+                    </div>
+                    <div class="yang-content" id="yang-module-content">
+                        <div style="color: var(--text-secondary); padding: 40px; text-align: center;">
+                            <div style="font-size: 48px; margin-bottom: 16px;">
+                                <i class="fas fa-sitemap"></i>
+                            </div>
+                            <div style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Select YANG Module</div>
+                            <div>Choose a module from the left sidebar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bridge Tab -->
+        <div id="bridge-tab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-bridge"></i> Bridge Configuration
+                    </h2>
+                    <button class="btn btn-primary" onclick="loadBridgeConfig()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+                <div id="bridge-info">
+                    <p style="color: var(--text-secondary);">Loading bridge configuration...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CBS Tab -->
+        <div id="cbs-tab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-chart-line"></i> CBS (Credit-Based Shaper)
+                    </h2>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-box-title">
+                        <i class="fas fa-info-circle"></i> About CBS
+                    </div>
+                    <p>IEEE 802.1Qav Credit-Based Shaper guarantees bandwidth for AVB (Audio Video Bridging) traffic.</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Interface</label>
+                    <input type="text" class="form-input" id="cbs-interface" value="1" placeholder="1">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Traffic Class</label>
+                    <select class="form-select" id="cbs-tc">
+                        <option value="0">TC0</option>
+                        <option value="1">TC1</option>
+                        <option value="2">TC2</option>
+                        <option value="3">TC3</option>
+                        <option value="4">TC4</option>
+                        <option value="5">TC5</option>
+                        <option value="6">TC6</option>
+                        <option value="7">TC7</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Idle Slope (kbps)</label>
+                    <input type="number" class="form-input" id="cbs-idle-slope" value="100000" placeholder="100000">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Send Slope (kbps, negative)</label>
+                    <input type="number" class="form-input" id="cbs-send-slope" value="-100000" placeholder="-100000">
+                </div>
+
+                <button class="btn btn-primary" onclick="applyCBS()">
+                    <i class="fas fa-check"></i> Apply CBS Configuration
+                </button>
+            </div>
+        </div>
+
+        <!-- TAS Tab -->
+        <div id="tas-tab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-clock"></i> TAS (Time-Aware Shaper)
+                    </h2>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-box-title">
+                        <i class="fas fa-info-circle"></i> About TAS
+                    </div>
+                    <p>IEEE 802.1Qbv Time-Aware Shaper provides deterministic latency with time-based gate control.</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Interface</label>
+                    <input type="text" class="form-input" id="tas-interface" value="1" placeholder="1">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Cycle Time (ns)</label>
+                    <input type="number" class="form-input" id="tas-cycle-time" value="200000000" placeholder="200000000">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Base Time (ns, 0 = current time + 1s)</label>
+                    <input type="number" class="form-input" id="tas-base-time" value="0" placeholder="0">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Gate Control List (GCL)</label>
+                    <div id="gcl-entries" class="gcl-entries"></div>
+                    <button class="btn btn-secondary" onclick="addGCLEntry()" style="margin-top: 12px;">
+                        <i class="fas fa-plus"></i> Add GCL Entry
+                    </button>
+                </div>
+
+                <button class="btn btn-primary" onclick="applyTAS()">
+                    <i class="fas fa-check"></i> Apply TAS Configuration
+                </button>
+            </div>
+        </div>
+
+        <!-- Priority Tab -->
+        <div id="priority-tab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-layer-group"></i> Priority Mapping
+                    </h2>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-box-title">
+                        <i class="fas fa-info-circle"></i> About Priority Mapping
+                    </div>
+                    <p>Map PCP (Priority Code Point) values to internal Traffic Classes.</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Bridge</label>
+                    <input type="text" class="form-input" id="priority-bridge" value="b0" placeholder="b0">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Component</label>
+                    <input type="text" class="form-input" id="priority-component" value="c0" placeholder="c0">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">PCP to Priority Mapping</label>
+                    <div class="priority-grid">
+                        <div class="priority-item">
+                            <label>PCP 0 →</label>
+                            <input type="number" class="form-input" id="pcp-0" value="0" min="0" max="7">
+                        </div>
+                        <div class="priority-item">
+                            <label>PCP 1 →</label>
+                            <input type="number" class="form-input" id="pcp-1" value="1" min="0" max="7">
+                        </div>
+                        <div class="priority-item">
+                            <label>PCP 2 →</label>
+                            <input type="number" class="form-input" id="pcp-2" value="2" min="0" max="7">
+                        </div>
+                        <div class="priority-item">
+                            <label>PCP 3 →</label>
+                            <input type="number" class="form-input" id="pcp-3" value="3" min="0" max="7">
+                        </div>
+                        <div class="priority-item">
+                            <label>PCP 4 →</label>
+                            <input type="number" class="form-input" id="pcp-4" value="4" min="0" max="7">
+                        </div>
+                        <div class="priority-item">
+                            <label>PCP 5 →</label>
+                            <input type="number" class="form-input" id="pcp-5" value="5" min="0" max="7">
+                        </div>
+                        <div class="priority-item">
+                            <label>PCP 6 →</label>
+                            <input type="number" class="form-input" id="pcp-6" value="6" min="0" max="7">
+                        </div>
+                        <div class="priority-item">
+                            <label>PCP 7 →</label>
+                            <input type="number" class="form-input" id="pcp-7" value="7" min="0" max="7">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="applyPriorityMapping()">
+                    <i class="fas fa-check"></i> Apply Priority Mapping
+                </button>
+            </div>
+        </div>
+
+        <!-- Terminal Tab -->
+        <div id="terminal-tab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-terminal"></i> Terminal
+                    </h2>
+                    <button class="btn btn-secondary" onclick="clearConsole()">
+                        <i class="fas fa-trash-alt"></i> Clear Console
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">YANG Path</label>
+                    <input type="text" class="form-input" id="yang-path" placeholder="/ietf-system:system-state/platform">
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="yangGet()">
+                        <i class="fas fa-download"></i> GET
+                    </button>
+                    <button class="btn btn-success" onclick="showSetDialog()">
+                        <i class="fas fa-upload"></i> SET
+                    </button>
+                </div>
+
+                <div id="set-value-group" style="display: none; margin-top: 20px;">
+                    <div class="form-group">
+                        <label class="form-label">Value</label>
+                        <input type="text" class="form-input" id="yang-value" placeholder="Enter value to set">
+                    </div>
+                    <button class="btn btn-success" onclick="yangSet()">
+                        <i class="fas fa-check"></i> Set Value
+                    </button>
+                </div>
+
+                <div id="console" class="console">
+                    <div class="console-line info">[SYSTEM] KETI TSN Management System ready</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin + '/api';
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            event.target.classList.add('active');
+            document.getElementById(tabName + '-tab').classList.add('active');
+
+            if (tabName === 'overview') loadDeviceInfo();
+            else if (tabName === 'bridge') loadBridgeConfig();
+            else if (tabName === 'yang') loadYangCatalog();
+            else if (tabName === 'interfaces') loadInterfaces();
+        }
+
+        function addToConsole(message, type = 'info') {
+            const console = document.getElementById('console');
+            const line = document.createElement('div');
+            line.className = `console-line ${type}`;
+            const timestamp = new Date().toLocaleTimeString();
+            line.textContent = `[${timestamp}] ${message}`;
+            console.appendChild(line);
+            console.scrollTop = console.scrollHeight;
+        }
+
+        function clearConsole() {
+            document.getElementById('console').innerHTML = '<div class="console-line info">[SYSTEM] Console cleared</div>';
+        }
+
+        async function checkStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/status`);
+                const result = await response.json();
+
+                const statusEl = document.getElementById('status-indicator');
+                if (result.connected) {
+                    statusEl.className = 'status-badge connected';
+                    statusEl.innerHTML = '<span class="status-dot"></span><span>Connected</span>';
+                } else {
+                    statusEl.className = 'status-badge disconnected';
+                    statusEl.innerHTML = '<span class="status-dot"></span><span>Disconnected</span>';
+                }
+            } catch (error) {
+                const statusEl = document.getElementById('status-indicator');
+                statusEl.className = 'status-badge disconnected';
+                statusEl.innerHTML = '<span class="status-dot"></span><span>Server Error</span>';
+            }
+        }
+
+        async function loadDeviceInfo() {
+            const infoEl = document.getElementById('device-info');
+            infoEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading device information...</span>';
+
+            try {
+                const response = await fetch(`${API_BASE}/status`);
+                const result = await response.json();
+
+                if (result.success && result.stdout) {
+                    // Parse device info from YAML
+                    const lines = result.stdout.split('\n');
+                    let machine = 'Unknown';
+                    let osVersion = 'Unknown';
+
+                    lines.forEach(line => {
+                        if (line.includes('machine:')) {
+                            machine = line.split(':')[1].trim();
+                        } else if (line.includes('os-version:')) {
+                            osVersion = line.split(':')[1].trim();
+                        }
+                    });
+
+                    infoEl.innerHTML = `
+                        <div class="device-info-grid">
+                            <div class="device-stat">
+                                <div class="device-stat-label">Device Model</div>
+                                <div class="device-stat-value">${machine}</div>
+                            </div>
+                            <div class="device-stat">
+                                <div class="device-stat-label">Firmware Version</div>
+                                <div class="device-stat-value">${osVersion}</div>
+                            </div>
+                            <div class="device-stat">
+                                <div class="device-stat-label">Connection</div>
+                                <div class="device-stat-value">/dev/ttyACM0</div>
+                            </div>
+                            <div class="device-stat">
+                                <div class="device-stat-label">Status</div>
+                                <div class="device-stat-value" style="color: var(--apple-green);">
+                                    <i class="fas fa-check-circle"></i> Online
+                                </div>
+                            </div>
+                        </div>
+                        <details style="margin-top: 20px;">
+                            <summary style="cursor: pointer; padding: 10px; background: var(--bg-secondary); border-radius: 8px; font-weight: 600;">
+                                <i class="fas fa-code"></i> Raw Output
+                            </summary>
+                            <pre style="margin-top: 10px; white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 13px; line-height: 1.6; background: var(--bg-secondary); padding: 16px; border-radius: 8px;">${result.stdout}</pre>
+                        </details>
+                    `;
+                } else {
+                    infoEl.innerHTML = `<p style="color: var(--apple-red);"><i class="fas fa-exclamation-triangle"></i> Failed to load device information</p>`;
+                }
+            } catch (error) {
+                infoEl.innerHTML = `<p style="color: var(--apple-red);"><i class="fas fa-exclamation-triangle"></i> Error: ${error.message}</p>`;
+            }
+        }
+
+        async function loadInterfaces() {
+            const infoEl = document.getElementById('interfaces-info');
+            infoEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading interfaces...</span>';
+
+            try {
+                const response = await fetch(`${API_BASE}/interfaces`);
+                const result = await response.json();
+
+                if (result.success && result.stdout) {
+                    // Parse interface info
+                    const interfaces = [];
+                    let currentInterface = null;
+
+                    result.stdout.split('\n').forEach(line => {
+                        if (line.includes('- name:')) {
+                            const name = line.split(':')[1].trim();
+                            currentInterface = { name, type: 'ethernet', status: 'up' };
+                            interfaces.push(currentInterface);
+                        }
+                    });
+
+                    // Default interfaces for LAN9662 if parsing fails
+                    if (interfaces.length === 0) {
+                        interfaces.push(
+                            { name: '0', type: 'ethernet', status: 'up' },
+                            { name: '1', type: 'ethernet', status: 'up' }
+                        );
+                    }
+
+                    infoEl.innerHTML = `
+                        <div class="interface-grid">
+                            ${interfaces.map(iface => `
+                                <div class="interface-card">
+                                    <div class="interface-icon">
+                                        <i class="fas fa-ethernet"></i>
+                                    </div>
+                                    <div class="interface-name">Port ${iface.name}</div>
+                                    <div class="interface-status ${iface.status}">
+                                        <i class="fas fa-circle"></i> ${iface.status.toUpperCase()}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <details style="margin-top: 20px;">
+                            <summary style="cursor: pointer; padding: 10px; background: var(--bg-secondary); border-radius: 8px; font-weight: 600;">
+                                <i class="fas fa-code"></i> Raw Output
+                            </summary>
+                            <pre style="margin-top: 10px; white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 13px; line-height: 1.6; background: var(--bg-secondary); padding: 16px; border-radius: 8px;">${result.stdout}</pre>
+                        </details>
+                    `;
+                } else {
+                    infoEl.innerHTML = `<p style="color: var(--apple-red);"><i class="fas fa-exclamation-triangle"></i> Failed to load interfaces</p>`;
+                }
+            } catch (error) {
+                infoEl.innerHTML = `<p style="color: var(--apple-red);"><i class="fas fa-exclamation-triangle"></i> Error: ${error.message}</p>`;
+            }
+        }
+
+        async function loadBridgeConfig() {
+            const infoEl = document.getElementById('bridge-info');
+            infoEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading bridge configuration...</span>';
+
+            try {
+                const response = await fetch(`${API_BASE}/bridge`);
+                const result = await response.json();
+
+                if (result.success) {
+                    infoEl.innerHTML = `<pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 13px; line-height: 1.6; background: var(--bg-secondary); padding: 20px; border-radius: 12px;">${result.stdout}</pre>`;
+                } else {
+                    infoEl.innerHTML = `<p style="color: var(--apple-red);"><i class="fas fa-exclamation-triangle"></i> Failed to load bridge configuration</p>`;
+                }
+            } catch (error) {
+                infoEl.innerHTML = `<p style="color: var(--apple-red);"><i class="fas fa-exclamation-triangle"></i> Error: ${error.message}</p>`;
+            }
+        }
+
+        async function loadYangCatalog() {
+            const modulesEl = document.getElementById('yang-modules');
+            modulesEl.innerHTML = '<div class="loading" style="margin: 20px auto;"></div>';
+
+            try {
+                const response = await fetch(`${API_BASE}/yang/catalog`);
+                const result = await response.json();
+
+                if (result.modules && result.modules.length > 0) {
+                    modulesEl.innerHTML = '';
+                    result.modules.forEach(module => {
+                        const div = document.createElement('div');
+                        div.className = 'yang-module';
+                        div.innerHTML = `<i class="fas fa-file-code"></i> ${module.name}`;
+                        div.onclick = () => loadYangModule(module.file);
+                        modulesEl.appendChild(div);
+                    });
+                } else {
+                    modulesEl.innerHTML = '<p style="color: var(--text-secondary); padding: 20px;">No YANG modules found</p>';
+                }
+            } catch (error) {
+                modulesEl.innerHTML = `<p style="color: var(--apple-red); padding: 20px;"><i class="fas fa-exclamation-triangle"></i> Error: ${error.message}</p>`;
+            }
+        }
+
+        async function loadYangModule(filename) {
+            const contentEl = document.getElementById('yang-module-content');
+            contentEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading module...</span>';
+
+            document.querySelectorAll('.yang-module').forEach(el => el.classList.remove('active'));
+            event.target.classList.add('active');
+
+            try {
+                const response = await fetch(`${API_BASE}/yang/module/${filename}`);
+                const content = await response.text();
+
+                contentEl.innerHTML = `
+                    <h3 style="margin-bottom: 16px; font-size: 18px; font-weight: 700; color: var(--keti-blue); display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-file-code"></i> ${filename}
+                    </h3>
+                    <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 13px; line-height: 1.6; background: var(--bg-secondary); padding: 20px; border-radius: 12px; overflow-x: auto;">${content}</pre>
+                `;
+            } catch (error) {
+                contentEl.innerHTML = `<p style="color: var(--apple-red);"><i class="fas fa-exclamation-triangle"></i> Error: ${error.message}</p>`;
+            }
+        }
+
+        async function applyCBS() {
+            const iface = document.getElementById('cbs-interface').value;
+            const tc = document.getElementById('cbs-tc').value;
+            const idleSlope = document.getElementById('cbs-idle-slope').value;
+            const sendSlope = document.getElementById('cbs-send-slope').value;
+
+            addToConsole(`Applying CBS: interface=${iface}, tc=${tc}, idle-slope=${idleSlope}, send-slope=${sendSlope}`, 'info');
+
+            try {
+                const response = await fetch(`${API_BASE}/cbs/configure`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        interface: iface,
+                        tc: parseInt(tc),
+                        idleSlope: parseInt(idleSlope),
+                        sendSlope: parseInt(sendSlope)
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    addToConsole('CBS configuration applied successfully', 'success');
+                } else {
+                    addToConsole('CBS configuration failed', 'error');
+                }
+            } catch (error) {
+                addToConsole(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        let gclCounter = 0;
+
+        function addGCLEntry() {
+            const container = document.getElementById('gcl-entries');
+            const entry = document.createElement('div');
+            entry.className = 'gcl-entry';
+            entry.id = `gcl-entry-${gclCounter}`;
+            entry.innerHTML = `
+                <label>TC${gclCounter}</label>
+                <input type="number" class="form-input" placeholder="Duration (ns)" value="20000000">
+                <input type="text" class="form-input" placeholder="Gate (hex)" value="0x${(1 << gclCounter).toString(16).toUpperCase().padStart(2, '0')}">
+                <button class="btn btn-danger" onclick="removeGCLEntry('${entry.id}')">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            `;
+            container.appendChild(entry);
+            gclCounter++;
+        }
+
+        function removeGCLEntry(id) {
+            document.getElementById(id).remove();
+        }
+
+        async function applyTAS() {
+            const iface = document.getElementById('tas-interface').value;
+            const cycleTime = document.getElementById('tas-cycle-time').value;
+            let baseTime = document.getElementById('tas-base-time').value;
+
+            if (baseTime === '0' || baseTime === '') {
+                baseTime = (Date.now() * 1000000) + 1000000000;
+            }
+
+            const entries = document.querySelectorAll('#gcl-entries .gcl-entry');
+            const gcl = [];
+
+            entries.forEach((entry, index) => {
+                const duration = entry.querySelector('input[type="number"]').value;
+                const gate = entry.querySelector('input[type="text"]').value;
+                gcl.push({
+                    index: index,
+                    duration: parseInt(duration),
+                    gate: parseInt(gate)
+                });
+            });
+
+            addToConsole(`Applying TAS: interface=${iface}, cycle-time=${cycleTime}, gcl-entries=${gcl.length}`, 'info');
+
+            try {
+                const response = await fetch(`${API_BASE}/tas/configure`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        interface: iface,
+                        cycleTime: parseInt(cycleTime),
+                        baseTime: parseInt(baseTime),
+                        gcl: gcl
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    addToConsole('TAS configuration applied successfully', 'success');
+                } else {
+                    addToConsole('TAS configuration failed', 'error');
+                }
+            } catch (error) {
+                addToConsole(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        async function applyPriorityMapping() {
+            const bridge = document.getElementById('priority-bridge').value;
+            const component = document.getElementById('priority-component').value;
+
+            const mapping = {};
+            for (let i = 0; i < 8; i++) {
+                mapping[i] = parseInt(document.getElementById(`pcp-${i}`).value);
+            }
+
+            addToConsole(`Applying priority mapping: bridge=${bridge}, component=${component}`, 'info');
+
+            try {
+                const response = await fetch(`${API_BASE}/priority/configure`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ bridge, component, mapping })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    addToConsole('Priority mapping applied successfully', 'success');
+                } else {
+                    addToConsole('Priority mapping failed', 'error');
+                }
+            } catch (error) {
+                addToConsole(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        async function yangGet() {
+            const path = document.getElementById('yang-path').value;
+            if (!path) {
+                addToConsole('Please enter a YANG path', 'warning');
+                return;
+            }
+
+            addToConsole(`GET ${path}`, 'info');
+
+            try {
+                const response = await fetch(`${API_BASE}/get`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    addToConsole('GET successful:', 'success');
+                    addToConsole(result.stdout, 'info');
+                } else {
+                    addToConsole('GET failed:', 'error');
+                    addToConsole(result.stderr || result.error, 'error');
+                }
+            } catch (error) {
+                addToConsole(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        function showSetDialog() {
+            document.getElementById('set-value-group').style.display = 'block';
+        }
+
+        async function yangSet() {
+            const path = document.getElementById('yang-path').value;
+            const value = document.getElementById('yang-value').value;
+
+            if (!path || !value) {
+                addToConsole('Please enter both YANG path and value', 'warning');
+                return;
+            }
+
+            addToConsole(`SET ${path} = ${value}`, 'info');
+
+            try {
+                const response = await fetch(`${API_BASE}/set`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path, value })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    addToConsole('SET successful:', 'success');
+                    addToConsole(result.stdout, 'info');
+                } else {
+                    addToConsole('SET failed:', 'error');
+                    addToConsole(result.stderr || result.error, 'error');
+                }
+            } catch (error) {
+                addToConsole(`Error: ${error.message}`, 'error');
+            }
+        }
+
+        window.onload = function() {
+            checkStatus();
+            setInterval(checkStatus, 5000);
+
+            for (let i = 0; i < 8; i++) {
+                addGCLEntry();
+            }
+
+            loadDeviceInfo();
+            addToConsole('KETI TSN Management System started', 'success');
+        };
+    </script>
+</body>
+</html>

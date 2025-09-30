@@ -1,0 +1,64 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Logs
+*.log
+last_log.mvdct.json
+
+# Test files
+*.bin
+*.hex
+*.txt
+capture_rx.*
+frame.*
+raw_dump.bin
+rx_capture.bin
+
+# Session data
+session.json
+
+# YAML test configs
+*.yaml
+!README.yaml
+
+# Microchip binaries (keep only what's needed)
+*.dll
+*.so
+createdump
+mvdct.cli
+mvdct.deps.json
+mvdct.runtimeconfig.json
+
+# Language packs (if not needed)
+cs/
+de/
+es/
+fr/
+it/
+ja/
+ko/
+pl/
+pt-BR/
+ru/
+tr/
+zh-Hans/
+zh-Hant/
+publish/
+
+# wwwroot (large YANG catalog)
+wwwroot/
+
+# System
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Claude
+.claude/

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=KETI TSN Management System
+Comment=LAN9662 VelocityDRIVE TSN Management
+Exec=/home/kim/Documents/Microchip_VelocityDRIVE_CT-CLI-linux-2025.07.12/start-keti-tsn.sh
+Icon=network-workgroup
+Terminal=true
+Categories=Network;System;
+StartupNotify=true

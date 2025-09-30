@@ -754,7 +754,7 @@
                 <img src="https://keti.re.kr/m/img/main/logo02.png" alt="KETI" class="logo-image">
                 <div class="logo-text">
                     <div class="logo-title">TSN Management System</div>
-                    <div class="logo-subtitle">LAN9662 VelocityDRIVE Control</div>
+                    <div class="logo-subtitle">Microchip VelocityDRIVE Control</div>
                 </div>
             </div>
             <div id="status-indicator" class="status-badge disconnected">
@@ -865,7 +865,7 @@
                     <div class="info-box-title">
                         <i class="fas fa-info-circle"></i> YANG Browser
                     </div>
-                    <p>Explore LAN9662 device YANG models and manage configuration.</p>
+                    <p>Explore device YANG models and configuration. Click any node to view data, expand to see children.</p>
                 </div>
 
                 <div class="yang-browser">
@@ -908,7 +908,7 @@
                     <div class="info-box-title">
                         <i class="fas fa-info-circle"></i> L2 Forwarding Control
                     </div>
-                    <p>Control port forwarding state, VLAN configuration, and FDB management for LAN9662 switch.</p>
+                    <p>Control port forwarding state, VLAN configuration, and FDB management for Microchip TSN switches.</p>
                 </div>
 
                 <!-- Port Forwarding Control -->
@@ -1404,136 +1404,225 @@
             }
         }
 
-        // YANG Tree structure based on common paths
-        const yangTreeStructure = {
-            'ietf-interfaces:interfaces': {
-                icon: 'network-wired',
-                children: {
-                    'interface': { icon: 'ethernet', type: 'list' }
-                }
-            },
-            'ieee802-dot1q-bridge:bridges': {
-                icon: 'project-diagram',
-                children: {
-                    'bridge': {
-                        icon: 'bridge',
-                        type: 'list',
-                        children: {
-                            'component': { icon: 'microchip', type: 'list' },
-                            'address': { icon: 'fingerprint' }
-                        }
-                    }
-                }
-            },
-            'ieee802-dot1q-sched:interfaces': {
-                icon: 'clock',
-                children: {
-                    'interface': {
-                        icon: 'ethernet',
-                        type: 'list',
-                        children: {
-                            'scheduler': { icon: 'calendar-alt' }
-                        }
-                    }
-                }
-            },
-            'ietf-system:system': {
-                icon: 'server',
-                children: {
-                    'clock': { icon: 'clock' },
-                    'ntp': { icon: 'sync' }
-                }
-            },
-            'ietf-system:system-state': {
-                icon: 'info-circle',
-                children: {
-                    'platform': { icon: 'microchip' },
-                    'clock': { icon: 'clock' }
-                }
-            }
+        // Icon mapping for YANG nodes
+        const iconMap = {
+            'interfaces': 'network-wired',
+            'interface': 'ethernet',
+            'bridges': 'project-diagram',
+            'bridge': 'bridge',
+            'component': 'microchip',
+            'system': 'server',
+            'system-state': 'info-circle',
+            'platform': 'microchip',
+            'clock': 'clock',
+            'ntp': 'sync',
+            'scheduler': 'calendar-alt',
+            'statistics': 'chart-bar',
+            'config': 'cog',
+            'status': 'info-circle',
+            'ethernet': 'ethernet',
+            'bridge-port': 'door-open',
+            'vlan': 'layer-group',
+            'filtering-database': 'database',
+            'traffic-class': 'stream',
+            'qos': 'tachometer-alt',
+            'pcp-decoding-table': 'table',
+            'pcp-encoding-table': 'table',
+            'gate-parameter-table': 'door-closed',
+            'admin-control-list': 'list',
+            'oper-control-list': 'list'
         };
 
-        function buildYangTree() {
-            const treeEl = document.getElementById('yang-tree');
-            treeEl.innerHTML = '';
-
-            Object.keys(yangTreeStructure).forEach(path => {
-                const node = yangTreeStructure[path];
-                const nodeEl = createYangNode(path, node, path);
-                treeEl.appendChild(nodeEl);
-            });
+        function getIconForNode(name) {
+            const cleanName = name.split(':').pop().toLowerCase();
+            return iconMap[cleanName] || 'folder';
         }
 
-        function createYangNode(name, nodeData, fullPath, level = 0) {
+        async function buildYangTree() {
+            const treeEl = document.getElementById('yang-tree');
+            treeEl.innerHTML = '<div style="padding: 20px; text-align: center;"><div class="loading"></div><div style="margin-top: 12px; color: var(--text-secondary);">Loading YANG tree...</div></div>';
+
+            try {
+                // Load root modules
+                const rootModules = [
+                    { path: 'ietf-interfaces:interfaces', name: 'Interfaces', icon: 'network-wired' },
+                    { path: 'ieee802-dot1q-bridge:bridges', name: 'Bridges', icon: 'project-diagram' },
+                    { path: 'ieee802-dot1q-sched:interfaces', name: 'Scheduler', icon: 'clock' },
+                    { path: 'ietf-system:system', name: 'System', icon: 'server' },
+                    { path: 'ietf-system:system-state', name: 'System State', icon: 'info-circle' }
+                ];
+
+                treeEl.innerHTML = '';
+
+                for (const module of rootModules) {
+                    const nodeEl = createYangNode(module.name, module.path, module.icon, true);
+                    treeEl.appendChild(nodeEl);
+                }
+            } catch (error) {
+                treeEl.innerHTML = `<p style="color: var(--apple-red); padding: 20px;"><i class="fas fa-exclamation-triangle"></i> Error: ${error.message}</p>`;
+            }
+        }
+
+        function createYangNode(displayName, fullPath, icon, isRoot = false, hasChildren = true) {
             const div = document.createElement('div');
             div.className = 'yang-node';
+            div.dataset.path = fullPath;
+            div.dataset.loaded = 'false';
 
             const header = document.createElement('div');
             header.className = 'yang-node-header';
 
-            const hasChildren = nodeData.children && Object.keys(nodeData.children).length > 0;
-
             const iconSpan = document.createElement('span');
             iconSpan.className = 'yang-node-icon';
-            if (hasChildren) {
-                iconSpan.innerHTML = '<i class="fas fa-chevron-right"></i>';
-            } else {
-                iconSpan.innerHTML = '<i class="fas fa-circle" style="font-size: 6px;"></i>';
-            }
+            iconSpan.innerHTML = hasChildren ? '<i class="fas fa-chevron-right"></i>' : '<i class="fas fa-circle" style="font-size: 6px;"></i>';
 
             const label = document.createElement('span');
             label.className = 'yang-node-label';
-            label.innerHTML = `
-                <i class="fas fa-${nodeData.icon || 'folder'}"></i>
-                <span>${name.split(':').pop()}</span>
-                ${nodeData.type ? `<span class="yang-node-type">${nodeData.type}</span>` : ''}
-            `;
+            label.innerHTML = `<i class="fas fa-${icon}"></i><span>${displayName}</span>`;
 
             header.appendChild(iconSpan);
             header.appendChild(label);
             div.appendChild(header);
 
+            // Children container (lazy loaded)
+            if (hasChildren) {
+                const childrenDiv = document.createElement('div');
+                childrenDiv.className = 'yang-node-children';
+                div.appendChild(childrenDiv);
+            }
+
             // Click handler
-            header.onclick = (e) => {
+            header.onclick = async (e) => {
                 e.stopPropagation();
 
                 // Deselect all
                 document.querySelectorAll('.yang-node-header').forEach(el => el.classList.remove('selected'));
                 header.classList.add('selected');
 
-                // Load node data
+                // Load node data in right panel
                 loadYangNodeData(fullPath);
 
                 // Toggle children
                 if (hasChildren) {
                     const childrenDiv = div.querySelector('.yang-node-children');
-                    if (childrenDiv) {
-                        childrenDiv.classList.toggle('show');
-                        iconSpan.classList.toggle('expanded');
+                    const isExpanded = iconSpan.classList.contains('expanded');
+
+                    if (!isExpanded) {
+                        // Expand and lazy load children
+                        iconSpan.classList.add('expanded');
+                        childrenDiv.classList.add('show');
+
+                        // Load children if not yet loaded
+                        if (div.dataset.loaded === 'false') {
+                            div.dataset.loaded = 'true';
+                            await loadYangChildren(fullPath, childrenDiv);
+                        }
+                    } else {
+                        // Collapse
+                        iconSpan.classList.remove('expanded');
+                        childrenDiv.classList.remove('show');
                     }
                 }
             };
 
-            // Add children
-            if (hasChildren) {
-                const childrenDiv = document.createElement('div');
-                childrenDiv.className = 'yang-node-children';
-
-                Object.keys(nodeData.children).forEach(childName => {
-                    const childNode = nodeData.children[childName];
-                    const childPath = `${fullPath}/${childName}`;
-                    const childEl = createYangNode(childName, childNode, childPath, level + 1);
-                    childrenDiv.appendChild(childEl);
-                });
-
-                div.appendChild(childrenDiv);
-            }
-
             return div;
         }
 
+        async function loadYangChildren(parentPath, containerEl) {
+            containerEl.innerHTML = '<div style="padding: 8px; color: var(--text-secondary); font-size: 12px;"><i class="fas fa-spinner fa-spin"></i> Loading...</div>';
+
+            try {
+                const response = await fetch(`${API_BASE}/get`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path: `/${parentPath}` })
+                });
+                const result = await response.json();
+
+                containerEl.innerHTML = '';
+
+                if (result.success && result.stdout) {
+                    // Parse YAML to extract child nodes
+                    const children = parseYamlToNodes(result.stdout, parentPath);
+
+                    if (children.length > 0) {
+                        children.forEach(child => {
+                            const childNode = createYangNode(
+                                child.name,
+                                child.path,
+                                getIconForNode(child.name),
+                                false,
+                                child.hasChildren
+                            );
+                            containerEl.appendChild(childNode);
+                        });
+                    } else {
+                        containerEl.innerHTML = '<div style="padding: 8px; color: var(--text-secondary); font-size: 12px;"><i class="fas fa-info-circle"></i> No children</div>';
+                    }
+                } else {
+                    containerEl.innerHTML = '<div style="padding: 8px; color: var(--apple-red); font-size: 12px;"><i class="fas fa-exclamation-triangle"></i> Failed to load</div>';
+                }
+            } catch (error) {
+                containerEl.innerHTML = `<div style="padding: 8px; color: var(--apple-red); font-size: 12px;"><i class="fas fa-exclamation-triangle"></i> Error</div>`;
+            }
+        }
+
+        function parseYamlToNodes(yamlText, parentPath) {
+            const children = [];
+            const lines = yamlText.split('\n');
+
+            // Simple YAML parser for detecting child nodes
+            let currentIndent = -1;
+            const seenKeys = new Set();
+
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                if (!line.trim() || line.trim().startsWith('#')) continue;
+
+                const match = line.match(/^(\s*)([a-zA-Z0-9_-]+):/);
+                if (match) {
+                    const indent = match[1].length;
+                    const key = match[2];
+
+                    // Skip if already seen (avoid duplicates)
+                    if (seenKeys.has(key)) continue;
+
+                    // Only get direct children (one level deeper)
+                    if (currentIndent === -1) {
+                        currentIndent = indent;
+                    }
+
+                    if (indent === currentIndent + 2 || (currentIndent === -1 && indent === 0)) {
+                        seenKeys.add(key);
+
+                        // Check if this node has children by looking ahead
+                        let hasChildren = false;
+                        for (let j = i + 1; j < Math.min(i + 10, lines.length); j++) {
+                            const nextLine = lines[j];
+                            const nextMatch = nextLine.match(/^(\s*)([a-zA-Z0-9_-]+):/);
+                            if (nextMatch && nextMatch[1].length > indent) {
+                                hasChildren = true;
+                                break;
+                            }
+                            if (nextMatch && nextMatch[1].length <= indent) {
+                                break;
+                            }
+                        }
+
+                        children.push({
+                            name: key,
+                            path: `${parentPath}/${key}`,
+                            hasChildren: hasChildren
+                        });
+                    }
+                }
+            }
+
+            return children.slice(0, 50); // Limit to 50 children for performance
+        }
+
         async function loadYangCatalog() {
-            buildYangTree();
+            await buildYangTree();
         }
 
         async function loadYangNodeData(path) {

@@ -1,6 +1,6 @@
 # KETI TSN Management System
 
-A professional web-based management interface for Microchip LAN9662 VelocityDRIVE boards, developed for Korea Electronics Technology Institute (KETI).
+A professional web-based management interface for Microchip VelocityDRIVE platforms (LAN9662, LAN9668, etc.), developed for Korea Electronics Technology Institute (KETI).
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Node.js](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
@@ -8,16 +8,17 @@ A professional web-based management interface for Microchip LAN9662 VelocityDRIV
 
 ## Overview
 
-KETI TSN Management System provides an intuitive web interface for configuring and monitoring Time-Sensitive Networking (TSN) features on Microchip LAN9662 switch chips. Built with Node.js and modern web technologies, it wraps the `mvdct` CLI tool with a user-friendly interface inspired by professional router management systems.
+KETI TSN Management System provides an intuitive web interface for configuring and monitoring Time-Sensitive Networking (TSN) features on Microchip VelocityDRIVE platforms. Built with Node.js and modern web technologies, it wraps the `mvdct` CLI tool with a user-friendly interface inspired by professional router management systems.
 
 ### Key Features
 
 - 🌐 **Web-Based Interface** - Access from any modern browser
 - 🔧 **TSN Configuration** - Configure CBS, TAS, and Priority Mapping
 - 📊 **Real-Time Monitoring** - Live device status and statistics
-- 🗂️ **YANG Browser** - Registry editor-style navigation of YANG models
+- 🗂️ **Dynamic YANG Browser** - Expandable tree navigation with lazy loading
 - 🔌 **Network Visualization** - Visual representation of network interfaces
 - 🚀 **Easy Launch** - Double-click execution support
+- 🌲 **Lazy Tree Loading** - Efficient navigation of large YANG models
 
 ## Architecture
 

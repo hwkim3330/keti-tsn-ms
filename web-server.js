@@ -435,6 +435,44 @@ app.post('/api/yang/explore', async (req, res) => {
 });
 
 /**
+ * API: YANG 루트 경로들 목록 조회
+ */
+app.get('/api/yang/roots', async (req, res) => {
+    try {
+        // Get root paths by querying common YANG modules
+        const rootPaths = [
+            '/ietf-interfaces:interfaces',
+            '/ieee802-dot1q-bridge:bridges',
+            '/ieee802-dot1q-sched:interfaces',
+            '/ietf-system:system',
+            '/ietf-system:system-state'
+        ];
+
+        const results = [];
+        for (const path of rootPaths) {
+            try {
+                const result = await executeMvdct([
+                    'device', DEFAULT_DEVICE, 'get',
+                    path,
+                    '--console'
+                ]);
+                if (result.success) {
+                    results.push({ path, available: true });
+                } else {
+                    results.push({ path, available: false });
+                }
+            } catch (e) {
+                results.push({ path, available: false });
+            }
+        }
+
+        res.json({ success: true, roots: results });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+/**
  * API: CBS 테스트 시나리오 실행
  */
 app.post('/api/test/cbs', async (req, res) => {

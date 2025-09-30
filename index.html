@@ -788,7 +788,10 @@
                 <i class="fas fa-clock"></i> TAS
             </button>
             <button class="nav-tab" onclick="switchTab('priority')">
-                <i class="fas fa-layer-group"></i> Priority
+                <i class="fas fa-sort-numeric-down"></i> Priority
+            </button>
+            <button class="nav-tab" onclick="switchTab('statistics')">
+                <i class="fas fa-chart-bar"></i> Statistics
             </button>
             <button class="nav-tab" onclick="switchTab('terminal')">
                 <i class="fas fa-terminal"></i> Terminal
@@ -1213,6 +1216,46 @@
             </div>
         </div>
 
+        <!-- Statistics Tab -->
+        <div id="statistics-tab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-chart-bar"></i> Interface Statistics
+                    </h2>
+                    <button class="btn btn-primary" onclick="loadAllStats()">
+                        <i class="fas fa-sync-alt"></i> Refresh All
+                    </button>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-box-title">
+                        <i class="fas fa-info-circle"></i> Real-Time Statistics
+                    </div>
+                    <p>View real-time packet statistics, traffic class distribution, and error counters for all interfaces.</p>
+                </div>
+
+                <!-- Interface Selection -->
+                <div style="margin-bottom: 24px;">
+                    <label class="input-label">Select Interface</label>
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <input type="text" id="stats-interface" class="input-field" placeholder="1" value="1" style="max-width: 200px;">
+                        <button class="btn btn-secondary" onclick="loadInterfaceStats()">
+                            <i class="fas fa-search"></i> Load Statistics
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Statistics Display -->
+                <div id="statistics-display">
+                    <p style="color: var(--text-secondary); padding: 40px; text-align: center;">
+                        <i class="fas fa-chart-line" style="font-size: 48px; margin-bottom: 16px; display: block;"></i>
+                        Select an interface and click "Load Statistics"
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <!-- Terminal Tab -->
         <div id="terminal-tab" class="tab-content">
             <div class="card">
@@ -1631,6 +1674,179 @@
             } catch (error) {
                 addToConsole(`Error: ${error.message}`, 'error');
             }
+        }
+
+        async function loadInterfaceStats() {
+            const iface = document.getElementById('stats-interface').value;
+            const displayEl = document.getElementById('statistics-display');
+
+            displayEl.innerHTML = '<div style="padding: 40px; text-align: center;"><div class="loading"></div><div style="margin-top: 12px; color: var(--text-secondary);">Loading statistics...</div></div>';
+
+            try {
+                const path = `/ietf-interfaces:interfaces/interface[name='${iface}']`;
+                const response = await fetch(`${API_BASE}/get`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path })
+                });
+                const result = await response.json();
+
+                if (result.success && result.stdout) {
+                    // Parse YAML to extract statistics
+                    const stats = parseInterfaceStats(result.stdout);
+                    displayStatsUI(stats, iface);
+                } else {
+                    displayEl.innerHTML = '<p style="color: var(--apple-red); padding: 40px; text-align: center;"><i class="fas fa-exclamation-triangle"></i> Failed to load statistics</p>';
+                }
+            } catch (error) {
+                displayEl.innerHTML = `<p style="color: var(--apple-red); padding: 40px; text-align: center;"><i class="fas fa-exclamation-triangle"></i> Error: ${error.message}</p>`;
+            }
+        }
+
+        function parseInterfaceStats(yamlText) {
+            const stats = {
+                general: {},
+                ethernet: {},
+                trafficClass: []
+            };
+
+            const lines = yamlText.split('\n');
+            let inStats = false;
+            let inEthernet = false;
+            let inTrafficClass = false;
+            let currentTC = null;
+
+            for (const line of lines) {
+                if (line.includes('statistics:')) {
+                    if (line.includes('traffic-class:')) continue;
+                    inStats = true;
+                    inEthernet = false;
+                    continue;
+                }
+                if (line.includes('ieee802-ethernet-interface:ethernet:')) {
+                    inEthernet = true;
+                    continue;
+                }
+                if (line.includes('traffic-class:')) {
+                    inTrafficClass = true;
+                    continue;
+                }
+
+                if (inStats && line.includes(':') && !line.trim().startsWith('-')) {
+                    const match = line.match(/([a-z-]+):\s*(\d+)/);
+                    if (match) {
+                        stats.general[match[1]] = parseInt(match[2]);
+                    }
+                }
+
+                if (inEthernet && line.includes('frame:')) {
+                    const frameMatch = line.match(/([a-z-]+):\s*(\d+)/);
+                    if (frameMatch) {
+                        stats.ethernet[frameMatch[1]] = parseInt(frameMatch[2]);
+                    }
+                }
+
+                if (inTrafficClass) {
+                    if (line.includes('traffic-class:')) {
+                        const tcMatch = line.match(/traffic-class:\s*(\d+)/);
+                        if (tcMatch && currentTC === null) {
+                            currentTC = { tc: parseInt(tcMatch[1]), rxPackets: 0, txPackets: 0 };
+                        }
+                    }
+                    if (line.includes('rx-packets:') && currentTC) {
+                        const rxMatch = line.match(/rx-packets:\s*(\d+)/);
+                        if (rxMatch) currentTC.rxPackets = parseInt(rxMatch[1]);
+                    }
+                    if (line.includes('tx-packets:') && currentTC) {
+                        const txMatch = line.match(/tx-packets:\s*(\d+)/);
+                        if (txMatch) {
+                            currentTC.txPackets = parseInt(txMatch[1]);
+                            stats.trafficClass.push(currentTC);
+                            currentTC = null;
+                        }
+                    }
+                }
+            }
+
+            return stats;
+        }
+
+        function displayStatsUI(stats, iface) {
+            const displayEl = document.getElementById('statistics-display');
+
+            let html = `
+                <div style="margin-bottom: 24px;">
+                    <h3 style="font-size: 18px; font-weight: 700; color: var(--keti-blue); margin-bottom: 16px;">
+                        <i class="fas fa-ethernet"></i> Interface ${iface} Statistics
+                    </h3>
+
+                    <!-- General Stats -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px;">
+                        <div style="background: var(--bg-secondary); padding: 16px; border-radius: 8px;">
+                            <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;"><i class="fas fa-download"></i> RX Octets</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--keti-blue);">${(stats.general['in-octets'] || 0).toLocaleString()}</div>
+                        </div>
+                        <div style="background: var(--bg-secondary); padding: 16px; border-radius: 8px;">
+                            <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;"><i class="fas fa-upload"></i> TX Octets</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--keti-blue);">${(stats.general['out-octets'] || 0).toLocaleString()}</div>
+                        </div>
+                        <div style="background: var(--bg-secondary); padding: 16px; border-radius: 8px;">
+                            <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;"><i class="fas fa-arrow-down"></i> RX Packets</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--keti-blue);">${((stats.general['in-unicast-pkts'] || 0) + (stats.general['in-multicast-pkts'] || 0) + (stats.general['in-broadcast-pkts'] || 0)).toLocaleString()}</div>
+                        </div>
+                        <div style="background: var(--bg-secondary); padding: 16px; border-radius: 8px;">
+                            <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;"><i class="fas fa-arrow-up"></i> TX Packets</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--keti-blue);">${((stats.general['out-unicast-pkts'] || 0) + (stats.general['out-multicast-pkts'] || 0) + (stats.general['out-broadcast-pkts'] || 0)).toLocaleString()}</div>
+                        </div>
+                        <div style="background: var(--bg-secondary); padding: 16px; border-radius: 8px;">
+                            <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;"><i class="fas fa-exclamation-triangle"></i> RX Errors</div>
+                            <div style="font-size: 24px; font-weight: 700; color: ${(stats.general['in-errors'] || 0) > 0 ? 'var(--apple-red)' : 'var(--keti-blue)'};">${(stats.general['in-errors'] || 0).toLocaleString()}</div>
+                        </div>
+                        <div style="background: var(--bg-secondary); padding: 16px; border-radius: 8px;">
+                            <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;"><i class="fas fa-exclamation-triangle"></i> TX Errors</div>
+                            <div style="font-size: 24px; font-weight: 700; color: ${(stats.general['out-errors'] || 0) > 0 ? 'var(--apple-red)' : 'var(--keti-blue)'};">${(stats.general['out-errors'] || 0).toLocaleString()}</div>
+                        </div>
+                    </div>
+
+                    <!-- Traffic Class Stats -->
+                    ${stats.trafficClass.length > 0 ? `
+                        <h4 style="font-size: 16px; font-weight: 700; color: var(--keti-blue); margin-bottom: 16px;">
+                            <i class="fas fa-stream"></i> Traffic Class Distribution
+                        </h4>
+                        <div style="background: var(--bg-secondary); padding: 20px; border-radius: 12px;">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="border-bottom: 2px solid var(--border-color);">
+                                        <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--keti-blue);">TC</th>
+                                        <th style="padding: 12px; text-align: right; font-weight: 700; color: var(--keti-blue);">RX Packets</th>
+                                        <th style="padding: 12px; text-align: right; font-weight: 700; color: var(--keti-blue);">TX Packets</th>
+                                        <th style="padding: 12px; text-align: right; font-weight: 700; color: var(--keti-blue);">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${stats.trafficClass.map(tc => `
+                                        <tr style="border-bottom: 1px solid var(--border-color);">
+                                            <td style="padding: 12px; font-weight: 600;">TC ${tc.tc}</td>
+                                            <td style="padding: 12px; text-align: right; font-family: 'SF Mono', monospace;">${tc.rxPackets.toLocaleString()}</td>
+                                            <td style="padding: 12px; text-align: right; font-family: 'SF Mono', monospace;">${tc.txPackets.toLocaleString()}</td>
+                                            <td style="padding: 12px; text-align: right; font-weight: 700; color: var(--keti-blue);">${(tc.rxPackets + tc.txPackets).toLocaleString()}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+
+            displayEl.innerHTML = html;
+        }
+
+        async function loadAllStats() {
+            // Load stats for all interfaces
+            addToConsole('Loading statistics for all interfaces...', 'info');
+            // Implementation would query all interfaces and display them
+            loadInterfaceStats();
         }
 
         // Icon mapping for YANG nodes

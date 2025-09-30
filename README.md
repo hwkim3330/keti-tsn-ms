@@ -411,6 +411,18 @@ For issues and questions:
 
 ## Changelog
 
+### Version 1.2.0 (2025-09-30)
+- Complete YANG tree structure with 60+ paths
+- Pre-built tree hierarchy for instant navigation
+- VLAN configuration and management tab
+- Port VLAN ID (PVID) settings
+- VLAN registration entry control
+
+### Version 1.1.0 (2025-09-30)
+- Dynamic tree generation from device data
+- Enhanced bridge configuration with port forwarding control
+- Device-agnostic platform support (LAN9662, LAN9668, etc.)
+
 ### Version 1.0.0 (2025-09-30)
 - Initial release
 - Web-based management interface

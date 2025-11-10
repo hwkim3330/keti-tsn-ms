@@ -3615,12 +3615,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                ${config.gcl.map(entry => {
+                                ${config.gcl.map((entry, index) => {
                                     const durationMs = (parseInt(entry.duration) / 1000000).toFixed(2);
                                     const gateHex = `0x${parseInt(entry.gate).toString(16).toUpperCase().padStart(2, '0')}`;
                                     return `
                                         <tr>
-                                            <td style="padding: 8px; text-align: center; border-bottom: 1px solid var(--border-color); font-weight: 600;">${entry.index}</td>
+                                            <td style="padding: 8px; text-align: center; border-bottom: 1px solid var(--border-color); font-weight: 600;">${index}</td>
                                             <td style="padding: 8px; border-bottom: 1px solid var(--border-color); font-family: 'SF Mono', monospace; color: #0066CC;">${gateHex}</td>
                                             <td style="padding: 8px; border-bottom: 1px solid var(--border-color); font-family: 'SF Mono', monospace;">${entry.duration}</td>
                                             <td style="padding: 8px; border-bottom: 1px solid var(--border-color); font-family: 'SF Mono', monospace;">${durationMs} ms</td>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KETI TSN Management System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -587,11 +588,11 @@
         }
 
         .yang-sidebar {
-            background: var(--bg-primary);
+            background: #0066CC;
             border-radius: 12px;
             padding: 16px;
             overflow-y: auto;
-            border: 1px solid var(--border-color);
+            border: none;
         }
 
         .yang-tree {
@@ -611,10 +612,11 @@
             gap: 8px;
             border-radius: 6px;
             transition: all 0.15s ease;
+            color: white;
         }
 
         .yang-node-header:hover {
-            background: rgba(0, 102, 204, 0.08);
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .yang-node-header.selected {
@@ -876,22 +878,22 @@
 
                 <div class="yang-browser">
                     <div class="yang-sidebar">
-                        <div style="margin-bottom: 16px; padding: 8px 12px; background: var(--bg-secondary); border-radius: 6px; font-weight: 600; color: var(--keti-blue);">
+                        <div style="margin-bottom: 16px; padding: 8px 12px; background: rgba(255, 255, 255, 0.15); border-radius: 6px; font-weight: 600; color: white;">
                             <i class="fas fa-sitemap"></i> YANG Tree Browser
                         </div>
                         <div id="yang-tree" class="yang-tree">
-                            <div style="color: var(--text-secondary); padding: 20px; text-align: center;">
+                            <div style="color: rgba(255, 255, 255, 0.8); padding: 20px; text-align: center;">
                                 Loading YANG tree...
                             </div>
                         </div>
                     </div>
                     <div class="yang-content" id="yang-module-content">
                         <div style="padding: 20px;">
-                            <div class="info-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
-                                <div class="info-box-title" style="color: white; opacity: 1;">
+                            <div class="info-box" style="background: #0066CC; color: white; border: none;">
+                                <div class="info-box-title" style="color: white; opacity: 1; font-weight: 600;">
                                     <i class="fas fa-sitemap"></i> YANG Browser - Full Switch Configuration
                                 </div>
-                                <p style="margin: 0;">Click any node in the left tree to view specific configuration. The complete YANG tree from the switch is displayed below (updated every 30 seconds).</p>
+                                <p style="margin: 0; color: white; opacity: 0.95; font-size: 14px;">Click any node in the left tree to view specific configuration. The complete YANG tree from the switch is displayed below (updated every 30 seconds).</p>
                             </div>
                             <div style="margin-top: 20px; text-align: center; color: var(--text-secondary);">
                                 <div class="loading"></div>
@@ -1134,7 +1136,7 @@
                                             - Service rate when credit available
                                         </span>
                                     </label>
-                                    <input type="number" id="cbs-idle-slope" class="input-field" value="100000" placeholder="100000" min="0" max="1000000">
+                                    <input type="number" id="cbs-idle-slope" class="input-field" placeholder="e.g., 100000 (100 Mbps)" min="0" max="1000000">
                                     <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">
                                         Range: 0 - 1,000,000 kbps (0 - 1 Gbps)
                                     </div>
@@ -1249,12 +1251,12 @@
 
                 <div class="form-group">
                     <label class="form-label">Cycle Time (ns)</label>
-                    <input type="number" class="form-input" id="tas-cycle-time" value="200000000" placeholder="200000000">
+                    <input type="number" class="form-input" id="tas-cycle-time" placeholder="e.g., 200000000 (200ms)">
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Base Time (ns, 0 = current time + 1s)</label>
-                    <input type="number" class="form-input" id="tas-base-time" value="0" placeholder="0">
+                    <input type="number" class="form-input" id="tas-base-time" placeholder="0 (auto)">
                 </div>
 
                 <div class="form-group">
@@ -1268,6 +1270,23 @@
                 <button class="btn btn-primary" onclick="applyTAS()">
                     <i class="fas fa-check"></i> Apply TAS Configuration
                 </button>
+
+                <!-- TAS Hardware Verification Section -->
+                <div class="card" style="margin-top: 20px; border-left: 4px solid #0066CC;">
+                    <div class="card-header" style="background: linear-gradient(135deg, #0066CC 0%, #004C99 100%); color: white;">
+                        <h3 class="card-title" style="margin: 0; font-size: 16px;">
+                            <i class="fas fa-check-circle"></i> Current TAS Configuration (Hardware Verified)
+                        </h3>
+                    </div>
+                    <div style="padding: 16px;">
+                        <button class="btn btn-secondary" onclick="loadCurrentTASConfig()" style="margin-bottom: 12px;">
+                            <i class="fas fa-sync-alt"></i> Read from Hardware
+                        </button>
+                        <div id="current-tas-display">
+                            <p style="color: var(--text-secondary); font-style: italic;">Click "Read from Hardware" to verify TAS settings from YANG tree</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -1346,36 +1365,58 @@
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">
-                        <i class="fas fa-chart-bar"></i> Interface Statistics
+                        <i class="fas fa-chart-bar"></i> Real-Time Statistics
                     </h2>
-                    <button class="btn btn-primary" onclick="loadAllStats()">
-                        <i class="fas fa-sync-alt"></i> Refresh All
+                    <button class="btn btn-primary" onclick="toggleRealTimeStats()" id="stats-toggle-btn">
+                        <i class="fas fa-play"></i> Start Real-Time Monitoring
                     </button>
                 </div>
 
                 <div class="info-box">
                     <div class="info-box-title">
-                        <i class="fas fa-info-circle"></i> Real-Time Statistics
+                        <i class="fas fa-info-circle"></i> Real-Time Network Monitoring
                     </div>
-                    <p>View real-time packet statistics, traffic class distribution, and error counters for all interfaces.</p>
+                    <p>Real-time packet statistics, traffic class distribution, and performance metrics. Updates every 2 seconds.</p>
                 </div>
 
                 <!-- Interface Selection -->
                 <div style="margin-bottom: 24px;">
                     <label class="input-label">Select Interface</label>
                     <div style="display: flex; gap: 12px; align-items: center;">
-                        <input type="text" id="stats-interface" class="input-field" placeholder="1" value="1" style="max-width: 200px;">
-                        <button class="btn btn-secondary" onclick="loadInterfaceStats()">
-                            <i class="fas fa-search"></i> Load Statistics
-                        </button>
+                        <select id="stats-interface" class="input-field" style="max-width: 200px;">
+                            <option value="">Loading interfaces...</option>
+                        </select>
+                        <span id="stats-status" style="color: var(--text-secondary); font-size: 14px;">
+                            <i class="fas fa-circle" style="color: #ccc;"></i> Stopped
+                        </span>
                     </div>
                 </div>
 
-                <!-- Statistics Display -->
+                <!-- Traffic Class Distribution Chart -->
+                <div style="margin-bottom: 24px;">
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--keti-blue); margin-bottom: 12px;">
+                        <i class="fas fa-chart-pie"></i> Traffic Class Distribution
+                    </h3>
+                    <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: var(--shadow-md);">
+                        <canvas id="tc-chart" style="max-height: 300px;"></canvas>
+                    </div>
+                </div>
+
+                <!-- Real-Time Packet Rate Chart -->
+                <div style="margin-bottom: 24px;">
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--keti-blue); margin-bottom: 12px;">
+                        <i class="fas fa-chart-line"></i> Packet Rate Over Time
+                    </h3>
+                    <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: var(--shadow-md);">
+                        <canvas id="packet-rate-chart" style="max-height: 250px;"></canvas>
+                    </div>
+                </div>
+
+                <!-- Statistics Display Table -->
                 <div id="statistics-display">
                     <p style="color: var(--text-secondary); padding: 40px; text-align: center;">
                         <i class="fas fa-chart-line" style="font-size: 48px; margin-bottom: 16px; display: block;"></i>
-                        Select an interface and click "Load Statistics"
+                        Click "Start Real-Time Monitoring" to begin
                     </p>
                 </div>
             </div>
@@ -1426,6 +1467,159 @@
 
     <script>
         const API_BASE = window.location.origin + '/api';
+
+        // ========================================
+        // 통합 데이터 서비스 - 모든 탭이 같은 YANG 데이터 사용
+        // ========================================
+        const GlobalDataService = {
+            latestData: null,
+            yangTree: null,
+            interfaces: [],
+            updateCallbacks: [],
+            isUpdating: false,
+
+            // 데이터 업데이트
+            async update() {
+                if (this.isUpdating) return;
+                this.isUpdating = true;
+
+                try {
+                    // board/latest와 yang/full을 병렬로 가져오기
+                    const [boardResponse, yangResponse] = await Promise.all([
+                        fetch(`${API_BASE}/board/latest`),
+                        fetch(`${API_BASE}/yang/full`)
+                    ]);
+
+                    this.latestData = await boardResponse.json();
+                    this.yangTree = await yangResponse.json();
+
+                    // 인터페이스 목록 파싱
+                    this.parseInterfaces();
+
+                    // 모든 콜백 실행
+                    this.updateCallbacks.forEach(cb => {
+                        try {
+                            cb(this.latestData);
+                        } catch (e) {
+                            console.error('Callback error:', e);
+                        }
+                    });
+                } catch (error) {
+                    console.error('Data update error:', error);
+                } finally {
+                    this.isUpdating = false;
+                }
+            },
+
+            // 인터페이스 목록 파싱 (YANG에서 추출)
+            parseInterfaces() {
+                this.interfaces = [];
+
+                if (!this.latestData || !this.latestData.interfaces || !this.latestData.interfaces.stdout) {
+                    return;
+                }
+
+                const yaml = this.latestData.interfaces.stdout;
+                const lines = yaml.split('\n');
+
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i];
+                    // "name: 'X'" 형식 찾기
+                    const match = line.match(/name:\s*'(\d+)'/);
+                    if (match) {
+                        const ifName = match[1];
+
+                        // oper-status 찾기
+                        let operStatus = 'unknown';
+                        for (let j = i; j < Math.min(i + 10, lines.length); j++) {
+                            const statusMatch = lines[j].match(/oper-status:\s*(\w+)/);
+                            if (statusMatch) {
+                                operStatus = statusMatch[1];
+                                break;
+                            }
+                        }
+
+                        this.interfaces.push({
+                            name: ifName,
+                            status: operStatus
+                        });
+                    }
+                }
+            },
+
+            // 특정 인터페이스 데이터 가져오기
+            getInterfaceData(interfaceName) {
+                if (!this.latestData || !this.latestData.interfaces || !this.latestData.interfaces.stdout) {
+                    return null;
+                }
+
+                const yaml = this.latestData.interfaces.stdout;
+                const lines = yaml.split('\n');
+
+                let inInterface = false;
+                let interfaceData = {
+                    name: interfaceName,
+                    trafficClass: Array(8).fill(null).map((_, i) => ({ tc: i, rxPackets: 0, txPackets: 0 })),
+                    totalRx: 0,
+                    totalTx: 0
+                };
+
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i];
+
+                    if (line.includes(`name: '${interfaceName}'`)) {
+                        inInterface = true;
+                    }
+
+                    if (inInterface && line.includes('traffic-class:')) {
+                        // TC 데이터 파싱 시작
+                        for (let j = i; j < lines.length; j++) {
+                            const tcLine = lines[j];
+
+                            if (tcLine.includes('- rx-packets:')) {
+                                const rxMatch = tcLine.match(/rx-packets:\s*(\d+)/);
+                                if (rxMatch && j + 2 < lines.length) {
+                                    const tcNumLine = lines[j + 1];
+                                    const txLine = lines[j + 2];
+
+                                    const tcMatch = tcNumLine.match(/traffic-class:\s*(\d+)/);
+                                    const txMatch = txLine.match(/tx-packets:\s*(\d+)/);
+
+                                    if (tcMatch && txMatch) {
+                                        const tcNum = parseInt(tcMatch[1]);
+                                        const rx = parseInt(rxMatch[1]);
+                                        const tx = parseInt(txMatch[1]);
+
+                                        interfaceData.trafficClass[tcNum] = { tc: tcNum, rxPackets: rx, txPackets: tx };
+                                        interfaceData.totalRx += rx;
+                                        interfaceData.totalTx += tx;
+                                    }
+                                }
+                            }
+
+                            // 다음 인터페이스 시작시 종료
+                            if (tcLine.includes(`name: '${parseInt(interfaceName) + 1}'`)) {
+                                return interfaceData;
+                            }
+                        }
+                        break;
+                    }
+                }
+
+                return interfaceData;
+            },
+
+            // 콜백 등록
+            subscribe(callback) {
+                this.updateCallbacks.push(callback);
+            },
+
+            // 주기적 업데이트 시작
+            startAutoUpdate(interval = 5000) {
+                this.update(); // 즉시 1회 실행
+                setInterval(() => this.update(), interval);
+            }
+        };
 
         function switchTab(tabName) {
             document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
@@ -1478,40 +1672,30 @@
          * 전체 YANG 트리 HTML 생성
          */
         async function getFullYangHTML() {
-            try {
-                const response = await fetch(`${API_BASE}/yang/full`);
-                const fullYang = await response.json();
+            // GlobalDataService에서 YANG 트리 가져오기 - 매번 fetch하지 않음!
+            const fullYang = GlobalDataService.yangTree;
 
-                if (fullYang && fullYang.yangTree && fullYang.yangTree.stdout) {
-                    const lastUpdate = new Date(fullYang.timestamp).toLocaleString('ko-KR');
-                    return `
-                        <div style="margin-top: 30px; border-top: 2px solid var(--keti-navy); padding-top: 20px;">
-                            <div style="padding: 12px 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px 8px 0 0; font-weight: 600; display: flex; align-items: center; justify-content: space-between;">
-                                <div style="display: flex; align-items: center; gap: 8px;">
-                                    <i class="fas fa-sitemap"></i>
-                                    <span>Complete YANG Tree (Full Switch Configuration)</span>
-                                </div>
-                                <div style="font-size: 12px; opacity: 0.9;">
-                                    <i class="fas fa-clock"></i> ${lastUpdate}
-                                </div>
-                            </div>
-                            <pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 11px; line-height: 1.6; background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 0 0 8px 8px; max-height: 800px; overflow-y: auto;">${fullYang.yangTree.stdout}</pre>
-                        </div>
-                    `;
-                } else {
-                    return `
-                        <div style="margin-top: 30px; border-top: 2px solid var(--keti-navy); padding-top: 20px;">
-                            <div style="padding: 12px 16px; background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%); color: white; border-radius: 8px; font-weight: 600;">
-                                <i class="fas fa-hourglass-half"></i> Full YANG tree loading... (collected every 30 seconds)
-                            </div>
-                        </div>
-                    `;
-                }
-            } catch (error) {
+            if (fullYang && fullYang.yangTree && fullYang.yangTree.stdout) {
+                const lastUpdate = new Date(fullYang.timestamp).toLocaleString('ko-KR');
                 return `
                     <div style="margin-top: 30px; border-top: 2px solid var(--keti-navy); padding-top: 20px;">
-                        <div style="padding: 12px 16px; background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; border-radius: 8px; font-weight: 600;">
-                            <i class="fas fa-exclamation-triangle"></i> Full YANG tree not available yet. Please wait 30 seconds.
+                        <div style="padding: 12px 16px; background: #0066CC; color: white; border-radius: 8px 8px 0 0; font-weight: 600; display: flex; align-items: center; justify-content: space-between;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <i class="fas fa-sitemap"></i>
+                                <span>Complete YANG Tree (Full Switch Configuration)</span>
+                            </div>
+                            <div style="font-size: 12px; opacity: 0.9;">
+                                <i class="fas fa-clock"></i> ${lastUpdate} (자동 갱신)
+                            </div>
+                        </div>
+                        <pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 11px; line-height: 1.6; background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 0 0 8px 8px; max-height: 800px; overflow-y: auto;">${fullYang.yangTree.stdout}</pre>
+                    </div>
+                `;
+            } else {
+                return `
+                    <div style="margin-top: 30px; border-top: 2px solid var(--keti-navy); padding-top: 20px;">
+                        <div style="padding: 12px 16px; background: #0066CC; color: white; border-radius: 8px; font-weight: 600; opacity: 0.8;">
+                            <i class="fas fa-hourglass-half"></i> Full YANG tree loading from GlobalDataService... (auto refresh every 5s)
                         </div>
                     </div>
                 `;
@@ -1523,9 +1707,11 @@
             infoEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading device information...</span>';
 
             try {
-                // 주기적으로 수집된 최신 보드 데이터 사용 (5초마다 자동 갱신)
-                const response = await fetch(`${API_BASE}/board/latest`);
-                const boardData = await response.json();
+                // GlobalDataService 사용 - 모든 탭이 동일한 데이터 공유
+                if (!GlobalDataService.latestData) {
+                    await GlobalDataService.update();
+                }
+                const boardData = GlobalDataService.latestData;
                 const result = boardData.system || {};
 
                 if (result.success && result.stdout) {
@@ -1545,7 +1731,7 @@
                     const lastUpdate = new Date(boardData.timestamp).toLocaleString('ko-KR');
 
                     infoEl.innerHTML = `
-                        <div style="margin-bottom: 16px; padding: 10px 14px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; font-size: 13px; display: flex; align-items: center; gap: 8px;">
+                        <div style="margin-bottom: 16px; padding: 10px 14px; background: #0066CC; color: white; border-radius: 8px; font-size: 13px; display: flex; align-items: center; gap: 8px;">
                             <i class="fas fa-sync-alt"></i>
                             <span><strong>자동 갱신:</strong> ${lastUpdate} (5초마다 서버에서 수집)</span>
                         </div>
@@ -1593,9 +1779,11 @@
             infoEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading interfaces...</span>';
 
             try {
-                // 주기적으로 수집된 최신 보드 데이터 사용 (5초마다 자동 갱신)
-                const response = await fetch(`${API_BASE}/board/latest`);
-                const boardData = await response.json();
+                // GlobalDataService 사용 - 모든 탭이 동일한 데이터 공유
+                if (!GlobalDataService.latestData) {
+                    await GlobalDataService.update();
+                }
+                const boardData = GlobalDataService.latestData;
                 const result = boardData.interfaces || {};
 
                 if (result.success && result.stdout) {
@@ -1604,8 +1792,8 @@
                     infoEl.innerHTML = `
                         <div style="display: flex; flex-direction: column; gap: 24px;">
                             ${interfaces.map(iface => `
-                                <div class="card" style="margin: 0; background: var(--bg-secondary);">
-                                    <div class="card-header" style="background: ${iface.operStatus === 'up' ? 'linear-gradient(135deg, #2ecc71 0%, #27ae60 100%)' : 'linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%)'}; color: white;">
+                                <div class="card" style="margin: 0; background: var(--bg-secondary); border: 2px solid ${iface.operStatus === 'up' ? '#2ecc71' : '#0066CC'};">
+                                    <div class="card-header" style="background: ${iface.operStatus === 'up' ? '#2ecc71' : '#0066CC'}; color: white; padding: 16px;">
                                         <h3 style="font-size: 18px; font-weight: 700; margin: 0; display: flex; align-items: center; gap: 12px;">
                                             <i class="fas fa-ethernet"></i>
                                             Interface ${iface.name}
@@ -2675,19 +2863,19 @@
         }
 
         async function loadYangCatalog() {
-            await buildYangTree();
+            // YANG 트리 빌드 (백그라운드에서 실행)
+            buildYangTree();
 
-            // YANG 브라우저 로드 시 전체 YANG 트리 표시
+            // GlobalDataService에서 즉시 데이터 표시 (빠른 로딩!)
             const contentEl = document.getElementById('yang-module-content');
-            contentEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading full YANG tree...</span>';
 
             const fullYangHTML = await getFullYangHTML();
             contentEl.innerHTML = `
-                <div class="info-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
-                    <div class="info-box-title" style="color: white; opacity: 1;">
-                        <i class="fas fa-info-circle"></i> YANG Browser
+                <div class="info-box" style="background: #0066CC; color: white; border: none;">
+                    <div class="info-box-title" style="color: white; opacity: 1; font-weight: 600;">
+                        <i class="fas fa-sitemap"></i> YANG Browser
                     </div>
-                    <p style="margin: 0;">Click any node in the tree to view its configuration. The complete YANG tree from the switch is displayed below.</p>
+                    <p style="margin: 0; color: white; opacity: 0.95;">Click any node in the tree to view its configuration. The complete YANG tree from the switch is displayed below.</p>
                 </div>
                 ${fullYangHTML}
             `;
@@ -2832,31 +3020,45 @@
             const displayEl = document.getElementById('current-shapers-display');
 
             if (shapers.length === 0) {
-                displayEl.innerHTML = '<p style="color: var(--text-secondary); text-align: center; padding: 20px;">No shapers configured</p>';
+                displayEl.innerHTML = `
+                    <div style="padding: 16px; background: var(--bg-secondary); border-radius: 8px; text-align: center;">
+                        <i class="fas fa-info-circle" style="color: var(--text-secondary); font-size: 24px;"></i>
+                        <p style="margin: 8px 0 0 0; color: var(--text-secondary);">No CBS/SLB shapers configured</p>
+                    </div>
+                `;
                 return;
             }
 
+            const iface = document.getElementById('cbs-interface').value;
+
             displayEl.innerHTML = `
-                <table style="width: 100%; border-collapse: collapse;">
+                <div style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 4px solid #4caf50; padding: 12px; border-radius: 8px; margin-bottom: 16px;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: #2e7d32; font-weight: 600;">
+                        <i class="fas fa-check-circle"></i>
+                        <span>CBS/SLB CONFIGURED - Configuration verified from YANG tree</span>
+                    </div>
+                </div>
+
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 16px;">
                     <thead style="background: var(--bg-secondary);">
                         <tr>
-                            <th style="padding: 12px; text-align: left;">Traffic Class</th>
-                            <th style="padding: 12px; text-align: left;">Mode</th>
-                            <th style="padding: 12px; text-align: left;">Parameters</th>
-                            <th style="padding: 12px; text-align: center;">Actions</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid var(--border-color);">Traffic Class</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid var(--border-color);">Mode</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid var(--border-color);">Parameters</th>
+                            <th style="padding: 12px; text-align: center; border-bottom: 2px solid var(--border-color);">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         ${shapers.map(s => `
-                            <tr style="border-top: 1px solid var(--border-color);">
+                            <tr style="border-bottom: 1px solid var(--border-color);">
                                 <td style="padding: 12px; font-weight: 600;">TC${s.tc}</td>
                                 <td style="padding: 12px;">
-                                    <span style="padding: 4px 8px; background: ${s.mode === 'CBS' ? '#3498db' : '#9b59b6'}; color: white; border-radius: 4px; font-size: 12px; font-weight: 600;">
+                                    <span style="padding: 4px 8px; background: ${s.mode === 'CBS' ? '#0066CC' : '#9b59b6'}; color: white; border-radius: 4px; font-size: 12px; font-weight: 600;">
                                         ${s.mode}
                                     </span>
                                 </td>
                                 <td style="padding: 12px; font-family: 'SF Mono', monospace; font-size: 13px;">
-                                    ${s.mode === 'CBS' ? `Idle Slope: ${(s.params.idleSlope / 1000).toFixed(0)} Mbps` :
+                                    ${s.mode === 'CBS' ? `Idle Slope: ${(s.params.idleSlope / 1000).toFixed(0)} Mbps (${s.params.idleSlope} kbps)` :
                                       `CIR: ${(s.params.cir / 1000).toFixed(0)} Mbps, CBS: ${s.params.cbs} bytes`}
                                 </td>
                                 <td style="padding: 12px; text-align: center;">
@@ -2868,6 +3070,13 @@
                         `).join('')}
                     </tbody>
                 </table>
+
+                <div style="padding: 12px; background: var(--bg-secondary); border-radius: 8px; font-size: 12px; color: var(--text-secondary);">
+                    <i class="fas fa-info-circle"></i> This configuration was read directly from the LAN9662 hardware via YANG tree path:
+                    <code style="display: block; margin-top: 4px; padding: 4px 8px; background: white; border-radius: 4px; font-family: 'SF Mono', monospace; color: #0066CC;">
+                        /ietf-interfaces:interfaces/interface[name='${iface}']/mchp-velocitysp-port:eth-qos/config/traffic-class-shapers
+                    </code>
+                </div>
             `;
         }
 
@@ -2939,10 +3148,10 @@
 
                     const result = await response.json();
                     if (result.success) {
-                        alert(`✓ Applied CBS shaper to TC${tc}\nIdle Slope: ${(idleSlope/1000).toFixed(0)} Mbps`);
+                        alert(`✓ CBS Applied Successfully!\n\nTC${tc} configured with Idle Slope: ${(idleSlope/1000).toFixed(0)} Mbps\n\nVerifying from hardware YANG tree...`);
                         loadCurrentShapers();
                     } else {
-                        alert(`✗ Failed: ${result.error || 'Unknown error'}`);
+                        alert(`✗ CBS Configuration Failed\n\n${result.error || 'Unknown error'}`);
                     }
                 } else if (mode === 'slb') {
                     // Use generic set API for SLB
@@ -3125,13 +3334,301 @@
 
                 const result = await response.json();
                 if (result.success) {
-                    addToConsole('TAS configuration applied successfully', 'success');
+                    addToConsole('✓ TAS configuration applied successfully - verifying from hardware...', 'success');
+                    // Auto-verify after 1 second
+                    setTimeout(() => loadCurrentTASConfig(), 1000);
                 } else {
                     addToConsole('TAS configuration failed', 'error');
                 }
             } catch (error) {
                 addToConsole(`Error: ${error.message}`, 'error');
             }
+        }
+
+        async function loadCurrentTASConfig() {
+            const displayEl = document.getElementById('current-tas-display');
+            displayEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary);">Reading TAS configuration from hardware...</span>';
+
+            try {
+                const iface = document.getElementById('tas-interface').value;
+
+                // TAS 데이터는 bridge-port 안에 있습니다!
+                const basePath = `/ietf-interfaces:interfaces/interface[name='${iface}']/ieee802-dot1q-bridge:bridge-port/ieee802-dot1q-sched-bridge:gate-parameter-table`;
+
+                // Read TAS configuration from YANG tree
+                const response = await fetch(`${API_BASE}/get`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ path: basePath })
+                });
+
+                const result = await response.json();
+                if (result.success && result.stdout) {
+                    const tasConfig = parseTASConfigFromBridgePort(result.stdout);
+                    displayTASConfig(tasConfig, iface);
+                } else {
+                    displayEl.innerHTML = `
+                        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 16px; border-radius: 8px;">
+                            <div style="display: flex; align-items: center; gap: 8px; color: #856404; font-weight: 600; margin-bottom: 8px;">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>TAS Not Available</span>
+                            </div>
+                            <p style="margin: 0; color: #856404;">TAS configuration could not be read from hardware. The path may not exist on this firmware version.</p>
+                            <p style="margin: 8px 0 0 0; color: #856404; font-size: 12px;">Path: ${basePath}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                displayEl.innerHTML = `<p style="color: var(--apple-red);">Error reading from hardware: ${error.message}</p>`;
+            }
+        }
+
+        // Bridge-port 데이터에서 TAS 설정 파싱
+        function parseTASConfigFromBridgePort(yamlText) {
+            const config = {
+                gateEnabled: false,
+                adminBaseTime: null,
+                adminCycleTime: null,
+                operBaseTime: null,
+                operCycleTime: null,
+                adminGateStates: null,
+                operGateStates: null,
+                gcl: []
+            };
+
+            const lines = yamlText.split('\n');
+            let inAdminGCL = false;
+            let currentEntry = null;
+
+            for (const line of lines) {
+                if (line.includes('gate-enabled:')) {
+                    const match = line.match(/gate-enabled:\s*(true|false)/);
+                    if (match) config.gateEnabled = match[1] === 'true';
+                }
+                if (line.includes('admin-gate-states:')) {
+                    const match = line.match(/admin-gate-states:\s*(\d+)/);
+                    if (match) config.adminGateStates = match[1];
+                }
+                if (line.includes('oper-gate-states:')) {
+                    const match = line.match(/oper-gate-states:\s*(\d+)/);
+                    if (match) config.operGateStates = match[1];
+                }
+
+                // Parse time structures (nanoseconds: X, seconds: Y)
+                if (line.includes('admin-base-time:')) {
+                    inAdminGCL = false;
+                }
+                if (line.includes('nanoseconds:') && !config.adminBaseTime) {
+                    const match = line.match(/nanoseconds:\s*(\d+)/);
+                    if (match) config.adminBaseTime = match[1];
+                }
+                if (line.includes('numerator:') && !config.adminCycleTime) {
+                    const match = line.match(/numerator:\s*(\d+)/);
+                    if (match) config.adminCycleTime = match[1];
+                }
+                if (line.includes('oper-base-time:')) {
+                    const nextIndex = lines.indexOf(line) + 1;
+                    for (let i = nextIndex; i < Math.min(nextIndex + 3, lines.length); i++) {
+                        if (lines[i].includes('nanoseconds:')) {
+                            const match = lines[i].match(/nanoseconds:\s*(\d+)/);
+                            if (match) config.operBaseTime = match[1];
+                            break;
+                        }
+                    }
+                }
+                if (line.includes('oper-cycle-time:')) {
+                    const nextIndex = lines.indexOf(line) + 1;
+                    for (let i = nextIndex; i < Math.min(nextIndex + 3, lines.length); i++) {
+                        if (lines[i].includes('numerator:')) {
+                            const match = lines[i].match(/numerator:\s*(\d+)/);
+                            if (match) config.operCycleTime = match[1];
+                            break;
+                        }
+                    }
+                }
+
+                // Parse gate-control-entry (admin-control-list)
+                if (line.includes('gate-control-entry:')) {
+                    inAdminGCL = true;
+                }
+                if (inAdminGCL && line.match(/^\s*-\s*$/)) {
+                    if (currentEntry) config.gcl.push(currentEntry);
+                    currentEntry = { operation: null, gate: null, duration: null };
+                }
+                if (currentEntry && inAdminGCL) {
+                    if (line.includes('operation-name:')) {
+                        const match = line.match(/operation-name:\s*(\w+)/);
+                        if (match) currentEntry.operation = match[1];
+                    }
+                    if (line.includes('gate-states-value:')) {
+                        const match = line.match(/gate-states-value:\s*(\d+)/);
+                        if (match) currentEntry.gate = match[1];
+                    }
+                    if (line.includes('time-interval-value:')) {
+                        const match = line.match(/time-interval-value:\s*(\d+)/);
+                        if (match) currentEntry.duration = match[1];
+                    }
+                }
+            }
+            if (currentEntry && Object.values(currentEntry).some(v => v !== null)) {
+                config.gcl.push(currentEntry);
+            }
+
+            return config;
+        }
+
+        // 구형 스케줄러 경로용 파서 (호환성 유지)
+        function parseTASConfig(yamlText) {
+            return parseTASConfigFromBridgePort(yamlText);
+        }
+
+        function displayTASConfig(config, iface) {
+            const displayEl = document.getElementById('current-tas-display');
+
+            if (!config.gateEnabled) {
+                displayEl.innerHTML = `
+                    <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+                        <div style="display: flex; align-items: center; gap: 8px; color: #856404; font-weight: 600; margin-bottom: 12px;">
+                            <i class="fas fa-exclamation-triangle" style="font-size: 24px;"></i>
+                            <span style="font-size: 16px;">TAS is DISABLED on Interface ${iface}</span>
+                        </div>
+                        <p style="margin: 0 0 8px 0; color: #856404;">
+                            ⚠️ The Time-Aware Shaper (IEEE 802.1Qbv) is currently <strong>not active</strong> on this interface.
+                        </p>
+                        <p style="margin: 0; color: #856404; font-size: 14px;">
+                            To enable TAS, you must configure and activate the gate parameters through the YANG tree.
+                        </p>
+                    </div>
+
+                    <div style="background: var(--bg-secondary); border-radius: 8px; padding: 16px;">
+                        <h4 style="margin: 0 0 12px 0; color: var(--keti-navy); font-size: 14px;">
+                            <i class="fas fa-info-circle"></i> Current Gate Parameters
+                        </h4>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 8px; border-bottom: 1px solid var(--border-color); font-weight: 600;">Gate Enabled</td>
+                                    <td style="padding: 8px; border-bottom: 1px solid var(--border-color);">
+                                        <span style="padding: 4px 8px; background: #dc3545; color: white; border-radius: 4px; font-size: 12px; font-weight: 600;">
+                                            FALSE
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; border-bottom: 1px solid var(--border-color); font-weight: 600;">Admin Gate States</td>
+                                    <td style="padding: 8px; border-bottom: 1px solid var(--border-color); font-family: 'SF Mono', monospace;">
+                                        ${config.adminGateStates || 'N/A'} (0x${parseInt(config.adminGateStates || 0).toString(16).toUpperCase().padStart(2, '0')})
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; font-weight: 600;">Admin Cycle Time</td>
+                                    <td style="padding: 8px; font-family: 'SF Mono', monospace;">
+                                        ${config.adminCycleTime || '0'} ns
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p style="margin: 12px 0 0 0; font-size: 12px; color: var(--text-secondary);">
+                            <i class="fas fa-info-circle"></i> Data read from: <code style="background: white; padding: 2px 6px; border-radius: 4px;">/ietf-interfaces:interfaces/interface[name='${iface}']/ieee802-dot1q-bridge:bridge-port/ieee802-dot1q-sched-bridge:gate-parameter-table</code>
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+
+            const cycleTimeMs = config.adminCycleTime ? (parseInt(config.adminCycleTime) / 1000000).toFixed(2) : 'N/A';
+            const operCycleTimeMs = config.operCycleTime ? (parseInt(config.operCycleTime) / 1000000).toFixed(2) : 'N/A';
+
+            displayEl.innerHTML = `
+                <div style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 4px solid #4caf50; padding: 12px; border-radius: 8px; margin-bottom: 16px;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: #2e7d32; font-weight: 600;">
+                        <i class="fas fa-check-circle"></i>
+                        <span>TAS ENABLED - Configuration verified from YANG tree</span>
+                    </div>
+                </div>
+
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 16px;">
+                    <thead style="background: var(--bg-secondary);">
+                        <tr>
+                            <th style="padding: 10px; text-align: left; border-bottom: 2px solid var(--border-color);">Parameter</th>
+                            <th style="padding: 10px; text-align: left; border-bottom: 2px solid var(--border-color);">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 10px; border-bottom: 1px solid var(--border-color); font-weight: 600;">Gate Enabled</td>
+                            <td style="padding: 10px; border-bottom: 1px solid var(--border-color);">
+                                <span style="padding: 4px 8px; background: #4caf50; color: white; border-radius: 4px; font-size: 12px; font-weight: 600;">
+                                    ${config.gateEnabled ? 'TRUE' : 'FALSE'}
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border-bottom: 1px solid var(--border-color); font-weight: 600;">Admin Cycle Time</td>
+                            <td style="padding: 10px; border-bottom: 1px solid var(--border-color); font-family: 'SF Mono', monospace;">
+                                ${config.adminCycleTime || 'N/A'} ns (${cycleTimeMs} ms)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border-bottom: 1px solid var(--border-color); font-weight: 600;">Admin Base Time</td>
+                            <td style="padding: 10px; border-bottom: 1px solid var(--border-color); font-family: 'SF Mono', monospace;">
+                                ${config.adminBaseTime || 'N/A'} ns
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border-bottom: 1px solid var(--border-color); font-weight: 600;">Operational Cycle Time</td>
+                            <td style="padding: 10px; border-bottom: 1px solid var(--border-color); font-family: 'SF Mono', monospace;">
+                                ${config.operCycleTime || 'N/A'} ns (${operCycleTimeMs} ms)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; font-weight: 600;">Operational Base Time</td>
+                            <td style="padding: 10px; font-family: 'SF Mono', monospace;">
+                                ${config.operBaseTime || 'N/A'} ns
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                ${config.gcl.length > 0 ? `
+                    <div style="margin-top: 16px;">
+                        <h4 style="margin: 0 0 12px 0; color: var(--keti-navy); font-size: 14px;">
+                            <i class="fas fa-list"></i> Gate Control List (${config.gcl.length} entries)
+                        </h4>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead style="background: var(--bg-secondary);">
+                                <tr>
+                                    <th style="padding: 8px; text-align: center; border-bottom: 2px solid var(--border-color);">Index</th>
+                                    <th style="padding: 8px; text-align: left; border-bottom: 2px solid var(--border-color);">Gate State (hex)</th>
+                                    <th style="padding: 8px; text-align: left; border-bottom: 2px solid var(--border-color);">Duration (ns)</th>
+                                    <th style="padding: 8px; text-align: left; border-bottom: 2px solid var(--border-color);">Duration (ms)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${config.gcl.map(entry => {
+                                    const durationMs = (parseInt(entry.duration) / 1000000).toFixed(2);
+                                    const gateHex = `0x${parseInt(entry.gate).toString(16).toUpperCase().padStart(2, '0')}`;
+                                    return `
+                                        <tr>
+                                            <td style="padding: 8px; text-align: center; border-bottom: 1px solid var(--border-color); font-weight: 600;">${entry.index}</td>
+                                            <td style="padding: 8px; border-bottom: 1px solid var(--border-color); font-family: 'SF Mono', monospace; color: #0066CC;">${gateHex}</td>
+                                            <td style="padding: 8px; border-bottom: 1px solid var(--border-color); font-family: 'SF Mono', monospace;">${entry.duration}</td>
+                                            <td style="padding: 8px; border-bottom: 1px solid var(--border-color); font-family: 'SF Mono', monospace;">${durationMs} ms</td>
+                                        </tr>
+                                    `;
+                                }).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                ` : '<p style="color: var(--text-secondary); text-align: center; margin-top: 16px;">No GCL entries configured</p>'}
+
+                <div style="margin-top: 16px; padding: 12px; background: var(--bg-secondary); border-radius: 8px; font-size: 12px; color: var(--text-secondary);">
+                    <i class="fas fa-info-circle"></i> This configuration was read directly from the LAN9662 hardware via YANG tree path:
+                    <code style="display: block; margin-top: 4px; padding: 4px 8px; background: white; border-radius: 4px; font-family: 'SF Mono', monospace; color: #0066CC;">
+                        /ieee802-dot1q-sched:interfaces/interface[name='${document.getElementById('tas-interface').value}']/scheduler
+                    </code>
+                </div>
+            `;
         }
 
         async function applyPriorityMapping() {
@@ -3227,6 +3724,279 @@
             }
         }
 
+        // ========================================
+        // Real-Time Statistics Charts
+        // ========================================
+        let tcChart = null;
+        let packetRateChart = null;
+        let statsInterval = null;
+        let isStatsRunning = false;
+        let packetRateData = {
+            labels: [],
+            rx: [],
+            tx: []
+        };
+        let previousPackets = { rx: 0, tx: 0 };
+
+        function initializeCharts() {
+            const tcCtx = document.getElementById('tc-chart').getContext('2d');
+            const packetCtx = document.getElementById('packet-rate-chart').getContext('2d');
+
+            // Traffic Class Distribution Pie Chart
+            tcChart = new Chart(tcCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['TC0', 'TC1', 'TC2', 'TC3', 'TC4', 'TC5', 'TC6', 'TC7'],
+                    datasets: [{
+                        label: 'Total Packets',
+                        data: [0, 0, 0, 0, 0, 0, 0, 0],
+                        backgroundColor: [
+                            '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
+                            '#9966FF', '#FF9F40', '#FF6384', '#C9CBCF'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                font: { size: 12 },
+                                padding: 10
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Traffic Distribution by Class',
+                            font: { size: 14, weight: 'bold' }
+                        }
+                    }
+                }
+            });
+
+            // Packet Rate Line Chart
+            packetRateChart = new Chart(packetCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: 'RX Rate (pps)',
+                            data: [],
+                            borderColor: '#36A2EB',
+                            backgroundColor: 'rgba(54, 162, 235, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'TX Rate (pps)',
+                            data: [],
+                            borderColor: '#FF6384',
+                            backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Time'
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Packets per Second'
+                            },
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Real-Time Packet Rate',
+                            font: { size: 14, weight: 'bold' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 인터페이스 선택기 동적 생성
+        function populateInterfaceSelector() {
+            const selector = document.getElementById('stats-interface');
+            if (!selector || GlobalDataService.interfaces.length === 0) return;
+
+            const currentValue = selector.value;
+            selector.innerHTML = '';
+
+            GlobalDataService.interfaces.forEach(iface => {
+                const option = document.createElement('option');
+                option.value = iface.name;
+                option.textContent = `Interface ${iface.name} (${iface.status})`;
+                selector.appendChild(option);
+            });
+
+            // 이전 선택값 복원 또는 첫 번째 선택
+            if (currentValue && GlobalDataService.interfaces.find(i => i.name === currentValue)) {
+                selector.value = currentValue;
+            } else if (GlobalDataService.interfaces.length > 0) {
+                selector.value = GlobalDataService.interfaces[0].name;
+            }
+        }
+
+        function updateRealTimeCharts() {
+            const interfaceNum = document.getElementById('stats-interface').value;
+            if (!interfaceNum) return;
+
+            try {
+                // GlobalDataService에서 인터페이스 데이터 가져오기
+                const ifData = GlobalDataService.getInterfaceData(interfaceNum);
+                if (!ifData) return;
+
+                // TC Stats 추출
+                const tcStats = ifData.trafficClass.map(tc => tc.rxPackets + tc.txPackets);
+                const totalRx = ifData.totalRx;
+                const totalTx = ifData.totalTx;
+
+                // Update TC Chart
+                if (tcChart) {
+                    tcChart.data.datasets[0].data = tcStats;
+                    tcChart.update('none'); // Smooth update without animation
+                }
+
+                // Calculate packet rate (packets per second)
+                const currentTime = new Date().toLocaleTimeString();
+                const rxRate = Math.max(0, totalRx - previousPackets.rx);
+                const txRate = Math.max(0, totalTx - previousPackets.tx);
+
+                previousPackets = { rx: totalRx, tx: totalTx };
+
+                // Update Packet Rate Chart
+                if (packetRateChart) {
+                    packetRateData.labels.push(currentTime);
+                    packetRateData.rx.push(rxRate);
+                    packetRateData.tx.push(txRate);
+
+                    // Keep only last 20 data points
+                    if (packetRateData.labels.length > 20) {
+                        packetRateData.labels.shift();
+                        packetRateData.rx.shift();
+                        packetRateData.tx.shift();
+                    }
+
+                    packetRateChart.data.labels = packetRateData.labels;
+                    packetRateChart.data.datasets[0].data = packetRateData.rx;
+                    packetRateChart.data.datasets[1].data = packetRateData.tx;
+                    packetRateChart.update('none');
+                }
+
+                // Update statistics table
+                const displayEl = document.getElementById('statistics-display');
+                displayEl.innerHTML = `
+                    <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: var(--shadow-md);">
+                        <h3 style="font-size: 16px; font-weight: 700; color: var(--keti-blue); margin-bottom: 16px;">
+                            <i class="fas fa-table"></i> Interface ${interfaceNum} Statistics
+                        </h3>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead style="background: var(--bg-secondary);">
+                                <tr>
+                                    <th style="padding: 12px; text-align: left;">Traffic Class</th>
+                                    <th style="padding: 12px; text-align: right;">Total Packets</th>
+                                    <th style="padding: 12px; text-align: right;">Percentage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${tcStats.map((count, tc) => {
+                                    const total = tcStats.reduce((a, b) => a + b, 0);
+                                    const percentage = total > 0 ? ((count / total) * 100).toFixed(2) : 0;
+                                    return `
+                                        <tr style="border-top: 1px solid var(--border-color);">
+                                            <td style="padding: 12px; font-weight: 600;">TC${tc}</td>
+                                            <td style="padding: 12px; text-align: right; font-family: 'SF Mono', monospace;">${count.toLocaleString()}</td>
+                                            <td style="padding: 12px; text-align: right; font-family: 'SF Mono', monospace;">${percentage}%</td>
+                                        </tr>
+                                    `;
+                                }).join('')}
+                            </tbody>
+                            <tfoot style="background: var(--bg-secondary); font-weight: bold;">
+                                <tr>
+                                    <td style="padding: 12px;">Total</td>
+                                    <td style="padding: 12px; text-align: right; font-family: 'SF Mono', monospace;">
+                                        ${tcStats.reduce((a, b) => a + b, 0).toLocaleString()}
+                                    </td>
+                                    <td style="padding: 12px; text-align: right;">100%</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div style="margin-top: 16px; padding: 12px; background: var(--bg-secondary); border-radius: 8px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+                            <div>
+                                <div style="color: var(--text-secondary); font-size: 12px;">Current RX Rate</div>
+                                <div style="font-size: 20px; font-weight: 700; color: #36A2EB;">${rxRate} pps</div>
+                            </div>
+                            <div>
+                                <div style="color: var(--text-secondary); font-size: 12px;">Current TX Rate</div>
+                                <div style="font-size: 20px; font-weight: 700; color: #FF6384;">${txRate} pps</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+            } catch (error) {
+                console.error('Error updating charts:', error);
+            }
+        }
+
+        function toggleRealTimeStats() {
+            const btn = document.getElementById('stats-toggle-btn');
+            const statusEl = document.getElementById('stats-status');
+
+            if (isStatsRunning) {
+                // Stop monitoring
+                clearInterval(statsInterval);
+                isStatsRunning = false;
+                btn.innerHTML = '<i class="fas fa-play"></i> Start Real-Time Monitoring';
+                btn.className = 'btn btn-primary';
+                statusEl.innerHTML = '<i class="fas fa-circle" style="color: #ccc;"></i> Stopped';
+            } else {
+                // Initialize charts if not already done
+                if (!tcChart || !packetRateChart) {
+                    initializeCharts();
+                }
+
+                // Start monitoring
+                isStatsRunning = true;
+                btn.innerHTML = '<i class="fas fa-stop"></i> Stop Monitoring';
+                btn.className = 'btn btn-danger';
+                statusEl.innerHTML = '<i class="fas fa-circle" style="color: #34C759;"></i> Running';
+
+                // Reset packet rate data
+                packetRateData = { labels: [], rx: [], tx: [] };
+                previousPackets = { rx: 0, tx: 0 };
+
+                // Update immediately and then every 2 seconds
+                updateRealTimeCharts();
+                statsInterval = setInterval(updateRealTimeCharts, 2000);
+            }
+        }
+
         window.onload = function() {
             checkStatus();
             setInterval(checkStatus, 5000);
@@ -3237,6 +4007,14 @@
 
             loadDeviceInfo();
             addToConsole('KETI TSN Management System started', 'success');
+
+            // GlobalDataService 시작 - 모든 탭이 이 데이터 사용
+            GlobalDataService.subscribe((data) => {
+                // 인터페이스 목록이 업데이트되면 선택기 갱신
+                populateInterfaceSelector();
+                console.log(`[GlobalDataService] ${GlobalDataService.interfaces.length} interfaces loaded`);
+            });
+            GlobalDataService.startAutoUpdate(5000); // 5초마다 자동 업데이트
         };
     </script>
 </body>

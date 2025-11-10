@@ -11,6 +11,7 @@ import { spawn } from 'child_process';
 import { readFileSync, readdirSync, statSync, existsSync, writeFileSync, mkdirSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import yaml from 'js-yaml';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -261,28 +262,86 @@ app.post('/api/execute', async (req, res) => {
  */
 app.get('/api/bridge', async (req, res) => {
     try {
+        // GlobalDataService에서 캐시된 브리지 데이터 사용
+        if (latestBoardData && latestBoardData.bridge) {
+            return res.json({
+                ...latestBoardData.bridge,
+                cached: true,
+                timestamp: latestBoardData.timestamp,
+                source: 'GlobalDataService'
+            });
+        }
+
+        // Fallback: 캐시가 없으면 직접 조회
         const result = await executeMvdct([
             'device', DEFAULT_DEVICE, 'get',
             '/ieee802-dot1q-bridge:bridges/bridge',
             '--console'
         ]);
-        res.json(result);
+        res.json({ ...result, cached: false });
     } catch (error) {
         res.status(500).json(error);
     }
 });
 
 /**
- * API: 인터페이스 설정 조회
+ * API: 인터페이스 설정 조회 (캐시 활용)
  */
 app.get('/api/interfaces', async (req, res) => {
     try {
+        // GlobalDataService에서 파싱된 인터페이스 배열 직접 사용 (최적화)
+        if (latestBoardData && latestBoardData.interfacesArray && latestBoardData.interfacesArray.length > 0) {
+            return res.json({
+                success: true,
+                interfaces: latestBoardData.interfacesArray,
+                timestamp: latestBoardData.timestamp,
+                cached: true,
+                source: 'GlobalDataService (pre-parsed)'
+            });
+        }
+
+        // Fallback: 캐시된 raw 데이터가 있으면 파싱 시도
+        if (latestBoardData && latestBoardData.interfaces) {
+            const interfacesData = latestBoardData.interfaces;
+
+            // YAML 파싱하여 interface 배열 추출
+            let interfaces = [];
+            if (interfacesData.success && interfacesData.stdout) {
+                try {
+                    // YAML에서 "- /ietf-interfaces:interfaces:" 부분 찾기
+                    const yamlMatch = interfacesData.stdout.match(/- \/ietf-interfaces:interfaces:\n([\s\S]+)/);
+                    if (yamlMatch) {
+                        const yamlContent = 'ietf-interfaces:interfaces:\n' + yamlMatch[1];
+                        const parsed = yaml.load(yamlContent);
+                        if (parsed && parsed['ietf-interfaces:interfaces'] && parsed['ietf-interfaces:interfaces'].interface) {
+                            interfaces = parsed['ietf-interfaces:interfaces'].interface;
+                        }
+                    }
+                } catch (parseError) {
+                    console.error('[API] YAML parsing error:', parseError.message);
+                }
+            }
+
+            return res.json({
+                success: true,
+                interfaces: interfaces,
+                timestamp: latestBoardData.timestamp,
+                cached: true,
+                source: 'GlobalDataService (fallback parsed)'
+            });
+        }
+
+        // Fallback: 캐시가 없으면 직접 조회
         const result = await executeMvdct([
             'device', DEFAULT_DEVICE, 'get',
             '/ietf-interfaces:interfaces',
             '--console'
         ]);
-        res.json(result);
+        res.json({
+            ...result,
+            interfaces: [],
+            cached: false
+        });
     } catch (error) {
         res.status(500).json(error);
     }
@@ -951,6 +1010,16 @@ app.post('/api/fetch', async (req, res) => {
  */
 app.get('/api/firmware', async (req, res) => {
     try {
+        // cachedStaticInfo에서 펌웨어 정보 사용
+        if (cachedStaticInfo && cachedStaticInfo.firmware) {
+            return res.json({
+                ...cachedStaticInfo.firmware,
+                cached: true,
+                source: 'cachedStaticInfo'
+            });
+        }
+
+        // Fallback: 캐시가 없으면 직접 조회
         const result = await executeMvdct([
             'device', DEFAULT_DEVICE, 'firmware', 'version',
             '--console'
@@ -959,7 +1028,8 @@ app.get('/api/firmware', async (req, res) => {
         res.json({
             success: result.success,
             result,
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
+            cached: false
         });
     } catch (error) {
         res.status(500).json(error);
@@ -971,6 +1041,16 @@ app.get('/api/firmware', async (req, res) => {
  */
 app.get('/api/device-type', async (req, res) => {
     try {
+        // cachedStaticInfo에서 장치 타입 정보 사용
+        if (cachedStaticInfo && cachedStaticInfo.deviceType) {
+            return res.json({
+                ...cachedStaticInfo.deviceType,
+                cached: true,
+                source: 'cachedStaticInfo'
+            });
+        }
+
+        // Fallback: 캐시가 없으면 직접 조회
         const result = await executeMvdct([
             'device', DEFAULT_DEVICE, 'type',
             '--console'
@@ -979,7 +1059,8 @@ app.get('/api/device-type', async (req, res) => {
         res.json({
             success: result.success,
             result,
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
+            cached: false
         });
     } catch (error) {
         res.status(500).json(error);
@@ -1067,7 +1148,7 @@ if (!existsSync(BOARD_DATA_DIR)) {
 }
 
 /**
- * 보드 정보 수집 - fetch 사용으로 효율적 조회
+ * 보드 정보 수집 - mvdct get 명령으로 개별 조회
  */
 async function collectBoardInfo() {
     try {
@@ -1075,79 +1156,63 @@ async function collectBoardInfo() {
             timestamp: new Date().toISOString(),
             system: null,
             interfaces: null,
+            interfacesArray: [],  // 파싱된 인터페이스 배열 추가
             bridge: null,
             firmware: null,
             deviceType: null,
             error: null
         };
 
+        // mvdct get 명령으로 개별 조회 (fetch 대신)
         try {
-            // fetch 파일 생성 - 한 번에 모든 데이터 조회
-            const fetchContent = `
-- /ietf-system:system-state/platform
-- /ietf-interfaces:interfaces
-- /ieee802-dot1q-bridge:bridges
-`;
-            const fetchFile = join(BOARD_DATA_DIR, 'fetch-config.yaml');
-            writeFileSync(fetchFile, fetchContent);
-
-            // fetch 명령으로 한 번에 조회 (효율적!)
-            const fetchResult = await executeMvdct([
-                'device', DEFAULT_DEVICE, 'fetch', fetchFile,
+            const systemResult = await executeMvdct([
+                'device', DEFAULT_DEVICE, 'get',
+                '/ietf-system:system-state/platform',
                 '--console'
             ]);
+            data.system = systemResult;
+        } catch (e) {
+            data.error = { system: e.message };
+        }
 
-            if (fetchResult.success && fetchResult.stdout) {
-                // YAML 파싱해서 각 섹션 분리
-                const yamlData = fetchResult.stdout;
+        try {
+            const interfacesResult = await executeMvdct([
+                'device', DEFAULT_DEVICE, 'get',
+                '/ietf-interfaces:interfaces',
+                '--console'
+            ]);
+            data.interfaces = interfacesResult;
 
-                // system 데이터 추출
-                if (yamlData.includes('/ietf-system:system-state/platform')) {
-                    data.system = { success: true, stdout: yamlData, stderr: '', code: 0 };
+            // YANG 파싱하여 인터페이스 배열 추출 (GlobalDataService 확장)
+            if (interfacesResult.success && interfacesResult.stdout) {
+                try {
+                    const yamlMatch = interfacesResult.stdout.match(/- \/ietf-interfaces:interfaces:\n([\s\S]+)/);
+                    if (yamlMatch) {
+                        const yamlContent = 'ietf-interfaces:interfaces:\n' + yamlMatch[1];
+                        const parsed = yaml.load(yamlContent);
+                        if (parsed && parsed['ietf-interfaces:interfaces'] && parsed['ietf-interfaces:interfaces'].interface) {
+                            data.interfacesArray = parsed['ietf-interfaces:interfaces'].interface;
+                            console.log(`[CACHE] Parsed ${data.interfacesArray.length} interfaces into GlobalDataService`);
+                        }
+                    }
+                } catch (parseError) {
+                    console.error('[CACHE] YAML parsing error:', parseError.message);
+                    data.error = { ...data.error, interfacesParsing: parseError.message };
                 }
-
-                // interfaces 데이터 (전체 포함)
-                data.interfaces = { success: true, stdout: yamlData, stderr: '', code: 0 };
-
-                // bridge 데이터
-                data.bridge = { success: true, stdout: yamlData, stderr: '', code: 0 };
             }
-        } catch (err) {
-            console.log('[FETCH ERROR] Falling back to individual get commands:', err.message);
+        } catch (e) {
+            data.error = { ...data.error, interfaces: e.message };
+        }
 
-            // fetch 실패 시 개별 get으로 대체
-            try {
-                const systemResult = await executeMvdct([
-                    'device', DEFAULT_DEVICE, 'get',
-                    '/ietf-system:system-state/platform',
-                    '--console'
-                ]);
-                data.system = systemResult;
-            } catch (e) {
-                data.error = { system: e.message };
-            }
-
-            try {
-                const interfacesResult = await executeMvdct([
-                    'device', DEFAULT_DEVICE, 'get',
-                    '/ietf-interfaces:interfaces',
-                    '--console'
-                ]);
-                data.interfaces = interfacesResult;
-            } catch (e) {
-                data.error = { ...data.error, interfaces: e.message };
-            }
-
-            try {
-                const bridgeResult = await executeMvdct([
-                    'device', DEFAULT_DEVICE, 'get',
-                    '/ieee802-dot1q-bridge:bridges',
-                    '--console'
-                ]);
-                data.bridge = bridgeResult;
-            } catch (e) {
-                data.error = { ...data.error, bridge: e.message };
-            }
+        try {
+            const bridgeResult = await executeMvdct([
+                'device', DEFAULT_DEVICE, 'get',
+                '/ieee802-dot1q-bridge:bridges',
+                '--console'
+            ]);
+            data.bridge = bridgeResult;
+        } catch (e) {
+            data.error = { ...data.error, bridge: e.message };
         }
 
         // 캐시된 정적 정보 사용 (매번 조회하지 않음)
@@ -1224,11 +1289,11 @@ async function collectStaticInfo() {
 }
 
 /**
- * 전체 YANG 트리 수집 - JSON 로그 파일로 메타데이터 저장
+ * 전체 YANG 트리 수집 - 순수 YANG 데이터만 추출
  */
 async function collectFullYang() {
     try {
-        console.log('[FULL YANG] Collecting complete YANG tree with -lf...');
+        console.log('[FULL YANG] Collecting complete YANG tree...');
 
         // JSON 로그 파일 경로
         const logFile = join(BOARD_DATA_DIR, 'full-yang.log.json');
@@ -1240,12 +1305,21 @@ async function collectFullYang() {
         ]);
 
         if (result.success && result.stdout) {
-            // YANG 데이터는 result.stdout에 있음
+            // 로그와 YANG 데이터 분리: "YAML:" 이후가 순수 YANG 데이터
+            let yangData = result.stdout;
+            const yamlMarker = '\nYAML:\n';
+            const yamlIndex = yangData.indexOf(yamlMarker);
+
+            if (yamlIndex !== -1) {
+                // "YAML:" 이후의 순수 YANG 데이터만 추출
+                yangData = yangData.substring(yamlIndex + yamlMarker.length);
+            }
+
             latestFullYang = {
                 timestamp: new Date().toISOString(),
                 yangTree: {
                     success: true,
-                    stdout: result.stdout,
+                    stdout: yangData,  // 순수 YANG만
                     logFile: logFile
                 }
             };
@@ -1254,7 +1328,7 @@ async function collectFullYang() {
             const filepath = join(BOARD_DATA_DIR, 'full-yang-tree.json');
             writeFileSync(filepath, JSON.stringify(latestFullYang, null, 2));
 
-            console.log(`[FULL YANG] Complete YANG tree collected (${result.stdout.length} bytes, log: ${logFile})`);
+            console.log(`[FULL YANG] Complete YANG tree collected (${yangData.length} bytes, pure YANG)`);
             return latestFullYang;
         } else {
             console.error('[FULL YANG ERROR]', result.stderr || 'Failed to collect');

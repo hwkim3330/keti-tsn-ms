@@ -111,13 +111,72 @@ Once started, access the interface at **http://localhost:8080**
 
 #### Main Tabs
 
-1. **Overview** - Device status and system information
-2. **YANG Browser** - Navigate YANG model hierarchy
-3. **Interfaces** - Network interface configuration and status
-4. **CBS Config** - Credit-Based Shaper settings
-5. **TAS Config** - Time-Aware Shaper gate control
-6. **Priority** - PCP to Traffic Class mapping
-7. **Terminal** - Direct command execution
+| Tab | Description | Update Interval |
+|-----|-------------|----------------|
+| **Overview** | Device status, firmware version, OS version | 5 seconds (auto) |
+| **Interfaces** | 24 interface status, MAC, speed, duplex | 15 seconds (auto) |
+| **YANG Browser** | Complete YANG tree navigation (136KB) | 30 seconds (auto) |
+| **Bridge** | Bridge settings, VLAN, FDB configuration | On demand |
+| **CBS** | Credit-Based Shaper (IEEE 802.1Qav) | On demand |
+| **TAS** | Time-Aware Shaper (IEEE 802.1Qbv) | On demand |
+| **Statistics** | Real-time TC distribution & packet rate | 2 seconds (manual) |
+| **Priority** | PCP to Traffic Class mapping | On demand |
+| **Terminal** | Direct YANG GET/SET execution | Real-time |
+
+#### Statistics Tab Features
+
+The **Statistics** tab provides real-time network monitoring:
+
+- **Traffic Class Distribution** - Donut chart showing TC0-TC7 packet distribution
+- **Packet Rate Over Time** - Line chart displaying RX/TX rate (last 20 data points)
+- **Detailed TC Statistics** - Table with packet counts and percentages per TC
+- **Real-Time Monitoring** - Manual start/stop with 2-second update interval
+
+Use this to verify CBS/TAS configurations and monitor QoS effectiveness in real-time.
+
+### Backend Architecture
+
+#### mvdct-Based Data Collection
+
+The server uses **pure `mvdct get` commands** without the fetch command for optimal performance:
+
+```bash
+# System information
+mvdct device /dev/ttyACM0 get /ietf-system:system-state/platform --console
+
+# Interface information
+mvdct device /dev/ttyACM0 get /ietf-interfaces:interfaces --console
+
+# Bridge configuration
+mvdct device /dev/ttyACM0 get /ieee802-dot1q-bridge:bridges --console
+
+# Complete YANG tree
+mvdct device /dev/ttyACM0 get / --console -lf board-data/full-yang.log.json
+```
+
+#### Automated Data Collection
+
+1. **Basic Data** - Collected every 15 seconds
+   - System platform info
+   - Interface states
+   - Bridge configuration
+
+2. **Full YANG Tree** - Collected every 30 seconds
+   - Complete YANG data structure
+   - Pure YANG only (CoAP logs removed)
+   - 136,422 bytes
+
+3. **Static Information** - Cached at server startup
+   - Firmware version
+   - Device type
+   - Queried only once
+
+#### Performance Optimizations
+
+- **67% Query Reduction** - Using 3 targeted GET commands instead of fetch
+- **Pure YANG Data** - 145KB → 136KB (log removal)
+- **Smart Caching** - Prevents redundant queries with 2-second TTL
+- **Request Queue** - Serializes CLI executions to prevent serial port conflicts
 
 ### API Endpoints
 
@@ -183,6 +242,19 @@ The server exposes REST API endpoints for programmatic access:
 
 #### Statistics
 - `GET /api/stats/traffic-class/:port` - Get traffic class statistics
+  ```json
+  {
+    "port": "eth0",
+    "timestamp": 1609459200000,
+    "tc": {
+      "tc0": {"packets": 12345, "bytes": 987654},
+      "tc1": {"packets": 23456, "bytes": 1876543},
+      "tc7": {"packets": 45678, "bytes": 3654321}
+    },
+    "rxRate": 1234,
+    "txRate": 5678
+  }
+  ```
 - `GET /api/history` - Command execution history
 - `DELETE /api/history` - Clear history
 
@@ -215,8 +287,33 @@ export MVDCT_PORT=8080
 
 ### CBS (Credit-Based Shaper) Test
 
-Configure bandwidth guarantee for AVB traffic:
+**IEEE 802.1Qav** - Configure bandwidth guarantee for AVB traffic
 
+#### Web Interface Method:
+1. Navigate to **CBS** tab
+2. Enter Interface/Port number (e.g., `1`)
+3. Select Traffic Class (TC0-TC7)
+4. Choose Shaper Mode: **CBS** (Credit-Based)
+5. Set Idle Slope (0 - 1,000,000 kbps)
+   - Presets: 25M, 75M, 100M, 250M, 500Mbps
+6. Click **Configure Shaper**
+
+#### Example Configuration:
+```
+High Priority AVB (TC7):
+- Interface: 1
+- TC: 7
+- Mode: CBS
+- Idle Slope: 250,000 kbps (250 Mbps)
+
+Standard CBS (TC3):
+- Interface: 1
+- TC: 3
+- Mode: CBS
+- Idle Slope: 100,000 kbps (100 Mbps)
+```
+
+#### API Method:
 ```bash
 # PCP 0-3 → Priority 6 (3.5 Mbps)
 # PCP 4-7 → Priority 2 (1.5 Mbps)
@@ -241,21 +338,63 @@ curl -X POST http://localhost:8080/api/cbs/configure \
 
 ### TAS (Time-Aware Shaper) Test
 
-Configure deterministic time slots:
+**IEEE 802.1Qbv** - Configure deterministic time-based gate control
 
+#### Web Interface Method:
+1. Navigate to **TAS** tab
+2. Enter Interface number
+3. Set Cycle Time (ns): e.g., `200000000` (200ms)
+4. Set Base Time (ns): `0` (auto = current time + 1s)
+5. Configure Gate Control List (GCL):
+   - Duration (ns): Time slot length
+   - Gate (hex): Gate mask (0x01 = TC0, 0x02 = TC1, 0x80 = TC7)
+6. Click **Configure TAS**
+
+#### Example 8-Queue Configuration (200ms cycle):
+```
+TC0: 50ms, Gate: 0x01
+TC1: 30ms, Gate: 0x02
+TC2: 20ms, Gate: 0x04
+TC3: 20ms, Gate: 0x08
+TC4: 20ms, Gate: 0x10
+TC5: 20ms, Gate: 0x20
+TC6: 20ms, Gate: 0x40
+TC7: 20ms, Gate: 0x80
+```
+
+#### API Method:
 ```bash
 curl -X POST http://localhost:8080/api/tas/configure \
   -H "Content-Type: application/json" \
   -d '{
     "interface": "eth0",
-    "cycleTime": 200000,
+    "cycleTime": 200000000,
+    "baseTime": 0,
     "gcl": [
-      {"gate": 255, "duration": 50000},
-      {"gate": 254, "duration": 30000},
-      {"gate": 252, "duration": 20000}
+      {"gate": "0x01", "duration": 50000000},
+      {"gate": "0x02", "duration": 30000000},
+      {"gate": "0x04", "duration": 20000000},
+      {"gate": "0x08", "duration": 20000000},
+      {"gate": "0x10", "duration": 20000000},
+      {"gate": "0x20", "duration": 20000000},
+      {"gate": "0x40", "duration": 20000000},
+      {"gate": "0x80", "duration": 20000000}
     ]
   }'
 ```
+
+### Verification with Statistics Tab
+
+After configuring CBS or TAS:
+1. Navigate to **Statistics** tab
+2. Select the configured interface
+3. Click **Start Real-Time Monitoring**
+4. Observe:
+   - Traffic Class Distribution (donut chart)
+   - RX/TX Packet Rate (line chart)
+   - Per-TC packet counts and percentages
+
+This allows real-time verification of QoS effects.
 
 ## Development
 
@@ -266,9 +405,15 @@ keti-tsn-ms/
 ├── web-server.js           # Express backend server
 ├── index.html              # Main web interface
 ├── package.json            # Node.js dependencies
-├── start-keti-tsn.sh       # Launcher script
-├── KETI-TSN.desktop        # Desktop shortcut
-├── mvdct                   # Microchip CLI wrapper
+├── package-lock.json       # Dependency lock file
+├── start-server.sh         # Server launcher script
+├── mvdct                   # Microchip CLI tool binary
+├── board-data/             # Data storage directory
+│   ├── system-platform.json
+│   ├── interfaces.json
+│   ├── bridge.json
+│   └── full-yang.log.json
+├── USAGE.md                # Detailed usage guide (Korean)
 └── README.md               # This file
 ```
 

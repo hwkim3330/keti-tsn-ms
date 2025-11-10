@@ -1050,10 +1050,16 @@ app.get('/', (req, res) => {
 // ============================================
 
 const BOARD_DATA_DIR = join(__dirname, 'board-data');
-const POLLING_INTERVAL = 5000; // 5초마다 폴링
+const POLLING_INTERVAL = 15000; // 15초마다 폴링 (변경됨)
 const FULL_YANG_INTERVAL = 30000; // 30초마다 전체 YANG 수집
 let latestBoardData = null;
 let latestFullYang = null;
+
+// 정적 정보 캐시 (시작 시 한 번만 조회)
+let cachedStaticInfo = {
+    firmware: null,
+    deviceType: null
+};
 
 // 저장 디렉토리 생성
 if (!existsSync(BOARD_DATA_DIR)) {
@@ -1144,26 +1150,9 @@ async function collectBoardInfo() {
             }
         }
 
-        // 추가: 펌웨어 정보 및 장치 타입
-        try {
-            const firmwareResult = await executeMvdct([
-                'device', DEFAULT_DEVICE, 'firmware', 'version',
-                '--console'
-            ]);
-            data.firmware = firmwareResult;
-        } catch (err) {
-            // 펌웨어 정보는 선택사항
-        }
-
-        try {
-            const typeResult = await executeMvdct([
-                'device', DEFAULT_DEVICE, 'type',
-                '--console'
-            ]);
-            data.deviceType = typeResult;
-        } catch (err) {
-            // 장치 타입은 선택사항
-        }
+        // 캐시된 정적 정보 사용 (매번 조회하지 않음)
+        data.firmware = cachedStaticInfo.firmware;
+        data.deviceType = cachedStaticInfo.deviceType;
 
         latestBoardData = data;
 
@@ -1192,6 +1181,44 @@ async function collectBoardInfo() {
         return data;
     } catch (error) {
         console.error('[POLLING ERROR]', error.message);
+        return null;
+    }
+}
+
+/**
+ * 정적 정보 수집 (시작 시 한 번만 실행)
+ */
+async function collectStaticInfo() {
+    try {
+        console.log('[STATIC INFO] Collecting firmware and device type...');
+
+        // 펌웨어 정보
+        try {
+            const firmwareResult = await executeMvdct([
+                'device', DEFAULT_DEVICE, 'firmware', 'version',
+                '--console'
+            ]);
+            cachedStaticInfo.firmware = firmwareResult;
+            console.log('[STATIC INFO] Firmware collected');
+        } catch (err) {
+            console.error('[STATIC INFO] Failed to get firmware:', err.message);
+        }
+
+        // 장치 타입
+        try {
+            const typeResult = await executeMvdct([
+                'device', DEFAULT_DEVICE, 'type',
+                '--console'
+            ]);
+            cachedStaticInfo.deviceType = typeResult;
+            console.log('[STATIC INFO] Device type collected');
+        } catch (err) {
+            console.error('[STATIC INFO] Failed to get device type:', err.message);
+        }
+
+        return cachedStaticInfo;
+    } catch (error) {
+        console.error('[STATIC INFO ERROR]', error.message);
         return null;
     }
 }
@@ -1313,25 +1340,34 @@ app.listen(PORT, '0.0.0.0', () => {
     console.log('Press Ctrl+C to stop the server');
     console.log('─────────────────────────────────────────────────────');
 
-    // 주기적 폴링 시작
-    console.log('[POLLING] Starting periodic board info collection...');
-
-    // 즉시 첫 데이터 수집
-    collectBoardInfo().then(() => {
-        console.log('[POLLING] Initial data collected');
+    // 1. 정적 정보 수집 (한 번만 실행)
+    collectStaticInfo().then(() => {
+        console.log('[STATIC INFO] Static information cached');
     });
 
-    // 주기적 폴링 설정 (5초)
+    // 2. 주기적 폴링 시작
+    console.log('[POLLING] Starting periodic board info collection...');
+
+    // 즉시 첫 데이터 수집 (정적 정보 수집 후 약간의 딜레이)
+    setTimeout(() => {
+        collectBoardInfo().then(() => {
+            console.log('[POLLING] Initial data collected');
+        });
+    }, 2000);
+
+    // 주기적 폴링 설정 (15초)
     setInterval(async () => {
         await collectBoardInfo();
         console.log(`[POLLING] Data collected at ${new Date().toLocaleTimeString()}`);
     }, POLLING_INTERVAL);
 
-    // 전체 YANG 트리 수집 시작 - 즉시 실행!
-    console.log('[FULL YANG] Starting immediate full YANG tree collection...');
-    collectFullYang().then(() => {
-        console.log('[FULL YANG] Initial full YANG tree collected');
-    });
+    // 3. 전체 YANG 트리 수집 시작 (정적 정보 수집 후 시작)
+    setTimeout(() => {
+        console.log('[FULL YANG] Starting full YANG tree collection...');
+        collectFullYang().then(() => {
+            console.log('[FULL YANG] Initial full YANG tree collected');
+        });
+    }, 5000);
 
     // 주기적 전체 YANG 수집 설정 (30초)
     setInterval(async () => {

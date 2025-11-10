@@ -32,27 +32,100 @@ KETI TSN Management System provides an intuitive web interface for configuring a
 
 ### System Components
 
+#### High-Level Architecture
+
 ```
-┌─────────────────────────────────────────┐
-│         Web Browser (Client)            │
-│    http://localhost:8080                │
-└──────────────┬──────────────────────────┘
-               │ HTTP/REST API
-┌──────────────▼──────────────────────────┐
-│      Node.js Express Server             │
-│         (web-server.js)                 │
-└──────────────┬──────────────────────────┘
-               │ Child Process
-┌──────────────▼──────────────────────────┐
-│         mvdct CLI Tool                  │
-│    (Microchip VelocityDRIVE CT)        │
-└──────────────┬──────────────────────────┘
-               │ Serial (MUP1)
-┌──────────────▼──────────────────────────┐
-│      LAN9662 Switch Board               │
-│         /dev/ttyACM0                    │
-└─────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────┐
+│                    Web Browser (Client)                            │
+│                  http://localhost:8080                             │
+│  ┌──────────┬──────────┬──────────┬──────────┬──────────────────┐ │
+│  │ Overview │Interfaces│  YANG    │  Bridge  │ CBS/TAS/Stats... │ │
+│  │   Tab    │   Tab    │ Browser  │   Tab    │      Tabs        │ │
+│  └──────────┴──────────┴──────────┴──────────┴──────────────────┘ │
+└────────────────┬───────────────────────────────────────────────────┘
+                 │ HTTP/REST API (/api/*)
+                 │ Auto-refresh: 5s (Overview), 15s (Interfaces)
+┌────────────────▼───────────────────────────────────────────────────┐
+│              Node.js Express Server (Port 8080)                    │
+│                      web-server.js                                 │
+│  ┌─────────────────────────────────────────────────────────────┐  │
+│  │ CACHING LAYER                                               │  │
+│  │ • resultCache (Map): GET results, 2s TTL, max 100 entries  │  │
+│  │ • cachedStaticInfo: firmware + deviceType (permanent)      │  │
+│  │ • latestFullYang: Full YANG tree (141KB, 30s refresh)      │  │
+│  └─────────────────────────────────────────────────────────────┘  │
+│  ┌─────────────────────────────────────────────────────────────┐  │
+│  │ REQUEST QUEUE (Serial Port Conflict Prevention)            │  │
+│  │ • Serializes all mvdct CLI executions                      │  │
+│  │ • FIFO queue with promise-based execution                  │  │
+│  │ • Timeout: 15s (SIGTERM → SIGKILL)                         │  │
+│  └─────────────────────────────────────────────────────────────┘  │
+│  ┌─────────────────────────────────────────────────────────────┐  │
+│  │ POLLING SYSTEM                                              │  │
+│  │ • Every 15s: system, interfaces, bridge → board-data/      │  │
+│  │ • Every 30s: Full YANG tree → board-data/full-yang*.json   │  │
+│  │ • Snapshots saved with timestamp: board-snapshot-*.json    │  │
+│  └─────────────────────────────────────────────────────────────┘  │
+└────────────────┬───────────────────────────────────────────────────┘
+                 │ Child Process Spawn
+                 │ Command: ./mvdct device /dev/ttyACM0 get <path>
+┌────────────────▼───────────────────────────────────────────────────┐
+│                      mvdct CLI Tool                                │
+│              (Microchip VelocityDRIVE CT-CLI)                      │
+│  • Wraps CORECONF/CoAP protocol                                    │
+│  • YANG-based NETCONF-like interface                               │
+│  • Execution time: ~900ms avg                                      │
+└────────────────┬───────────────────────────────────────────────────┘
+                 │ Serial Communication (115200 baud)
+                 │ Protocol: MUP1 (Microchip UART Protocol #1)
+                 │ Format: >TYPE[DATA]<CHECKSUM
+┌────────────────▼───────────────────────────────────────────────────┐
+│              LAN9662 TSN Switch Board                              │
+│                   /dev/ttyACM0                                     │
+│  • 24 Gigabit Ethernet ports                                       │
+│  • IEEE 802.1Qav CBS, 802.1Qbv TAS support                         │
+│  • YANG data model (ietf-interfaces, ieee802-dot1q-bridge)         │
+└────────────────────────────────────────────────────────────────────┘
 ```
+
+#### Data Flow Diagram
+
+```
+┌─────────────┐  15s poll   ┌──────────────┐   mvdct    ┌──────────┐
+│ Polling     ├────────────>│ Request      ├──────────>│  mvdct   │
+│ System      │             │ Queue        │           │  CLI     │
+└─────────────┘             └──────────────┘           └────┬─────┘
+                                                             │
+                            ┌──────────────────────────────┬─┘
+                            │                              │
+                            ▼                              ▼
+                     ┌──────────────┐              ┌─────────────┐
+                     │ resultCache  │              │ LAN9662     │
+                     │ (2s TTL)     │              │ Hardware    │
+                     └──────┬───────┘              └─────────────┘
+                            │
+                  ┌─────────┴─────────┐
+                  │                   │
+                  ▼                   ▼
+         ┌────────────────┐   ┌─────────────────┐
+         │ board-data/    │   │ API Response    │
+         │ snapshots      │   │ to Browser      │
+         └────────────────┘   └─────────────────┘
+```
+
+#### Cache Strategy by Tab
+
+| Tab | Data Source | Cache | Refresh | Notes |
+|-----|-------------|-------|---------|-------|
+| **Overview** | `cachedStaticInfo` | ✅ Permanent | On server start | Firmware, device type |
+| **Interfaces** | `/api/interfaces` | ✅ 2s TTL | 15s polling | 24 ports, real-time stats |
+| **YANG Browser** | `latestFullYang` | ✅ 30s | 30s polling | 141KB tree, lazy loading |
+| **Bridge** | `/api/bridge` | ✅ 2s TTL | On-demand | VLAN, FDB config |
+| **CBS** | POST `/api/cbs/*` | ❌ No cache | On-demand | Configuration commands |
+| **TAS** | POST `/api/tas/*` | ❌ No cache | On-demand | Configuration commands |
+| **Statistics** | GET `/api/stats/*` | ⚠️ Minimal | 2s manual | Real-time TC distribution |
+| **Priority** | POST `/api/priority/*` | ❌ No cache | On-demand | PCP to TC mapping |
+| **Terminal** | POST `/api/execute` | ❌ No cache | Real-time | Direct YANG commands |
 
 ## Installation
 
@@ -86,6 +159,64 @@ KETI TSN Management System provides an intuitive web interface for configuring a
    ```bash
    ls -la /dev/ttyACM0
    ```
+
+### Offline Installation
+
+For offline environments where internet access is not available:
+
+#### Option 1: Using npm bundle (Recommended)
+
+On a machine with internet access:
+
+```bash
+# 1. Clone and install dependencies
+git clone https://github.com/hwkim3330/keti-tsn-ms.git
+cd keti-tsn-ms
+npm install
+
+# 2. Create offline bundle (includes node_modules, 13MB)
+tar -czf keti-tsn-ms-offline.tar.gz \
+  --exclude=board-data \
+  --exclude=.git \
+  .
+
+# 3. Transfer keti-tsn-ms-offline.tar.gz to offline machine
+```
+
+On the offline machine:
+
+```bash
+# Extract and run
+tar -xzf keti-tsn-ms-offline.tar.gz
+cd keti-tsn-ms
+chmod +x start-server.sh mvdct
+./start-server.sh
+```
+
+#### Option 2: Using package-lock.json
+
+```bash
+# On online machine: Create vendored dependencies
+npm ci --production
+npm pack  # Creates keti-tsn-ms-1.0.0.tgz
+
+# Transfer to offline machine and extract
+tar -xzf keti-tsn-ms-1.0.0.tgz
+cd package
+npm install --offline --production
+```
+
+#### Dependencies (13MB total)
+
+The project has minimal dependencies:
+- `cbor-x` ^1.5.9 - CBOR encoding/decoding
+- `cors` ^2.8.5 - CORS middleware
+- `express` ^5.1.0 - Web server framework
+- `js-yaml` ^4.1.0 - YAML parser
+- `serialport` ^12.0.0 - Serial port communication
+- `yaml` ^2.3.4 - YAML utilities
+
+All dependencies are locked in `package-lock.json` for reproducible builds.
 
 ## Usage
 

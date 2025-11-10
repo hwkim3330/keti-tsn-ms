@@ -56,3 +56,6 @@ Thumbs.db
 
 # Claude
 .claude/board-data/
+
+# Runtime data (board snapshots)
+board-data/

@@ -599,24 +599,9 @@ app.post('/api/port/default-priority', async (req, res) => {
 
 /**
  * API: 전체 YANG 데이터 가져오기
+ * NOTE: This endpoint is now at line 1305 using latestFullYang cache
+ * (Removed duplicate to avoid conflicts)
  */
-app.get('/api/yang/full', async (req, res) => {
-    try {
-        const result = await executeMvdct([
-            'device', DEFAULT_DEVICE, 'fetch', '/',
-            '--console'
-        ]);
-
-        res.json({
-            success: result.success,
-            yangData: result.stdout,
-            timestamp: new Date().toISOString(),
-            device: DEFAULT_DEVICE
-        });
-    } catch (error) {
-        res.status(500).json({ success: false, error: error.message });
-    }
-});
 
 /**
  * API: 특정 YANG 경로 데이터 가져오기
@@ -673,7 +658,7 @@ app.post('/api/config/apply-yaml', async (req, res) => {
         }
 
         const result = await executeMvdct([
-            'device', DEFAULT_DEVICE, 'ipatch', configPath,
+            'device', DEFAULT_DEVICE, 'patch', configPath,
             '--console'
         ]);
 
@@ -923,6 +908,137 @@ app.get('/api/stats/traffic-class/:port', async (req, res) => {
 });
 
 /**
+ * API: fetch - 여러 YANG 경로를 한 번에 조회 (효율적!)
+ */
+app.post('/api/fetch', async (req, res) => {
+    try {
+        const { paths } = req.body;
+
+        if (!paths || !Array.isArray(paths)) {
+            return res.status(400).json({
+                success: false,
+                error: 'paths array is required'
+            });
+        }
+
+        // fetch 파일 생성
+        const fetchContent = paths.map(p => `- ${p}`).join('\n');
+        const fetchFile = join(BOARD_DATA_DIR, `fetch-${Date.now()}.yaml`);
+        writeFileSync(fetchFile, fetchContent);
+
+        const result = await executeMvdct([
+            'device', DEFAULT_DEVICE, 'fetch', fetchFile,
+            '--console'
+        ]);
+
+        // 임시 파일 삭제
+        if (existsSync(fetchFile)) {
+            require('fs').unlinkSync(fetchFile);
+        }
+
+        res.json({
+            success: result.success,
+            result,
+            timestamp: new Date().toISOString()
+        });
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
+/**
+ * API: firmware - 펌웨어 정보 조회
+ */
+app.get('/api/firmware', async (req, res) => {
+    try {
+        const result = await executeMvdct([
+            'device', DEFAULT_DEVICE, 'firmware', 'version',
+            '--console'
+        ]);
+
+        res.json({
+            success: result.success,
+            result,
+            timestamp: new Date().toISOString()
+        });
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
+/**
+ * API: device-type - 장치 타입 조회
+ */
+app.get('/api/device-type', async (req, res) => {
+    try {
+        const result = await executeMvdct([
+            'device', DEFAULT_DEVICE, 'type',
+            '--console'
+        ]);
+
+        res.json({
+            success: result.success,
+            result,
+            timestamp: new Date().toISOString()
+        });
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
+/**
+ * API: call - RPC/Action 호출
+ */
+app.post('/api/call', async (req, res) => {
+    try {
+        const { path, value } = req.body;
+
+        if (!path) {
+            return res.status(400).json({
+                success: false,
+                error: 'path is required'
+            });
+        }
+
+        const args = ['device', DEFAULT_DEVICE, 'call', path];
+        if (value) {
+            args.push(value);
+        }
+        args.push('--console');
+
+        const result = await executeMvdct(args);
+
+        res.json({
+            success: result.success,
+            result,
+            timestamp: new Date().toISOString()
+        });
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
+/**
+ * API: yang/id - YANG 카탈로그 ID 조회
+ */
+app.get('/api/yang/id', async (req, res) => {
+    try {
+        const result = await executeMvdct([
+            'device', DEFAULT_DEVICE, 'yang', 'id',
+            '--console'
+        ]);
+
+        res.json({
+            success: result.success,
+            result,
+            timestamp: new Date().toISOString()
+        });
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
+/**
  * 메인 페이지 - index.html 제공
  */
 app.get('/', (req, res) => {
@@ -935,7 +1051,9 @@ app.get('/', (req, res) => {
 
 const BOARD_DATA_DIR = join(__dirname, 'board-data');
 const POLLING_INTERVAL = 5000; // 5초마다 폴링
+const FULL_YANG_INTERVAL = 30000; // 30초마다 전체 YANG 수집
 let latestBoardData = null;
+let latestFullYang = null;
 
 // 저장 디렉토리 생성
 if (!existsSync(BOARD_DATA_DIR)) {
@@ -943,7 +1061,7 @@ if (!existsSync(BOARD_DATA_DIR)) {
 }
 
 /**
- * 보드 정보 수집
+ * 보드 정보 수집 - fetch 사용으로 효율적 조회
  */
 async function collectBoardInfo() {
     try {
@@ -952,44 +1070,99 @@ async function collectBoardInfo() {
             system: null,
             interfaces: null,
             bridge: null,
-            scheduler: null,
+            firmware: null,
+            deviceType: null,
             error: null
         };
 
         try {
-            // 시스템 정보
-            const systemResult = await executeMvdct([
-                'device', DEFAULT_DEVICE, 'get',
-                '/ietf-system:system-state/platform',
+            // fetch 파일 생성 - 한 번에 모든 데이터 조회
+            const fetchContent = `
+- /ietf-system:system-state/platform
+- /ietf-interfaces:interfaces
+- /ieee802-dot1q-bridge:bridges
+`;
+            const fetchFile = join(BOARD_DATA_DIR, 'fetch-config.yaml');
+            writeFileSync(fetchFile, fetchContent);
+
+            // fetch 명령으로 한 번에 조회 (효율적!)
+            const fetchResult = await executeMvdct([
+                'device', DEFAULT_DEVICE, 'fetch', fetchFile,
                 '--console'
             ]);
-            data.system = systemResult;
+
+            if (fetchResult.success && fetchResult.stdout) {
+                // YAML 파싱해서 각 섹션 분리
+                const yamlData = fetchResult.stdout;
+
+                // system 데이터 추출
+                if (yamlData.includes('/ietf-system:system-state/platform')) {
+                    data.system = { success: true, stdout: yamlData, stderr: '', code: 0 };
+                }
+
+                // interfaces 데이터 (전체 포함)
+                data.interfaces = { success: true, stdout: yamlData, stderr: '', code: 0 };
+
+                // bridge 데이터
+                data.bridge = { success: true, stdout: yamlData, stderr: '', code: 0 };
+            }
         } catch (err) {
-            data.error = { system: err.message };
+            console.log('[FETCH ERROR] Falling back to individual get commands:', err.message);
+
+            // fetch 실패 시 개별 get으로 대체
+            try {
+                const systemResult = await executeMvdct([
+                    'device', DEFAULT_DEVICE, 'get',
+                    '/ietf-system:system-state/platform',
+                    '--console'
+                ]);
+                data.system = systemResult;
+            } catch (e) {
+                data.error = { system: e.message };
+            }
+
+            try {
+                const interfacesResult = await executeMvdct([
+                    'device', DEFAULT_DEVICE, 'get',
+                    '/ietf-interfaces:interfaces',
+                    '--console'
+                ]);
+                data.interfaces = interfacesResult;
+            } catch (e) {
+                data.error = { ...data.error, interfaces: e.message };
+            }
+
+            try {
+                const bridgeResult = await executeMvdct([
+                    'device', DEFAULT_DEVICE, 'get',
+                    '/ieee802-dot1q-bridge:bridges',
+                    '--console'
+                ]);
+                data.bridge = bridgeResult;
+            } catch (e) {
+                data.error = { ...data.error, bridge: e.message };
+            }
+        }
+
+        // 추가: 펌웨어 정보 및 장치 타입
+        try {
+            const firmwareResult = await executeMvdct([
+                'device', DEFAULT_DEVICE, 'firmware', 'version',
+                '--console'
+            ]);
+            data.firmware = firmwareResult;
+        } catch (err) {
+            // 펌웨어 정보는 선택사항
         }
 
         try {
-            // 인터페이스 정보
-            const interfacesResult = await executeMvdct([
-                'device', DEFAULT_DEVICE, 'get',
-                '/ietf-interfaces:interfaces',
+            const typeResult = await executeMvdct([
+                'device', DEFAULT_DEVICE, 'type',
                 '--console'
             ]);
-            data.interfaces = interfacesResult;
+            data.deviceType = typeResult;
         } catch (err) {
-            data.error = { ...data.error, interfaces: err.message };
-        }
-
-        try {
-            // 브리지 정보
-            const bridgeResult = await executeMvdct([
-                'device', DEFAULT_DEVICE, 'get',
-                '/ieee802-dot1q-bridge:bridges',
-                '--console'
-            ]);
-            data.bridge = bridgeResult;
-        } catch (err) {
-            data.error = { ...data.error, bridge: err.message };
+            // 장치 타입은 선택사항
         }
 
         latestBoardData = data;
@@ -1019,6 +1192,49 @@ async function collectBoardInfo() {
         return data;
     } catch (error) {
         console.error('[POLLING ERROR]', error.message);
+        return null;
+    }
+}
+
+/**
+ * 전체 YANG 트리 수집 - JSON 로그 파일로 메타데이터 저장
+ */
+async function collectFullYang() {
+    try {
+        console.log('[FULL YANG] Collecting complete YANG tree with -lf...');
+
+        // JSON 로그 파일 경로
+        const logFile = join(BOARD_DATA_DIR, 'full-yang.log.json');
+
+        // mvdct로 전체 YANG 가져오기 (-lf 옵션으로 로그 저장)
+        const result = await executeMvdct([
+            'device', DEFAULT_DEVICE, 'get', '/',
+            '--console', '-lf', logFile
+        ]);
+
+        if (result.success && result.stdout) {
+            // YANG 데이터는 result.stdout에 있음
+            latestFullYang = {
+                timestamp: new Date().toISOString(),
+                yangTree: {
+                    success: true,
+                    stdout: result.stdout,
+                    logFile: logFile
+                }
+            };
+
+            // 파싱된 데이터 저장
+            const filepath = join(BOARD_DATA_DIR, 'full-yang-tree.json');
+            writeFileSync(filepath, JSON.stringify(latestFullYang, null, 2));
+
+            console.log(`[FULL YANG] Complete YANG tree collected (${result.stdout.length} bytes, log: ${logFile})`);
+            return latestFullYang;
+        } else {
+            console.error('[FULL YANG ERROR]', result.stderr || 'Failed to collect');
+            return null;
+        }
+    } catch (error) {
+        console.error('[FULL YANG ERROR]', error.message);
         return null;
     }
 }
@@ -1068,6 +1284,17 @@ app.get('/api/board/snapshot/:filename', (req, res) => {
     }
 });
 
+/**
+ * API: 전체 YANG 트리 조회
+ */
+app.get('/api/yang/full', (req, res) => {
+    if (latestFullYang) {
+        res.json(latestFullYang);
+    } else {
+        res.status(404).json({ error: 'Full YANG data not available yet. Please wait 30 seconds.' });
+    }
+});
+
 // 서버 시작
 app.listen(PORT, '0.0.0.0', () => {
     console.log('╔══════════════════════════════════════════════════════╗');
@@ -1079,7 +1306,8 @@ app.listen(PORT, '0.0.0.0', () => {
     console.log(`🔧 mvdct: ${MVDCT_PATH}`);
     console.log(`🌐 Server: http://localhost:${PORT}`);
     console.log(`🌐 Network: http://<your-ip>:${PORT}`);
-    console.log(`📊 Polling: Every ${POLLING_INTERVAL/1000}s`);
+    console.log(`📊 Polling: Every ${POLLING_INTERVAL/1000}s (basic data)`);
+    console.log(`📊 Full YANG: Every ${FULL_YANG_INTERVAL/1000}s`);
     console.log(`💾 Storage: ${BOARD_DATA_DIR}`);
     console.log('');
     console.log('Press Ctrl+C to stop the server');
@@ -1093,9 +1321,21 @@ app.listen(PORT, '0.0.0.0', () => {
         console.log('[POLLING] Initial data collected');
     });
 
-    // 주기적 폴링 설정
+    // 주기적 폴링 설정 (5초)
     setInterval(async () => {
         await collectBoardInfo();
         console.log(`[POLLING] Data collected at ${new Date().toLocaleTimeString()}`);
     }, POLLING_INTERVAL);
+
+    // 전체 YANG 트리 수집 시작 - 즉시 실행!
+    console.log('[FULL YANG] Starting immediate full YANG tree collection...');
+    collectFullYang().then(() => {
+        console.log('[FULL YANG] Initial full YANG tree collected');
+    });
+
+    // 주기적 전체 YANG 수집 설정 (30초)
+    setInterval(async () => {
+        await collectFullYang();
+        console.log(`[FULL YANG] Full YANG tree collected at ${new Date().toLocaleTimeString()}`);
+    }, FULL_YANG_INTERVAL);
 });

@@ -32,7 +32,7 @@ echo ""
 
 # Apply configuration using IPATCH
 echo "📝 Applying configuration from YAML file..."
-"$MVDCT" device "$DEVICE" ipatch "$CONFIG_FILE" --console
+"$MVDCT" device "$DEVICE" patch "$CONFIG_FILE" --console
 
 if [ $? -eq 0 ]; then
     echo ""

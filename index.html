@@ -886,12 +886,17 @@
                         </div>
                     </div>
                     <div class="yang-content" id="yang-module-content">
-                        <div style="color: var(--text-secondary); padding: 40px; text-align: center;">
-                            <div style="font-size: 48px; margin-bottom: 16px;">
-                                <i class="fas fa-sitemap"></i>
+                        <div style="padding: 20px;">
+                            <div class="info-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
+                                <div class="info-box-title" style="color: white; opacity: 1;">
+                                    <i class="fas fa-sitemap"></i> YANG Browser - Full Switch Configuration
+                                </div>
+                                <p style="margin: 0;">Click any node in the left tree to view specific configuration. The complete YANG tree from the switch is displayed below (updated every 30 seconds).</p>
                             </div>
-                            <div style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">YANG Data Browser</div>
-                            <div>Click on any node in the tree to explore device configuration</div>
+                            <div style="margin-top: 20px; text-align: center; color: var(--text-secondary);">
+                                <div class="loading"></div>
+                                <p style="margin-top: 12px;">Loading full YANG tree...</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1469,13 +1474,59 @@
             }
         }
 
+        /**
+         * 전체 YANG 트리 HTML 생성
+         */
+        async function getFullYangHTML() {
+            try {
+                const response = await fetch(`${API_BASE}/yang/full`);
+                const fullYang = await response.json();
+
+                if (fullYang && fullYang.yangTree && fullYang.yangTree.stdout) {
+                    const lastUpdate = new Date(fullYang.timestamp).toLocaleString('ko-KR');
+                    return `
+                        <div style="margin-top: 30px; border-top: 2px solid var(--keti-navy); padding-top: 20px;">
+                            <div style="padding: 12px 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px 8px 0 0; font-weight: 600; display: flex; align-items: center; justify-content: space-between;">
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-sitemap"></i>
+                                    <span>Complete YANG Tree (Full Switch Configuration)</span>
+                                </div>
+                                <div style="font-size: 12px; opacity: 0.9;">
+                                    <i class="fas fa-clock"></i> ${lastUpdate}
+                                </div>
+                            </div>
+                            <pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 11px; line-height: 1.6; background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 0 0 8px 8px; max-height: 800px; overflow-y: auto;">${fullYang.yangTree.stdout}</pre>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div style="margin-top: 30px; border-top: 2px solid var(--keti-navy); padding-top: 20px;">
+                            <div style="padding: 12px 16px; background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%); color: white; border-radius: 8px; font-weight: 600;">
+                                <i class="fas fa-hourglass-half"></i> Full YANG tree loading... (collected every 30 seconds)
+                            </div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                return `
+                    <div style="margin-top: 30px; border-top: 2px solid var(--keti-navy); padding-top: 20px;">
+                        <div style="padding: 12px 16px; background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; border-radius: 8px; font-weight: 600;">
+                            <i class="fas fa-exclamation-triangle"></i> Full YANG tree not available yet. Please wait 30 seconds.
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
         async function loadDeviceInfo() {
             const infoEl = document.getElementById('device-info');
             infoEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading device information...</span>';
 
             try {
-                const response = await fetch(`${API_BASE}/status`);
-                const result = await response.json();
+                // 주기적으로 수집된 최신 보드 데이터 사용 (5초마다 자동 갱신)
+                const response = await fetch(`${API_BASE}/board/latest`);
+                const boardData = await response.json();
+                const result = boardData.system || {};
 
                 if (result.success && result.stdout) {
                     // Parse device info from YAML
@@ -1491,7 +1542,13 @@
                         }
                     });
 
+                    const lastUpdate = new Date(boardData.timestamp).toLocaleString('ko-KR');
+
                     infoEl.innerHTML = `
+                        <div style="margin-bottom: 16px; padding: 10px 14px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; font-size: 13px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-sync-alt"></i>
+                            <span><strong>자동 갱신:</strong> ${lastUpdate} (5초마다 서버에서 수집)</span>
+                        </div>
                         <div class="device-info-grid">
                             <div class="device-stat">
                                 <div class="device-stat-label">Device Model</div>
@@ -1512,13 +1569,17 @@
                                 </div>
                             </div>
                         </div>
-                        <details style="margin-top: 20px;">
-                            <summary style="cursor: pointer; padding: 10px; background: var(--bg-secondary); border-radius: 8px; font-weight: 600;">
-                                <i class="fas fa-code"></i> Raw Output
-                            </summary>
-                            <pre style="margin-top: 10px; white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 13px; line-height: 1.6; background: var(--bg-secondary); padding: 16px; border-radius: 8px;">${result.stdout}</pre>
-                        </details>
+                        <div style="margin-top: 20px;">
+                            <div style="padding: 10px; background: var(--keti-navy); color: white; border-radius: 8px 8px 0 0; font-weight: 600;">
+                                <i class="fas fa-code"></i> Raw mvdct Output
+                            </div>
+                            <pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 12px; line-height: 1.5; background: #1e1e1e; color: #d4d4d4; padding: 16px; border-radius: 0 0 8px 8px; max-height: 600px; overflow-y: auto;">${boardData.system.stdout}</pre>
+                        </div>
                     `;
+
+                    // 전체 YANG 트리 추가
+                    const fullYangHTML = await getFullYangHTML();
+                    infoEl.innerHTML += fullYangHTML;
                 } else {
                     infoEl.innerHTML = `<p style="color: var(--apple-red);"><i class="fas fa-exclamation-triangle"></i> Failed to load device information</p>`;
                 }
@@ -1532,12 +1593,10 @@
             infoEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading interfaces...</span>';
 
             try {
-                const response = await fetch(`${API_BASE}/get`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ path: '/ietf-interfaces:interfaces' })
-                });
-                const result = await response.json();
+                // 주기적으로 수집된 최신 보드 데이터 사용 (5초마다 자동 갱신)
+                const response = await fetch(`${API_BASE}/board/latest`);
+                const boardData = await response.json();
+                const result = boardData.interfaces || {};
 
                 if (result.success && result.stdout) {
                     const interfaces = parseInterfacesYAML(result.stdout);
@@ -1706,13 +1765,17 @@
                                 </div>
                             `).join('')}
                         </div>
-                        <details style="margin-top: 24px;">
-                            <summary style="cursor: pointer; padding: 12px; background: var(--bg-secondary); border-radius: 8px; font-weight: 600;">
-                                <i class="fas fa-code"></i> Raw YAML Output
-                            </summary>
-                            <pre style="margin-top: 12px; white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 12px; line-height: 1.6; background: var(--bg-secondary); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">${result.stdout}</pre>
-                        </details>
+                        <div style="margin-top: 24px;">
+                            <div style="padding: 12px; background: var(--keti-navy); color: white; border-radius: 8px 8px 0 0; font-weight: 600;">
+                                <i class="fas fa-code"></i> Raw mvdct Output - Interfaces
+                            </div>
+                            <pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 12px; line-height: 1.5; background: #1e1e1e; color: #d4d4d4; padding: 16px; border-radius: 0 0 8px 8px; max-height: 600px; overflow-y: auto;">${boardData.interfaces.stdout}</pre>
+                        </div>
                     `;
+
+                    // 전체 YANG 트리 추가
+                    const fullYangHTML = await getFullYangHTML();
+                    infoEl.innerHTML += fullYangHTML;
                 } else {
                     infoEl.innerHTML = `<p style="color: var(--apple-red);"><i class="fas fa-exclamation-triangle"></i> Failed to load interfaces</p>`;
                 }
@@ -1731,14 +1794,17 @@
 
                 if (result.success) {
                     infoEl.innerHTML = `
-                        <div style="background: var(--bg-secondary); padding: 20px; border-radius: 12px;">
-                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                                <div style="width: 12px; height: 12px; background: #34C759; border-radius: 50%;"></div>
-                                <span style="font-weight: 600; color: var(--keti-blue);">Bridge Data Retrieved</span>
+                        <div>
+                            <div style="padding: 12px; background: var(--keti-navy); color: white; border-radius: 8px 8px 0 0; font-weight: 600;">
+                                <i class="fas fa-code"></i> Raw mvdct Output - Bridge Configuration
                             </div>
-                            <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 13px; line-height: 1.8; margin: 0;">${result.stdout}</pre>
+                            <pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word; font-family: 'SF Mono', monospace; font-size: 12px; line-height: 1.5; background: #1e1e1e; color: #d4d4d4; padding: 16px; border-radius: 0 0 8px 8px; max-height: 600px; overflow-y: auto;">${result.stdout}</pre>
                         </div>
                     `;
+
+                    // 전체 YANG 트리 추가
+                    const fullYangHTML = await getFullYangHTML();
+                    infoEl.innerHTML += fullYangHTML;
                 } else {
                     infoEl.innerHTML = `<p style="color: var(--apple-red);"><i class="fas fa-exclamation-triangle"></i> Failed to load bridge configuration</p>`;
                 }
@@ -2610,6 +2676,21 @@
 
         async function loadYangCatalog() {
             await buildYangTree();
+
+            // YANG 브라우저 로드 시 전체 YANG 트리 표시
+            const contentEl = document.getElementById('yang-module-content');
+            contentEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading full YANG tree...</span>';
+
+            const fullYangHTML = await getFullYangHTML();
+            contentEl.innerHTML = `
+                <div class="info-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
+                    <div class="info-box-title" style="color: white; opacity: 1;">
+                        <i class="fas fa-info-circle"></i> YANG Browser
+                    </div>
+                    <p style="margin: 0;">Click any node in the tree to view its configuration. The complete YANG tree from the switch is displayed below.</p>
+                </div>
+                ${fullYangHTML}
+            `;
         }
 
         async function loadYangNodeData(path) {
@@ -2653,6 +2734,10 @@
                 }
 
                 contentEl.innerHTML = content;
+
+                // 전체 YANG 트리 추가
+                const fullYangHTML = await getFullYangHTML();
+                contentEl.innerHTML += fullYangHTML;
             } catch (error) {
                 contentEl.innerHTML = `
                     <div class="path-breadcrumb">
@@ -2699,6 +2784,10 @@
                 if (result.success && result.stdout) {
                     const shapers = parseShaperConfig(result.stdout);
                     displayShapers(shapers);
+
+                    // 전체 YANG 트리 추가
+                    const fullYangHTML = await getFullYangHTML();
+                    displayEl.innerHTML += fullYangHTML;
                 } else {
                     displayEl.innerHTML = '<p style="color: var(--apple-red);">No shapers configured or failed to load</p>';
                 }

@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-types</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-text);">"1.1"</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-comment);">/* L3C12 */</span><span id="L3C12"></span><span style="color:var(--color-yang-id);">urn:ieee:std:802.1Q:yang:ieee802-dot1q-types</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">dot1q-types</span>;
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L5C9 */</span><span id="L5C9"></span><span style="color:var(--color-yang-id);">ietf-yang-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L6C11 */</span><span id="L6C11"></span><span style="color:var(--color-yang-id);">yang</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IEEE 802.1 Working Group"</span>;
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG-URL: http://ieee802.org/1/
+    WG-EMail: stds-802-1-l@ieee.org
+    
+    Contact: IEEE 802.1 Working Group Chair
+    Postal: C/O IEEE 802.1 Working Group
+    IEEE Standards Association
+    445 Hoes Lane
+    Piscataway, NJ 08854
+    USA
+    
+    E-mail: stds-802-1-chairs@ieee.org"</span>;
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"Common types used within dot1Q-bridge modules.
+    
+    Copyright (C) IEEE (2023).
+    
+    This version of this YANG module is part of IEEE Std 802.1Q; see the
+    standard itself for full legal notices."</span>;
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L29C11 */</span><span id="L29C11"></span><span style="color:var(--color-yang-id);">2023-03-16</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1Qcw-2023.
+      
+      The following reference statement identifies each referenced IEEE
+      Standard as updated by applicable amendments."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Q Bridges and Bridged Networks: 
+      IEEE Stds 802.1Q-2022,802.1Qcz-2023,802.1Qcw-2023. 
+      IEEE Std 802 Overview and Architecture: 
+      IEEE Std 802-2014."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L41C11 */</span><span id="L41C11"></span><span style="color:var(--color-yang-id);">2023-01-24</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1Qcz-2023."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Qcz-2023, Bridges and Bridged Networks - Congestion
+      Isolation."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L48C11 */</span><span id="L48C11"></span><span style="color:var(--color-yang-id);">2022-10-29</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1Q-2022."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Q-2022, Bridges and Bridged Networks."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L54C11 */</span><span id="L54C11"></span><span style="color:var(--color-yang-id);">2020-06-04</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1Qcx-2020."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Qcx-2020, Bridges and Bridged Networks - YANG Data
+      Model for Connectivity Fault Management."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L61C11 */</span><span id="L61C11"></span><span style="color:var(--color-yang-id);">2018-03-07</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1Q-2018."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Q-2018, Bridges and Bridged Networks."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L67C11 */</span><span id="L67C11"></span><span style="color:var(--color-yang-id);">dot1q-vlan-type</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Base identity from which all 802.1Q VLAN tag types are derived from."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L71C11 */</span><span id="L71C11"></span><span style="color:var(--color-yang-id);">c-vlan</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L72C9 */</span><span id="L72C9"></span><span style="color:var(--color-yang-id);">dot1q-vlan-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"An 802.1Q Customer VLAN, using the 81-00 EtherType"</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"5.5 of IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L78C11 */</span><span id="L78C11"></span><span style="color:var(--color-yang-id);">s-vlan</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L79C9 */</span><span id="L79C9"></span><span style="color:var(--color-yang-id);">dot1q-vlan-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"An 802.1Q Service VLAN, using the 88-A8 EtherType originally
+      introduced in 802.1ad, and incorporated into 802.1Q (2011)"</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"5.6 of IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L86C11 */</span><span id="L86C11"></span><span style="color:var(--color-yang-id);">transmission-selection-algorithm</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Specify the transmission selection algorithms of IEEE Std 802.1Q
+      Table 8-6"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L91C11 */</span><span id="L91C11"></span><span style="color:var(--color-yang-id);">strict-priority</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L92C9 */</span><span id="L92C9"></span><span style="color:var(--color-yang-id);">transmission-selection-algorithm</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates the strict priority transmission selection algorithm."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"Table 8-6 of IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L98C11 */</span><span id="L98C11"></span><span style="color:var(--color-yang-id);">credit-based-shaper</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L99C9 */</span><span id="L99C9"></span><span style="color:var(--color-yang-id);">transmission-selection-algorithm</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates the credit based shaper transmission selection algorithm."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"Table 8-6 of IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L105C11 */</span><span id="L105C11"></span><span style="color:var(--color-yang-id);">enhanced-transmission-selection</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L106C9 */</span><span id="L106C9"></span><span style="color:var(--color-yang-id);">transmission-selection-algorithm</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates the enhanced transmission selection algorithm."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"Table 8-6 of IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L112C11 */</span><span id="L112C11"></span><span style="color:var(--color-yang-id);">asynchronous-traffic-shaping</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L113C9 */</span><span id="L113C9"></span><span style="color:var(--color-yang-id);">transmission-selection-algorithm</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates the asynchronous transmission selection algorithm."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"Table 8-6 of IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L119C11 */</span><span id="L119C11"></span><span style="color:var(--color-yang-id);">vendor-specific</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L120C9 */</span><span id="L120C9"></span><span style="color:var(--color-yang-id);">transmission-selection-algorithm</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates a vendor specific transmission selection algorithm."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"Table 8-6 of IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L126C11 */</span><span id="L126C11"></span><span style="color:var(--color-yang-id);">type-of-operation</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Represents the operation type (name)."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L130C10 */</span><span id="L130C10"></span><span style="color:var(--color-yang-id);">name-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L131C9 */</span><span id="L131C9"></span><span style="color:var(--color-yang-id);">string</span> {
+      <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-text);">"0..32"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A text string of up to 32 characters, of locally determined
+      significance."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L138C10 */</span><span id="L138C10"></span><span style="color:var(--color-yang-id);">port-number-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L139C9 */</span><span id="L139C9"></span><span style="color:var(--color-yang-id);">uint32</span> {
+      <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..4095"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The port number of the Bridge port for which this entry contains
+      Bridge management information."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L146C10 */</span><span id="L146C10"></span><span style="color:var(--color-yang-id);">priority-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L147C9 */</span><span id="L147C9"></span><span style="color:var(--color-yang-id);">uint8</span> {
+      <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0..7"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A range of priorities from 0 to 7 (inclusive). The Priority Code
+      Point (PCP) is a 3-bit field that refers to the class of service
+      associated with an 802.1Q VLAN tagged frame. The field specifies a
+      priority value between 0 and 7, these values can be used by quality of
+      service (QoS) to prioritize different classes of traffic."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L157C10 */</span><span id="L157C10"></span><span style="color:var(--color-yang-id);">num-traffic-class-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L158C9 */</span><span id="L158C9"></span><span style="color:var(--color-yang-id);">uint8</span> {
+      <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..8"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The number of traffic classes supported or participating in a
+      particular feature. There are between 1 and 8 supported traffic
+      classes defined by IEEE Std 802.1Q."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L166C10 */</span><span id="L166C10"></span><span style="color:var(--color-yang-id);">vid-range-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L167C9 */</span><span id="L167C9"></span><span style="color:var(--color-yang-id);">string</span> {
+      <span style="color:var(--color-yang-keyword);">pattern</span>
+        <span style="color:var(--color-yang-text);">"([1-9]"+
+        "[0-9]{0,3}"+
+        "(-[1-9][0-9]{0,3})?"+
+        "(,[1-9][0-9]{0,3}(-[1-9][0-9]{0,3})?)*)"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A list of VLAN Ids, or non overlapping VLAN ranges, in ascending
+      order, between 1 and 4094.
+      
+      This type is used to match an ordered list of VLAN Ids, or contiguous
+      ranges of VLAN Ids. Valid VLAN Ids must be in the range 1 to 4094, and
+      included in the list in non overlapping ascending order.
+      
+      For example: 1,10-100,250,500-1000"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L184C10 */</span><span id="L184C10"></span><span style="color:var(--color-yang-id);">vlanid</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L185C9 */</span><span id="L185C9"></span><span style="color:var(--color-yang-id);">uint16</span> {
+      <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..4094"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The vlanid type uniquely identifies a VLAN. This is the 12-bit
+      VLAN-ID used in the VLAN Tag header. The range is defined by the
+      referenced specification. This type is in the value set and its
+      semantics equivalent to the VlanId textual convention of the SMIv2."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L194C10 */</span><span id="L194C10"></span><span style="color:var(--color-yang-id);">vlan-index-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L195C9 */</span><span id="L195C9"></span><span style="color:var(--color-yang-id);">uint32</span> {
+      <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..4094 | 4096..4294967295"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A value used to index per-VLAN tables. Values of 0 and 4095 are not
+      permitted. The range of valid VLAN indices. If the value is greater
+      than 4095, then it represents a VLAN with scope local to the
+      particular agent, i.e., one without a global VLAN-ID assigned to it.
+      Such VLANs are outside the scope of IEEE 802.1Q, but it is convenient
+      to be able to manage them in the same way using this YANG module."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"9.6 of IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L208C10 */</span><span id="L208C10"></span><span style="color:var(--color-yang-id);">mstid-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L209C9 */</span><span id="L209C9"></span><span style="color:var(--color-yang-id);">uint32</span> {
+      <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..4094"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"In an MSTP Bridge, an MSTID, i.e., a value used to identify a
+      spanning tree (or MST) instance"</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"13.8 of IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L218C10 */</span><span id="L218C10"></span><span style="color:var(--color-yang-id);">pcp-selection-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L219C9 */</span><span id="L219C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L220C11 */</span><span id="L220C11"></span><span style="color:var(--color-yang-id);">8P0D</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"8 priorities, 0 drop eligible"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L224C11 */</span><span id="L224C11"></span><span style="color:var(--color-yang-id);">7P1D</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"7 priorities, 1 drop eligible"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L228C11 */</span><span id="L228C11"></span><span style="color:var(--color-yang-id);">6P2D</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"6 priorities, 2 drop eligible"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L232C11 */</span><span id="L232C11"></span><span style="color:var(--color-yang-id);">5P3D</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"5 priorities, 3 drop eligible"</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Priority Code Point selection types."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"12.6.2.5.3, 6.9.3 of IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L242C10 */</span><span id="L242C10"></span><span style="color:var(--color-yang-id);">protocol-frame-format-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L243C9 */</span><span id="L243C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L244C11 */</span><span id="L244C11"></span><span style="color:var(--color-yang-id);">Ethernet</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Ethernet frame format"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L248C11 */</span><span id="L248C11"></span><span style="color:var(--color-yang-id);">rfc1042</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"RFC 1042 frame format"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L252C11 */</span><span id="L252C11"></span><span style="color:var(--color-yang-id);">snap8021H</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"SNAP 802.1H frame format"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L256C11 */</span><span id="L256C11"></span><span style="color:var(--color-yang-id);">snapOther</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Other SNAP frame format"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L260C11 */</span><span id="L260C11"></span><span style="color:var(--color-yang-id);">llcOther</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Other LLC frame format"</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A value representing the frame format to be matched."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"12.10.1.7.1 of IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L270C10 */</span><span id="L270C10"></span><span style="color:var(--color-yang-id);">ethertype-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L271C9 */</span><span id="L271C9"></span><span style="color:var(--color-yang-id);">string</span> {
+      <span style="color:var(--color-yang-keyword);">pattern</span> <span style="color:var(--color-yang-text);">"[0-9a-fA-F]{2}-[0-9a-fA-F]{2}"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The EtherType value represented in the canonical order defined by
+      IEEE 802. The canonical representation uses uppercase characters."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"9.2 of IEEE Std 802"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L280C10 */</span><span id="L280C10"></span><span style="color:var(--color-yang-id);">dot1q-tag-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L281C9 */</span><span id="L281C9"></span><span style="color:var(--color-yang-id);">identityref</span> {
+      <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L282C11 */</span><span id="L282C11"></span><span style="color:var(--color-yang-id);">dot1q-vlan-type</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Identifies a specific 802.1Q tag type"</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"9.5 IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L289C10 */</span><span id="L289C10"></span><span style="color:var(--color-yang-id);">traffic-class-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L290C9 */</span><span id="L290C9"></span><span style="color:var(--color-yang-id);">uint8</span> {
+      <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0..7"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This is the numerical value associated with a traffic class in a
+      Bridge. Larger values are associated with higher priority traffic
+      classes."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"3.273 of IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L300C11 */</span><span id="L300C11"></span><span style="color:var(--color-yang-id);">dot1q-tag-classifier-grouping</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A grouping which represents an 802.1Q VLAN, matching both the
+      EtherType and a single VLAN Id."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L304C9 */</span><span id="L304C9"></span><span style="color:var(--color-yang-id);">tag-type</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L305C11 */</span><span id="L305C11"></span><span style="color:var(--color-yang-id);">dot1q-tag-type</span>;
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L306C16 */</span><span id="L306C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"VLAN type"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L310C9 */</span><span id="L310C9"></span><span style="color:var(--color-yang-id);">vlan-id</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L311C11 */</span><span id="L311C11"></span><span style="color:var(--color-yang-id);">vlanid</span>;
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L312C16 */</span><span id="L312C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"VLAN Id"</span>;
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L317C11 */</span><span id="L317C11"></span><span style="color:var(--color-yang-id);">dot1q-tag-or-any-classifier-grouping</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A grouping which represents an 802.1Q VLAN, matching both the
+      EtherType and a single VLAN Id or 'any' to match on any VLAN Id."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L321C9 */</span><span id="L321C9"></span><span style="color:var(--color-yang-id);">tag-type</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L322C11 */</span><span id="L322C11"></span><span style="color:var(--color-yang-id);">dot1q-tag-type</span>;
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L323C16 */</span><span id="L323C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"VLAN type"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L327C9 */</span><span id="L327C9"></span><span style="color:var(--color-yang-id);">vlan-id</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L328C11 */</span><span id="L328C11"></span><span style="color:var(--color-yang-id);">union</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L329C13 */</span><span id="L329C13"></span><span style="color:var(--color-yang-id);">vlanid</span>;
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L330C13 */</span><span id="L330C13"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L331C15 */</span><span id="L331C15"></span><span style="color:var(--color-yang-id);">any</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L332C18 */</span><span id="L332C18"></span><span style="color:var(--color-yang-id);">4095</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Matches 'any' VLAN in the range 1 to 4094 that is not matched
+              by a more specific VLAN Id match"</span>;
+          }
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L339C16 */</span><span id="L339C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"VLAN Id or any"</span>;
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L344C11 */</span><span id="L344C11"></span><span style="color:var(--color-yang-id);">dot1q-tag-ranges-classifier-grouping</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A grouping which represents an 802.1Q VLAN that matches a range of
+      VLAN Ids."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L348C9 */</span><span id="L348C9"></span><span style="color:var(--color-yang-id);">tag-type</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L349C11 */</span><span id="L349C11"></span><span style="color:var(--color-yang-id);">dot1q-tag-type</span>;
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L350C16 */</span><span id="L350C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"VLAN type"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L354C9 */</span><span id="L354C9"></span><span style="color:var(--color-yang-id);">vlan-ids</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L355C11 */</span><span id="L355C11"></span><span style="color:var(--color-yang-id);">vid-range-type</span>;
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L356C16 */</span><span id="L356C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"VLAN Ids"</span>;
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L361C11 */</span><span id="L361C11"></span><span style="color:var(--color-yang-id);">dot1q-tag-ranges-or-any-classifier-grouping</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A grouping which represents an 802.1Q VLAN, matching both the
+      EtherType and a single VLAN Id, ordered list of ranges, or 'any' to
+      match on any VLAN Id."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L366C9 */</span><span id="L366C9"></span><span style="color:var(--color-yang-id);">tag-type</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L367C11 */</span><span id="L367C11"></span><span style="color:var(--color-yang-id);">dot1q-tag-type</span>;
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L368C16 */</span><span id="L368C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"VLAN type"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L372C9 */</span><span id="L372C9"></span><span style="color:var(--color-yang-id);">vlan-id</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L373C11 */</span><span id="L373C11"></span><span style="color:var(--color-yang-id);">union</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L374C13 */</span><span id="L374C13"></span><span style="color:var(--color-yang-id);">vid-range-type</span>;
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L375C13 */</span><span id="L375C13"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L376C15 */</span><span id="L376C15"></span><span style="color:var(--color-yang-id);">any</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L377C18 */</span><span id="L377C18"></span><span style="color:var(--color-yang-id);">4095</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Matches 'any' VLAN in the range 1 to 4094."</span>;
+          }
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L383C16 */</span><span id="L383C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"VLAN Ids or any"</span>;
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L388C11 */</span><span id="L388C11"></span><span style="color:var(--color-yang-id);">priority-regeneration-table-grouping</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The priority regeneration table provides the ability to map incoming
+      priority values on a per-Port basis, under management control."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"6.9.4 of IEEE Std 802.1Q"</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L394C9 */</span><span id="L394C9"></span><span style="color:var(--color-yang-id);">priority0</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L395C11 */</span><span id="L395C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"0"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Priority 0"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.2.3, 6.9.4 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L402C9 */</span><span id="L402C9"></span><span style="color:var(--color-yang-id);">priority1</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L403C11 */</span><span id="L403C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"1"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Priority 1"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.2.3, 6.9.4 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L410C9 */</span><span id="L410C9"></span><span style="color:var(--color-yang-id);">priority2</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L411C11 */</span><span id="L411C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"2"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Priority 2"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.2.3, 6.9.4 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L418C9 */</span><span id="L418C9"></span><span style="color:var(--color-yang-id);">priority3</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L419C11 */</span><span id="L419C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"3"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Priority 3"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.2.3, 6.9.4 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L426C9 */</span><span id="L426C9"></span><span style="color:var(--color-yang-id);">priority4</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L427C11 */</span><span id="L427C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"4"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Priority 4"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.2.3, 6.9.4 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L434C9 */</span><span id="L434C9"></span><span style="color:var(--color-yang-id);">priority5</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L435C11 */</span><span id="L435C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"5"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Priority 5"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.2.3, 6.9.4 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L442C9 */</span><span id="L442C9"></span><span style="color:var(--color-yang-id);">priority6</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L443C11 */</span><span id="L443C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"6"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Priority 6"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.2.3, 6.9.4 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L450C9 */</span><span id="L450C9"></span><span style="color:var(--color-yang-id);">priority7</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L451C11 */</span><span id="L451C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"7"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Priority 7"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.2.3, 6.9.4 of IEEE Std 802.1Q"</span>;
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L459C11 */</span><span id="L459C11"></span><span style="color:var(--color-yang-id);">pcp-decoding-table-grouping</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The Priority Code Point decoding table enables the decoding of the
+      priority and drop-eligible parameters from the PCP."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"6.9.3 of IEEE Std 802.1Q"</span>;
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L465C9 */</span><span id="L465C9"></span><span style="color:var(--color-yang-id);">pcp-decoding-map</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"pcp"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This map associates the priority code point field found in the VLAN
+        to a priority and drop eligible value based upon the priority code
+        point selection type."</span>;
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L471C11 */</span><span id="L471C11"></span><span style="color:var(--color-yang-id);">pcp</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L472C13 */</span><span id="L472C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L218C10">pcp-selection-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The priority code point selection type."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"12.6.2.7, 6.9.3 of IEEE Std 802.1Q"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L478C11 */</span><span id="L478C11"></span><span style="color:var(--color-yang-id);">priority-map</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"priority-code-point"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This map associated a priority code point value to priority and
+          drop eligible parameters."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L483C13 */</span><span id="L483C13"></span><span style="color:var(--color-yang-id);">priority-code-point</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L484C15 */</span><span id="L484C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Priority associated with the pcp."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.6.2.7, 6.9.3 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L490C13 */</span><span id="L490C13"></span><span style="color:var(--color-yang-id);">priority</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L491C15 */</span><span id="L491C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Priority associated with the pcp."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.6.2.7, 6.9.3 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L497C13 */</span><span id="L497C13"></span><span style="color:var(--color-yang-id);">drop-eligible</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L498C15 */</span><span id="L498C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Drop eligible value for pcp"</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.6.2.7, 6.9.3 of IEEE Std 802.1Q"</span>;
+        }
+      }
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L507C11 */</span><span id="L507C11"></span><span style="color:var(--color-yang-id);">pcp-encoding-table-grouping</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The Priority Code Point encoding table encodes the priority and
+      drop-eligible parameters in the PCP field of the VLAN tag."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"12.6.2.9, 6.9.3 of IEEE Std 802.1Q"</span>;
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L513C9 */</span><span id="L513C9"></span><span style="color:var(--color-yang-id);">pcp-encoding-map</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"pcp"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This map associated the priority and drop-eligible parameters to
+        the priority used to encode the PCP of the VLAN based upon the
+        priority code point selection type."</span>;
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L519C11 */</span><span id="L519C11"></span><span style="color:var(--color-yang-id);">pcp</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L520C13 */</span><span id="L520C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L218C10">pcp-selection-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The priority code point selection type."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"12.6.2.7, 6.9.3 of IEEE Std 802.1Q"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L526C11 */</span><span id="L526C11"></span><span style="color:var(--color-yang-id);">priority-map</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"priority dei"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This map associated the priority and drop-eligible parameters to
+          the priority code point field of the VLAN tag."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L531C13 */</span><span id="L531C13"></span><span style="color:var(--color-yang-id);">priority</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L532C15 */</span><span id="L532C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Priority associated with the pcp."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.6.2.7, 6.9.3 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L538C13 */</span><span id="L538C13"></span><span style="color:var(--color-yang-id);">dei</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L539C15 */</span><span id="L539C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The drop eligible value."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.6.2, 8.6.6 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L545C13 */</span><span id="L545C13"></span><span style="color:var(--color-yang-id);">priority-code-point</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L546C15 */</span><span id="L546C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"PCP value for priority when DEI value"</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.6.2.9, 6.9.3 of IEEE Std 802.1Q"</span>;
+        }
+      }
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L555C11 */</span><span id="L555C11"></span><span style="color:var(--color-yang-id);">service-access-priority-table-grouping</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The Service Access Priority Table associates a received priority with
+      a service access priority."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"12.6.2.17, 6.13.1 of IEEE Std 802.1Q"</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L561C9 */</span><span id="L561C9"></span><span style="color:var(--color-yang-id);">priority0</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L562C11 */</span><span id="L562C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"0"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Service access priority value for priority 0"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.2.17, 6.13.1 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L569C9 */</span><span id="L569C9"></span><span style="color:var(--color-yang-id);">priority1</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L570C11 */</span><span id="L570C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"1"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Service access priority value for priority 1"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.2.17, 6.13.1 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L577C9 */</span><span id="L577C9"></span><span style="color:var(--color-yang-id);">priority2</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L578C11 */</span><span id="L578C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"2"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Service access priority value for priority 2"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.2.17, 6.13.1 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L585C9 */</span><span id="L585C9"></span><span style="color:var(--color-yang-id);">priority3</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L586C11 */</span><span id="L586C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"3"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Service access priority value for priority 3"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.2.17, 6.13.1 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L593C9 */</span><span id="L593C9"></span><span style="color:var(--color-yang-id);">priority4</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L594C11 */</span><span id="L594C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"4"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Service access priority value for priority 4"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.2.17, 6.13.1 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L601C9 */</span><span id="L601C9"></span><span style="color:var(--color-yang-id);">priority5</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L602C11 */</span><span id="L602C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"5"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Service access priority value for priority 5"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.2.17, 6.13.1 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L609C9 */</span><span id="L609C9"></span><span style="color:var(--color-yang-id);">priority6</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L610C11 */</span><span id="L610C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"6"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Service access priority value for priority 6"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.2.17, 6.13.1 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L617C9 */</span><span id="L617C9"></span><span style="color:var(--color-yang-id);">priority7</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L618C11 */</span><span id="L618C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"7"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Service access priority value for priority 7"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.2.17, 6.13.1 of IEEE Std 802.1Q"</span>;
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L626C11 */</span><span id="L626C11"></span><span style="color:var(--color-yang-id);">traffic-class-table-grouping</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The Traffic Class Table models the operations that can be performed
+      on, or inquire about, the current contents of the Traffic Class Table
+      (8.6.6) for a given Port."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"12.6.3, 8.6.6 of IEEE Std 802.1Q"</span>;
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L633C9 */</span><span id="L633C9"></span><span style="color:var(--color-yang-id);">traffic-class-map</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"priority"</span>;
+      <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-text);">"deprecated"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The priority index into the traffic class table. This list modeled
+        the Traffic Class Table incorrectly. available-traffic-class should
+        be a single value per port and not a list of all possible
+        available-traffic-class. For more information see maintenance issue
+        0230. The status of this object is deprecated. It is replaced by
+        sibling container traffic-class-table."</span>;
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L643C11 */</span><span id="L643C11"></span><span style="color:var(--color-yang-id);">priority</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L644C13 */</span><span id="L644C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">priority-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The priority of the traffic class entry."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.6.6 of IEEE Std 802.1Q"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L650C11 */</span><span id="L650C11"></span><span style="color:var(--color-yang-id);">available-traffic-class</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"num-traffic-class"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The traffic class index associated with a given priority within
+          the traffic class table."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.6.6 of IEEE Std 802.1Q"</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L657C13 */</span><span id="L657C13"></span><span style="color:var(--color-yang-id);">num-traffic-class</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L658C15 */</span><span id="L658C15"></span><span style="color:var(--color-yang-id);">uint8</span> {
+            <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..8"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The available number of traffic classes."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.6 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L666C13 */</span><span id="L666C13"></span><span style="color:var(--color-yang-id);">traffic-class</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L667C15 */</span><span id="L667C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L289C10">traffic-class-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The traffic class index associated with a given traffic class
+            entry."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.6 of IEEE Std 802.1Q"</span>;
+        }
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L676C14 */</span><span id="L676C14"></span><span style="color:var(--color-yang-id);">traffic-class-table</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The priority to traffic class mapping."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"8.6.6 of IEEE Std 802.1Q"</span>;
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L681C11 */</span><span id="L681C11"></span><span style="color:var(--color-yang-id);">number-of-traffic-classes</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L682C13 */</span><span id="L682C13"></span><span style="color:var(--color-yang-id);">uint8</span> {
+          <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..8"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The number of egress traffic classes supported on this port. This
+          object may be optionally read-only."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"12.6.3.1 of IEEE Std 802.1Q"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L691C11 */</span><span id="L691C11"></span><span style="color:var(--color-yang-id);">priority0</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L692C13 */</span><span id="L692C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L289C10">traffic-class-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">must</span>
+          <span style="color:var(--color-yang-text);">"current() < ../number-of-traffic-classes"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The traffic class index associated with priority 0"</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.6.6 of IEEE Std 802.1Q"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L700C11 */</span><span id="L700C11"></span><span style="color:var(--color-yang-id);">priority1</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L701C13 */</span><span id="L701C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L289C10">traffic-class-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">must</span>
+          <span style="color:var(--color-yang-text);">"current() < ../number-of-traffic-classes"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The traffic class index associated with priority 1"</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.6.6 of IEEE Std 802.1Q"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L709C11 */</span><span id="L709C11"></span><span style="color:var(--color-yang-id);">priority2</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L710C13 */</span><span id="L710C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L289C10">traffic-class-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">must</span>
+          <span style="color:var(--color-yang-text);">"current() < ../number-of-traffic-classes"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The traffic class index associated with priority 2"</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.6.6 of IEEE Std 802.1Q"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L718C11 */</span><span id="L718C11"></span><span style="color:var(--color-yang-id);">priority3</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L719C13 */</span><span id="L719C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L289C10">traffic-class-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">must</span>
+          <span style="color:var(--color-yang-text);">"current() < ../number-of-traffic-classes"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The traffic class index associated with priority 3"</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.6.6 of IEEE Std 802.1Q"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L727C11 */</span><span id="L727C11"></span><span style="color:var(--color-yang-id);">priority4</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L728C13 */</span><span id="L728C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L289C10">traffic-class-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">must</span>
+          <span style="color:var(--color-yang-text);">"current() < ../number-of-traffic-classes"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The traffic class index associated with priority 4"</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.6.6 of IEEE Std 802.1Q"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L736C11 */</span><span id="L736C11"></span><span style="color:var(--color-yang-id);">priority5</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L737C13 */</span><span id="L737C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L289C10">traffic-class-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">must</span>
+          <span style="color:var(--color-yang-text);">"current() < ../number-of-traffic-classes"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The traffic class index associated with priority 5"</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.6.6 of IEEE Std 802.1Q"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L745C11 */</span><span id="L745C11"></span><span style="color:var(--color-yang-id);">priority6</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L746C13 */</span><span id="L746C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L289C10">traffic-class-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">must</span>
+          <span style="color:var(--color-yang-text);">"current() < ../number-of-traffic-classes"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The traffic class index associated with priority 6"</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.6.6 of IEEE Std 802.1Q"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L754C11 */</span><span id="L754C11"></span><span style="color:var(--color-yang-id);">priority7</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L755C13 */</span><span id="L755C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L289C10">traffic-class-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">must</span>
+          <span style="color:var(--color-yang-text);">"current() < ../number-of-traffic-classes"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The traffic class index associated with priority 7"</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.6.6 of IEEE Std 802.1Q"</span>;
+      }
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L765C11 */</span><span id="L765C11"></span><span style="color:var(--color-yang-id);">transmission-selection-table-grouping</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The Transmission Selection Algorithm Table models the operations that
+      can be performed on, or inquire about, the current contents of the
+      Transmission Selection Algorithm Table (12.20.2) for a given Port."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"12.20.2, 8.6.8 of IEEE Std 802.1Q"</span>;
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L772C9 */</span><span id="L772C9"></span><span style="color:var(--color-yang-id);">transmission-selection-algorithm-map</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"traffic-class"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The traffic class to index into the transmission selection table."</span>;
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L776C11 */</span><span id="L776C11"></span><span style="color:var(--color-yang-id);">traffic-class</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L777C13 */</span><span id="L777C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L289C10">traffic-class-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The traffic class of the entry."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.6.6 of IEEE Std 802.1Q"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L783C11 */</span><span id="L783C11"></span><span style="color:var(--color-yang-id);">transmission-selection-algorithm</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L784C13 */</span><span id="L784C13"></span><span style="color:var(--color-yang-id);">identityref</span> {
+          <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L785C15 */</span><span id="L785C15"></span><span style="color:var(--color-yang-id);">dot1q-types:transmission-selection-algorithm</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Transmission selection algorithm"</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.6.8, Table 8-6 of IEEE Std 802.1Q"</span>;
+      }
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L794C11 */</span><span id="L794C11"></span><span style="color:var(--color-yang-id);">port-map-grouping</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A set of control indicators, one for each Port. A Port Map,
+      containing a control element for each outbound Port"</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"8.8.1, 8.8.2 of IEEE Std 802.1Q"</span>;
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L800C9 */</span><span id="L800C9"></span><span style="color:var(--color-yang-id);">port-map</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"port-ref"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The list of entries composing the port map."</span>;
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L804C11 */</span><span id="L804C11"></span><span style="color:var(--color-yang-id);">port-ref</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L805C13 */</span><span id="L805C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L138C10">port-number-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The interface port reference associated with this map."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.8.1 of IEEE Std 802.1Q"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">choice</span> <span style="color:var(--color-yang-comment);">/* L811C13 */</span><span id="L811C13"></span><span style="color:var(--color-yang-id);">map-type</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Type of port map"</span>;
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L814C18 */</span><span id="L814C18"></span><span style="color:var(--color-yang-id);">static-filtering-entries</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Static filtering entries attributes."</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L817C15 */</span><span id="L817C15"></span><span style="color:var(--color-yang-id);">control-element</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L818C17 */</span><span id="L818C17"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L819C19 */</span><span id="L819C19"></span><span style="color:var(--color-yang-id);">forward</span> {
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Forwarded, independently of any dynamic filtering
+                  information held by the FDB."</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L824C19 */</span><span id="L824C19"></span><span style="color:var(--color-yang-id);">filter</span> {
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Filtered, independently of any dynamic filtering
+                  information."</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L829C19 */</span><span id="L829C19"></span><span style="color:var(--color-yang-id);">forward-filter</span> {
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Forwarded or filtered on the basis of dynamic filtering
+                  information, or on the basis of the default Group
+                  filtering behavior for the outbound Port (8.8.6) if no
+                  dynamic filtering information is present specifically for
+                  the MAC address."</span>;
+              }
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"containing a control element for each outbound Port,
+              specifying that a frame with a destination MAC address, and in
+              the case of VLAN Bridge components, VID that meets this
+              specification."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"8.8.1 of IEEE Std 802.1Q"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L846C15 */</span><span id="L846C15"></span><span style="color:var(--color-yang-id);">connection-identifier</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L847C17 */</span><span id="L847C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L138C10">port-number-type</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A Port MAP may contain a connection identifier (8.8.12) for
+              each outbound port. The connection identifier may be
+              associated with the Bridge Port value maintained in a Dynamic
+              Filtering Entry of the FDB for Bridge Ports."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"8.8.1, 8.8.12 of IEEE Std 802.1Q"</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L857C18 */</span><span id="L857C18"></span><span style="color:var(--color-yang-id);">static-vlan-registration-entries</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Static VLAN registration entries."</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L860C15 */</span><span id="L860C15"></span><span style="color:var(--color-yang-id);">registrar-admin-control</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L861C17 */</span><span id="L861C17"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L862C19 */</span><span id="L862C19"></span><span style="color:var(--color-yang-id);">fixed-new-ignored</span> {
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Registration Fixed (New ignored)."</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L866C19 */</span><span id="L866C19"></span><span style="color:var(--color-yang-id);">fixed-new-propagated</span> {
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Registration Fixed (New propagated."</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L870C19 */</span><span id="L870C19"></span><span style="color:var(--color-yang-id);">forbidden</span> {
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Registration Forbidden."</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L874C19 */</span><span id="L874C19"></span><span style="color:var(--color-yang-id);">normal</span> {
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Normal Registration."</span>;
+              }
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The Registrar Administrative Control values for MVRP and MIRP
+              for the VID."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"8.8.2 of IEEE Std 802.1Q"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L885C15 */</span><span id="L885C15"></span><span style="color:var(--color-yang-id);">vlan-transmitted</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L886C17 */</span><span id="L886C17"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L887C19 */</span><span id="L887C19"></span><span style="color:var(--color-yang-id);">tagged</span> {
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"VLAN-tagged"</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L891C19 */</span><span id="L891C19"></span><span style="color:var(--color-yang-id);">untagged</span> {
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"VLAN-untagged"</span>;
+              }
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Whether frames are to be VLAN-tagged or untagged when
+              transmitted."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"8.8.2 of IEEE Std 802.1Q"</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L903C18 */</span><span id="L903C18"></span><span style="color:var(--color-yang-id);">mac-address-registration-entries</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"MAC address registration entries attributes."</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L906C15 */</span><span id="L906C15"></span><span style="color:var(--color-yang-id);">control-element</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L907C17 */</span><span id="L907C17"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L908C19 */</span><span id="L908C19"></span><span style="color:var(--color-yang-id);">registered</span> {
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Forwarded, independently of any dynamic filtering
+                  information held by the FDB."</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L913C19 */</span><span id="L913C19"></span><span style="color:var(--color-yang-id);">not-registered</span> {
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Filtered, independently of any dynamic filtering
+                  information."</span>;
+              }
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"containing a control element for each outbound Port,
+              specifying that a frame with a destination MAC address, and in
+              the case of VLAN Bridge components, VID that meets this
+              specification."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"8.8.4 of IEEE Std 802.1Q"</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L928C18 */</span><span id="L928C18"></span><span style="color:var(--color-yang-id);">dynamic-vlan-registration-entries</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Dynamic VLAN registration entries attributes."</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L931C15 */</span><span id="L931C15"></span><span style="color:var(--color-yang-id);">control-element</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L932C17 */</span><span id="L932C17"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L933C19 */</span><span id="L933C19"></span><span style="color:var(--color-yang-id);">registered</span> {
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Forwarded, independently of any dynamic filtering
+                  information held by the FDB."</span>;
+              }
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"containing a control element for each outbound Port,
+              specifying that a frame with a destination MAC address, and in
+              the case of VLAN Bridge components, VID that meets this
+              specification."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"8.8.5 of IEEE Std 802.1Q"</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L948C18 */</span><span id="L948C18"></span><span style="color:var(--color-yang-id);">dynamic-reservation-entries</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Dynamic reservation entries attributes."</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L951C15 */</span><span id="L951C15"></span><span style="color:var(--color-yang-id);">control-element</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L952C17 */</span><span id="L952C17"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L953C19 */</span><span id="L953C19"></span><span style="color:var(--color-yang-id);">forward</span> {
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Forwarded, independently of any dynamic filtering
+                  information held by the FDB."</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L958C19 */</span><span id="L958C19"></span><span style="color:var(--color-yang-id);">filter</span> {
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Filtered, independently of any dynamic filtering
+                  information."</span>;
+              }
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Containing a control element for each outbound Port,
+              specifying that a frame with a destination MAC address, and in
+              the case of VLAN Bridge components, VID that meets this
+              specification."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"8.8.7 of IEEE Std 802.1Q"</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L973C18 */</span><span id="L973C18"></span><span style="color:var(--color-yang-id);">dynamic-filtering-entries</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Dynamic filtering entries attributes."</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L976C15 */</span><span id="L976C15"></span><span style="color:var(--color-yang-id);">control-element</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L977C17 */</span><span id="L977C17"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L978C19 */</span><span id="L978C19"></span><span style="color:var(--color-yang-id);">forward</span> {
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Forwarded, independently of any dynamic filtering
+                  information held by the FDB."</span>;
+              }
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Containing a control element for each outbound Port,
+              specifying that a frame with a destination MAC address, and in
+              the case of VLAN Bridge components, VID that meets this
+              specification."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"8.8.3 of IEEE Std 802.1Q"</span>;
+          }
+        }
+      }
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L996C11 */</span><span id="L996C11"></span><span style="color:var(--color-yang-id);">bridge-port-statistics-grouping</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Grouping of bridge port statistics."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"12.6.1.1.3 of IEEE Std 802.1Q"</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1001C9 */</span><span id="L1001C9"></span><span style="color:var(--color-yang-id);">delay-exceeded-discards</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1002C11 */</span><span id="L1002C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The number of frames discarded by this port due to excessive
+        transit delay through the Bridge. It is incremented by both
+        transparent and source route Bridges."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.1.1.3, 8.6.6 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1010C9 */</span><span id="L1010C9"></span><span style="color:var(--color-yang-id);">mtu-exceeded-discards</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1011C11 */</span><span id="L1011C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The number of frames discarded by this port due to an excessive
+        size. It is incremented by both transparent and source route
+        Bridges."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"Item g) in 12.6.1.1.3 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1019C9 */</span><span id="L1019C9"></span><span style="color:var(--color-yang-id);">frame-rx</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1020C11 */</span><span id="L1020C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The number of frames that have been received by this port from its
+        segment. Note that a frame received on the interface corresponding
+        to this port is only counted by this object if and only if it is for
+        a protocol being processed by the local bridging function, including
+        Bridge management frames."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.1.1.3 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1030C9 */</span><span id="L1030C9"></span><span style="color:var(--color-yang-id);">octets-rx</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1031C11 */</span><span id="L1031C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The total number of octets in all valid frames received (including
+        BPDUs, frames addressed to the Bridge as an end station, and frames
+        that were submitted to the Forwarding Process)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.1.1.3 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1039C9 */</span><span id="L1039C9"></span><span style="color:var(--color-yang-id);">frame-tx</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1040C11 */</span><span id="L1040C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The number of frames that have been transmitted by this port to its
+        segment. Note that a frame transmitted on the interface
+        corresponding to this port is only counted by this object if and
+        only if it is for a protocol being processed by the local bridging
+        function, including Bridge management frames."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1048C9 */</span><span id="L1048C9"></span><span style="color:var(--color-yang-id);">octets-tx</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1049C11 */</span><span id="L1049C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The total number of octets that have been transmitted by this port
+        to its segment."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1054C9 */</span><span id="L1054C9"></span><span style="color:var(--color-yang-id);">discard-inbound</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1055C11 */</span><span id="L1055C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Count of received valid frames that were discarded (i.e., filtered)
+        by the Forwarding Process."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.1.1.3 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1062C9 */</span><span id="L1062C9"></span><span style="color:var(--color-yang-id);">forward-outbound</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1063C11 */</span><span id="L1063C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The number of frames forwarded to the associated MAC Entity (8.5)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.1.1.3 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1069C9 */</span><span id="L1069C9"></span><span style="color:var(--color-yang-id);">discard-lack-of-buffers</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1070C11 */</span><span id="L1070C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The count of frames that were to be transmitted through the
+        associated Port but were discarded due to lack of buffers."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.1.1.3 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1077C9 */</span><span id="L1077C9"></span><span style="color:var(--color-yang-id);">discard-transit-delay-exceeded</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1078C11 */</span><span id="L1078C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The number of frames discarded by this port due to excessive
+        transit delay through the Bridge. It is incremented by both
+        transparent and source route Bridges."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.1.1.3 of IEEE Std 802.1Q"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1086C9 */</span><span id="L1086C9"></span><span style="color:var(--color-yang-id);">discard-on-error</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1087C11 */</span><span id="L1087C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The number of frames that were to be forwarded on the associated
+        MAC but could not be transmitted (e.g., frame would be too large,
+        6.5.8)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.6.1.1.3 of IEEE Std 802.1Q"</span>;
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L1096C11 */</span><span id="L1096C11"></span><span style="color:var(--color-yang-id);">base-gate-control-entries</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Grouping of gate control entries."</span>;
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L1099C9 */</span><span id="L1099C9"></span><span style="color:var(--color-yang-id);">gate-control-entry</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"index"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"List of gate control entries."</span>;
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1103C11 */</span><span id="L1103C11"></span><span style="color:var(--color-yang-id);">index</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1104C13 */</span><span id="L1104C13"></span><span style="color:var(--color-yang-id);">uint32</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The index for this entry."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1108C11 */</span><span id="L1108C11"></span><span style="color:var(--color-yang-id);">operation-name</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1109C13 */</span><span id="L1109C13"></span><span style="color:var(--color-yang-id);">identityref</span> {
+          <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1110C15 */</span><span id="L1110C15"></span><span style="color:var(--color-yang-id);">type-of-operation</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L1112C18 */</span><span id="L1112C18"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The name (type) of the operation for this entry."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1116C11 */</span><span id="L1116C11"></span><span style="color:var(--color-yang-id);">time-interval-value</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1117C13 */</span><span id="L1117C13"></span><span style="color:var(--color-yang-id);">uint32</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"timeIntervalValue is a 32-bit unsigned integer, representing a
+          number of nanoseconds. After timeIntervalValue nanoseconds have
+          elapsed since the completion of the previous entry in the gate
+          control list, control passes to the next entry."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"12.29.1.2.3, 8.6.8.4 of IEEE Std 802.1Q"</span>;
+      }
+    }
+  }
+}

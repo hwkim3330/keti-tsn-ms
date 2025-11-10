@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ieee802-dot1as-ptp</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L2C15 */</span><span id="L2C15"></span><span style="color:var(--color-yang-id);">1.1</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-comment);">/* L3C12 */</span><span id="L3C12"></span><span style="color:var(--color-yang-id);">urn:ieee:std:802.1AS:yang:ieee802-dot1as-ptp</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">dot1as-ptp</span>;
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L6C9 */</span><span id="L6C9"></span><span style="color:var(--color-yang-id);">ietf-yang-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L7C11 */</span><span id="L7C11"></span><span style="color:var(--color-yang-id);">yang</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L9C9 */</span><span id="L9C9"></span><span style="color:var(--color-yang-id);">ieee1588-ptp</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L10C11 */</span><span id="L10C11"></span><span style="color:var(--color-yang-id);">ptp</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IEEE 802.1 Working Group"</span>;
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG-URL: http://ieee802.org/1/
+     WG-EMail: stds-802-1-l@ieee.org
+
+     Contact: IEEE 802.1 Working Group Chair
+              Postal: C/O IEEE 802.1 Working Group
+              IEEE Standards Association
+              445 Hoes Lane
+              Piscataway, NJ 08854
+              USA
+
+     E-mail: stds-802-1-chairs@ieee.org"</span>;
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"Management objects that control timing and synchronization
+    for time sensitive applications, as specified in
+    IEEE Std 802.1AS-2020.
+
+    Copyright (C) IEEE (2022).
+    This version of this YANG module is part of IEEE Std 802.1AS;
+    see the standard itself for full legal notices."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L36C11 */</span><span id="L36C11"></span><span style="color:var(--color-yang-id);">2022-09-16</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1ASdn-XXXX.
+      Initial version."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1ASdn-XXXX - YANG Data Model"</span>;
+  }
+  <span style="color:var(--color-yang-comment);">// The year (XXXX) will be replaced during publication.</span>
+  <span style="color:var(--color-yang-comment);">// This is the 2nd balloted draft D0.2</span>
+  <span style="color:var(--color-yang-comment);">// of the YANG module for amendment IEEE P802.1ASdn.</span>
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L47C10 */</span><span id="L47C10"></span><span style="color:var(--color-yang-id);">scaled-ns</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L48C9 */</span><span id="L48C9"></span><span style="color:var(--color-yang-id);">string</span> {
+      <span style="color:var(--color-yang-keyword);">pattern</span> <span style="color:var(--color-yang-text);">"[0-9A-F]{2}(-[0-9A-F]{2}){11}"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The IEEE Std 802.1AS ScaledNs type represents
+      signed values of time and time interval in units
+      of 2^16 ns, as a signed 96-bit integer.
+      YANG does not support a signed 96-bit integer.
+      Each of the 12 octets is represented in YANG as a pair of
+      hexadecimal characters, using uppercase for a letter.
+      Each octet in the array is separated by the dash
+      character. The most significant octet is first."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"6.4.3.1 of IEEE Std 802.1AS-2020"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L64C10 */</span><span id="L64C10"></span><span style="color:var(--color-yang-id);">uscaled-ns</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L65C9 */</span><span id="L65C9"></span><span style="color:var(--color-yang-id);">string</span> {
+      <span style="color:var(--color-yang-keyword);">pattern</span> <span style="color:var(--color-yang-text);">"[0-9A-F]{2}(-[0-9A-F]{2}){11}"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The IEEE Std 802.1AS UScaledNs type represents
+      unsigned values of time and time interval in units
+      of 2^16 ns, as an unsigned 96-bit integer.
+      YANG does not support an unsigned 96-bit integer.
+      Each of the 12 octets is represented in YANG as a pair of
+      hexadecimal characters, using uppercase for a letter.
+      Each octet in the array is separated by the dash
+      character. The most significant octet is first."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"6.4.3.2 of IEEE Std 802.1AS-2020"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L81C10 */</span><span id="L81C10"></span><span style="color:var(--color-yang-id);">float64</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L82C9 */</span><span id="L82C9"></span><span style="color:var(--color-yang-id);">string</span> {
+      <span style="color:var(--color-yang-keyword);">pattern</span> <span style="color:var(--color-yang-text);">"[0-9A-F]{2}(-[0-9A-F]{2}){7}"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The IEEE Std 802.1AS Float64 type represents
+      IEEE Std 754 binary64 (64-bit
+      double-precision floating-point format).
+      YANG does not support floating-point,
+      Each of the 8 octets is represented in YANG as a pair of
+      hexadecimal characters, using uppercase for a letter.
+      Each octet in the array is separated by the dash
+      character. The most significant octet is first."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"6.4.2 of IEEE Std 802.1AS-2020"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L98C11 */</span><span id="L98C11"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds"</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment IEEE Std 1588 defaultDS."</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L102C9 */</span><span id="L102C9"></span><span style="color:var(--color-yang-id);">gm-capable</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L103C11 */</span><span id="L103C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L104C13 */</span><span id="L104C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The value is true if the time-aware system is capable
+        of being a grandmaster, and false if the time-aware
+        system is not capable of being a grandmaster."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.2.7 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L113C9 */</span><span id="L113C9"></span><span style="color:var(--color-yang-id);">current-utc-offset</span> {
+      <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L114C12 */</span><span id="L114C12"></span><span style="color:var(--color-yang-id);">../current-utc-offset-valid='true'"</span>;
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L115C11 */</span><span id="L115C11"></span><span style="color:var(--color-yang-id);">int16</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L116C13 */</span><span id="L116C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Offset from UTC (TAI - UTC).
+        The offset is in units of seconds.
+        This leaf applies to the ClockMaster entity
+        (i.e., local only, unrelated to a remote GM)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.2.8 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L126C9 */</span><span id="L126C9"></span><span style="color:var(--color-yang-id);">current-utc-offset-valid</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L127C11 */</span><span id="L127C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L128C13 */</span><span id="L128C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The value of current-utc-offset-valid shall be true
+        if the value of current-utc-offset is known to be
+        correct, otherwise it shall be false.
+        This leaf applies to the ClockMaster entity
+        (i.e., local only, unrelated to a remote GM)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.2.9 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L139C9 */</span><span id="L139C9"></span><span style="color:var(--color-yang-id);">leap59</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L140C11 */</span><span id="L140C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L141C13 */</span><span id="L141C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"If the timescale is PTP, a true value for leap59
+        shall indicate that the last minute of the
+        current UTC day contains 59 seconds.
+        If the timescale is not PTP, the value shall be
+        false.
+        This leaf applies to the ClockMaster entity
+        (i.e., local only, unrelated to a remote GM)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.2.10 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L154C9 */</span><span id="L154C9"></span><span style="color:var(--color-yang-id);">leap61</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L155C11 */</span><span id="L155C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L156C13 */</span><span id="L156C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"If the timescale is PTP, a true value for leap61
+        shall indicate that the last minute of the
+        current UTC day contains 61 seconds.
+        If the timescale is not PTP, the value shall be
+        false.
+        This leaf applies to the ClockMaster entity
+        (i.e., local only, unrelated to a remote GM)."</span>;
+     <span style="color:var(--color-yang-keyword);">reference</span>
+       <span style="color:var(--color-yang-text);">"14.2.11 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L169C9 */</span><span id="L169C9"></span><span style="color:var(--color-yang-id);">time-traceable</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L170C11 */</span><span id="L170C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L171C13 */</span><span id="L171C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The value of time-traceable shall be true if the
+        timescale is traceable to a primary reference;
+        otherwise, the value shall be false.
+        This leaf applies to the ClockMaster entity
+        (i.e., local only, unrelated to a remote GM)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.2.12 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L182C9 */</span><span id="L182C9"></span><span style="color:var(--color-yang-id);">frequency-traceable</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L183C11 */</span><span id="L183C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L184C13 */</span><span id="L184C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The value of frequency-traceable shall be true if
+        the frequency determining the timescale is traceable
+        to a primary reference; otherwise, the value shall
+        be false.
+        This leaf applies to the ClockMaster entity
+        (i.e., local only, unrelated to a remote GM)."</span>;
+     <span style="color:var(--color-yang-keyword);">reference</span>
+       <span style="color:var(--color-yang-text);">"14.2.13 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L196C9 */</span><span id="L196C9"></span><span style="color:var(--color-yang-id);">ptp-timescale</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L197C11 */</span><span id="L197C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L198C13 */</span><span id="L198C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"If ptp-timescale is true, the timescale of
+        the ClockMaster entity is PTP, which is
+        the elapsed time since the PTP epoch measured
+        using the second defined by International Atomic
+        Time (TAI).
+        If ptp-timescale is false, the timescale of
+        the ClockMaster entity is ARB, which is
+        the elapsed time since an arbitrary epoch.
+        This leaf applies to the ClockMaster entity
+        (i.e., local only, unrelated to a remote GM)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.2.14 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L214C9 */</span><span id="L214C9"></span><span style="color:var(--color-yang-id);">time-source</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L215C11 */</span><span id="L215C11"></span><span style="color:var(--color-yang-id);">identityref</span> {
+        <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L216C13 */</span><span id="L216C13"></span><span style="color:var(--color-yang-id);">ptp:time-source</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L218C13 */</span><span id="L218C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The source of time used by the Grandmaster Clock
+        This leaf applies to the ClockMaster entity
+        (i.e., local only, unrelated to a remote GM)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.2.15 of IEEE Std 802.1AS-2020"</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L228C11 */</span><span id="L228C11"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:current-ds"</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment IEEE Std 1588 currentDS."</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L232C9 */</span><span id="L232C9"></span><span style="color:var(--color-yang-id);">last-gm-phase-change</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L233C11 */</span><span id="L233C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1as-ptp#L47C10">scaled-ns</a></span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L234C13 */</span><span id="L234C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Phase change that occurred on the most recent
+        change in either the Grandmaster PTP Instance
+        or gm-timebase-indicator leaf."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.3.4 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L243C9 */</span><span id="L243C9"></span><span style="color:var(--color-yang-id);">last-gm-freq-change</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L244C11 */</span><span id="L244C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1as-ptp#L81C10">float64</a></span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L245C13 */</span><span id="L245C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Frequency change that occurred on the most recent
+        change in either the Grandmaster PTP Instance
+        or gm-timebase-indicator leaf."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.3.5 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L254C9 */</span><span id="L254C9"></span><span style="color:var(--color-yang-id);">gm-timebase-indicator</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L255C11 */</span><span id="L255C11"></span><span style="color:var(--color-yang-id);">uint16</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L256C13 */</span><span id="L256C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The timeBaseIndicator of the current
+        Grandmaster PTP Instance."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.3.6 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L264C9 */</span><span id="L264C9"></span><span style="color:var(--color-yang-id);">gm-change-count</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L265C11 */</span><span id="L265C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L266C13 */</span><span id="L266C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This statistics counter tracks the number of times
+        the Grandmaster PTP Instance has changed in a
+        gPTP domain."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.3.7 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L275C9 */</span><span id="L275C9"></span><span style="color:var(--color-yang-id);">time-of-last-gm-change</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L276C11 */</span><span id="L276C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L362C10">yang:timestamp</a></span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L277C13 */</span><span id="L277C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"System time when the most recent Grandmaster Clock
+        change occurred in a gPTP domain.
+        This leaf's type is YANG timestamp, which is based
+        on system time. System time is an unsigned integer
+        in units of 10 milliseconds, using an epoch defined
+        by the implementation (typically time of boot-up)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.3.8 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L289C9 */</span><span id="L289C9"></span><span style="color:var(--color-yang-id);">time-of-last-phase-change</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L290C11 */</span><span id="L290C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L362C10">yang:timestamp</a></span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L291C13 */</span><span id="L291C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"System time when the most recent change in Grandmaster
+        Clock phase occurred.
+        This leaf's type is YANG timestamp, which is based
+        on system time. System time is an unsigned integer
+        in units of 10 milliseconds, using an epoch defined
+        by the implementation (typically time of boot-up)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.3.9 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L303C9 */</span><span id="L303C9"></span><span style="color:var(--color-yang-id);">time-of-last-freq-change</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L304C11 */</span><span id="L304C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L362C10">yang:timestamp</a></span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L305C13 */</span><span id="L305C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"System time when the most recent change in Grandmaster
+        Clock frequency occurred.
+        This leaf's type is YANG timestamp, which is based
+        on system time. System time is an unsigned integer
+        in units of 10 milliseconds, using an epoch defined
+        by the implementation (typically time of boot-up)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.3.10 of IEEE Std 802.1AS-2020"</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L318C11 */</span><span id="L318C11"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:parent-ds"</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment IEEE Std 1588 parentDS."</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L322C9 */</span><span id="L322C9"></span><span style="color:var(--color-yang-id);">cumulative-rate-ratio</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L323C11 */</span><span id="L323C11"></span><span style="color:var(--color-yang-id);">int32</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L324C13 */</span><span id="L324C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Estimate of the ratio of the frequency of the Grandmaster
+        Clock to the frequency of the LocalClock entity of this
+        PTP Instance. cumulative-rate-ratio is expressed as
+        the fractional frequency offset multiplied by 2^41,
+        i.e., the quantity (rateRatio - 1.0)(2^41)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.4.3 of IEEE Std 802.1AS-2020"</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L336C11 */</span><span id="L336C11"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds"</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment IEEE Std 1588 portDS.
+
+      14.8.4 of IEEE Std 802.1AS-2020 specifies ptpPortEnabled
+      (ptp-port-enabled), which is provided in YANG as the
+      semantically equivalent node in ieee1588-ptp named
+      port-enable (in port-ds).
+
+      14.8.15 of IEEE Std 802.1AS-2020 specifies
+      mgtSettableLogAnnounceInterval
+      (mgt-settable-log-announce-interval), which is provided in
+      YANG as the semantically equivalent node in ieee1588-ptp named
+      log-announce-interval (in port-ds). In the context of
+      IEEE Std 802.1AS, log-announce-interval cannot be used
+      unless use-mgt-log-announce-interval is true.
+
+      14.8.20 of IEEE Std 802.1AS-2020 specifies
+      mgtSettableLogSyncInterval
+      (mgt-settable-log-sync-interval), which is provided in YANG
+      as the semantically equivalent node in ieee1588-ptp named
+      log-sync-interval (in port-ds). In the context of
+      IEEE Std 802.1AS, log-sync-interval cannot be used
+      unless use-mgt-log-sync-interval is true."</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L361C9 */</span><span id="L361C9"></span><span style="color:var(--color-yang-id);">is-measuring-delay</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L362C11 */</span><span id="L362C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L363C13 */</span><span id="L363C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Boolean that is true if the port is measuring
+        PTP Link propagation delay."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.6 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L371C9 */</span><span id="L371C9"></span><span style="color:var(--color-yang-id);">as-capable</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L372C11 */</span><span id="L372C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L373C13 */</span><span id="L373C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Boolean that is true if and only if it is determined
+        that this PTP Instance and the PTP Instance at the
+        other end of the link attached to this port can
+        interoperate with each other via the IEEE Std
+        802.1AS protocol."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"10.2.5.1 of IEEE Std 802.1AS-2020
+        14.8.7 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L385C9 */</span><span id="L385C9"></span><span style="color:var(--color-yang-id);">mean-link-delay-thresh</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L386C11 */</span><span id="L386C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee1588-ptp#L652C10">ptp:time-interval</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Propagation time threshold for mean-link-delay,
+        above which a port is not considered capable of
+        participating in the IEEE Std 802.1AS protocol."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.9 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L395C9 */</span><span id="L395C9"></span><span style="color:var(--color-yang-id);">neighbor-rate-ratio</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L396C11 */</span><span id="L396C11"></span><span style="color:var(--color-yang-id);">int32</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L397C13 */</span><span id="L397C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Estimate of the ratio of the frequency of the LocalClock
+        entity of the PTP Instance at the other end of the
+        link attached to this PTP Port, to the frequency of the
+        LocalClock entity of this PTP Instance.
+        neighbor-rate-ratio is expressed as the fractional
+        frequency offset multiplied by 2^41,
+        i.e., the quantity (rateRatio - 1.0)(2^41)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.11 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L410C9 */</span><span id="L410C9"></span><span style="color:var(--color-yang-id);">initial-log-announce-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L411C11 */</span><span id="L411C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"When use-mgt-log-announce-interval is false
+        (i.e., change with Signaling message), this is the
+        the logarithm to base 2 of the announce
+        interval used when the port is initialized."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.12 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L421C9 */</span><span id="L421C9"></span><span style="color:var(--color-yang-id);">current-log-announce-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L422C11 */</span><span id="L422C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L423C13 */</span><span id="L423C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Logarithm to base 2 of the current
+        announce interval."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.13 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L431C9 */</span><span id="L431C9"></span><span style="color:var(--color-yang-id);">use-mgt-log-announce-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L432C11 */</span><span id="L432C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Boolean that determines the source of the
+        announce interval.
+        If the value is true, the announce interval
+        (current-log-announce-interval) is set equal to the value
+        of mgt-log-announce-interval.
+        If the value is false, the announce interval is determined
+        by the AnnounceIntervalSetting state machine (i.e., changed
+        with Signaling message)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.14 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L446C9 */</span><span id="L446C9"></span><span style="color:var(--color-yang-id);">initial-log-sync-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L447C11 */</span><span id="L447C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"When use-mgt-log-sync-interval is false
+        (i.e., change with Signaling message), this is the
+        the logarithm to base 2 of the sync
+        interval used when the port is initialized."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.17 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L457C9 */</span><span id="L457C9"></span><span style="color:var(--color-yang-id);">current-log-sync-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L458C11 */</span><span id="L458C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L459C13 */</span><span id="L459C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Logarithm to base 2 of the current sync
+        interval."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.18 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L467C9 */</span><span id="L467C9"></span><span style="color:var(--color-yang-id);">use-mgt-log-sync-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L468C11 */</span><span id="L468C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Boolean that determines the source of the
+        sync interval.
+        If the value is true, the sync interval
+        (current-log-sync-interval) is set equal to the value
+        of mgt-log-sync-interval.
+        If the value is false, the sync interval is determined
+        by the SyncIntervalSetting state machine (i.e., changed
+        with Signaling message)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.19 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L482C9 */</span><span id="L482C9"></span><span style="color:var(--color-yang-id);">sync-receipt-timeout</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L483C11 */</span><span id="L483C11"></span><span style="color:var(--color-yang-id);">uint8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Number of sync intervals that a slave port waits without
+        receiving synchronization information, before assuming
+        that the master is no longer transmitting synchronization
+        information and that the BMCA needs to be run,
+        if appropriate."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.21 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L494C9 */</span><span id="L494C9"></span><span style="color:var(--color-yang-id);">sync-receipt-timeout-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L495C11 */</span><span id="L495C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1as-ptp#L64C10">uscaled-ns</a></span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L496C13 */</span><span id="L496C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Time interval after which sync receipt timeout occurs
+        if time-synchronization information has not been
+        received during the interval."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.22 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L505C9 */</span><span id="L505C9"></span><span style="color:var(--color-yang-id);">initial-log-pdelay-req-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L506C11 */</span><span id="L506C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"When use-mgt-log-pdelay-req-interval is false
+        (i.e., change with Signaling message), this is the
+        the logarithm to base 2 of the Pdelay_Req transmit
+        interval used when the port is initialized."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.23 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L516C9 */</span><span id="L516C9"></span><span style="color:var(--color-yang-id);">current-log-pdelay-req-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L517C11 */</span><span id="L517C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L518C13 */</span><span id="L518C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Logarithm to base 2 of the current Pdelay_Req transmit
+        interval."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.24 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L526C9 */</span><span id="L526C9"></span><span style="color:var(--color-yang-id);">use-mgt-log-pdelay-req-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L527C11 */</span><span id="L527C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Boolean that determines the source of the
+        Pdelay_Req transmit interval.
+        If the value is true, the Pdelay_Req transmit interval
+        (current-log-pdelay-req-interval) is set equal to the value
+        of mgt-log-pdelay-req-interval.
+        If the value is false, the Pdelay_Req transmit interval is
+        determined by the LinkDelayIntervalSetting state machine
+        (i.e., changed with Signaling message)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.25 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L541C9 */</span><span id="L541C9"></span><span style="color:var(--color-yang-id);">mgt-log-pdelay-req-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L542C11 */</span><span id="L542C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Logarithm to base 2 of the Pdelay_Req transmit interval,
+        used if use-mgt-log-pdelay-req-interval is true.
+        This value is not used if use-mgt-log-pdelay-req-interval
+        is false."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.26 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L552C9 */</span><span id="L552C9"></span><span style="color:var(--color-yang-id);">initial-log-gptp-cap-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L553C11 */</span><span id="L553C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"When use-mgt-log-gptp-cap-interval is false
+        (i.e., change with Signaling message), this is the
+        the logarithm to base 2 of the gPTP capable message
+        interval used when the port is initialized."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.27 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L563C9 */</span><span id="L563C9"></span><span style="color:var(--color-yang-id);">current-log-gptp-cap-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L564C11 */</span><span id="L564C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L565C13 */</span><span id="L565C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Logarithm to base 2 of the current gPTP capable message
+        interval."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.28 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L573C9 */</span><span id="L573C9"></span><span style="color:var(--color-yang-id);">use-mgt-log-gptp-cap-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L574C11 */</span><span id="L574C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Boolean that determines the source of the
+        gPTP capable message interval.
+        If the value is true, the gPTP capable message interval
+        (current-log-gptp-cap-interval) is set equal to the value
+        of mgt-gptp-cap-req-interval.
+        If the value is false, the gPTP capable message interval is
+        determined by the GptpCapableMessageIntervalSetting
+        state machine (i.e., changed with Signaling message)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.29 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L588C9 */</span><span id="L588C9"></span><span style="color:var(--color-yang-id);">mgt-log-gptp-cap-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L589C11 */</span><span id="L589C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Logarithm to base 2 of the gPTP capable message interval,
+        used if use-mgt-log-gptp-cap-interval is true.
+        This value is not used if use-mgt-log-pdelay-req-interval
+        is false."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.30 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L599C9 */</span><span id="L599C9"></span><span style="color:var(--color-yang-id);">initial-compute-rate-ratio</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L600C11 */</span><span id="L600C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"When use-mgt-compute-rate-ratio is false
+        (i.e., change with Signaling message), this is the
+        initial value of computeNeighborRateRatio."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.31 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L609C9 */</span><span id="L609C9"></span><span style="color:var(--color-yang-id);">current-compute-rate-ratio</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L610C11 */</span><span id="L610C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L611C13 */</span><span id="L611C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Current value of computeNeighborRateRatio."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.32 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L618C9 */</span><span id="L618C9"></span><span style="color:var(--color-yang-id);">use-mgt-compute-rate-ratio</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L619C11 */</span><span id="L619C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Boolean that determines the source of
+        computeNeighborRateRatio..
+        If the value is true, computeNeighborRateRatio
+        is set equal to the value of mgt-compute-rate-ratio.
+        If the value is false, computeNeighborRateRatio is
+        determined by the LinkDelayIntervalSetting
+        state machine (i.e., changed with Signaling message)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.33 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L632C9 */</span><span id="L632C9"></span><span style="color:var(--color-yang-id);">mgt-compute-rate-ratio</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L633C11 */</span><span id="L633C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Value of computeNeighborRateRatio, used if
+        use-mgt-compute-rate-ratio is true.
+        This value is not used if use-mgt-compute-rate-ratio
+        is false."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.34 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L643C9 */</span><span id="L643C9"></span><span style="color:var(--color-yang-id);">initial-compute-mean-link-delay</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L644C11 */</span><span id="L644C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"When use-mgt-compute-mean-link-delay is false
+        (i.e., change with Signaling message), this is the
+        initial value of computeMeanLinkDelay."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.35 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L653C9 */</span><span id="L653C9"></span><span style="color:var(--color-yang-id);">current-compute-mean-link-delay</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L654C11 */</span><span id="L654C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L655C13 */</span><span id="L655C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Current value of computeMeanLinkDelay."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.36 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L662C9 */</span><span id="L662C9"></span><span style="color:var(--color-yang-id);">use-mgt-compute-mean-link-delay</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L663C11 */</span><span id="L663C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Boolean that determines the source of
+        computeMeanLinkDelay.
+        If the value is true, computeMeanLinkDelay
+        is set equal to the value of mgt-compute-mean-link-delay.
+        If the value is false, computeMeanLinkDelay is
+        determined by the LinkDelayIntervalSetting
+        state machine (i.e., changed with Signaling message)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.37 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L676C9 */</span><span id="L676C9"></span><span style="color:var(--color-yang-id);">mgt-compute-mean-link-delay</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L677C11 */</span><span id="L677C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Value of computeMeanLinkDelay, used if
+        use-mgt-compute-mean-link-delay is true.
+        This value is not used if use-mgt-compute-mean-link-delay
+        is false."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.38 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L687C9 */</span><span id="L687C9"></span><span style="color:var(--color-yang-id);">allowed-lost-responses</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L688C11 */</span><span id="L688C11"></span><span style="color:var(--color-yang-id);">uint8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Number of Pdelay_Req messages for which a valid response
+        is not received, above which a port is considered to not
+        be exchanging peer delay messages with its neighbor."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.39 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L697C9 */</span><span id="L697C9"></span><span style="color:var(--color-yang-id);">allowed-faults</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L698C11 */</span><span id="L698C11"></span><span style="color:var(--color-yang-id);">uint8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Number of faults above which asCapable is set to false."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.40 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L705C9 */</span><span id="L705C9"></span><span style="color:var(--color-yang-id);">gptp-cap-receipt-timeout</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L706C11 */</span><span id="L706C11"></span><span style="color:var(--color-yang-id);">uint8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Number of transmission intervals that a port waits without
+        receiving the gPTP capable TLV, before assuming that the
+        neighbor port is no longer invoking the gPTP protocol."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.41 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L715C9 */</span><span id="L715C9"></span><span style="color:var(--color-yang-id);">nup</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L716C11 */</span><span id="L716C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1as-ptp#L81C10">float64</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"For an OLT port of an IEEE Std 802.3 EPON link, this value
+        is the effective index of refraction for the EPON
+        upstream wavelength light of the optical path"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.43 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L725C9 */</span><span id="L725C9"></span><span style="color:var(--color-yang-id);">ndown</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L726C11 */</span><span id="L726C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1as-ptp#L81C10">float64</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"For an OLT port of an IEEE 802.3 EPON link, this value
+        is the effective index of refraction for the EPON
+        downstream wavelength light of the optical path"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.44 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L735C9 */</span><span id="L735C9"></span><span style="color:var(--color-yang-id);">one-step-tx-oper</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L736C11 */</span><span id="L736C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L737C13 */</span><span id="L737C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This value is true if the port is sending one-step
+        Sync messages, and false if the port is sending
+        two-step Sync and Follow-Up messages."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.45 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L746C9 */</span><span id="L746C9"></span><span style="color:var(--color-yang-id);">one-step-receive</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L747C11 */</span><span id="L747C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L748C13 */</span><span id="L748C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This value is true if the port is capable of
+        receiving and processing one-step Sync messages."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.46 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L756C9 */</span><span id="L756C9"></span><span style="color:var(--color-yang-id);">one-step-transmit</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L757C11 */</span><span id="L757C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L758C13 */</span><span id="L758C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This value is true if the port is capable of
+        transmitting one-step Sync messages."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.47 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L766C9 */</span><span id="L766C9"></span><span style="color:var(--color-yang-id);">initial-one-step-tx-oper</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L767C11 */</span><span id="L767C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"When use-mgt-one-step-tx-oper is false
+        (i.e., change with Signaling message), this is the
+        initial value of current-one-step-tx-oper."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.48 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L776C9 */</span><span id="L776C9"></span><span style="color:var(--color-yang-id);">current-one-step-tx-oper</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L777C11 */</span><span id="L777C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L778C13 */</span><span id="L778C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This value is true if the port is configured to
+        transmit one-step Sync messages, either via management
+        (mgt-one-step-tx-oper) or Signaling. If both
+        current-one-step-tx-oper and one-step-transmit
+        are true, the port transmits one-step Sync messages
+        (i.e., one-step-tx-oper true)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.49 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L790C9 */</span><span id="L790C9"></span><span style="color:var(--color-yang-id);">use-mgt-one-step-tx-oper</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L791C11 */</span><span id="L791C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Boolean that determines the source of
+        current-one-step-tx-oper.
+        If the value is true, current-one-step-tx-oper
+        is set equal to the value of mgt-one-step-tx-oper.
+        If the value is false, current-one-step-tx-oper is
+        determined by the OneStepTxOperSetting
+        state machine (i.e., changed with Signaling message)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.50 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L804C9 */</span><span id="L804C9"></span><span style="color:var(--color-yang-id);">mgt-one-step-tx-oper</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L805C11 */</span><span id="L805C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"If use-mgt-one-step-tx-oper is true,
+        current-one-step-tx-oper is set equal to this value.
+        This value is not used if use-mgt-one-step-tx-oper
+        is false."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.51 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L815C9 */</span><span id="L815C9"></span><span style="color:var(--color-yang-id);">sync-locked</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L816C11 */</span><span id="L816C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L817C13 */</span><span id="L817C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This value is true if the port will transmit a Sync as
+        soon as possible after the slave port receives a Sync
+        message."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.52 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L826C14 */</span><span id="L826C14"></span><span style="color:var(--color-yang-id);">pdelay-truncated-timestamps</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L827C11 */</span><span id="L827C11"></span><span style="color:var(--color-yang-id);">uint64</span> {
+        <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0..281474976710655"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L830C13 */</span><span id="L830C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"For full-duplex IEEE Std 802.3 media, and CSN media that use
+        the peer-to-peer delay mechanism to measure path delay,
+        the values of the four elements of this leaf-list correspond
+        to the timestamps t1, t2, t3, and t4, listed in that order.
+        Each timestamp is expressed in units of 2^-16 ns (i.e., the
+        value of each array element is equal to the remainder obtained
+        upon dividing the respective timestamp, expressed in units of
+        2^-16 ns, by 2^48). At any given time, the timestamp values
+        stored in the array are for the same, and most recently
+        completed, peer delay message exchange. For each timestamp,
+        only 48-bits are valid (the upper 16-bits are always zero)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.8.53 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L847C14 */</span><span id="L847C14"></span><span style="color:var(--color-yang-id);">port-statistics-ds</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Provides counters associated with the port of the
+        PTP Instance."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.10 of IEEE Std 802.1AS-2020"</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L854C11 */</span><span id="L854C11"></span><span style="color:var(--color-yang-id);">rx-sync-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L855C13 */</span><span id="L855C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L856C15 */</span><span id="L856C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time synchronization
+          information is received."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.2 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L864C11 */</span><span id="L864C11"></span><span style="color:var(--color-yang-id);">rx-one-step-sync-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L865C13 */</span><span id="L865C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L866C15 */</span><span id="L866C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time a one-step Sync
+          message is received."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.3 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L874C11 */</span><span id="L874C11"></span><span style="color:var(--color-yang-id);">rx-follow-up-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L875C13 */</span><span id="L875C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L876C15 */</span><span id="L876C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time a Follow_Up
+          message is received."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.4 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L884C11 */</span><span id="L884C11"></span><span style="color:var(--color-yang-id);">rx-pdelay-req-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L885C13 */</span><span id="L885C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L886C15 */</span><span id="L886C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time a Pdelay_Req
+          message is received."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.5 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L894C11 */</span><span id="L894C11"></span><span style="color:var(--color-yang-id);">rx-pdelay-resp-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L895C13 */</span><span id="L895C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L896C15 */</span><span id="L896C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time a Pdelay_Resp
+          message is received."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.6 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L904C11 */</span><span id="L904C11"></span><span style="color:var(--color-yang-id);">rx-pdelay-resp-follow-up-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L905C13 */</span><span id="L905C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L906C15 */</span><span id="L906C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time a Pdelay_Resp_Follow_Up
+          message is received."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.7 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L914C11 */</span><span id="L914C11"></span><span style="color:var(--color-yang-id);">rx-announce-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L915C13 */</span><span id="L915C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L916C15 */</span><span id="L916C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time an Announce
+          message is received."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.8 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L924C11 */</span><span id="L924C11"></span><span style="color:var(--color-yang-id);">rx-packet-discard-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L925C13 */</span><span id="L925C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L926C15 */</span><span id="L926C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time a PTP message
+          of the respective PTP Instance is discarded."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.9 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L934C11 */</span><span id="L934C11"></span><span style="color:var(--color-yang-id);">sync-receipt-timeout-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L935C13 */</span><span id="L935C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L936C15 */</span><span id="L936C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time a sync receipt
+          timeout occurs."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.10 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L944C11 */</span><span id="L944C11"></span><span style="color:var(--color-yang-id);">announce-receipt-timeout-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L945C13 */</span><span id="L945C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L946C15 */</span><span id="L946C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time an announce receipt
+          timeout occurs."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.11 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L954C11 */</span><span id="L954C11"></span><span style="color:var(--color-yang-id);">pdelay-allowed-lost-exceeded-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L955C13 */</span><span id="L955C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L956C15 */</span><span id="L956C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time the value of the
+          variable lostResponses exceeds the value of the variable
+          allowedLostResponses, in the RESET state of the
+          MDPdelayReq state machine."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.12 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L966C11 */</span><span id="L966C11"></span><span style="color:var(--color-yang-id);">tx-sync-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L967C13 */</span><span id="L967C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L968C15 */</span><span id="L968C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time synchronization
+          information is transmitted."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.13 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L976C11 */</span><span id="L976C11"></span><span style="color:var(--color-yang-id);">tx-one-step-sync-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L977C13 */</span><span id="L977C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L978C15 */</span><span id="L978C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time a one-step Sync
+          message is transmitted."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.14 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L986C11 */</span><span id="L986C11"></span><span style="color:var(--color-yang-id);">tx-follow-up-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L987C13 */</span><span id="L987C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L988C15 */</span><span id="L988C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time a Follow_Up
+          message is transmitted."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.15 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L996C11 */</span><span id="L996C11"></span><span style="color:var(--color-yang-id);">tx-pdelay-req-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L997C13 */</span><span id="L997C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L998C15 */</span><span id="L998C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time a Pdelay_Req
+          message is transmitted."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.16 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1006C11 */</span><span id="L1006C11"></span><span style="color:var(--color-yang-id);">tx-pdelay-resp-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1007C13 */</span><span id="L1007C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1008C15 */</span><span id="L1008C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time a Pdelay_Resp
+          message is transmitted."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.17 of IEEE Std 802.1AS-202014.10.17"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1016C11 */</span><span id="L1016C11"></span><span style="color:var(--color-yang-id);">tx-pdelay-resp-follow-up-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1017C13 */</span><span id="L1017C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1018C15 */</span><span id="L1018C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time a Pdelay_Resp_Follow_Up
+          message is transmitted."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.18 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1026C11 */</span><span id="L1026C11"></span><span style="color:var(--color-yang-id);">tx-announce-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1027C13 */</span><span id="L1027C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1028C15 */</span><span id="L1028C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Counter that increments every time an Announce
+          message is transmitted."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.10.19 of IEEE Std 802.1AS-2020"</span>;
+      }
+    }
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L1037C14 */</span><span id="L1037C14"></span><span style="color:var(--color-yang-id);">asymmetry-measurement-mode-ds</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Represents the capability to enable/disable the Asymmetry
+        Compensation Measurement Procedure on a PTP Port.
+        This data set is used instead of the CMLDS
+        asymmetry-measurement-mode-ds when only a single PTP
+        Instance is present (i.e., CMLDS is not used)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.13 of IEEE Std 802.1AS-2020
+        Annex G of IEEE Std 802.1AS-2020"</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1048C11 */</span><span id="L1048C11"></span><span style="color:var(--color-yang-id);">enabled</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1049C13 */</span><span id="L1049C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"For full-duplex IEEE Std 802.3 media, the value is true
+           if an asymmetry measurement is being performed for the
+           link attached to this PTP Port, and false otherwise.
+           For all other media, the value shall be false."</span>;
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L1059C11 */</span><span id="L1059C11"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:common-services/ptp:cmlds/ptp:ports/ptp:port/ptp:link-port-ds"</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment IEEE Std 1588 cmldsLinkPortDS.
+
+      14.6.9 of IEEE Std 802.1AS-2020 specifies neighborRateRatio
+      (neighbor-rate-ratio), which is provided in YANG as the
+      semantically equivalent node in ieee1588-ptp named
+      scaled-neighbor-rate-ratio (in link-port-ds)."</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1068C9 */</span><span id="L1068C9"></span><span style="color:var(--color-yang-id);">cmlds-link-port-enabled</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1069C11 */</span><span id="L1069C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1070C13 */</span><span id="L1070C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Boolean that is true if both delay-mechanism is common-p2p
+        and the value of ptp-port-enabled is true, for at least one
+        PTP Port that uses the CMLDS; otherwise, the value is false."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"11.2.18.1 of IEEE Std 802.1AS-2020
+        14.16.3 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1080C9 */</span><span id="L1080C9"></span><span style="color:var(--color-yang-id);">is-measuring-delay</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1081C11 */</span><span id="L1081C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1082C13 */</span><span id="L1082C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This leaf is analogous to is-measuring-delay
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.16.4 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1090C9 */</span><span id="L1090C9"></span><span style="color:var(--color-yang-id);">as-capable-across-domains</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1091C11 */</span><span id="L1091C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1092C13 */</span><span id="L1092C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This leaf is true when all PTP Instances (domains)
+        for this Link Port detect proper exchange of Pdelay
+        messages."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"11.2.2 of IEEE Std 802.1AS-2020
+        14.16.5 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1102C9 */</span><span id="L1102C9"></span><span style="color:var(--color-yang-id);">mean-link-delay-thresh</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1103C11 */</span><span id="L1103C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee1588-ptp#L652C10">ptp:time-interval</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Propagation time threshold for mean-link-delay,
+        above which a Link Port is not considered capable of
+        participating in the IEEE Std 802.1AS protocol."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.16.7 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1112C9 */</span><span id="L1112C9"></span><span style="color:var(--color-yang-id);">initial-log-pdelay-req-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1113C11 */</span><span id="L1113C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This leaf is analogous to initial-log-pdelay-req-interval
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.16.10 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1121C9 */</span><span id="L1121C9"></span><span style="color:var(--color-yang-id);">current-log-pdelay-req-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1122C11 */</span><span id="L1122C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1123C13 */</span><span id="L1123C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This leaf is analogous to current-log-pdelay-req-interval
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.16.11 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1131C9 */</span><span id="L1131C9"></span><span style="color:var(--color-yang-id);">use-mgt-log-pdelay-req-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1132C11 */</span><span id="L1132C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This leaf is analogous to use-mgt-log-pdelay-req-interval
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.16.12 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1140C9 */</span><span id="L1140C9"></span><span style="color:var(--color-yang-id);">mgt-log-pdelay-req-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1141C11 */</span><span id="L1141C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This leaf is analogous to mgt-log-pdelay-req-interval
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.16.13 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1149C9 */</span><span id="L1149C9"></span><span style="color:var(--color-yang-id);">initial-compute-rate-ratio</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1150C11 */</span><span id="L1150C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This leaf is analogous to initial-compute-rate-ratio
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.16.14 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1158C9 */</span><span id="L1158C9"></span><span style="color:var(--color-yang-id);">current-compute-rate-ratio</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1159C11 */</span><span id="L1159C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1160C13 */</span><span id="L1160C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This leaf is analogous to current-compute-rate-ratio
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.16.15 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1168C9 */</span><span id="L1168C9"></span><span style="color:var(--color-yang-id);">use-mgt-compute-rate-ratio</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1169C11 */</span><span id="L1169C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This leaf is analogous to use-mgt-compute-rate-ratio
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.16.16 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1177C9 */</span><span id="L1177C9"></span><span style="color:var(--color-yang-id);">mgt-compute-rate-ratio</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1178C11 */</span><span id="L1178C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This leaf is analogous to mgt-compute-rate-ratio
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.16.17 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1186C9 */</span><span id="L1186C9"></span><span style="color:var(--color-yang-id);">initial-compute-mean-link-delay</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1187C11 */</span><span id="L1187C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This leaf is analogous to initial-compute-mean-link-delay
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.16.18 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1195C9 */</span><span id="L1195C9"></span><span style="color:var(--color-yang-id);">current-compute-mean-link-delay</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1196C11 */</span><span id="L1196C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1197C13 */</span><span id="L1197C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This leaf is analogous to current-compute-mean-link-delay
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.16.19 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1205C9 */</span><span id="L1205C9"></span><span style="color:var(--color-yang-id);">use-mgt-compute-mean-link-delay</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1206C11 */</span><span id="L1206C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This leaf is analogous to use-mgt-compute-mean-link-delay
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.16.20 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1214C9 */</span><span id="L1214C9"></span><span style="color:var(--color-yang-id);">mgt-compute-mean-link-delay</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1215C11 */</span><span id="L1215C11"></span><span style="color:var(--color-yang-id);">int8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This leaf is analogous to mgt-compute-mean-link-delay
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.16.21 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1223C9 */</span><span id="L1223C9"></span><span style="color:var(--color-yang-id);">allowed-lost-responses</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1224C11 */</span><span id="L1224C11"></span><span style="color:var(--color-yang-id);">uint8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This leaf is analogous to allowed-lost-responses
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.16.22 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1232C9 */</span><span id="L1232C9"></span><span style="color:var(--color-yang-id);">allowed-faults</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1233C11 */</span><span id="L1233C11"></span><span style="color:var(--color-yang-id);">uint8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This leaf is analogous to allowed-faults
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.16.23 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L1241C14 */</span><span id="L1241C14"></span><span style="color:var(--color-yang-id);">pdelay-truncated-timestamps</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1242C11 */</span><span id="L1242C11"></span><span style="color:var(--color-yang-id);">uint64</span> {
+        <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0..281474976710655"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1245C13 */</span><span id="L1245C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This leaf is analogous to pdelay-truncated-timestamps
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.16.25 of IEEE Std 802.1AS-2020"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L1253C14 */</span><span id="L1253C14"></span><span style="color:var(--color-yang-id);">port-statistics-ds</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This container is analogous to port-statistics-ds
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.17 of IEEE Std 802.1AS-2020"</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1260C11 */</span><span id="L1260C11"></span><span style="color:var(--color-yang-id);">rx-pdelay-req-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1261C13 */</span><span id="L1261C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1262C15 */</span><span id="L1262C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This leaf is analogous to rx-pdelay-req-count
+          for a PTP Port, but applicable to this Link Port."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.17.2 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1270C11 */</span><span id="L1270C11"></span><span style="color:var(--color-yang-id);">rx-pdelay-resp-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1271C13 */</span><span id="L1271C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1272C15 */</span><span id="L1272C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This leaf is analogous to rx-pdelay-resp-count
+          for a PTP Port, but applicable to this Link Port."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.17.3 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1280C11 */</span><span id="L1280C11"></span><span style="color:var(--color-yang-id);">rx-pdelay-resp-follow-up-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1281C13 */</span><span id="L1281C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1282C15 */</span><span id="L1282C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This leaf is analogous to rx-pdelay-resp-follow-up-count
+          for a PTP Port, but applicable to this Link Port."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.17.4 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1290C11 */</span><span id="L1290C11"></span><span style="color:var(--color-yang-id);">rx-packet-discard-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1291C13 */</span><span id="L1291C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1292C15 */</span><span id="L1292C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This leaf is analogous to rx-packet-discard-count
+          for a PTP Port, but applicable to this Link Port."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.17.5 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1300C11 */</span><span id="L1300C11"></span><span style="color:var(--color-yang-id);">pdelay-allowed-lost-exceeded-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1301C13 */</span><span id="L1301C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1302C15 */</span><span id="L1302C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This leaf is analogous to
+          pdelay-allowed-lost-exceeded-count
+          for a PTP Port, but applicable to this Link Port."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.17.6 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1311C11 */</span><span id="L1311C11"></span><span style="color:var(--color-yang-id);">tx-pdelay-req-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1312C13 */</span><span id="L1312C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1313C15 */</span><span id="L1313C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This leaf is analogous to tx-pdelay-req-count
+          for a PTP Port, but applicable to this Link Port."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.17.7 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1321C11 */</span><span id="L1321C11"></span><span style="color:var(--color-yang-id);">tx-pdelay-resp-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1322C13 */</span><span id="L1322C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1323C15 */</span><span id="L1323C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This leaf is analogous to tx-pdelay-resp-count
+          for a PTP Port, but applicable to this Link Port."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.17.8 of IEEE Std 802.1AS-2020"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1331C11 */</span><span id="L1331C11"></span><span style="color:var(--color-yang-id);">tx-pdelay-resp-follow-up-count</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1332C13 */</span><span id="L1332C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1333C15 */</span><span id="L1333C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This leaf is analogous to tx-pdelay-resp-follow-up-count
+          for a PTP Port, but applicable to this Link Port."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"14.17.9 of IEEE Std 802.1AS-2020"</span>;
+      }
+    }
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L1342C14 */</span><span id="L1342C14"></span><span style="color:var(--color-yang-id);">asymmetry-measurement-mode-ds</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This container is analogous to asymmetry-measurement-mode-ds
+        for a PTP Port, but applicable to this Link Port."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"14.18 of IEEE Std 802.1AS-2020"</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1349C11 */</span><span id="L1349C11"></span><span style="color:var(--color-yang-id);">enabled</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1350C13 */</span><span id="L1350C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This leaf is analogous to
+          asymmetry-measurement-mode-ds.enabled
+          for a PTP Port, but applicable to this Link Port."</span>;
+      }
+    }
+  }
+}

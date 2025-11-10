@@ -1,0 +1,108 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 31000,
+      "size": 50
+    }
+  ],
+  "module-name": "iana-hardware",
+  "module-revision": "2018-03-13",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "iana-hardware",
+      "status": "unstable",
+      "sid": 31000
+    },
+    {
+      "namespace": "identity",
+      "identifier": "backplane",
+      "status": "unstable",
+      "sid": 31001
+    },
+    {
+      "namespace": "identity",
+      "identifier": "battery",
+      "status": "unstable",
+      "sid": 31002
+    },
+    {
+      "namespace": "identity",
+      "identifier": "chassis",
+      "status": "unstable",
+      "sid": 31003
+    },
+    {
+      "namespace": "identity",
+      "identifier": "container",
+      "status": "unstable",
+      "sid": 31004
+    },
+    {
+      "namespace": "identity",
+      "identifier": "cpu",
+      "status": "unstable",
+      "sid": 31005
+    },
+    {
+      "namespace": "identity",
+      "identifier": "energy-object",
+      "status": "unstable",
+      "sid": 31006
+    },
+    {
+      "namespace": "identity",
+      "identifier": "fan",
+      "status": "unstable",
+      "sid": 31007
+    },
+    {
+      "namespace": "identity",
+      "identifier": "hardware-class",
+      "status": "unstable",
+      "sid": 31008
+    },
+    {
+      "namespace": "identity",
+      "identifier": "module",
+      "status": "unstable",
+      "sid": 31009
+    },
+    {
+      "namespace": "identity",
+      "identifier": "port",
+      "status": "unstable",
+      "sid": 31010
+    },
+    {
+      "namespace": "identity",
+      "identifier": "power-supply",
+      "status": "unstable",
+      "sid": 31011
+    },
+    {
+      "namespace": "identity",
+      "identifier": "sensor",
+      "status": "unstable",
+      "sid": 31012
+    },
+    {
+      "namespace": "identity",
+      "identifier": "stack",
+      "status": "unstable",
+      "sid": 31013
+    },
+    {
+      "namespace": "identity",
+      "identifier": "storage-drive",
+      "status": "unstable",
+      "sid": 31014
+    },
+    {
+      "namespace": "identity",
+      "identifier": "unknown",
+      "status": "unstable",
+      "sid": 31015
+    }
+  ]
+}

@@ -1,0 +1,313 @@
+module mchp-velocitysp-ptp {
+  yang-version 1.1;
+  namespace urn:mchp:params:xml:ns:yang:velocitysp-ptp;
+  prefix velocitysp-ptp;
+
+  import ieee1588-ptp {
+    prefix ptp;
+  }
+
+  import ieee802-types {
+    prefix "ieee";
+  }
+
+  description
+    "This module contains a colletion of YANG definitions for
+     managing MHCP systems running VelocitySP software.";
+
+  revision 2025-06-27 {
+    description
+      "Extend the enumeration for auto profiles";
+  }
+
+  revision 2025-03-28 {
+    description
+      "Add enumaration for PTP instance type";
+  }
+
+  revision 2025-01-31 {
+    description
+      "Add support for configuring MAC and VLAN";
+  }
+
+  revision 2024-10-11 {
+    description
+      "Extend clock accuracy types";
+  }
+
+  revision 2024-09-20 {
+    description
+      "Extend for automotive";
+  }
+
+  revision 2024-04-23 {
+    description
+      "Initial revision.";
+  }
+
+  typedef servo-type {
+    type enumeration {
+      enum empty {
+        value 0;
+        description
+          "Empty servo - doesn't do anything";
+      }
+      enum dummy {
+        value 1;
+        description
+          "Dummy servo";
+      }
+      enum pi {
+        value 2;
+        description
+          "PI servo. The P and the I constants can't be modified and they
+           have a value of 1.306 and 0.130.";
+      }
+    }
+  }
+
+  typedef velocitysp-instance-type {
+    type enumeration {
+      enum oc {
+        value 0;
+        description
+          "Ordinary Clock";
+      }
+      enum bc {
+        value 1;
+        description
+          "Boundary Clock";
+      }
+      enum p2p-tc {
+        value 2;
+        description
+          "Peer-to-peer Transparent Clock";
+      }
+      enum e2e-tc {
+        value 3;
+        description
+          "End-to-end Transparent Clock";
+      }
+
+      enum relay {
+        value 255;
+        description
+          "Relay Clock";
+      }
+    }
+    description
+      "Enumeration for the type of PTP Instance.
+      Values for this enumeration are specified by the IEEE 1588
+      standard exclusively.";
+    reference
+      "8.2.1.5.5 of IEEE Std 1588-2019";
+  }
+
+  typedef pin-function {
+    type enumeration {
+      enum disable {
+        value 0;
+        description
+          "Doesn't have any functionality";
+      }
+      enum 1pps-out {
+        value 1;
+        description
+          "Generate 1 pps";
+      }
+      enum 1pps-in {
+        value 2;
+        description
+          "Save the time when detecting 1 pps";
+      }
+    }
+  }
+
+  typedef profile-type {
+    type enumeration {
+      enum none {
+        value 0;
+        description
+          "This means that the automotive profile is not used";
+      }
+      enum bridge {
+        value 1;
+        description
+          "The DUT will have the profile of AED-B";
+      }
+      enum gm {
+        value 2;
+        description
+          "The DUT will have the profile of AED-GM";
+      }
+      enum end {
+        value 3;
+        description
+          "The DUT will have the profile of AED-E";
+      }
+    }
+  }
+
+  augment "/ptp:ptp" {
+    description
+      "Augment IEEE Std 1588";
+
+    container ltcs {
+      description
+        "YANG container that is used to get all LTCs (local time clock)";
+
+      list ltc {
+        key "ltc-index";
+        description
+          "List of zero or more LTC";
+
+        leaf ltc-index {
+          type uint32;
+          description
+            "The LTC list is indexed using this number";
+        }
+
+        container ptp-pins {
+          description
+            "YANG container that is used to get all PTP pins";
+
+          list ptp-pin {
+            key "index";
+            description
+              "List of zero or more pins";
+
+            leaf index {
+              type uint32;
+              description
+                "The PTP pins list is indexed using this number";
+            }
+
+            leaf function {
+              type pin-function;
+              description
+                "The function of the pin";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  augment "/ptp:ptp/ptp:instances/ptp:instance" {
+    description
+      "Augment IEEE Std 1588 instances";
+
+    container servos {
+      description
+        "YANG container that for servos";
+
+      list servo {
+        key "servo-index";
+        description
+          "List of one or more servos";
+
+        leaf servo-index {
+          type uint32;
+          description
+            "The servo list is indexed using a number";
+        }
+
+        leaf servo-type {
+          type servo-type;
+          description
+            "The type of the servo";
+        }
+
+        leaf ltc-index {
+          type uint8;
+          description
+            "The LTC index";
+        }
+
+        leaf offset {
+          type int64;
+          config false;
+          description
+            "The offset from master";
+        }
+
+        leaf state {
+          type uint8;
+          config false;
+          description
+            "The state of the servo";
+        }
+      }
+    }
+  }
+
+  augment "/ptp:ptp/ptp:instances/ptp:instance" {
+    description
+      "Augment IEEE Std 1588 instances";
+
+    container automotive {
+      description
+        "YANG container automotive";
+
+      leaf profile {
+        type profile-type;
+        description
+          "Profile for automotive";
+      }
+
+      leaf oper-log-pdelay-req-interval {
+        type int8;
+        description
+          "Operating pdelay request interval, this is set once the link is
+          stable";
+      }
+
+      leaf oper-log-sync-interval {
+        type int8;
+        description
+          "Operating sync interval, this is set once the system is locked";
+      }
+    }
+  }
+
+  identity ca-time-accurate-unknown {
+      base ptp:clock-accuracy;
+      description
+        "The time accuracy is unknown.
+        Number vaue is FE in hex.";
+  }
+
+  augment "/ptp:ptp/ptp:instances/ptp:instance" {
+    description
+      "Augment IEEE Std 1588 instances";
+
+    container l2 {
+      description
+        "YANG container L2 configuration";
+
+      leaf mac-address {
+        type ieee:mac-address;
+        description
+          "MAC address to be used by PTP frames";
+      }
+
+      leaf mac-address-enable {
+        type boolean;
+        description
+          "Enable to use or not the configured MAC address";
+      }
+
+      leaf vlan {
+        type uint16;
+        description
+          "VLAN to be used by PTP frames";
+      }
+
+      leaf vlan-enable {
+        type boolean;
+        description
+          "Enable to use or not the configured VLAN";
+      }
+    }
+  }
+}

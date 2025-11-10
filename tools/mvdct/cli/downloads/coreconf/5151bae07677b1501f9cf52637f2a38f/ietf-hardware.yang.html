@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ietf-hardware</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L2C15 */</span><span id="L2C15"></span><span style="color:var(--color-yang-id);">1.1</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:ietf:params:xml:ns:yang:ietf-hardware"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">hw</span>;
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L6C9 */</span><span id="L6C9"></span><span style="color:var(--color-yang-id);">ietf-inet-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L7C11 */</span><span id="L7C11"></span><span style="color:var(--color-yang-id);">inet</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L9C9 */</span><span id="L9C9"></span><span style="color:var(--color-yang-id);">ietf-yang-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L10C11 */</span><span id="L10C11"></span><span style="color:var(--color-yang-id);">yang</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L12C9 */</span><span id="L12C9"></span><span style="color:var(--color-yang-id);">iana-hardware</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L13C11 */</span><span id="L13C11"></span><span style="color:var(--color-yang-id);">ianahw</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IETF NETMOD (Network Modeling) Working Group"</span>;
+
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG Web:   <https://datatracker.ietf.org/wg/netmod/>
+     WG List:  <mailto:netmod@ietf.org>
+
+     Editor:   Andy Bierman
+               <mailto:andy@yumaworks.com>
+
+     Editor:   Martin Bjorklund
+               <mailto:mbj@tail-f.com>
+
+     Editor:   Jie Dong
+               <mailto:jie.dong@huawei.com>
+
+     Editor:   Dan Romascanu
+               <mailto:dromasca@gmail.com>"</span>;
+
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module contains a collection of YANG definitions for
+     managing hardware.
+
+     This data model is designed for the Network Management Datastore
+     Architecture (NMDA) defined in RFC 8342.
+     Copyright (c) 2018 IETF Trust and the persons identified as
+     authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Simplified BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC 8348; see
+     the RFC itself for full legal notices."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L54C11 */</span><span id="L54C11"></span><span style="color:var(--color-yang-id);">2018-03-13</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 8348: A YANG Data Model for Hardware Management"</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Features
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L65C10 */</span><span id="L65C10"></span><span style="color:var(--color-yang-id);">entity-mib</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This feature indicates that the device implements
+       the ENTITY-MIB."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4)"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L73C10 */</span><span id="L73C10"></span><span style="color:var(--color-yang-id);">hardware-state</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates that ENTITY-STATE-MIB objects are supported"</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 4268: Entity State MIB"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L80C10 */</span><span id="L80C10"></span><span style="color:var(--color-yang-id);">hardware-sensor</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates that ENTITY-SENSOR-MIB objects are supported"</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 3433: Entity Sensor Management Information Base"</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Typedefs
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L91C10 */</span><span id="L91C10"></span><span style="color:var(--color-yang-id);">admin-state</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L92C9 */</span><span id="L92C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L93C11 */</span><span id="L93C11"></span><span style="color:var(--color-yang-id);">unknown</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L94C14 */</span><span id="L94C14"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource is unable to report administrative state."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L98C11 */</span><span id="L98C11"></span><span style="color:var(--color-yang-id);">locked</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L99C14 */</span><span id="L99C14"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource is administratively prohibited from use."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L103C11 */</span><span id="L103C11"></span><span style="color:var(--color-yang-id);">shutting-down</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L104C14 */</span><span id="L104C14"></span><span style="color:var(--color-yang-id);">3</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource usage is administratively limited to current
+           instances of use."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L109C11 */</span><span id="L109C11"></span><span style="color:var(--color-yang-id);">unlocked</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L110C14 */</span><span id="L110C14"></span><span style="color:var(--color-yang-id);">4</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource is not administratively prohibited from
+           use."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Represents the various possible administrative states."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 4268: Entity State MIB - EntityAdminState"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L122C10 */</span><span id="L122C10"></span><span style="color:var(--color-yang-id);">oper-state</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L123C9 */</span><span id="L123C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L124C11 */</span><span id="L124C11"></span><span style="color:var(--color-yang-id);">unknown</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L125C14 */</span><span id="L125C14"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource is unable to report its operational state."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L129C11 */</span><span id="L129C11"></span><span style="color:var(--color-yang-id);">disabled</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L130C14 */</span><span id="L130C14"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource is totally inoperable."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L134C11 */</span><span id="L134C11"></span><span style="color:var(--color-yang-id);">enabled</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L135C14 */</span><span id="L135C14"></span><span style="color:var(--color-yang-id);">3</span>;
+
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource is partially or fully operable."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L140C11 */</span><span id="L140C11"></span><span style="color:var(--color-yang-id);">testing</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L141C14 */</span><span id="L141C14"></span><span style="color:var(--color-yang-id);">4</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource is currently being tested and cannot
+           therefore report whether or not it is operational."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Represents the possible values of operational states."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 4268: Entity State MIB - EntityOperState"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L153C10 */</span><span id="L153C10"></span><span style="color:var(--color-yang-id);">usage-state</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L154C9 */</span><span id="L154C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L155C11 */</span><span id="L155C11"></span><span style="color:var(--color-yang-id);">unknown</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L156C14 */</span><span id="L156C14"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource is unable to report usage state."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L160C11 */</span><span id="L160C11"></span><span style="color:var(--color-yang-id);">idle</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L161C14 */</span><span id="L161C14"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource is servicing no users."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L165C11 */</span><span id="L165C11"></span><span style="color:var(--color-yang-id);">active</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L166C14 */</span><span id="L166C14"></span><span style="color:var(--color-yang-id);">3</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource is currently in use, and it has sufficient
+           spare capacity to provide for additional users."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L171C11 */</span><span id="L171C11"></span><span style="color:var(--color-yang-id);">busy</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L172C14 */</span><span id="L172C14"></span><span style="color:var(--color-yang-id);">4</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource is currently in use, but it currently has no
+           spare capacity to provide for additional users."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Represents the possible values of usage states."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 4268: Entity State MIB -  EntityUsageState"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L184C10 */</span><span id="L184C10"></span><span style="color:var(--color-yang-id);">alarm-state</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L185C9 */</span><span id="L185C9"></span><span style="color:var(--color-yang-id);">bits</span> {
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L186C10 */</span><span id="L186C10"></span><span style="color:var(--color-yang-id);">unknown</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L187C17 */</span><span id="L187C17"></span><span style="color:var(--color-yang-id);">0</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource is unable to report alarm state."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L191C10 */</span><span id="L191C10"></span><span style="color:var(--color-yang-id);">under-repair</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L192C17 */</span><span id="L192C17"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource is currently being repaired, which, depending
+           on the implementation, may make the other values in this
+           bit string not meaningful."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L198C10 */</span><span id="L198C10"></span><span style="color:var(--color-yang-id);">critical</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L199C17 */</span><span id="L199C17"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"One or more critical alarms are active against the
+           resource."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L204C10 */</span><span id="L204C10"></span><span style="color:var(--color-yang-id);">major</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L205C17 */</span><span id="L205C17"></span><span style="color:var(--color-yang-id);">3</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"One or more major alarms are active against the
+           resource."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L210C10 */</span><span id="L210C10"></span><span style="color:var(--color-yang-id);">minor</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L211C17 */</span><span id="L211C17"></span><span style="color:var(--color-yang-id);">4</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"One or more minor alarms are active against the
+           resource."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L216C10 */</span><span id="L216C10"></span><span style="color:var(--color-yang-id);">warning</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L217C17 */</span><span id="L217C17"></span><span style="color:var(--color-yang-id);">5</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"One or more warning alarms are active against the
+           resource."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L222C10 */</span><span id="L222C10"></span><span style="color:var(--color-yang-id);">indeterminate</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L223C17 */</span><span id="L223C17"></span><span style="color:var(--color-yang-id);">6</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"One or more alarms of whose perceived severity cannot be
+           determined are active against this resource."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Represents the possible values of alarm states.  An alarm is a
+       persistent indication of an error or warning condition.
+
+       When no bits of this attribute are set, then no active alarms
+       are known against this component and it is not under repair."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 4268: Entity State MIB - EntityAlarmStatus"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L239C10 */</span><span id="L239C10"></span><span style="color:var(--color-yang-id);">standby-state</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L240C9 */</span><span id="L240C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L241C11 */</span><span id="L241C11"></span><span style="color:var(--color-yang-id);">unknown</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L242C14 */</span><span id="L242C14"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource is unable to report standby state."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L246C11 */</span><span id="L246C11"></span><span style="color:var(--color-yang-id);">hot-standby</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L247C14 */</span><span id="L247C14"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource is not providing service, but it will be
+           immediately able to take over the role of the resource to
+           be backed up, without the need for initialization
+           activity, and will contain the same information as the
+           resource to be backed up."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L255C11 */</span><span id="L255C11"></span><span style="color:var(--color-yang-id);">cold-standby</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L256C14 */</span><span id="L256C14"></span><span style="color:var(--color-yang-id);">3</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource is to back up another resource, but it will
+           not be immediately able to take over the role of a
+           resource to be backed up and will require some
+           initialization activity."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L263C11 */</span><span id="L263C11"></span><span style="color:var(--color-yang-id);">providing-service</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L264C14 */</span><span id="L264C14"></span><span style="color:var(--color-yang-id);">4</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The resource is providing service."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Represents the possible values of standby states."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 4268: Entity State MIB - EntityStandbyStatus"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L275C10 */</span><span id="L275C10"></span><span style="color:var(--color-yang-id);">sensor-value-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L276C9 */</span><span id="L276C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L277C11 */</span><span id="L277C11"></span><span style="color:var(--color-yang-id);">other</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L278C14 */</span><span id="L278C14"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A measure other than those listed below."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L282C11 */</span><span id="L282C11"></span><span style="color:var(--color-yang-id);">unknown</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L283C14 */</span><span id="L283C14"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"An unknown measurement or arbitrary, relative numbers"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L287C11 */</span><span id="L287C11"></span><span style="color:var(--color-yang-id);">volts-AC</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L288C14 */</span><span id="L288C14"></span><span style="color:var(--color-yang-id);">3</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A measure of electric potential (alternating current)."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L292C11 */</span><span id="L292C11"></span><span style="color:var(--color-yang-id);">volts-DC</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L293C14 */</span><span id="L293C14"></span><span style="color:var(--color-yang-id);">4</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A measure of electric potential (direct current)."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L297C11 */</span><span id="L297C11"></span><span style="color:var(--color-yang-id);">amperes</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L298C14 */</span><span id="L298C14"></span><span style="color:var(--color-yang-id);">5</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A measure of electric current."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L302C11 */</span><span id="L302C11"></span><span style="color:var(--color-yang-id);">watts</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L303C14 */</span><span id="L303C14"></span><span style="color:var(--color-yang-id);">6</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A measure of power."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L307C11 */</span><span id="L307C11"></span><span style="color:var(--color-yang-id);">hertz</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L308C14 */</span><span id="L308C14"></span><span style="color:var(--color-yang-id);">7</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A measure of frequency."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L312C11 */</span><span id="L312C11"></span><span style="color:var(--color-yang-id);">celsius</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L313C14 */</span><span id="L313C14"></span><span style="color:var(--color-yang-id);">8</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A measure of temperature."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L317C11 */</span><span id="L317C11"></span><span style="color:var(--color-yang-id);">percent-RH</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L318C14 */</span><span id="L318C14"></span><span style="color:var(--color-yang-id);">9</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A measure of percent relative humidity."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L322C11 */</span><span id="L322C11"></span><span style="color:var(--color-yang-id);">rpm</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L323C14 */</span><span id="L323C14"></span><span style="color:var(--color-yang-id);">10</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A measure of shaft revolutions per minute."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L327C11 */</span><span id="L327C11"></span><span style="color:var(--color-yang-id);">cmm</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L328C14 */</span><span id="L328C14"></span><span style="color:var(--color-yang-id);">11</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A measure of cubic meters per minute (airflow)."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L332C11 */</span><span id="L332C11"></span><span style="color:var(--color-yang-id);">truth-value</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L333C14 */</span><span id="L333C14"></span><span style="color:var(--color-yang-id);">12</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Value is one of 1 (true) or 2 (false)"</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A node using this data type represents the sensor measurement
+       data type associated with a physical sensor value.  The actual
+       data units are determined by examining a node of this type
+       together with the associated sensor-value-scale node.
+
+       A node of this type SHOULD be defined together with nodes of
+       type sensor-value-scale and type sensor-value-precision.
+       These three types are used to identify the semantics of a node
+       of type sensor-value."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 3433: Entity Sensor Management Information Base -
+                 EntitySensorDataType"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L353C10 */</span><span id="L353C10"></span><span style="color:var(--color-yang-id);">sensor-value-scale</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L354C9 */</span><span id="L354C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L355C11 */</span><span id="L355C11"></span><span style="color:var(--color-yang-id);">yocto</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L356C14 */</span><span id="L356C14"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Data scaling factor of 10^-24."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L360C11 */</span><span id="L360C11"></span><span style="color:var(--color-yang-id);">zepto</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L361C14 */</span><span id="L361C14"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Data scaling factor of 10^-21."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L365C11 */</span><span id="L365C11"></span><span style="color:var(--color-yang-id);">atto</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L366C14 */</span><span id="L366C14"></span><span style="color:var(--color-yang-id);">3</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Data scaling factor of 10^-18."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L370C11 */</span><span id="L370C11"></span><span style="color:var(--color-yang-id);">femto</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L371C14 */</span><span id="L371C14"></span><span style="color:var(--color-yang-id);">4</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Data scaling factor of 10^-15."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L375C11 */</span><span id="L375C11"></span><span style="color:var(--color-yang-id);">pico</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L376C14 */</span><span id="L376C14"></span><span style="color:var(--color-yang-id);">5</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Data scaling factor of 10^-12."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L380C11 */</span><span id="L380C11"></span><span style="color:var(--color-yang-id);">nano</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L381C14 */</span><span id="L381C14"></span><span style="color:var(--color-yang-id);">6</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Data scaling factor of 10^-9."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L385C11 */</span><span id="L385C11"></span><span style="color:var(--color-yang-id);">micro</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L386C14 */</span><span id="L386C14"></span><span style="color:var(--color-yang-id);">7</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Data scaling factor of 10^-6."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L390C11 */</span><span id="L390C11"></span><span style="color:var(--color-yang-id);">milli</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L391C14 */</span><span id="L391C14"></span><span style="color:var(--color-yang-id);">8</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Data scaling factor of 10^-3."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L395C11 */</span><span id="L395C11"></span><span style="color:var(--color-yang-id);">units</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L396C14 */</span><span id="L396C14"></span><span style="color:var(--color-yang-id);">9</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Data scaling factor of 10^0."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L400C11 */</span><span id="L400C11"></span><span style="color:var(--color-yang-id);">kilo</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L401C14 */</span><span id="L401C14"></span><span style="color:var(--color-yang-id);">10</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Data scaling factor of 10^3."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L405C11 */</span><span id="L405C11"></span><span style="color:var(--color-yang-id);">mega</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L406C14 */</span><span id="L406C14"></span><span style="color:var(--color-yang-id);">11</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Data scaling factor of 10^6."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L410C11 */</span><span id="L410C11"></span><span style="color:var(--color-yang-id);">giga</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L411C14 */</span><span id="L411C14"></span><span style="color:var(--color-yang-id);">12</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Data scaling factor of 10^9."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L415C11 */</span><span id="L415C11"></span><span style="color:var(--color-yang-id);">tera</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L416C14 */</span><span id="L416C14"></span><span style="color:var(--color-yang-id);">13</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Data scaling factor of 10^12."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L420C11 */</span><span id="L420C11"></span><span style="color:var(--color-yang-id);">peta</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L421C14 */</span><span id="L421C14"></span><span style="color:var(--color-yang-id);">14</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Data scaling factor of 10^15."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L425C11 */</span><span id="L425C11"></span><span style="color:var(--color-yang-id);">exa</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L426C14 */</span><span id="L426C14"></span><span style="color:var(--color-yang-id);">15</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Data scaling factor of 10^18."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L430C11 */</span><span id="L430C11"></span><span style="color:var(--color-yang-id);">zetta</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L431C14 */</span><span id="L431C14"></span><span style="color:var(--color-yang-id);">16</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Data scaling factor of 10^21."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L435C11 */</span><span id="L435C11"></span><span style="color:var(--color-yang-id);">yotta</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L436C14 */</span><span id="L436C14"></span><span style="color:var(--color-yang-id);">17</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Data scaling factor of 10^24."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A node using this data type represents a data scaling factor,
+       represented with an International System of Units (SI) prefix.
+       The actual data units are determined by examining a node of
+       this type together with the associated sensor-value-type.
+
+       A node of this type SHOULD be defined together with nodes of
+       type sensor-value-type and type sensor-value-precision.
+       Together, associated nodes of these three types are used to
+       identify the semantics of a node of type sensor-value."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 3433: Entity Sensor Management Information Base -
+                 EntitySensorDataScale"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L456C10 */</span><span id="L456C10"></span><span style="color:var(--color-yang-id);">sensor-value-precision</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L457C9 */</span><span id="L457C9"></span><span style="color:var(--color-yang-id);">int8</span> {
+      <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"-8 .. 9"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A node using this data type represents a sensor value
+       precision range.
+
+       A node of this type SHOULD be defined together with nodes of
+       type sensor-value-type and type sensor-value-scale.  Together,
+       associated nodes of these three types are used to identify the
+       semantics of a node of type sensor-value.
+
+       If a node of this type contains a value in the range 1 to 9,
+       it represents the number of decimal places in the fractional
+       part of an associated sensor-value fixed-point number.
+
+       If a node of this type contains a value in the range -8 to -1,
+       it represents the number of accurate digits in the associated
+       sensor-value fixed-point number.
+
+       The value zero indicates the associated sensor-value node is
+       not a fixed-point number.
+
+       Server implementers must choose a value for the associated
+       sensor-value-precision node so that the precision and accuracy
+       of the associated sensor-value node is correctly indicated.
+
+       For example, a component representing a temperature sensor
+       that can measure 0 to 100 degrees C in 0.1 degree
+       increments, +/- 0.05 degrees, would have a
+       sensor-value-precision value of '1', a sensor-value-scale
+       value of 'units', and a sensor-value ranging from '0' to
+       '1000'.  The sensor-value would be interpreted as
+       'degrees C * 10'."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 3433: Entity Sensor Management Information Base -
+                 EntitySensorPrecision"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L496C10 */</span><span id="L496C10"></span><span style="color:var(--color-yang-id);">sensor-value</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L497C9 */</span><span id="L497C9"></span><span style="color:var(--color-yang-id);">int32</span> {
+      <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"-1000000000 .. 1000000000"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+     <span style="color:var(--color-yang-text);">"A node using this data type represents a sensor value.
+
+      A node of this type SHOULD be defined together with nodes of
+      type sensor-value-type, type sensor-value-scale, and
+      type sensor-value-precision.  Together, associated nodes of
+      those three types are used to identify the semantics of a node
+      of this data type.
+
+      The semantics of a node using this data type are determined by
+      the value of the associated sensor-value-type node.
+
+      If the associated sensor-value-type node is equal to 'voltsAC',
+      'voltsDC', 'amperes', 'watts', 'hertz', 'celsius', or 'cmm',
+      then a node of this type MUST contain a fixed-point number
+      ranging from -999,999,999 to +999,999,999.  The value
+      -1000000000 indicates an underflow error.  The value
+      +1000000000 indicates an overflow error.  The
+      sensor-value-precision indicates how many fractional digits
+      are represented in the associated sensor-value node.
+
+      If the associated sensor-value-type node is equal to
+      'percentRH', then a node of this type MUST contain a number
+      ranging from 0 to 100.
+
+      If the associated sensor-value-type node is equal to 'rpm',
+      then a node of this type MUST contain a number ranging from
+      -999,999,999 to +999,999,999.
+
+      If the associated sensor-value-type node is equal to
+      'truth-value', then a node of this type MUST contain either the
+      value 1 (true) or the value 2 (false).
+
+      If the associated sensor-value-type node is equal to 'other' or
+      'unknown', then a node of this type MUST contain a number
+      ranging from -1000000000 to 1000000000."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 3433: Entity Sensor Management Information Base -
+                 EntitySensorValue"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L541C10 */</span><span id="L541C10"></span><span style="color:var(--color-yang-id);">sensor-status</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L542C9 */</span><span id="L542C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L543C11 */</span><span id="L543C11"></span><span style="color:var(--color-yang-id);">ok</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L544C14 */</span><span id="L544C14"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Indicates that the server can obtain the sensor value."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L548C11 */</span><span id="L548C11"></span><span style="color:var(--color-yang-id);">unavailable</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L549C14 */</span><span id="L549C14"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Indicates that the server presently cannot obtain the
+           sensor value."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L554C11 */</span><span id="L554C11"></span><span style="color:var(--color-yang-id);">nonoperational</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L555C14 */</span><span id="L555C14"></span><span style="color:var(--color-yang-id);">3</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Indicates that the server believes the sensor is broken.
+           The sensor could have a hard failure (disconnected wire)
+           or a soft failure such as out-of-range, jittery, or wildly
+           fluctuating readings."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A node using this data type represents the operational status
+       of a physical sensor."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 3433: Entity Sensor Management Information Base -
+                 EntitySensorStatus"</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Data nodes
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L575C12 */</span><span id="L575C12"></span><span style="color:var(--color-yang-id);">hardware</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Data nodes representing components.
+
+       If the server supports configuration of hardware components,
+       then this data model is instantiated in the configuration
+       datastores supported by the server.  The leaf-list 'datastore'
+       for the module 'ietf-hardware' in the YANG library provides
+       this information."</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L585C9 */</span><span id="L585C9"></span><span style="color:var(--color-yang-id);">last-change</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L586C11 */</span><span id="L586C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L300C10">yang:date-and-time</a></span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L587C13 */</span><span id="L587C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The time the '/hardware/component' list changed in the
+         operational state."</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L593C9 */</span><span id="L593C9"></span><span style="color:var(--color-yang-id);">component</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-comment);">/* L594C10 */</span><span id="L594C10"></span><span style="color:var(--color-yang-id);">name</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"List of components.
+
+         When the server detects a new hardware component, it
+         initializes a list entry in the operational state.
+
+         If the server does not support configuration of hardware
+         components, list entries in the operational state are
+         initialized with values for all nodes as detected by the
+         implementation.
+
+         Otherwise, this procedure is followed:
+
+           1. If there is an entry in the '/hardware/component' list
+              in the intended configuration with values for the nodes
+              'class', 'parent', and 'parent-rel-pos' that are equal
+              to the detected values, then the list entry in the
+              operational state is initialized with the configured
+              values, including the 'name'.
+
+           2. Otherwise (i.e., there is no matching configuration
+              entry), the list entry in the operational state is
+              initialized with values for all nodes as detected by
+              the implementation.
+
+         If the '/hardware/component' list in the intended
+         configuration is modified, then the system MUST behave as if
+         it re-initializes itself and follow the procedure in (1)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) - entPhysicalEntry"</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L626C11 */</span><span id="L626C11"></span><span style="color:var(--color-yang-id);">name</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L627C13 */</span><span id="L627C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The name assigned to this component.
+
+           This name is not required to be the same as
+           entPhysicalName."</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L635C11 */</span><span id="L635C11"></span><span style="color:var(--color-yang-id);">class</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L636C13 */</span><span id="L636C13"></span><span style="color:var(--color-yang-id);">identityref</span> {
+          <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L637C15 */</span><span id="L637C15"></span><span style="color:var(--color-yang-id);">ianahw:hardware-class</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L639C18 */</span><span id="L639C18"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"An indication of the general hardware type of the
+           component."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) - entPhysicalClass"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L647C11 */</span><span id="L647C11"></span><span style="color:var(--color-yang-id);">physical-index</span> {
+        <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L648C19 */</span><span id="L648C19"></span><span style="color:var(--color-yang-id);">entity-mib</span>;
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L649C13 */</span><span id="L649C13"></span><span style="color:var(--color-yang-id);">int32</span> {
+          <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..2147483647"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L652C15 */</span><span id="L652C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The entPhysicalIndex for the entPhysicalEntry represented
+           by this list entry."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) - entPhysicalIndex"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L660C11 */</span><span id="L660C11"></span><span style="color:var(--color-yang-id);">description</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L661C13 */</span><span id="L661C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L662C15 */</span><span id="L662C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A textual description of the component.  This node should
+           contain a string that identifies the manufacturer's name
+           for the component and should be set to a distinct value
+           for each version or model of the component."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) - entPhysicalDescr"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L672C11 */</span><span id="L672C11"></span><span style="color:var(--color-yang-id);">parent</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L673C13 */</span><span id="L673C13"></span><span style="color:var(--color-yang-id);">leafref</span> {
+          <span style="color:var(--color-yang-keyword);">path</span> "<span style="color:var(--color-yang-comment);">/* L674C16 */</span><span id="L674C16"></span><span style="color:var(--color-yang-id);">../../component/name"</span>;
+          <span style="color:var(--color-yang-keyword);">require-instance</span> <span style="color:var(--color-yang-comment);">/* L675C27 */</span><span id="L675C27"></span><span style="color:var(--color-yang-id);">false</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The name of the component that physically contains this
+           component.
+
+           If this leaf is not instantiated, it indicates that this
+           component is not contained in any other component.
+
+           In the event that a physical component is contained by
+           more than one physical component (e.g., double-wide
+           modules), this node contains the name of one of these
+           components.  An implementation MUST use the same name
+           every time this node is instantiated."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) - entPhysicalContainedIn"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L693C11 */</span><span id="L693C11"></span><span style="color:var(--color-yang-id);">parent-rel-pos</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L694C13 */</span><span id="L694C13"></span><span style="color:var(--color-yang-id);">int32</span> {
+          <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0 .. 2147483647"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"An indication of the relative position of this child
+           component among all its sibling components.  Sibling
+           components are defined as components that:
+
+             o share the same value of the 'parent' node and
+
+             o share a common base identity for the 'class' node.
+
+           Note that the last rule gives implementations flexibility
+           in how components are numbered.  For example, some
+           implementations might have a single number series for all
+           components derived from 'ianahw:port', while some others
+           might have different number series for different
+           components with identities derived from 'ianahw:port' (for
+           example, one for registered jack 45 (RJ45) and one for
+           small form-factor pluggable (SFP))."</span>;
+
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) -
+                     entPhysicalParentRelPos"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L720C16 */</span><span id="L720C16"></span><span style="color:var(--color-yang-id);">contains-child</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L721C13 */</span><span id="L721C13"></span><span style="color:var(--color-yang-id);">leafref</span> {
+          <span style="color:var(--color-yang-keyword);">path</span> "<span style="color:var(--color-yang-comment);">/* L722C16 */</span><span id="L722C16"></span><span style="color:var(--color-yang-id);">../../component/name"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L724C15 */</span><span id="L724C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The name of the contained component."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) - entPhysicalChildIndex"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L731C11 */</span><span id="L731C11"></span><span style="color:var(--color-yang-id);">hardware-rev</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L732C13 */</span><span id="L732C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L733C15 */</span><span id="L733C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The vendor-specific hardware revision string for the
+           component.  The preferred value is the hardware revision
+           identifier actually printed on the component itself (if
+           present)."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) -
+                     entPhysicalHardwareRev"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L744C11 */</span><span id="L744C11"></span><span style="color:var(--color-yang-id);">firmware-rev</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L745C13 */</span><span id="L745C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L746C15 */</span><span id="L746C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The vendor-specific firmware revision string for the
+           component."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) -
+                     entPhysicalFirmwareRev"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L755C11 */</span><span id="L755C11"></span><span style="color:var(--color-yang-id);">software-rev</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L756C13 */</span><span id="L756C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L757C15 */</span><span id="L757C15"></span><span style="color:var(--color-yang-id);">false</span>;
+
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The vendor-specific software revision string for the
+           component."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) -
+                     entPhysicalSoftwareRev"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L767C11 */</span><span id="L767C11"></span><span style="color:var(--color-yang-id);">serial-num</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L768C13 */</span><span id="L768C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L769C15 */</span><span id="L769C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The vendor-specific serial number string for the
+           component.  The preferred value is the serial number
+           string actually printed on the component itself (if
+           present)."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) - entPhysicalSerialNum"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L779C11 */</span><span id="L779C11"></span><span style="color:var(--color-yang-id);">mfg-name</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L780C13 */</span><span id="L780C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L781C15 */</span><span id="L781C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The name of the manufacturer of this physical component.
+           The preferred value is the manufacturer name string
+           actually printed on the component itself (if present).
+
+           Note that comparisons between instances of the
+           'model-name', 'firmware-rev', 'software-rev', and
+           'serial-num' nodes are only meaningful amongst components
+           with the same value of 'mfg-name'.
+
+           If the manufacturer name string associated with the
+           physical component is unknown to the server, then this
+           node is not instantiated."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) - entPhysicalMfgName"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L799C11 */</span><span id="L799C11"></span><span style="color:var(--color-yang-id);">model-name</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L800C13 */</span><span id="L800C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L801C15 */</span><span id="L801C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The vendor-specific model name identifier string
+           associated with this physical component.  The preferred
+           value is the customer-visible part number, which may be
+           printed on the component itself.
+           If the model name string associated with the physical
+           component is unknown to the server, then this node is not
+           instantiated."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) - entPhysicalModelName"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L814C11 */</span><span id="L814C11"></span><span style="color:var(--color-yang-id);">alias</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L815C13 */</span><span id="L815C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"An 'alias' name for the component, as specified by a
+           network manager, that provides a non-volatile 'handle' for
+           the component.
+
+           If no configured value exists, the server MAY set the
+           value of this node to a locally unique value in the
+           operational state.
+
+           A server implementation MAY map this leaf to the
+           entPhysicalAlias MIB object.  Such an implementation needs
+           to use some mechanism to handle the differences in size
+           and characters allowed between this leaf and
+           entPhysicalAlias.  The definition of such a mechanism is
+           outside the scope of this document."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) - entPhysicalAlias"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L835C11 */</span><span id="L835C11"></span><span style="color:var(--color-yang-id);">asset-id</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L836C13 */</span><span id="L836C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This node is a user-assigned asset tracking identifier for
+           the component.
+
+           A server implementation MAY map this leaf to the
+           entPhysicalAssetID MIB object.  Such an implementation
+           needs to use some mechanism to handle the differences in
+           size and characters allowed between this leaf and
+           entPhysicalAssetID.  The definition of such a mechanism is
+           outside the scope of this document."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) - entPhysicalAssetID"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L851C11 */</span><span id="L851C11"></span><span style="color:var(--color-yang-id);">is-fru</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L852C13 */</span><span id="L852C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L853C15 */</span><span id="L853C15"></span><span style="color:var(--color-yang-id);">false</span>;
+
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This node indicates whether or not this component is
+           considered a 'field-replaceable unit' by the vendor.  If
+           this node contains the value 'true', then this component
+           identifies a field-replaceable unit.  For all components
+           that are permanently contained within a field-replaceable
+           unit, the value 'false' should be returned for this
+           node."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) - entPhysicalIsFRU"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L867C11 */</span><span id="L867C11"></span><span style="color:var(--color-yang-id);">mfg-date</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L868C13 */</span><span id="L868C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L300C10">yang:date-and-time</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L869C15 */</span><span id="L869C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The date of manufacturing of the managed component."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) - entPhysicalMfgDate"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L876C16 */</span><span id="L876C16"></span><span style="color:var(--color-yang-id);">uri</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L877C13 */</span><span id="L877C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L419C10">inet:uri</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This node contains identification information about the
+           component."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) - entPhysicalUris"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L885C11 */</span><span id="L885C11"></span><span style="color:var(--color-yang-id);">uuid</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L886C13 */</span><span id="L886C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L445C10">yang:uuid</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L887C15 */</span><span id="L887C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A Universally Unique Identifier of the component."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) - entPhysicalUUID"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L894C16 */</span><span id="L894C16"></span><span style="color:var(--color-yang-id);">state</span> {
+        <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L895C19 */</span><span id="L895C19"></span><span style="color:var(--color-yang-id);">hardware-state</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"State-related nodes"</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 4268: Entity State MIB"</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L901C13 */</span><span id="L901C13"></span><span style="color:var(--color-yang-id);">state-last-changed</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L902C15 */</span><span id="L902C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L300C10">yang:date-and-time</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L903C17 */</span><span id="L903C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The date and time when the value of any of the
+             admin-state, oper-state, usage-state, alarm-state, or
+             standby-state changed for this component.
+
+             If there has been no change since the last
+             re-initialization of the local system, this node
+             contains the date and time of local system
+             initialization.  If there has been no change since the
+             component was added to the local system, this node
+             contains the date and time of the insertion."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 4268: Entity State MIB - entStateLastChanged"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L919C13 */</span><span id="L919C13"></span><span style="color:var(--color-yang-id);">admin-state</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L920C15 */</span><span id="L920C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-hardware#L91C10">admin-state</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The administrative state for this component.
+
+             This node refers to a component's administrative
+             permission to service both other components within its
+             containment hierarchy as well other users of its
+             services defined by means outside the scope of this
+             module.
+
+             Some components exhibit only a subset of the remaining
+             administrative state values.  Some components cannot be
+             locked; hence, this node exhibits only the 'unlocked'
+             state.  Other components cannot be shut down gracefully;
+             hence, this node does not exhibit the 'shutting-down'
+             state."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 4268: Entity State MIB - entStateAdmin"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L940C13 */</span><span id="L940C13"></span><span style="color:var(--color-yang-id);">oper-state</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L941C15 */</span><span id="L941C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-hardware#L122C10">oper-state</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L942C17 */</span><span id="L942C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The operational state for this component.
+
+             Note that this node does not follow the administrative
+             state.  An administrative state of 'down' does not
+             predict an operational state of 'disabled'.
+
+             Note that some implementations may not be able to
+             accurately report oper-state while the admin-state node
+             has a value other than 'unlocked'.  In these cases, this
+             node MUST have a value of 'unknown'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 4268: Entity State MIB - entStateOper"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L958C13 */</span><span id="L958C13"></span><span style="color:var(--color-yang-id);">usage-state</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L959C15 */</span><span id="L959C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-hardware#L153C10">usage-state</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L960C17 */</span><span id="L960C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The usage state for this component.
+
+             This node refers to a component's ability to service
+             more components in a containment hierarchy.
+
+             Some components will exhibit only a subset of the usage
+             state values.  Components that are unable to ever
+             service any components within a containment hierarchy
+             will always have a usage state of 'busy'.  In some
+             cases, a component will be able to support only one
+             other component within its containment hierarchy and
+             will therefore only exhibit values of 'idle' and
+             'busy'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 4268: Entity State MIB - entStateUsage"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L979C13 */</span><span id="L979C13"></span><span style="color:var(--color-yang-id);">alarm-state</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L980C15 */</span><span id="L980C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-hardware#L184C10">alarm-state</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L981C17 */</span><span id="L981C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The alarm state for this component.  It does not
+             include the alarms raised on child components within its
+             containment hierarchy."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 4268: Entity State MIB - entStateAlarm"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L990C13 */</span><span id="L990C13"></span><span style="color:var(--color-yang-id);">standby-state</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L991C15 */</span><span id="L991C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-hardware#L239C10">standby-state</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L992C17 */</span><span id="L992C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The standby state for this component.
+
+             Some components will exhibit only a subset of the
+             remaining standby state values.  If this component
+             cannot operate in a standby role, the value of this node
+             will always be 'providing-service'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 4268: Entity State MIB - entStateStandby"</span>;
+        }
+      }
+
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L1005C16 */</span><span id="L1005C16"></span><span style="color:var(--color-yang-id);">sensor-data</span> {
+        <span style="color:var(--color-yang-keyword);">when</span> '<span style="color:var(--color-yang-comment);">/* L1006C14 */</span><span id="L1006C14"></span><span style="color:var(--color-yang-id);">derived-from-or-self(../class,
+                                   "ianahw:sensor")'</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Sensor data nodes present for any component of type
+             'sensor'"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L1012C19 */</span><span id="L1012C19"></span><span style="color:var(--color-yang-id);">hardware-sensor</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L1013C15 */</span><span id="L1013C15"></span><span style="color:var(--color-yang-id);">false</span>;
+
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Sensor-related nodes."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 3433: Entity Sensor Management Information Base"</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1020C13 */</span><span id="L1020C13"></span><span style="color:var(--color-yang-id);">value</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1021C15 */</span><span id="L1021C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-hardware#L496C10">sensor-value</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The most recent measurement obtained by the server
+             for this sensor.
+
+             A client that periodically fetches this node should also
+             fetch the nodes 'value-type', 'value-scale', and
+             'value-precision', since they may change when the value
+             is changed."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 3433: Entity Sensor Management Information Base -
+                       entPhySensorValue"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1035C13 */</span><span id="L1035C13"></span><span style="color:var(--color-yang-id);">value-type</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1036C15 */</span><span id="L1036C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-hardware#L275C10">sensor-value-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The type of data units associated with the
+             sensor value"</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 3433: Entity Sensor Management Information Base -
+                       entPhySensorType"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1044C13 */</span><span id="L1044C13"></span><span style="color:var(--color-yang-id);">value-scale</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1045C15 */</span><span id="L1045C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-hardware#L353C10">sensor-value-scale</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The (power of 10) scaling factor associated
+             with the sensor value"</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 3433: Entity Sensor Management Information Base -
+                       entPhySensorScale"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1054C13 */</span><span id="L1054C13"></span><span style="color:var(--color-yang-id);">value-precision</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1055C15 */</span><span id="L1055C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-hardware#L456C10">sensor-value-precision</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of decimal places of precision
+             associated with the sensor value"</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 3433: Entity Sensor Management Information Base -
+                       entPhySensorPrecision"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1064C13 */</span><span id="L1064C13"></span><span style="color:var(--color-yang-id);">oper-status</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1065C15 */</span><span id="L1065C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-hardware#L541C10">sensor-status</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The operational status of the sensor."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 3433: Entity Sensor Management Information Base -
+                       entPhySensorOperStatus"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1073C13 */</span><span id="L1073C13"></span><span style="color:var(--color-yang-id);">units-display</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1074C15 */</span><span id="L1074C15"></span><span style="color:var(--color-yang-id);">string</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A textual description of the data units that should be
+             used in the display of the sensor value."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 3433: Entity Sensor Management Information Base -
+                       entPhySensorUnitsDisplay"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1083C13 */</span><span id="L1083C13"></span><span style="color:var(--color-yang-id);">value-timestamp</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1084C15 */</span><span id="L1084C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L300C10">yang:date-and-time</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The time the status and/or value of this sensor was last
+             obtained by the server."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 3433: Entity Sensor Management Information Base -
+                       entPhySensorValueTimeStamp"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1092C13 */</span><span id="L1092C13"></span><span style="color:var(--color-yang-id);">value-update-rate</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1093C15 */</span><span id="L1093C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"milliseconds"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An indication of the frequency that the server updates
+             the associated 'value' node, represented in
+             milliseconds.  The value zero indicates:
+
+              - the sensor value is updated on demand (e.g.,
+                when polled by the server for a get-request),
+
+              - the sensor value is updated when the sensor
+                value changes (event-driven), or
+
+              - the server does not know the update rate."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 3433: Entity Sensor Management Information Base -
+                       entPhySensorValueUpdateRate"</span>;
+        }
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Notifications
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">notification</span> <span style="color:var(--color-yang-comment);">/* L1119C15 */</span><span id="L1119C15"></span><span style="color:var(--color-yang-id);">hardware-state-change</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A hardware-state-change notification is generated when the
+       value of /hardware/last-change changes in the operational
+       state."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 6933: Entity MIB (Version 4) - entConfigChange"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">notification</span> <span style="color:var(--color-yang-comment);">/* L1128C15 */</span><span id="L1128C15"></span><span style="color:var(--color-yang-id);">hardware-state-oper-enabled</span> {
+    <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L1129C15 */</span><span id="L1129C15"></span><span style="color:var(--color-yang-id);">hardware-state</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A hardware-state-oper-enabled notification signifies that a
+       component has transitioned into the 'enabled' state."</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1134C9 */</span><span id="L1134C9"></span><span style="color:var(--color-yang-id);">name</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1135C11 */</span><span id="L1135C11"></span><span style="color:var(--color-yang-id);">leafref</span> {
+        <span style="color:var(--color-yang-keyword);">path</span> "<span style="color:var(--color-yang-comment);">/* L1136C14 */</span><span id="L1136C14"></span><span style="color:var(--color-yang-id);">/hardware/component/name"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The name of the component that has transitioned into the
+         'enabled' state."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1143C9 */</span><span id="L1143C9"></span><span style="color:var(--color-yang-id);">admin-state</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1144C11 */</span><span id="L1144C11"></span><span style="color:var(--color-yang-id);">leafref</span> {
+        <span style="color:var(--color-yang-keyword);">path</span> "<span style="color:var(--color-yang-comment);">/* L1145C14 */</span><span id="L1145C14"></span><span style="color:var(--color-yang-id);">/hardware/component/state/admin-state"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The administrative state for the component."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1150C9 */</span><span id="L1150C9"></span><span style="color:var(--color-yang-id);">alarm-state</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1151C11 */</span><span id="L1151C11"></span><span style="color:var(--color-yang-id);">leafref</span> {
+        <span style="color:var(--color-yang-keyword);">path</span> "<span style="color:var(--color-yang-comment);">/* L1152C14 */</span><span id="L1152C14"></span><span style="color:var(--color-yang-id);">/hardware/component/state/alarm-state"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The alarm state for the component."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 4268: Entity State MIB - entStateOperEnabled"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">notification</span> <span style="color:var(--color-yang-comment);">/* L1161C15 */</span><span id="L1161C15"></span><span style="color:var(--color-yang-id);">hardware-state-oper-disabled</span> {
+    <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L1162C15 */</span><span id="L1162C15"></span><span style="color:var(--color-yang-id);">hardware-state</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A hardware-state-oper-disabled notification signifies that a
+       component has transitioned into the 'disabled' state."</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1167C9 */</span><span id="L1167C9"></span><span style="color:var(--color-yang-id);">name</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1168C11 */</span><span id="L1168C11"></span><span style="color:var(--color-yang-id);">leafref</span> {
+        <span style="color:var(--color-yang-keyword);">path</span> "<span style="color:var(--color-yang-comment);">/* L1169C14 */</span><span id="L1169C14"></span><span style="color:var(--color-yang-id);">/hardware/component/name"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The name of the component that has transitioned into the
+         'disabled' state."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1175C9 */</span><span id="L1175C9"></span><span style="color:var(--color-yang-id);">admin-state</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1176C11 */</span><span id="L1176C11"></span><span style="color:var(--color-yang-id);">leafref</span> {
+        <span style="color:var(--color-yang-keyword);">path</span> "<span style="color:var(--color-yang-comment);">/* L1177C14 */</span><span id="L1177C14"></span><span style="color:var(--color-yang-id);">/hardware/component/state/admin-state"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The administrative state for the component."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1182C9 */</span><span id="L1182C9"></span><span style="color:var(--color-yang-id);">alarm-state</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1183C11 */</span><span id="L1183C11"></span><span style="color:var(--color-yang-id);">leafref</span> {
+        <span style="color:var(--color-yang-keyword);">path</span> "<span style="color:var(--color-yang-comment);">/* L1184C14 */</span><span id="L1184C14"></span><span style="color:var(--color-yang-id);">/hardware/component/state/alarm-state"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The alarm state for the component."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 4268: Entity State MIB - entStateOperDisabled"</span>;
+  }
+
+}

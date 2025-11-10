@@ -1,0 +1,162 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 22000,
+      "size": 1000
+    }
+  ],
+  "module-name": "mchp-velocitysp-ptp",
+  "module-revision": "2025-06-27",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "mchp-velocitysp-ptp",
+      "status": "unstable",
+      "sid": 22000
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/mchp-velocitysp-ptp:servos",
+      "status": "unstable",
+      "sid": 22001
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/mchp-velocitysp-ptp:servos/servo",
+      "status": "unstable",
+      "sid": 22002
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/mchp-velocitysp-ptp:servos/servo/ltc-index",
+      "status": "unstable",
+      "sid": 22003
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/mchp-velocitysp-ptp:servos/servo/offset",
+      "status": "unstable",
+      "sid": 22004
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/mchp-velocitysp-ptp:servos/servo/servo-index",
+      "status": "unstable",
+      "sid": 22005
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/mchp-velocitysp-ptp:servos/servo/servo-type",
+      "status": "unstable",
+      "sid": 22006
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/mchp-velocitysp-ptp:servos/servo/state",
+      "status": "unstable",
+      "sid": 22007
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/mchp-velocitysp-ptp:ltcs",
+      "status": "unstable",
+      "sid": 22008
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/mchp-velocitysp-ptp:ltcs/ltc",
+      "status": "unstable",
+      "sid": 22009
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/mchp-velocitysp-ptp:ltcs/ltc/ltc-index",
+      "status": "unstable",
+      "sid": 22010
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/mchp-velocitysp-ptp:ltcs/ltc/ptp-pins",
+      "status": "unstable",
+      "sid": 22011
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/mchp-velocitysp-ptp:ltcs/ltc/ptp-pins/ptp-pin",
+      "status": "unstable",
+      "sid": 22012
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/mchp-velocitysp-ptp:ltcs/ltc/ptp-pins/ptp-pin/function",
+      "status": "unstable",
+      "sid": 22013
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/mchp-velocitysp-ptp:ltcs/ltc/ptp-pins/ptp-pin/index",
+      "status": "unstable",
+      "sid": 22014
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/mchp-velocitysp-ptp:automotive",
+      "status": "unstable",
+      "sid": 22015
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/mchp-velocitysp-ptp:automotive/profile",
+      "status": "unstable",
+      "sid": 22016
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-unknown",
+      "status": "unstable",
+      "sid": 22017
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/mchp-velocitysp-ptp:l2",
+      "status": "unstable",
+      "sid": 22018
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/mchp-velocitysp-ptp:l2/mac-address",
+      "status": "unstable",
+      "sid": 22019
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/mchp-velocitysp-ptp:l2/mac-address-enable",
+      "status": "unstable",
+      "sid": 22020
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/mchp-velocitysp-ptp:l2/vlan",
+      "status": "unstable",
+      "sid": 22021
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/mchp-velocitysp-ptp:l2/vlan-enable",
+      "status": "unstable",
+      "sid": 22022
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/mchp-velocitysp-ptp:automotive/oper-log-pdelay-req-interval",
+      "status": "unstable",
+      "sid": 22023
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/mchp-velocitysp-ptp:automotive/oper-log-sync-interval",
+      "status": "unstable",
+      "sid": 22024
+    }
+  ]
+}

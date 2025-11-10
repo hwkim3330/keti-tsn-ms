@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-comment);">// Copyright (c) 2021-2022 Microchip Technology Inc. and its subsidiaries.</span>
+<span style="color:var(--color-yang-comment);">//</span>
+<span style="color:var(--color-yang-comment);">// Unpublished rights reserved under the copyright laws of the United States</span>
+<span style="color:var(--color-yang-comment);">// of America, other countries and international treaties. Permission to use,</span>
+<span style="color:var(--color-yang-comment);">// copy, store and modify, the software and its source code is granted but</span>
+<span style="color:var(--color-yang-comment);">// only in connection with products utilizing the Microsemi switch and PHY</span>
+<span style="color:var(--color-yang-comment);">// products.  Permission is also granted for you to integrate into other</span>
+<span style="color:var(--color-yang-comment);">// products, disclose, transmit and distribute the software only in an</span>
+<span style="color:var(--color-yang-comment);">// absolute machine readable format (e.g. HEX file) and only in or with</span>
+<span style="color:var(--color-yang-comment);">// products utilizing the Microsemi switch and PHY products.  The source code</span>
+<span style="color:var(--color-yang-comment);">// of the software may not be disclosed, transmitted or distributed without</span>
+<span style="color:var(--color-yang-comment);">// the prior written permission of Microsemi.</span>
+<span style="color:var(--color-yang-comment);">//</span>
+<span style="color:var(--color-yang-comment);">// This copyright notice must appear in any copy, modification, disclosure,</span>
+<span style="color:var(--color-yang-comment);">// transmission or distribution of the software.  Microsemi retains all</span>
+<span style="color:var(--color-yang-comment);">// ownership, copyright, trade secret and proprietary rights in the software</span>
+<span style="color:var(--color-yang-comment);">// and its source code, including all modifications thereto.</span>
+<span style="color:var(--color-yang-comment);">//</span>
+<span style="color:var(--color-yang-comment);">// THIS SOFTWARE HAS BEEN PROVIDED "AS IS". MICROSEMI HEREBY DISCLAIMS ALL</span>
+<span style="color:var(--color-yang-comment);">// WARRANTIES OF ANY KIND WITH RESPECT TO THE SOFTWARE, WHETHER SUCH</span>
+<span style="color:var(--color-yang-comment);">// WARRANTIES ARE EXPRESS, IMPLIED, STATUTORY OR OTHERWISE INCLUDING, WITHOUT</span>
+<span style="color:var(--color-yang-comment);">// LIMITATION, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR USE OR</span>
+<span style="color:var(--color-yang-comment);">// PURPOSE AND NON-INFRINGEMENT.</span>
+
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L25C7 */</span><span id="L25C7"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-bridge-dev</span> {
+    <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L26C17 */</span><span id="L26C17"></span><span style="color:var(--color-yang-id);">1.1</span>;
+    <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:mchp:params:xml:ns:yang:ieee802-dot1q-bridge-dev"</span>;
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L28C11 */</span><span id="L28C11"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-bridge-dev-pre</span>;
+
+    <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L30C11 */</span><span id="L30C11"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-bridge</span> {
+        <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L31C15 */</span><span id="L31C15"></span><span style="color:var(--color-yang-id);">dot1q</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L34C11 */</span><span id="L34C11"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-psfp-bridge</span> {
+        <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L35C15 */</span><span id="L35C15"></span><span style="color:var(--color-yang-id);">psfp-bridge</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L38C11 */</span><span id="L38C11"></span><span style="color:var(--color-yang-id);">mchp-velocitysp-bridge</span> {
+        <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L39C15 */</span><span id="L39C15"></span><span style="color:var(--color-yang-id);">lm-bridge</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L42C13 */</span><span id="L42C13"></span><span style="color:var(--color-yang-id);">2024-04-12</span> {
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L45C14 */</span><span id="L45C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:address</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L46C16 */</span><span id="L46C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L49C14 */</span><span id="L49C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:bridge-type</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L50C16 */</span><span id="L50C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L53C14 */</span><span id="L53C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:address</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L54C16 */</span><span id="L54C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L57C14 */</span><span id="L57C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-mst</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L58C16 */</span><span id="L58C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L61C14 */</span><span id="L61C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-port</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L62C16 */</span><span id="L62C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L65C14 */</span><span id="L65C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:version</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L66C16 */</span><span id="L66C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L69C14 */</span><span id="L69C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:max-vids</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L70C16 */</span><span id="L70C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L73C14 */</span><span id="L73C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:override-default-pvid</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L74C16 */</span><span id="L74C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L77C14 */</span><span id="L77C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:protocol-template</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L78C16 */</span><span id="L78C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L81C14 */</span><span id="L81C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:max-msti</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L82C16 */</span><span id="L82C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L85C14 */</span><span id="L85C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:vlan</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L86C16 */</span><span id="L86C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L89C14 */</span><span id="L89C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:protocol-group-database</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L90C16 */</span><span id="L90C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L93C14 */</span><span id="L93C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:vid-to-fid-allocation</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L94C16 */</span><span id="L94C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L97C14 */</span><span id="L97C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:fid-to-vid-allocation</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L98C16 */</span><span id="L98C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L101C14 */</span><span id="L101C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:capabilities</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L102C16 */</span><span id="L102C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L105C14 */</span><span id="L105C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:dynamic-entries</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L106C16 */</span><span id="L106C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L109C14 */</span><span id="L109C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:dynamic-vlan-registration-entries</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L110C16 */</span><span id="L110C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L113C14 */</span><span id="L113C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:filtering-entry/dot1q:port-map/dot1q:map-type</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L114C16 */</span><span id="L114C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L117C14 */</span><span id="L117C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:filtering-entry/dot1q:status</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L118C16 */</span><span id="L118C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L121C14 */</span><span id="L121C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:mac-address-registration-entries</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L122C16 */</span><span id="L122C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L125C14 */</span><span id="L125C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:size</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L126C16 */</span><span id="L126C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L129C14 */</span><span id="L129C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:static-entries</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L130C16 */</span><span id="L130C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L133C14 */</span><span id="L133C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:static-vlan-registration-entries</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L134C16 */</span><span id="L134C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L137C14 */</span><span id="L137C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:vlan-registration-entry/dot1q:port-map/dot1q:map-type/dot1q:dynamic-filtering-entries</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L138C16 */</span><span id="L138C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L141C14 */</span><span id="L141C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:vlan-registration-entry/dot1q:port-map/dot1q:map-type/dot1q:dynamic-reservation-entries</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L142C16 */</span><span id="L142C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L145C14 */</span><span id="L145C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:vlan-registration-entry/dot1q:port-map/dot1q:map-type/dot1q:dynamic-vlan-registration-entries</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L146C16 */</span><span id="L146C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L149C14 */</span><span id="L149C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:vlan-registration-entry/dot1q:port-map/dot1q:map-type/dot1q:mac-address-registration-entries</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L150C16 */</span><span id="L150C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L153C14 */</span><span id="L153C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:vlan-registration-entry/dot1q:port-map/dot1q:map-type/dot1q:static-filtering-entries</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L154C16 */</span><span id="L154C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L157C14 */</span><span id="L157C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:vlan-registration-entry/dot1q:port-map/dot1q:map-type/dot1q:static-vlan-registration-entries/dot1q:static-vlan-registration-entries/dot1q:registrar-admin-control</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L158C16 */</span><span id="L158C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L161C14 */</span><span id="L161C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:id</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L162C16 */</span><span id="L162C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L165C14 */</span><span id="L165C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:permanent-database</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L166C16 */</span><span id="L166C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L169C14 */</span><span id="L169C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:traffic-class-enabled</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L170C16 */</span><span id="L170C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L173C14 */</span><span id="L173C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:type</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L174C16 */</span><span id="L174C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L177C14 */</span><span id="L177C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-filters/psfp-bridge:stream-filter-instance-table/psfp-bridge:flow-meter-enable</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L178C16 */</span><span id="L178C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L181C14 */</span><span id="L181C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-filters/psfp-bridge:stream-filter-instance-table/psfp-bridge:stream-handle-spec/psfp-bridge:wildcard/psfp-bridge:wildcard</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L182C16 */</span><span id="L182C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L185C14 */</span><span id="L185C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:admin-control-list/psfp-bridge:gate-control-entry/psfp-bridge:operation-name</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L186C16 */</span><span id="L186C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L189C14 */</span><span id="L189C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:config-change</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L190C16 */</span><span id="L190C16"></span><span style="color:var(--color-yang-id);">replace</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L191C17 */</span><span id="L191C17"></span><span style="color:var(--color-yang-id);">lm-bridge:mchp-config-change-type</span>;
+        }
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L195C14 */</span><span id="L195C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:config-change-error</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L196C16 */</span><span id="L196C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L199C14 */</span><span id="L199C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:oper-base-time</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L200C16 */</span><span id="L200C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L203C14 */</span><span id="L203C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:oper-control-list</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L204C16 */</span><span id="L204C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L207C14 */</span><span id="L207C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:oper-cycle-time</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L208C16 */</span><span id="L208C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L211C14 */</span><span id="L211C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:oper-cycle-time-extension</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L212C16 */</span><span id="L212C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L215C14 */</span><span id="L215C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:tick-granularity</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L216C16 */</span><span id="L216C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L219C14 */</span><span id="L219C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:supported-cycle-max</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L220C16 */</span><span id="L220C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L223C14 */</span><span id="L223C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:supported-interval-max</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L224C16 */</span><span id="L224C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L227C14 */</span><span id="L227C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:components</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L228C16 */</span><span id="L228C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L231C14 */</span><span id="L231C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:ports</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L232C16 */</span><span id="L232C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L235C14 */</span><span id="L235C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:up-time</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L236C16 */</span><span id="L236C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L239C14 */</span><span id="L239C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:supported-list-max</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L240C16 */</span><span id="L240C16"></span><span style="color:var(--color-yang-id);">replace</span> {
+            <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L241C19 */</span><span id="L241C19"></span><span style="color:var(--color-yang-id);">false</span>;
+        }
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L245C14 */</span><span id="L245C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:flow-meters/psfp-bridge:max-flow-meter-instances</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L246C16 */</span><span id="L246C16"></span><span style="color:var(--color-yang-id);">replace</span> {
+            <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L247C19 */</span><span id="L247C19"></span><span style="color:var(--color-yang-id);">false</span>;
+        }
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L251C14 */</span><span id="L251C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:oper-ipv</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L252C16 */</span><span id="L252C16"></span><span style="color:var(--color-yang-id);">replace</span> {
+            <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L253C19 */</span><span id="L253C19"></span><span style="color:var(--color-yang-id);">false</span>;
+        }
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L257C14 */</span><span id="L257C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:filtering-entry/dot1q:vids</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L258C16 */</span><span id="L258C16"></span><span style="color:var(--color-yang-id);">replace</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L259C17 */</span><span id="L259C17"></span><span style="color:var(--color-yang-id);">lm-bridge:mchp-vid-type</span>;
+        }
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L263C14 */</span><span id="L263C14"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:vlan-registration-entry/dot1q:vids</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L264C16 */</span><span id="L264C16"></span><span style="color:var(--color-yang-id);">replace</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L265C17 */</span><span id="L265C17"></span><span style="color:var(--color-yang-id);">lm-bridge:mchp-vid-type</span>;
+        }
+    }
+}

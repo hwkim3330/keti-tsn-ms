@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-preemption-bridge</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-text);">"1.1"</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-comment);">/* L3C12 */</span><span id="L3C12"></span><span style="color:var(--color-yang-id);">urn:ieee:std:802.1Q:yang:ieee802-dot1q-preemption-bridge</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">preempt-bridge</span>;
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L5C9 */</span><span id="L5C9"></span><span style="color:var(--color-yang-id);">ietf-interfaces</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L6C11 */</span><span id="L6C11"></span><span style="color:var(--color-yang-id);">if</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L8C9 */</span><span id="L8C9"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-bridge</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L9C11 */</span><span id="L9C11"></span><span style="color:var(--color-yang-id);">dot1q</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L11C9 */</span><span id="L11C9"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-preemption</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L12C11 */</span><span id="L12C11"></span><span style="color:var(--color-yang-id);">preempt</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IEEE 802.1 Working Group"</span>;
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG-URL: http://www.ieee802.org/1/
+    WG-EMail: stds-802-1-l@ieee.org
+    
+    Contact: IEEE 802.1 Working Group Chair
+    Postal: C/O IEEE 802.1 Working Group
+    IEEE Standards Association
+    445 Hoes Lane
+    Piscataway, NJ 08854
+    USA
+    
+    E-mail: STDS-802-1-CHAIRS@IEEE.ORG"</span>;
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module provides for management of IEEE Std 802.1Q Bridges that
+    support Frame Preemption.
+    
+    Copyright (C) IEEE (2022).
+    
+    This version of this YANG module is part of IEEE Std 802.1Q; see the
+    standard itself for full legal notices."</span>;
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L36C11 */</span><span id="L36C11"></span><span style="color:var(--color-yang-id);">2022-08-18</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1Qcw. Initial version.
+      
+      The following reference statement identifies each referenced IEEE
+      Standard as updated by applicable amendments."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Q Bridges and Bridged Networks: 
+      IEEE Stds 802.1Q-2022, 802.1Qcw-2023."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L46C10 */</span><span id="L46C10"></span><span style="color:var(--color-yang-id);">frame-preemption</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Frame preemption supported."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L52C11 */</span><span id="L52C11"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port"</span> {
+    <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-text);">"frame-preemption"</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment bridge-port with Frame Preemption configuration."</span>;
+    <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L56C9 */</span><span id="L56C9"></span><span style="color:var(--color-yang-id);">preempt:preemption-parameters</span>;
+  }
+}

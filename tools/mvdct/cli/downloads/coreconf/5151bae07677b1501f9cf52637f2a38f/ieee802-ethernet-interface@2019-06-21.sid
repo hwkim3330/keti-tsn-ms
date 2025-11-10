@@ -1,0 +1,324 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 5000,
+      "size": 1000
+    }
+  ],
+  "module-name": "ieee802-ethernet-interface",
+  "module-revision": "2019-06-21",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ieee802-ethernet-interface",
+      "status": "unstable",
+      "sid": 5000
+    },
+    {
+      "namespace": "feature",
+      "identifier": "ethernet-pause",
+      "status": "unstable",
+      "sid": 5001
+    },
+    {
+      "namespace": "feature",
+      "identifier": "ethernet-pfc",
+      "status": "unstable",
+      "sid": 5002
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet",
+      "status": "unstable",
+      "sid": 5003
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/auto-negotiation",
+      "status": "unstable",
+      "sid": 5004
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/auto-negotiation/enable",
+      "status": "unstable",
+      "sid": 5005
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/auto-negotiation/negotiation-status",
+      "status": "unstable",
+      "sid": 5006
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/capabilities",
+      "status": "unstable",
+      "sid": 5007
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/capabilities/auto-negotiation",
+      "status": "unstable",
+      "sid": 5008
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/duplex",
+      "status": "unstable",
+      "sid": 5009
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/flow-control",
+      "status": "unstable",
+      "sid": 5010
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/flow-control/force-flow-control",
+      "status": "unstable",
+      "sid": 5011
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/flow-control/pause",
+      "status": "unstable",
+      "sid": 5012
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/flow-control/pause/direction",
+      "status": "unstable",
+      "sid": 5013
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/flow-control/pause/statistics",
+      "status": "unstable",
+      "sid": 5014
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/flow-control/pause/statistics/in-frames-pause",
+      "status": "unstable",
+      "sid": 5015
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/flow-control/pause/statistics/out-frames-pause",
+      "status": "unstable",
+      "sid": 5016
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/flow-control/pfc",
+      "status": "unstable",
+      "sid": 5017
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/flow-control/pfc/enable",
+      "status": "unstable",
+      "sid": 5018
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/flow-control/pfc/statistics",
+      "status": "unstable",
+      "sid": 5019
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/flow-control/pfc/statistics/in-frames-pfc",
+      "status": "unstable",
+      "sid": 5020
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/flow-control/pfc/statistics/out-frames-pfc",
+      "status": "unstable",
+      "sid": 5021
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/frame-limit-slow-protocol",
+      "status": "unstable",
+      "sid": 5022
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/mac-control-extension-control",
+      "status": "unstable",
+      "sid": 5023
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/max-frame-length",
+      "status": "unstable",
+      "sid": 5024
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/speed",
+      "status": "unstable",
+      "sid": 5025
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics",
+      "status": "unstable",
+      "sid": 5026
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/frame",
+      "status": "unstable",
+      "sid": 5027
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/frame/in-broadcast-frames",
+      "status": "unstable",
+      "sid": 5028
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/frame/in-error-fcs-frames",
+      "status": "unstable",
+      "sid": 5029
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/frame/in-error-mac-internal-frames",
+      "status": "unstable",
+      "sid": 5030
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/frame/in-error-oversize-frames",
+      "status": "unstable",
+      "sid": 5031
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/frame/in-error-undersize-frames",
+      "status": "unstable",
+      "sid": 5032
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/frame/in-frames",
+      "status": "unstable",
+      "sid": 5033
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/frame/in-multicast-frames",
+      "status": "unstable",
+      "sid": 5034
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/frame/in-total-frames",
+      "status": "unstable",
+      "sid": 5035
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/frame/in-total-octets",
+      "status": "unstable",
+      "sid": 5036
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/frame/out-broadcast-frames",
+      "status": "unstable",
+      "sid": 5037
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/frame/out-error-mac-internal-frames",
+      "status": "unstable",
+      "sid": 5038
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/frame/out-frames",
+      "status": "unstable",
+      "sid": 5039
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/frame/out-multicast-frames",
+      "status": "unstable",
+      "sid": 5040
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/mac-control",
+      "status": "unstable",
+      "sid": 5041
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/mac-control/in-frames-mac-control-extension",
+      "status": "unstable",
+      "sid": 5042
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/mac-control/in-frames-mac-control-unknown",
+      "status": "unstable",
+      "sid": 5043
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/mac-control/out-frames-mac-control-extension",
+      "status": "unstable",
+      "sid": 5044
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/phy",
+      "status": "unstable",
+      "sid": 5045
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/phy/in-error-symbol",
+      "status": "unstable",
+      "sid": 5046
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/phy/lpi",
+      "status": "unstable",
+      "sid": 5047
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/phy/lpi/in-lpi-time",
+      "status": "unstable",
+      "sid": 5048
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/phy/lpi/in-lpi-transitions",
+      "status": "unstable",
+      "sid": 5049
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/phy/lpi/out-lpi-time",
+      "status": "unstable",
+      "sid": 5050
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-ethernet-interface:ethernet/statistics/phy/lpi/out-lpi-transitions",
+      "status": "unstable",
+      "sid": 5051
+    }
+  ]
+}

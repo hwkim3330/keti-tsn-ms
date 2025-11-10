@@ -1,0 +1,108 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 14000,
+      "size": 1000
+    }
+  ],
+  "module-name": "ieee802-dot1q-preemption-bridge",
+  "module-revision": "2022-08-18",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ieee802-dot1q-preemption-bridge",
+      "status": "unstable",
+      "sid": 14000
+    },
+    {
+      "namespace": "feature",
+      "identifier": "frame-preemption",
+      "status": "unstable",
+      "sid": 14001
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/ieee802-dot1q-preemption-bridge:frame-preemption-parameters",
+      "status": "unstable",
+      "sid": 14002
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/ieee802-dot1q-preemption-bridge:frame-preemption-parameters/frame-preemption-status-table",
+      "status": "unstable",
+      "sid": 14003
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/ieee802-dot1q-preemption-bridge:frame-preemption-parameters/frame-preemption-status-table/priority0",
+      "status": "unstable",
+      "sid": 14004
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/ieee802-dot1q-preemption-bridge:frame-preemption-parameters/frame-preemption-status-table/priority1",
+      "status": "unstable",
+      "sid": 14005
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/ieee802-dot1q-preemption-bridge:frame-preemption-parameters/frame-preemption-status-table/priority2",
+      "status": "unstable",
+      "sid": 14006
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/ieee802-dot1q-preemption-bridge:frame-preemption-parameters/frame-preemption-status-table/priority3",
+      "status": "unstable",
+      "sid": 14007
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/ieee802-dot1q-preemption-bridge:frame-preemption-parameters/frame-preemption-status-table/priority4",
+      "status": "unstable",
+      "sid": 14008
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/ieee802-dot1q-preemption-bridge:frame-preemption-parameters/frame-preemption-status-table/priority5",
+      "status": "unstable",
+      "sid": 14009
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/ieee802-dot1q-preemption-bridge:frame-preemption-parameters/frame-preemption-status-table/priority6",
+      "status": "unstable",
+      "sid": 14010
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/ieee802-dot1q-preemption-bridge:frame-preemption-parameters/frame-preemption-status-table/priority7",
+      "status": "unstable",
+      "sid": 14011
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/ieee802-dot1q-preemption-bridge:frame-preemption-parameters/hold-advance",
+      "status": "unstable",
+      "sid": 14012
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/ieee802-dot1q-preemption-bridge:frame-preemption-parameters/hold-request",
+      "status": "unstable",
+      "sid": 14013
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/ieee802-dot1q-preemption-bridge:frame-preemption-parameters/preemption-active",
+      "status": "unstable",
+      "sid": 14014
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/ieee802-dot1q-preemption-bridge:frame-preemption-parameters/release-advance",
+      "status": "unstable",
+      "sid": 14015
+    }
+  ]
+}

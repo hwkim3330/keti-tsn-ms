@@ -1,0 +1,551 @@
+module mchp-velocitysp-port {
+  yang-version 1.1;
+  namespace "urn:mchp:params:xml:ns:yang:velocitysp-port";
+  prefix lm-port;
+  import ietf-yang-types {
+    prefix yang;
+  }
+  import ietf-interfaces {
+    prefix if;
+  }
+  import iana-if-type {
+    prefix ianaif;
+  }
+  import ieee802-dot1q-types {
+    prefix dot1qtypes;
+  }
+  import ieee802-ethernet-interface {
+    prefix ieee802-eth-if;
+  }
+  description
+    "This module contains a collection of YANG definitions for
+     managing ports of MCHP systems running VelocitySP software.";
+
+  revision 2025-06-30 {
+    description
+      "Added extended VID type and default values.";
+  }
+
+  revision 2025-01-20 {
+    description
+      "Added Port Policers.";
+  }
+
+  revision 2024-12-20 {
+    description
+      "Initial revision.";
+  }
+
+  typedef oper-info-type {
+    type enumeration {
+      enum oper_speed_default_based;     // Speed origins from default
+      enum oper_speed_mgmt_based;        // Speed set by mgmt
+      enum oper_speed_sfp_based;         // Speed set by sfp
+      enum oper_speed_sfp_not_supported; // Illegal setup
+    }
+    description "Port speed origins/errors";
+  }
+
+  typedef phy-clock-role-type {
+    type enumeration {
+      enum phy_clock_auto;     // Auto mode
+      enum phy_clock_leader;   // Formerly master
+      enum phy_clock_follower; // Formerly slave
+    }
+    description "Clock roles of the phy";
+  }
+
+  typedef vid-ext {
+    type uint16 {
+      range "0 .. 4095";
+    }
+    description
+      "Extended VLAN ID type.";
+  }
+
+  feature trunk_vlan {
+    description
+      "This feature is the configuration of pushing a tag to mirrored
+       frames transmitted on the MONITOR port to support a trunk VLAN";
+  }
+
+  feature frame_selector {
+    description
+      "This feature is the configuration of port policing frame selector,
+       the selection which frames are policed";
+  }
+
+  augment "/if:interfaces/if:interface" {
+    when
+      "if:type = 'ianaif:ethernetCsmacd'" {
+      description
+        "Applies when an Ethernet bridge port.";
+    }
+    description
+      "Augment the interface model with the Ethernet bridge port";
+    container eth-port {
+      description
+        "Ethernet port is an extension of the IETF Interfaces model (RFC7223).";
+      container config {
+        description
+          "Container of configuration for each bridge port.";
+        leaf max-frame-length {
+          type uint16 {
+            range "1518..10240";
+          }
+          default "10240";
+          description
+            "Maximum frame size accepted on the port, including FCS.";
+        }
+        leaf duplex {
+          type ieee802-eth-if:duplex-type;
+          description
+            "Operational duplex mode of the Ethernet interface.";
+        }
+        leaf speed {
+          type ieee802-eth-if:eth-if-speed-type;
+          units "Gb/s";
+          description
+            "Administrative speed of the Ethernet interface.
+             If ieee802-eth-if:auto-negotiation is enabled this field is ignored.
+             If Fiber SFP is inserted this field is ignored.
+             If DAC SFP is inserted this field is used.";
+        }
+        leaf phy-clock-role {
+          type phy-clock-role-type;
+          default "phy_clock_auto";
+          description
+            "Role of the phy clock Auto/Leader/Follower";
+        }
+      }
+      container status {
+        config false;
+        description
+          "Container of status for each bridge port.";
+        leaf flow-control {
+          type ieee802-eth-if:pause-fc-direction-type;
+          description
+            "Operational flow control mode of the Ethernet interface.";
+        }
+        leaf oper-info {
+          type oper-info-type;
+          description
+            "Information of the operational status of the Ethernet interface.";
+        }
+      }
+      container statistics {
+        config false;
+        description
+          "Container of statistics for each bridge port.";
+        action clear-statistics {
+          description
+            "Clear port counters.";
+          reference
+            "RFC 2819 extension";
+        }
+        leaf clear {
+          status obsolete;
+          type boolean;
+          description
+            "Clear port counters.";
+          reference
+            "RFC 2819 extension";
+        }
+        leaf rx-64-octets {
+          type yang:counter64;
+          description
+            "The number of received packets with a length of 64 octets.";
+          reference
+            "RFC 2819: Rx etherStatsPkts64Octets";
+        }
+        leaf rx-65-127-octets {
+          type yang:counter64;
+          description
+            "The number of received packets with a length of 65-127 octets.";
+          reference
+            "RFC 2819: Rx etherStatsPkts65to127Octets";
+        }
+        leaf rx-128-255-octets {
+          type yang:counter64;
+          description
+            "The number of received packets with a length of 128-255 octets.";
+          reference
+            "RFC 2819: Rx etherStatsPkts128to255Octets";
+        }
+        leaf rx-256-511-octets {
+          type yang:counter64;
+          description
+            "The number of received packets with a length of 256-511 octets.";
+          reference
+            "RFC 2819: Rx etherStatsPkts256to511Octets";
+        }
+        leaf rx-512-1023-octets {
+          type yang:counter64;
+          description
+            "The number of received packets with a length of 512-1023 octets.";
+          reference
+            "RFC 2819: Rx etherStatsPkts512to1023Octets";
+        }
+        leaf rx-1024-1518-octets {
+          type yang:counter64;
+          description
+            "The number of received packets with a length of 1024-1518 octets.";
+          reference
+            "RFC 2819: Rx etherStatsPkts1024to1518Octets";
+        }
+        leaf rx-1519-max-octets {
+          type yang:counter64;
+          description
+            "The number of received packets with a length greater than 1518 octets.";
+          reference
+            "RFC 2819 extension";
+        }
+        leaf rx-fragments {
+          type yang:counter64;
+          description
+            "The number of received fragment packets.";
+          reference
+            "RFC 2819: Rx etherStatsFragments";
+        }
+        leaf rx-jabbers {
+          type yang:counter64;
+          description
+            "The number of received jabber packets.";
+          reference
+            "RFC 2819: Rx etherStatsJabbers";
+        }
+        leaf tx-64-octets {
+          type yang:counter64;
+          description
+            "The number of transmitted packets with a length of 64 octets.";
+          reference
+            "RFC 2819: Tx etherStatsPkts64Octets";
+        }
+        leaf tx-65-127-octets {
+          type yang:counter64;
+          description
+            "The number of transmitted packets with a length of 65-127 octets.";
+          reference
+            "RFC 2819: Tx etherStatsPkts65to127Octets";
+        }
+        leaf tx-128-255-octets {
+          type yang:counter64;
+          description
+            "The number of transmitted packets with a length of 128-255 octets.";
+          reference
+            "RFC 2819: Tx etherStatsPkts128to255Octets";
+        }
+        leaf tx-256-511-octets {
+          type yang:counter64;
+          description
+            "The number of transmitted packets with a length of 256-511 octets.";
+          reference
+            "RFC 2819: Tx etherStatsPkts256to511Octets";
+        }
+        leaf tx-512-1023-octets {
+          type yang:counter64;
+          description
+            "The number of transmitted packets with a length of 512-1023 octets.";
+          reference
+            "RFC 2819: Tx etherStatsPkts512to1023Octets";
+        }
+        leaf tx-1024-1518-octets {
+          type yang:counter64;
+          description
+            "The number of transmitted packets with a length of 1024-1518 octets.";
+          reference
+            "RFC 2819: Tx etherStatsPkts1024to1518Octets";
+        }
+        leaf tx-1519-max-octets {
+          type yang:counter64;
+          description
+            "The number of transmitted packets with a length greater than 1518 octets.";
+          reference
+            "RFC 2819 extension";
+        }
+        list traffic-class {
+          key "traffic-class";
+          description
+            "The counters for a traffic class.";
+          reference
+            "RFC 2819 extension";
+          leaf traffic-class {
+            type dot1qtypes:traffic-class-type;
+            description
+              "The traffic class index.";
+            reference
+              "8.6.6 of IEEE Std 802.1Q-2018";
+          }
+          leaf rx-packets {
+            type yang:counter64;
+            description
+              "The number of received packets for a given traffic class.";
+            reference
+              "RFC 2819 extension";
+          }
+          leaf tx-packets {
+            type yang:counter64;
+            description
+              "The number of transmitted packets for a given traffic class.";
+            reference
+              "RFC 2819 extension";
+          }
+        }
+        leaf rx-mm-fragments {
+          type yang:counter64;
+          description
+            "The number of received mPackets.";
+          reference
+            "IEEE 802.3br-2016: aMACMergeFragCountRx";
+        }
+        leaf rx-mm-asm-packets {
+          type yang:counter64;
+          description
+            "The number of received successfully reassembled packets.";
+          reference
+            "IEEE 802.3br-2016: aMACMergeFrameAssOkCount";
+        }
+        leaf rx-mm-asm-errors {
+          type yang:counter64;
+          description
+            "The number of reassembly errors.";
+          reference
+            "IEEE 802.3br-2016: aMACMergeFrameAssErrorCount";
+        }
+        leaf rx-mm-smd-errors {
+          type yang:counter64;
+          description
+            "The number of received frames with SMD errors.";
+          reference
+            "IEEE 802.3br-2016: aMACMergeFrameSmdErrorCount";
+        }
+        leaf tx-mm-fragments {
+          type yang:counter64;
+          description
+            "The number of transmitted mPackets.";
+          reference
+            "IEEE 802.3br-2016: aMACMergeFragCountTx";
+        }
+        leaf tx-mm-holds {
+          type yang:counter64;
+          description
+            "The number of hold transitions.";
+          reference
+            "IEEE 802.3br-2016: aMACMergeHoldCount";
+        }
+      }
+    }
+    container eth-qos {
+      description
+        "Ethernet QOS is an extension of the IETF Interfaces model (RFC7223).";
+      container config {
+        description
+          "Container of QOS configuration for each bridge port.";
+        list traffic-class-shapers {
+          key "traffic-class";
+          description
+            "This map associate the traffic-class
+            parameter to the traffic-class shaper configuration";
+          leaf traffic-class {
+            type dot1qtypes:traffic-class-type;
+            description
+              "The traffic class index associated with a given traffic
+              class.";
+            reference
+              "8.6.6 of IEEE Std 802.1Q-2018";
+          }
+          choice type {
+            description
+              "The shaper type";
+            container single-leaky-bucket {
+              description
+                  "Container of the Single Leaky Bucket shaper configuration";
+              leaf committed-information-rate {
+                type uint32 {
+                    range "0..4294967295";
+                }
+                description
+                  "The Committed information rate in kilobits per second.
+                   The rate will be rounded to the nearest value supported";
+
+              }
+              leaf committed-burst-size {
+                type uint32 {
+                    range "0..4294967295";
+                }
+                description
+                  "The Committed Burst Size in bytes.
+                   The size will be rounded to the nearest value supported";
+              }
+            }
+            container credit-based {
+              description
+                  "Container of the Credit based shaper configuration";
+              leaf idle-slope {
+                type uint32 {
+                    range "0..4294967295";
+                }
+                description
+                  "The Idle slope is the rate of credits that is accumulated
+                  (in kilobits per second)";
+                reference
+                  "8.6.8.2 of IEEE Std 802.1Q-2018";
+              }
+            }
+          }
+        }
+        leaf-list traffic-class-schedulers-bandwidth {
+          type uint8 {
+              range "0..100";
+          }
+          description
+              "This list contains the traffic-class scheduler bandwidth in percent.
+              The list only contains traffic-class that is part of Weighted Fairness queueing (DWRR).
+              The first traffic-class in the list is 0, the next is always one higher.
+              The traffic-class not in the list is strict scheduling.";
+        }
+        list port-policers {
+          key "index";
+          description
+            "Multiple policers can be created on the same port.
+             The maximum number of policers is hardware dependent.
+             Which frames to be policed can be selected by 'frame_selector'.
+             In case a frame is selected by multiple polices the most conservative wins";
+          leaf index {
+            type uint8 {
+              range "1..max";
+            }
+            description
+              "The index of the port policer.";
+          }
+
+          leaf frame-selector {
+            if-feature frame_selector;
+            type bits {
+              bit known-unicast {
+                position 0;
+                description
+                  "Police known unicast frames.";
+              }
+              bit known-multicast {
+                position 1;
+                description
+                  "Police known multicast frames.";
+              }
+              bit known-broadcast {
+                position 2;
+                description
+                  "Police known broadcast frames.";
+              }
+              bit unknown-unicast {
+                position 3;
+                description
+                  "Police unknown unicast frames.";
+              }
+              bit unknown-multicast {
+                position 4;
+                description
+                  "Police unknown multicast frames.";
+              }
+              bit unknown-broadcast {
+                position 5;
+                description
+                  "Police unknown broadcast frames.";
+              }
+            }
+            description
+              "Selection of which frames are policed.
+               All ingress frames on the port are policed if all are selected.
+               Default is all bit set and on some platforms it cannot be changed.";
+          }
+          choice type {
+            description
+              "The policer can be either a type frame or bit rate policer.";
+            container frame-rate {
+              description
+                "Container of the frame rate policer.";
+              leaf rate {
+                type uint32;
+                description
+                  "Frame rate (frames per second).";
+              }
+              leaf burst-size {
+                type uint32;
+                description
+                  "Burst size (Bytes).";
+              }
+            }
+            container bit-rate {
+              description
+                "Container of the bit rate policer.";
+              leaf rate {
+                type uint64;
+                description
+                  "Bit rate (bits per second).";
+              }
+              leaf burst-size {
+                type uint32;
+                description
+                  "Burst size (Bytes).";
+              }
+            }
+          }
+        }
+      }
+    }
+    container eth-mirror {
+      presence
+        "Configures this ports role in the mirroring functionality. If not precent,
+         the role of this ports is NONE";
+      description
+        "Ethernet MIRROR is an extension of the IETF Interfaces model (RFC7223).
+         This is supporting configuration of copying frames to a monitor port";
+      container config {
+        description
+          "Container of MIRROR configuration for each bridge port.
+           It is implemented as a choice with a container for each role the port can have
+           in the Mirroring functionality.
+           Configuring a (role) case container changes the current role of the port.
+           Getting this (config) container will only return the case container of the current role.
+           Getting a case container of a not current role will return NOT FOUND";
+        choice role {
+          description
+            "The interface mirror role configuration.";
+          container monitor {
+            description
+              "This is the MONITOR role configuration. Frames forwarded from the Mirrored interfaces are transmitted on this port.
+               Only one port can have this role";
+            leaf forwarding {
+              type boolean;
+              description
+                "Enable normal traffic forwarding to Monitor role interface";
+            }
+            leaf vid {
+                if-feature trunk_vlan;
+                type vid-ext;
+                description
+                  "The VLAN identifier used in a pushed TAG on transmitted
+                   mirrored frames to support a trunk VLAN. A VLAN tag is only pushed if
+                   value is not zero";
+            }
+          }
+          container mirrored {
+            description
+              "This is the MIRRORED role configuration. Ingress and/or egress frames on this interface is
+               forwarded to the MONITOR role interface. Multiple ports can have this role";
+            leaf ingress {
+              type boolean;
+              description
+                "Enable ingress frames to be forwarded to MONITOR role interface";
+            }
+            leaf egress {
+              type boolean;
+              description
+                "Enable egress frames to be forwarded to MONITOR role interface";
+            }
+          }
+        }
+      }
+    }
+  }
+}

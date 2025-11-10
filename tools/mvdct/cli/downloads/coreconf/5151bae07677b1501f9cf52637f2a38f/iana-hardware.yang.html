@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">iana-hardware</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L2C15 */</span><span id="L2C15"></span><span style="color:var(--color-yang-id);">1.1</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:ietf:params:xml:ns:yang:iana-hardware"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">ianahw</span>;
+
+  <span style="color:var(--color-yang-keyword);">organization</span> <span style="color:var(--color-yang-text);">"IANA"</span>;
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"        Internet Assigned Numbers Authority
+
+     Postal: ICANN
+             12025 Waterfront Drive, Suite 300
+             Los Angeles, CA  90094-2536
+             United States of America
+
+     Tel:    +1 310 301 5800
+     E-Mail: iana@iana.org>"</span>;
+
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"IANA-defined identities for hardware class.
+
+     The latest revision of this YANG module can be obtained from
+     the IANA website.
+
+     Requests for new values should be made to IANA via
+     email (iana@iana.org).
+
+     Copyright (c) 2018 IETF Trust and the persons identified as
+     authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Simplified BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     The initial version of this YANG module is part of RFC 8348;
+     see the RFC itself for full legal notices."</span>;
+  <span style="color:var(--color-yang-keyword);">reference</span>
+    <span style="color:var(--color-yang-text);">"https://www.iana.org/assignments/yang-parameters"</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L42C11 */</span><span id="L42C11"></span><span style="color:var(--color-yang-id);">2018-03-13</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 8348: A YANG Data Model for Hardware Management"</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Identities
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L53C11 */</span><span id="L53C11"></span><span style="color:var(--color-yang-id);">hardware-class</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity is the base for all hardware class
+       identifiers."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L59C11 */</span><span id="L59C11"></span><span style="color:var(--color-yang-id);">unknown</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L60C9 */</span><span id="L60C9"></span><span style="color:var(--color-yang-id);">ianahw:hardware-class</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity is applicable if the hardware class is unknown
+       to the server."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L66C11 */</span><span id="L66C11"></span><span style="color:var(--color-yang-id);">chassis</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L67C9 */</span><span id="L67C9"></span><span style="color:var(--color-yang-id);">ianahw:hardware-class</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity is applicable if the hardware class is an
+       overall container for networking equipment.  Any class of
+       physical component, except a stack, may be contained within a
+       chassis; a chassis may only be contained within a stack."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L75C11 */</span><span id="L75C11"></span><span style="color:var(--color-yang-id);">backplane</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L76C9 */</span><span id="L76C9"></span><span style="color:var(--color-yang-id);">ianahw:hardware-class</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity is applicable if the hardware class is some sort
+       of device for aggregating and forwarding networking traffic,
+       such as a shared backplane in a modular ethernet switch.  Note
+       that an implementation may model a backplane as a single
+       physical component, which is actually implemented as multiple
+       discrete physical components (within a chassis or stack)."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L86C11 */</span><span id="L86C11"></span><span style="color:var(--color-yang-id);">container</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L87C9 */</span><span id="L87C9"></span><span style="color:var(--color-yang-id);">ianahw:hardware-class</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity is applicable if the hardware class is capable
+       of containing one or more removable physical entities,
+       possibly of different types.  For example, each (empty or
+       full) slot in a chassis will be modeled as a container.  Note
+       that all removable physical components should be modeled
+       within a container component, such as field-replaceable
+       modules, fans, or power supplies.  Note that all known
+       containers should be modeled by the agent, including empty
+       containers."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L100C11 */</span><span id="L100C11"></span><span style="color:var(--color-yang-id);">power-supply</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L101C9 */</span><span id="L101C9"></span><span style="color:var(--color-yang-id);">ianahw:hardware-class</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity is applicable if the hardware class is a
+       power-supplying component."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L107C11 */</span><span id="L107C11"></span><span style="color:var(--color-yang-id);">fan</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L108C9 */</span><span id="L108C9"></span><span style="color:var(--color-yang-id);">ianahw:hardware-class</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity is applicable if the hardware class is a fan or
+       other heat-reduction component."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L114C11 */</span><span id="L114C11"></span><span style="color:var(--color-yang-id);">sensor</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L115C9 */</span><span id="L115C9"></span><span style="color:var(--color-yang-id);">ianahw:hardware-class</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity is applicable if the hardware class is some sort
+       of sensor, such as a temperature sensor within a router
+       chassis."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L122C11 */</span><span id="L122C11"></span><span style="color:var(--color-yang-id);">module</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L123C9 */</span><span id="L123C9"></span><span style="color:var(--color-yang-id);">ianahw:hardware-class</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity is applicable if the hardware class is some sort
+       of self-contained sub-system.  If a module component is
+       removable, then it should be modeled within a container
+       component; otherwise, it should be modeled directly within
+       another physical component (e.g., a chassis or another
+       module)."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L133C11 */</span><span id="L133C11"></span><span style="color:var(--color-yang-id);">port</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L134C9 */</span><span id="L134C9"></span><span style="color:var(--color-yang-id);">ianahw:hardware-class</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity is applicable if the hardware class is some sort
+       of networking port capable of receiving and/or transmitting
+       networking traffic."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L141C11 */</span><span id="L141C11"></span><span style="color:var(--color-yang-id);">stack</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L142C9 */</span><span id="L142C9"></span><span style="color:var(--color-yang-id);">ianahw:hardware-class</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity is applicable if the hardware class is some sort
+       of super-container (possibly virtual) intended to group
+       together multiple chassis entities.  A stack may be realized
+       by a virtual cable, a real interconnect cable attached to
+       multiple chassis, or multiple interconnect cables.  A stack
+       should not be modeled within any other physical components,
+       but a stack may be contained within another stack.  Only
+       chassis components should be contained within a stack."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L154C11 */</span><span id="L154C11"></span><span style="color:var(--color-yang-id);">cpu</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L155C9 */</span><span id="L155C9"></span><span style="color:var(--color-yang-id);">ianahw:hardware-class</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity is applicable if the hardware class is some sort
+       of central processing unit."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L161C11 */</span><span id="L161C11"></span><span style="color:var(--color-yang-id);">energy-object</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L162C9 */</span><span id="L162C9"></span><span style="color:var(--color-yang-id);">ianahw:hardware-class</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity is applicable if the hardware class is some sort
+       of energy object, i.e., it is a piece of equipment that is
+       part of or attached to a communications network that is
+       monitored, it is controlled, or it aids in the management of
+       another device for Energy Management."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L171C11 */</span><span id="L171C11"></span><span style="color:var(--color-yang-id);">battery</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L172C9 */</span><span id="L172C9"></span><span style="color:var(--color-yang-id);">ianahw:hardware-class</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity is applicable if the hardware class is some sort
+       of battery."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L178C11 */</span><span id="L178C11"></span><span style="color:var(--color-yang-id);">storage-drive</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L179C9 */</span><span id="L179C9"></span><span style="color:var(--color-yang-id);">ianahw:hardware-class</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity is applicable if the hardware class is some sort
+       of component with data storage capability as its main
+       functionality, e.g., hard disk drive (HDD), solid-state device
+       (SSD), solid-state hybrid drive (SSHD), object storage device
+       (OSD), or other."</span>;
+  }
+}

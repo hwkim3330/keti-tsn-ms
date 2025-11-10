@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-comment);">// Copyright (c) 2021-2022 Microchip Technology Inc. and its subsidiaries.</span>
+<span style="color:var(--color-yang-comment);">//</span>
+<span style="color:var(--color-yang-comment);">// Unpublished rights reserved under the copyright laws of the United States</span>
+<span style="color:var(--color-yang-comment);">// of America, other countries and international treaties. Permission to use,</span>
+<span style="color:var(--color-yang-comment);">// copy, store and modify, the software and its source code is granted but</span>
+<span style="color:var(--color-yang-comment);">// only in connection with products utilizing the Microsemi switch and PHY</span>
+<span style="color:var(--color-yang-comment);">// products.  Permission is also granted for you to integrate into other</span>
+<span style="color:var(--color-yang-comment);">// products, disclose, transmit and distribute the software only in an</span>
+<span style="color:var(--color-yang-comment);">// absolute machine readable format (e.g. HEX file) and only in or with</span>
+<span style="color:var(--color-yang-comment);">// products utilizing the Microsemi switch and PHY products.  The source code</span>
+<span style="color:var(--color-yang-comment);">// of the software may not be disclosed, transmitted or distributed without</span>
+<span style="color:var(--color-yang-comment);">// the prior written permission of Microsemi.</span>
+<span style="color:var(--color-yang-comment);">//</span>
+<span style="color:var(--color-yang-comment);">// This copyright notice must appear in any copy, modification, disclosure,</span>
+<span style="color:var(--color-yang-comment);">// transmission or distribution of the software.  Microsemi retains all</span>
+<span style="color:var(--color-yang-comment);">// ownership, copyright, trade secret and proprietary rights in the software</span>
+<span style="color:var(--color-yang-comment);">// and its source code, including all modifications thereto.</span>
+<span style="color:var(--color-yang-comment);">//</span>
+<span style="color:var(--color-yang-comment);">// THIS SOFTWARE HAS BEEN PROVIDED "AS IS". MICROSEMI HEREBY DISCLAIMS ALL</span>
+<span style="color:var(--color-yang-comment);">// WARRANTIES OF ANY KIND WITH RESPECT TO THE SOFTWARE, WHETHER SUCH</span>
+<span style="color:var(--color-yang-comment);">// WARRANTIES ARE EXPRESS, IMPLIED, STATUTORY OR OTHERWISE INCLUDING, WITHOUT</span>
+<span style="color:var(--color-yang-comment);">// LIMITATION, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR USE OR</span>
+<span style="color:var(--color-yang-comment);">// PURPOSE AND NON-INFRINGEMENT.</span>
+
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L25C7 */</span><span id="L25C7"></span><span style="color:var(--color-yang-id);">ieee1588-ptp-dev</span> {
+    <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L26C17 */</span><span id="L26C17"></span><span style="color:var(--color-yang-id);">1.1</span>;
+    <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:mchp:params:xml:ns:yang:ieee1588-ptp-dev"</span>;
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L28C11 */</span><span id="L28C11"></span><span style="color:var(--color-yang-id);">ieee1588-ptp-dev-pre</span>;
+
+    <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L30C11 */</span><span id="L30C11"></span><span style="color:var(--color-yang-id);">ieee1588-ptp</span> {
+        <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L31C15 */</span><span id="L31C15"></span><span style="color:var(--color-yang-id);">ptp</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L34C11 */</span><span id="L34C11"></span><span style="color:var(--color-yang-id);">ieee802-dot1as-ptp</span> {
+        <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L35C15 */</span><span id="L35C15"></span><span style="color:var(--color-yang-id);">dot1as-ptp</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L38C11 */</span><span id="L38C11"></span><span style="color:var(--color-yang-id);">mchp-velocitysp-ptp</span> {
+        <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L39C15 */</span><span id="L39C15"></span><span style="color:var(--color-yang-id);">velocitysp-ptp</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L42C13 */</span><span id="L42C13"></span><span style="color:var(--color-yang-id);">2024-04-12</span> {
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L45C14 */</span><span id="L45C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:common-services</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L46C16 */</span><span id="L46C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L49C14 */</span><span id="L49C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:acceptable-master-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L50C16 */</span><span id="L50C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L53C14 */</span><span id="L53C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:alternate-timescale-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L54C16 */</span><span id="L54C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L57C14 */</span><span id="L57C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:current-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L58C16 */</span><span id="L58C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L61C14 */</span><span id="L61C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/ptp:instance-type</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L62C16 */</span><span id="L62C16"></span><span style="color:var(--color-yang-id);">replace</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L63C17 */</span><span id="L63C17"></span><span style="color:var(--color-yang-id);">velocitysp-ptp:velocitysp-instance-type</span>;
+        }
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L67C14 */</span><span id="L67C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:current-utc-offset</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L68C16 */</span><span id="L68C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L71C14 */</span><span id="L71C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:current-utc-offset-valid</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L72C16 */</span><span id="L72C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L75C14 */</span><span id="L75C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:frequency-traceable</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L76C16 */</span><span id="L76C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L79C14 */</span><span id="L79C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:gm-capable</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L80C16 */</span><span id="L80C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L83C14 */</span><span id="L83C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:leap59</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L84C16 */</span><span id="L84C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L87C14 */</span><span id="L87C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:leap61</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L88C16 */</span><span id="L88C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L91C14 */</span><span id="L91C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:ptp-timescale</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L92C16 */</span><span id="L92C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L95C14 */</span><span id="L95C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:time-source</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L96C16 */</span><span id="L96C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L99C14 */</span><span id="L99C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:time-traceable</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L100C16 */</span><span id="L100C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L103C14 */</span><span id="L103C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/ptp:clock-quality</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L104C16 */</span><span id="L104C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L107C14 */</span><span id="L107C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/ptp:current-time</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L108C16 */</span><span id="L108C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L111C14 */</span><span id="L111C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/ptp:number-ports</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L112C16 */</span><span id="L112C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L115C14 */</span><span id="L115C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/ptp:sdo-id</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L116C16 */</span><span id="L116C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L119C14 */</span><span id="L119C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/ptp:slave-only</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L120C16 */</span><span id="L120C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L123C14 */</span><span id="L123C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/ptp:two-step-flag</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L124C16 */</span><span id="L124C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L127C14 */</span><span id="L127C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:description-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L128C16 */</span><span id="L128C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L131C14 */</span><span id="L131C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:enhanced-metrics-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L132C16 */</span><span id="L132C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L135C14 */</span><span id="L135C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:fault-log-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L136C16 */</span><span id="L136C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L139C14 */</span><span id="L139C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:grandmaster-cluster-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L140C16 */</span><span id="L140C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L143C14 */</span><span id="L143C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:holdover-upgrade-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L144C16 */</span><span id="L144C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L147C14 */</span><span id="L147C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:parent-ds/ptp:grandmaster-clock-quality/ptp:offset-scaled-log-variance</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L148C16 */</span><span id="L148C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L151C14 */</span><span id="L151C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:parent-ds/ptp:observed-parent-clock-phase-change-rate</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L152C16 */</span><span id="L152C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L155C14 */</span><span id="L155C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:parent-ds/ptp:observed-parent-offset-scaled-log-variance</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L156C16 */</span><span id="L156C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L159C14 */</span><span id="L159C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:parent-ds/ptp:parent-stats</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L160C16 */</span><span id="L160C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L163C14 */</span><span id="L163C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:parent-ds/ptp:protocol-address</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L164C16 */</span><span id="L164C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L167C14 */</span><span id="L167C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:parent-ds/ptp:synchronization-uncertain</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L168C16 */</span><span id="L168C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L171C14 */</span><span id="L171C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:path-trace-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L172C16 */</span><span id="L172C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L175C14 */</span><span id="L175C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:performance-monitoring-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L176C16 */</span><span id="L176C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L179C14 */</span><span id="L179C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:acceptable-master-port-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L180C16 */</span><span id="L180C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L183C14 */</span><span id="L183C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:alternate-master-port-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L184C16 */</span><span id="L184C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L187C14 */</span><span id="L187C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:asymmetry-correction-port-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L188C16 */</span><span id="L188C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L191C14 */</span><span id="L191C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:common-services-port-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L192C16 */</span><span id="L192C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L195C14 */</span><span id="L195C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:communication-cap-port-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L196C16 */</span><span id="L196C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L199C14 */</span><span id="L199C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:description-port-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L200C16 */</span><span id="L200C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L203C14 */</span><span id="L203C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:l1-sync-basic-port-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L204C16 */</span><span id="L204C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L207C14 */</span><span id="L207C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:l1-sync-opt-params-port-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L208C16 */</span><span id="L208C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L211C14 */</span><span id="L211C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:performance-monitoring-port-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L212C16 */</span><span id="L212C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L215C14 */</span><span id="L215C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:allowed-faults</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L216C16 */</span><span id="L216C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L219C14 */</span><span id="L219C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:allowed-lost-responses</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L220C16 */</span><span id="L220C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L223C14 */</span><span id="L223C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:asymmetry-measurement-mode-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L224C16 */</span><span id="L224C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L227C14 */</span><span id="L227C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:current-compute-mean-link-delay</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L228C16 */</span><span id="L228C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L231C14 */</span><span id="L231C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:current-compute-rate-ratio</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L232C16 */</span><span id="L232C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L235C14 */</span><span id="L235C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:current-log-announce-interval</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L236C16 */</span><span id="L236C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L239C14 */</span><span id="L239C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:current-log-gptp-cap-interval</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L240C16 */</span><span id="L240C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L243C14 */</span><span id="L243C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:current-log-pdelay-req-interval</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L244C16 */</span><span id="L244C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L247C14 */</span><span id="L247C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:current-log-sync-interval</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L248C16 */</span><span id="L248C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L251C14 */</span><span id="L251C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:current-one-step-tx-oper</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L252C16 */</span><span id="L252C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L255C14 */</span><span id="L255C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:gptp-cap-receipt-timeout</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L256C16 */</span><span id="L256C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L259C14 */</span><span id="L259C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:initial-compute-mean-link-delay</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L260C16 */</span><span id="L260C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L263C14 */</span><span id="L263C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:initial-compute-rate-ratio</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L264C16 */</span><span id="L264C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L267C14 */</span><span id="L267C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:initial-log-announce-interval</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L268C16 */</span><span id="L268C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L271C14 */</span><span id="L271C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:initial-log-gptp-cap-interval</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L272C16 */</span><span id="L272C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L275C14 */</span><span id="L275C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:initial-log-pdelay-req-interval</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L276C16 */</span><span id="L276C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L279C14 */</span><span id="L279C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:initial-log-sync-interval</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L280C16 */</span><span id="L280C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L283C14 */</span><span id="L283C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:initial-one-step-tx-oper</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L284C16 */</span><span id="L284C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L287C14 */</span><span id="L287C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:is-measuring-delay</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L288C16 */</span><span id="L288C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L291C14 */</span><span id="L291C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:mgt-compute-mean-link-delay</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L292C16 */</span><span id="L292C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L295C14 */</span><span id="L295C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:mgt-compute-rate-ratio</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L296C16 */</span><span id="L296C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L299C14 */</span><span id="L299C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:mgt-log-pdelay-req-interval</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L300C16 */</span><span id="L300C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L303C14 */</span><span id="L303C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:ndown</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L304C16 */</span><span id="L304C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L307C14 */</span><span id="L307C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:nup</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L308C16 */</span><span id="L308C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L311C14 */</span><span id="L311C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:one-step-receive</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L312C16 */</span><span id="L312C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L315C14 */</span><span id="L315C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:one-step-transmit</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L316C16 */</span><span id="L316C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L319C14 */</span><span id="L319C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:one-step-tx-oper</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L320C16 */</span><span id="L320C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L323C14 */</span><span id="L323C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:pdelay-truncated-timestamps</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L324C16 */</span><span id="L324C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L327C14 */</span><span id="L327C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:port-statistics-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L328C16 */</span><span id="L328C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L331C14 */</span><span id="L331C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:sync-locked</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L332C16 */</span><span id="L332C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L335C14 */</span><span id="L335C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:sync-receipt-timeout-interval</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L336C16 */</span><span id="L336C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L339C14 */</span><span id="L339C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:use-mgt-compute-mean-link-delay</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L340C16 */</span><span id="L340C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L343C14 */</span><span id="L343C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:use-mgt-compute-rate-ratio</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L344C16 */</span><span id="L344C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L347C14 */</span><span id="L347C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:use-mgt-log-announce-interval</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L348C16 */</span><span id="L348C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L351C14 */</span><span id="L351C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:use-mgt-log-pdelay-req-interval</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L352C16 */</span><span id="L352C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L355C14 */</span><span id="L355C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:use-mgt-log-sync-interval</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L356C16 */</span><span id="L356C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L359C14 */</span><span id="L359C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:announce-receipt-timeout</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L360C16 */</span><span id="L360C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L363C14 */</span><span id="L363C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:delay-asymmetry</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L364C16 */</span><span id="L364C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L367C14 */</span><span id="L367C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:delay-mechanism</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L368C16 */</span><span id="L368C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L371C14 */</span><span id="L371C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:log-announce-interval</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L372C16 */</span><span id="L372C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L375C14 */</span><span id="L375C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:log-min-delay-req-interval</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L376C16 */</span><span id="L376C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L379C14 */</span><span id="L379C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:master-only</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L380C16 */</span><span id="L380C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L383C14 */</span><span id="L383C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:minor-version-number</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L384C16 */</span><span id="L384C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L387C14 */</span><span id="L387C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:peer-mean-path-delay</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L388C16 */</span><span id="L388C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L391C14 */</span><span id="L391C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:port-identity</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L392C16 */</span><span id="L392C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L395C14 */</span><span id="L395C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:version-number</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L396C16 */</span><span id="L396C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L399C14 */</span><span id="L399C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:slave-monitoring-port-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L400C16 */</span><span id="L400C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L403C14 */</span><span id="L403C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:underlying-interface</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L404C16 */</span><span id="L404C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L407C14 */</span><span id="L407C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:unicast-discovery-port-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L408C16 */</span><span id="L408C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L411C14 */</span><span id="L411C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:unicast-negotiation-port-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L412C16 */</span><span id="L412C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L415C14 */</span><span id="L415C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance/ptp:time-properties-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L416C16 */</span><span id="L416C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L419C14 */</span><span id="L419C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:transparent-clock-default-ds</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L420C16 */</span><span id="L420C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L423C14 */</span><span id="L423C14"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:transparent-clock-ports</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L424C16 */</span><span id="L424C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+}

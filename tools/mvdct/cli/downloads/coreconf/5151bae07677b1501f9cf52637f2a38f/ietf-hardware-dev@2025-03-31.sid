@@ -1,0 +1,18 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 31149,
+      "size": 1
+    }
+  ],
+  "module-name": "ietf-hardware-dev",
+  "module-revision": "2025-03-31",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ietf-hardware-dev",
+      "status": "unstable",
+      "sid": 31149
+    }
+  ]
+}

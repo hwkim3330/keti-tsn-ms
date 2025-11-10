@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ietf-sid-file</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L2C15 */</span><span id="L2C15"></span><span style="color:var(--color-yang-id);">1.1</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:ietf:params:xml:ns:yang:ietf-sid-file"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">sid</span>;
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L6C9 */</span><span id="L6C9"></span><span style="color:var(--color-yang-id);">ietf-yang-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L7C11 */</span><span id="L7C11"></span><span style="color:var(--color-yang-id);">yang</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span> <span style="color:var(--color-yang-text);">"RFC 6991: Common YANG Data Types."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L10C9 */</span><span id="L10C9"></span><span style="color:var(--color-yang-id);">ietf-yang-structure-ext</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L11C11 */</span><span id="L11C11"></span><span style="color:var(--color-yang-id);">sx</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span> <span style="color:var(--color-yang-text);">"RFC 8791: YANG Data Structure Extensions."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IETF Core Working Group"</span>;
+
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG Web:   <https://datatracker.ietf.org/wg/core/>
+
+     WG List:  <mailto:core@ietf.org>
+
+     Editor:   Michel Veillette
+               <mailto:michel.veillette@trilliant.com>
+
+     Editor:   Andy Bierman
+               <mailto:andy@yumaworks.com>
+
+     Editor:   Alexander Pelov
+               <mailto:a@ackl.io>
+
+     Editor:   Ivaylo Petrov
+               <mailto:ivaylopetrov@google.com>"</span>;
+
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"Copyright (c) 2023 IETF Trust and the persons identified as
+     authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject to
+     the license terms contained in, the Revised BSD License set
+     forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC XXXX
+     (https://www.rfc-editor.org/info/rfcXXXX); see the RFC itself
+     for full legal notices.
+
+     The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
+     NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',
+     'MAY', and 'OPTIONAL' in this document are to be interpreted as
+     described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
+     they appear in all capitals, as shown here.
+
+     This module defines the structure of the .sid files.
+
+     Each .sid file contains the mapping between each
+     string identifier defined by a YANG module and a
+     corresponding numeric value called YANG SID."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L62C11 */</span><span id="L62C11"></span><span style="color:var(--color-yang-id);">2023-10-27</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"[RFC XXXX] YANG Schema Item iDentifier (YANG SID)"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L69C10 */</span><span id="L69C10"></span><span style="color:var(--color-yang-id);">revision-identifier</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L70C9 */</span><span id="L70C9"></span><span style="color:var(--color-yang-id);">string</span> {
+      <span style="color:var(--color-yang-keyword);">pattern</span> <span style="color:var(--color-yang-text);">'[0-9]{4}-[0-9]{2}-[0-9]{2}'</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Represents a date in YYYY-MM-DD format."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L77C10 */</span><span id="L77C10"></span><span style="color:var(--color-yang-id);">sid-file-version-identifier</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L78C9 */</span><span id="L78C9"></span><span style="color:var(--color-yang-id);">uint32</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Represents the version of a .sid file."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L83C10 */</span><span id="L83C10"></span><span style="color:var(--color-yang-id);">sid</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L84C9 */</span><span id="L84C9"></span><span style="color:var(--color-yang-id);">uint64</span> {
+      <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0..9223372036854775807"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"YANG Schema Item iDentifier"</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"[RFC XXXX] YANG Schema Item iDentifier (YANG SID)"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L93C10 */</span><span id="L93C10"></span><span style="color:var(--color-yang-id);">schema-node-path</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L94C9 */</span><span id="L94C9"></span><span style="color:var(--color-yang-id);">string</span> {
+      <span style="color:var(--color-yang-keyword);">pattern</span>
+        <span style="color:var(--color-yang-text);">'/[a-zA-Z_][a-zA-Z0-9\-_.]*:[a-zA-Z_][a-zA-Z0-9\-_.]*' +
+        '(/[a-zA-Z_][a-zA-Z0-9\-_.]*(:[a-zA-Z_][a-zA-Z0-9\-_.]*)?)*'</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A schema-node path is an absolute YANG schema node identifier
+      as defined by the YANG ABNF rule absolute-schema-nodeid,
+      except that module names are used instead of prefixes.
+
+      This string additionally follows the following rules:
+
+       o  The leftmost (top-level) data node name is always in the
+          namespace-qualified form.
+       o  Any subsequent schema node name is in the
+          namespace-qualified form if the node is defined in a module
+          other than its parent node, and the simple form is used
+          otherwise. No predicates are allowed."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 7950, The YANG 1.1 Data Modeling Language;
+       Section 6.5: Schema Node Identifier;"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">sx:structure</span> <span style="color:var(--color-yang-comment);">/* L117C15 */</span><span id="L117C15"></span><span style="color:var(--color-yang-id);">sid-file</span> {
+      <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L118C11 */</span><span id="L118C11"></span><span style="color:var(--color-yang-id);">sid-file-contents</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L121C11 */</span><span id="L121C11"></span><span style="color:var(--color-yang-id);">sid-file</span> {
+    <span style="color:var(--color-yang-keyword);">description</span> <span style="color:var(--color-yang-text);">"A grouping that contains a YANG container
+      representing the file structure of a .sid files."</span>;
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L125C14 */</span><span id="L125C14"></span><span style="color:var(--color-yang-id);">sid-file</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"A wrapper container that together with the sx:structure
+        extension marks the YANG data structures inside as not being
+        intended to be implemented as part of a configuration
+        datastore or as an operational state within the server."</span>;
+      <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L131C11 */</span><span id="L131C11"></span><span style="color:var(--color-yang-id);">sid-file-contents</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L135C11 */</span><span id="L135C11"></span><span style="color:var(--color-yang-id);">sid-file-contents</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A grouping that defines the contents of a container that
+       represents the file structure of a .sid files."</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L140C9 */</span><span id="L140C9"></span><span style="color:var(--color-yang-id);">module-name</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L141C11 */</span><span id="L141C11"></span><span style="color:var(--color-yang-id);">yang:yang-identifier</span>;
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L142C16 */</span><span id="L142C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Name of the YANG module associated with this .sid file."</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L147C9 */</span><span id="L147C9"></span><span style="color:var(--color-yang-id);">module-revision</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L148C11 */</span><span id="L148C11"></span><span style="color:var(--color-yang-id);">revision-identifier</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Revision of the YANG module associated with this .sid
+        file.
+        This leaf is not present if no revision statement is
+        defined in the YANG module."</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L156C9 */</span><span id="L156C9"></span><span style="color:var(--color-yang-id);">sid-file-version</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L157C11 */</span><span id="L157C11"></span><span style="color:var(--color-yang-id);">sid-file-version-identifier</span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L158C14 */</span><span id="L158C14"></span><span style="color:var(--color-yang-id);">0</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Optional leaf that specifies the version number of the
+        .sid file.  .sid files and the version sequence are
+        specific to a given YANG module revision. This number
+        starts at zero when there is a new YANG module revision and
+        increases monotonically.  This number can distinguish
+        updates to the .sid file which are the result of new
+        processing, or the result of reported errata."</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L169C9 */</span><span id="L169C9"></span><span style="color:var(--color-yang-id);">sid-file-status</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L170C11 */</span><span id="L170C11"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+         <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L171C14 */</span><span id="L171C14"></span><span style="color:var(--color-yang-id);">unpublished</span> {
+           <span style="color:var(--color-yang-keyword);">description</span>
+             <span style="color:var(--color-yang-text);">"This .sid file is unpublished [RFC8407], also called
+              a work-in-progress or workfile.
+              This may be when it accompanies an unpublished YANG
+              module, or when only the .sid file itself is
+              unpublished.
+              The 'item' list MAY contain entries with a status
+              value of 'unstable'."</span>;
+         }
+         <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L181C14 */</span><span id="L181C14"></span><span style="color:var(--color-yang-id);">published</span> {
+           <span style="color:var(--color-yang-keyword);">description</span>
+             <span style="color:var(--color-yang-text);">"This .sid file is published, for a published YANG
+              module. The 'item' list MUST NOT contain entries with
+              a status value of 'unstable'."</span>;
+         }
+      }
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L188C14 */</span><span id="L188C14"></span><span style="color:var(--color-yang-id);">published</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Optional leaf that specifies the status of the
+        .sid file."</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L194C9 */</span><span id="L194C9"></span><span style="color:var(--color-yang-id);">description</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L195C11 */</span><span id="L195C11"></span><span style="color:var(--color-yang-id);">string</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Free-form meta information about the generated file. It
+        might include .sid file generation tool and time among
+        other things."</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L202C9 */</span><span id="L202C9"></span><span style="color:var(--color-yang-id);">dependency-revision</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"module-name"</span>;
+
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Information about the revision used during the .sid file
+        generation of each YANG module that the module in
+        'module-name' imported."</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L210C11 */</span><span id="L210C11"></span><span style="color:var(--color-yang-id);">module-name</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L211C13 */</span><span id="L211C13"></span><span style="color:var(--color-yang-id);">yang:yang-identifier</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Name of the YANG module, dependency of 'module-name',
+          for which revision information is provided."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L216C11 */</span><span id="L216C11"></span><span style="color:var(--color-yang-id);">module-revision</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L217C13 */</span><span id="L217C13"></span><span style="color:var(--color-yang-id);">revision-identifier</span>;
+        <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L218C18 */</span><span id="L218C18"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Revision of the YANG module, dependency of
+          'module-name', for which revision information is
+          provided."</span>;
+      }
+    }
+
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L226C9 */</span><span id="L226C9"></span><span style="color:var(--color-yang-id);">assignment-range</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"entry-point"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"YANG SID range(s) allocated to the YANG module identified
+        by 'module-name' and 'module-revision'.
+
+        - The YANG SID range first available value is entry-point
+          and the last available value in the range is
+          (entry-point + size - 1).
+        - The YANG SID ranges specified by all assignment-ranges
+          MUST NOT overlap."</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L238C11 */</span><span id="L238C11"></span><span style="color:var(--color-yang-id);">entry-point</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L239C13 */</span><span id="L239C13"></span><span style="color:var(--color-yang-id);">sid</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Lowest YANG SID available for assignment."</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L244C11 */</span><span id="L244C11"></span><span style="color:var(--color-yang-id);">size</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L245C13 */</span><span id="L245C13"></span><span style="color:var(--color-yang-id);">uint64</span>;
+        <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L246C18 */</span><span id="L246C18"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Number of YANG SIDs available for assignment."</span>;
+      }
+    }
+
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L252C9 */</span><span id="L252C9"></span><span style="color:var(--color-yang-id);">item</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"namespace identifier"</span>;
+      <span style="color:var(--color-yang-keyword);">unique</span> <span style="color:var(--color-yang-text);">"sid"</span>;
+
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Each entry within this list defines the mapping between
+        a YANG item string identifier and a YANG SID. This list
+        MUST include a mapping entry for each YANG item defined by
+        the YANG module identified by 'module-name' and
+        'module-revision'."</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L263C11 */</span><span id="L263C11"></span><span style="color:var(--color-yang-id);">status</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L264C13 */</span><span id="L264C13"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L265C15 */</span><span id="L265C15"></span><span style="color:var(--color-yang-id);">stable</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L266C18 */</span><span id="L266C18"></span><span style="color:var(--color-yang-id);">0</span>;
+            <span style="color:var(--color-yang-keyword);">description</span> <span style="color:var(--color-yang-text);">"This SID allocation has been published as
+                         the stable allocation for the given
+                         namespace and identifier."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L271C15 */</span><span id="L271C15"></span><span style="color:var(--color-yang-id);">unstable</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L272C18 */</span><span id="L272C18"></span><span style="color:var(--color-yang-id);">1</span>;
+            <span style="color:var(--color-yang-keyword);">description</span> <span style="color:var(--color-yang-text);">"This SID allocation has been done during a
+                         development process; it is not yet stable."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L276C15 */</span><span id="L276C15"></span><span style="color:var(--color-yang-id);">obsolete</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L277C18 */</span><span id="L277C18"></span><span style="color:var(--color-yang-id);">2</span>;
+            <span style="color:var(--color-yang-keyword);">description</span> <span style="color:var(--color-yang-text);">"This SID allocation is no longer in use.
+                         It is recorded to avoid reallocation of
+                         its SID value."</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L283C16 */</span><span id="L283C16"></span><span style="color:var(--color-yang-id);">stable</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The status field contains information about the stability
+           of the allocation.  For each specific SID value, over time
+           it can only transition from unstable to stable,
+           and possibly from stable to obsolete."</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L291C11 */</span><span id="L291C11"></span><span style="color:var(--color-yang-id);">namespace</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L292C13 */</span><span id="L292C13"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L293C15 */</span><span id="L293C15"></span><span style="color:var(--color-yang-id);">module</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L294C18 */</span><span id="L294C18"></span><span style="color:var(--color-yang-id);">0</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"All module and submodule names share the same
+              global module identifier namespace."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L299C15 */</span><span id="L299C15"></span><span style="color:var(--color-yang-id);">identity</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L300C18 */</span><span id="L300C18"></span><span style="color:var(--color-yang-id);">1</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"All identity names defined in a module and its
+              submodules share the same identity identifier
+              namespace."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L306C15 */</span><span id="L306C15"></span><span style="color:var(--color-yang-id);">feature</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L307C18 */</span><span id="L307C18"></span><span style="color:var(--color-yang-id);">2</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"All feature names defined in a module and its
+              submodules share the same feature identifier
+              namespace."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L313C15 */</span><span id="L313C15"></span><span style="color:var(--color-yang-id);">data</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L314C18 */</span><span id="L314C18"></span><span style="color:var(--color-yang-id);">3</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The namespace for all data nodes, as defined in
+              YANG."</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Namespace of the YANG item for this mapping entry."</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L324C11 */</span><span id="L324C11"></span><span style="color:var(--color-yang-id);">identifier</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L325C13 */</span><span id="L325C13"></span><span style="color:var(--color-yang-id);">union</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L326C15 */</span><span id="L326C15"></span><span style="color:var(--color-yang-id);">yang:yang-identifier</span>;
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L327C15 */</span><span id="L327C15"></span><span style="color:var(--color-yang-id);">schema-node-path</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"String identifier of the YANG item for this mapping
+          entry.
+
+          If the corresponding 'namespace' field is 'module',
+          'feature', or 'identity', then this field MUST
+          contain a valid YANG identifier string.
+
+          If the corresponding 'namespace' field is 'data',
+          then this field MUST contain a valid schema-node
+          path."</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L342C11 */</span><span id="L342C11"></span><span style="color:var(--color-yang-id);">sid</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L343C13 */</span><span id="L343C13"></span><span style="color:var(--color-yang-id);">sid</span>;
+        <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L344C18 */</span><span id="L344C18"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"YANG SID assigned to the YANG item for this mapping
+          entry."</span>;
+      }
+    }
+  }
+}

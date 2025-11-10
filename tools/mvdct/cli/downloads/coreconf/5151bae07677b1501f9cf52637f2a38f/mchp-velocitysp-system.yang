@@ -1,0 +1,147 @@
+module mchp-velocitysp-system {
+  yang-version 1.1;
+  namespace "urn:mchp:params:xml:ns:yang:velocitysp-system";
+  prefix lm-system;
+
+  import ietf-system {
+      prefix sys;
+  }
+
+  description
+    "This module contains a collection of YANG definitions for
+     managing MCHP systems running VelocitySP software.";
+
+  revision 2025-06-27 {
+    description
+      "Add Access Control.";
+  }
+
+  revision 2024-08-02 {
+    description
+      "Add Access Control.";
+  }
+
+  revision 2023-04-23 {
+    description
+      "Initial revision.";
+  }
+
+  rpc save-config {
+    description
+      "Copy <running> to <startup-config>, which is applied at next reboot.";
+  }
+
+  container coap-server {
+    description
+      "Information regarding the CoAP server.";
+
+    container config {
+      description
+        "CoAP server related configuration attributes.";
+
+      leaf security-mode {
+        description
+          "Security mode.";
+
+        type enumeration {
+          enum no-sec {
+            value 1;
+            description
+              "No security implemented as part of the protocol.";
+          }
+          enum raw-public-key {
+            value 2;
+            description
+              "CoAP is secured by DTLS running in the raw public key mode.";
+          }
+        }
+
+        default raw-public-key;
+      }
+      
+      leaf mup1-dtls-enable {
+        description
+          "Enable dtls to coap over mup1 (type = 'd'). " +
+          "Disable direct to coap over mup1 (type = 'c'). " +
+          "Only applies when security-mode is not no-sec.";
+        type boolean;
+        default "true";
+      }
+
+      leaf ip-dtls-enable {
+        description
+          "Enable dtls to coap over UDP/IP (port 5684). " +
+          "Disable direct to coap over UDP/IP (port 5683). " +
+          "Only applies when security-mode is not no-sec.";
+        type boolean;
+        default "true";
+      }
+    }
+  }
+
+  augment "/sys:system/sys:authentication/sys:user" {
+    list coap-authorized-key {
+      key name;
+      description
+        "A list of authorized keys used in CoAP/DTLS RawPublicKey";
+      reference
+        "RFC 7252, section 9.1.3.2";
+
+      typedef access-rights {
+        type enumeration {
+          enum no-access {
+            value 0;
+            description "No access allowed for resource";
+          }
+          enum read-only {
+            value 1;
+            description "Read only access allowed for resource";
+          }
+          enum read-write {
+            value 2;
+            description "Read and Write access allowed for resource";
+          }
+        }
+        default no-access;
+      }
+
+      leaf name {
+        type string;
+        description
+          "An arbitrary name for the key.";
+      }
+
+      leaf key-data {
+        type binary;
+        mandatory true;
+        description
+          "The binary public key as specified in RFC6920 section 6.";
+        reference
+          "RFC 6920, section 6";
+      }
+
+      container access-control {
+        leaf cc-rights {
+          type access-rights;
+          description "access-rights to the /c CORE CONF server.";
+        }
+        leaf startup-config-rights {
+          type access-rights;
+          description "access-rights to the /startup-config server.";
+        }
+        leaf fw-rights {
+          type access-rights;
+          description "access-rights to the /fw, firmware update server.";
+        }
+        leaf dbg-rights {
+          type access-rights;
+          description "access-rights to the /dbg server.";
+        }
+        leaf well-known-rights {
+          type access-rights;
+          description "access-rights to the /.well-known server.";
+        }
+      }
+    }
+  }
+}

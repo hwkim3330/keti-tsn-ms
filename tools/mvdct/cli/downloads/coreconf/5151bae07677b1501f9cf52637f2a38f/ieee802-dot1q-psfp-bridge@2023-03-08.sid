@@ -1,0 +1,564 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 27000,
+      "size": 1000
+    }
+  ],
+  "module-name": "ieee802-dot1q-psfp-bridge",
+  "module-revision": "2023-03-08",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ieee802-dot1q-psfp-bridge",
+      "status": "unstable",
+      "sid": 27000
+    },
+    {
+      "namespace": "feature",
+      "identifier": "psfp",
+      "status": "unstable",
+      "sid": 27001
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:flow-meters",
+      "status": "unstable",
+      "sid": 27002
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:flow-meters/flow-meter-instance-table",
+      "status": "unstable",
+      "sid": 27003
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:flow-meters/flow-meter-instance-table/color-mode",
+      "status": "unstable",
+      "sid": 27004
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:flow-meters/flow-meter-instance-table/committed-burst-size",
+      "status": "unstable",
+      "sid": 27005
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:flow-meters/flow-meter-instance-table/committed-information-rate",
+      "status": "unstable",
+      "sid": 27006
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:flow-meters/flow-meter-instance-table/coupling-flag",
+      "status": "unstable",
+      "sid": 27007
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:flow-meters/flow-meter-instance-table/drop-on-yellow",
+      "status": "unstable",
+      "sid": 27008
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:flow-meters/flow-meter-instance-table/excess-burst-size",
+      "status": "unstable",
+      "sid": 27009
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:flow-meters/flow-meter-instance-table/excess-information-rate",
+      "status": "unstable",
+      "sid": 27010
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:flow-meters/flow-meter-instance-table/flow-meter-instance-id",
+      "status": "unstable",
+      "sid": 27011
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:flow-meters/flow-meter-instance-table/mark-all-frames-red",
+      "status": "unstable",
+      "sid": 27012
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:flow-meters/flow-meter-instance-table/mark-all-frames-red-enable",
+      "status": "unstable",
+      "sid": 27013
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:flow-meters/max-flow-meter-instances",
+      "status": "unstable",
+      "sid": 27014
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters",
+      "status": "unstable",
+      "sid": 27015
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/max-stream-filter-instances",
+      "status": "unstable",
+      "sid": 27016
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/stream-filter-instance-table",
+      "status": "unstable",
+      "sid": 27017
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/stream-filter-instance-table/flow-meter-enable",
+      "status": "unstable",
+      "sid": 27018
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/stream-filter-instance-table/flow-meter-ref",
+      "status": "unstable",
+      "sid": 27019
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/stream-filter-instance-table/matching-frames-count",
+      "status": "unstable",
+      "sid": 27020
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/stream-filter-instance-table/max-sdu-size",
+      "status": "unstable",
+      "sid": 27021
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/stream-filter-instance-table/not-passing-frames-count",
+      "status": "unstable",
+      "sid": 27022
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/stream-filter-instance-table/not-passing-sdu-count",
+      "status": "unstable",
+      "sid": 27023
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/stream-filter-instance-table/passing-frames-count",
+      "status": "unstable",
+      "sid": 27024
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/stream-filter-instance-table/passing-sdu-count",
+      "status": "unstable",
+      "sid": 27025
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/stream-filter-instance-table/priority-spec",
+      "status": "unstable",
+      "sid": 27026
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/stream-filter-instance-table/red-frames-count",
+      "status": "unstable",
+      "sid": 27027
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/stream-filter-instance-table/stream-blocked-due-to-oversize-frame",
+      "status": "unstable",
+      "sid": 27028
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/stream-filter-instance-table/stream-blocked-due-to-oversize-frame-enabled",
+      "status": "unstable",
+      "sid": 27029
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/stream-filter-instance-table/stream-filter-instance-id",
+      "status": "unstable",
+      "sid": 27030
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/stream-filter-instance-table/stream-gate-ref",
+      "status": "unstable",
+      "sid": 27031
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/stream-filter-instance-table/stream-handle-spec/stream-handle/stream-handle",
+      "status": "unstable",
+      "sid": 27032
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-filters/stream-filter-instance-table/stream-handle-spec/wildcard/wildcard",
+      "status": "unstable",
+      "sid": 27033
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates",
+      "status": "unstable",
+      "sid": 27034
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/max-stream-gate-instances",
+      "status": "unstable",
+      "sid": 27035
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table",
+      "status": "unstable",
+      "sid": 27036
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/admin-base-time",
+      "status": "unstable",
+      "sid": 27037
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/admin-base-time/nanoseconds",
+      "status": "unstable",
+      "sid": 27038
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/admin-base-time/seconds",
+      "status": "unstable",
+      "sid": 27039
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/admin-control-list",
+      "status": "unstable",
+      "sid": 27040
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/admin-control-list/gate-control-entry",
+      "status": "unstable",
+      "sid": 27041
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/admin-control-list/gate-control-entry/gate-state-value",
+      "status": "unstable",
+      "sid": 27042
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/admin-control-list/gate-control-entry/index",
+      "status": "unstable",
+      "sid": 27043
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/admin-control-list/gate-control-entry/interval-octet-max",
+      "status": "unstable",
+      "sid": 27044
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/admin-control-list/gate-control-entry/ipv-spec",
+      "status": "unstable",
+      "sid": 27045
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/admin-control-list/gate-control-entry/operation-name",
+      "status": "unstable",
+      "sid": 27046
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/admin-control-list/gate-control-entry/time-interval-value",
+      "status": "unstable",
+      "sid": 27047
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/admin-cycle-time",
+      "status": "unstable",
+      "sid": 27048
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/admin-cycle-time-extension",
+      "status": "unstable",
+      "sid": 27049
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/admin-cycle-time/denominator",
+      "status": "unstable",
+      "sid": 27050
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/admin-cycle-time/numerator",
+      "status": "unstable",
+      "sid": 27051
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/admin-gate-states",
+      "status": "unstable",
+      "sid": 27052
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/admin-ipv",
+      "status": "unstable",
+      "sid": 27053
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/config-change",
+      "status": "unstable",
+      "sid": 27054
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/config-change-error",
+      "status": "unstable",
+      "sid": 27055
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/config-change-time",
+      "status": "unstable",
+      "sid": 27056
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/config-change-time/nanoseconds",
+      "status": "unstable",
+      "sid": 27057
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/config-change-time/seconds",
+      "status": "unstable",
+      "sid": 27058
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/config-pending",
+      "status": "unstable",
+      "sid": 27059
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/current-time",
+      "status": "unstable",
+      "sid": 27060
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/current-time/nanoseconds",
+      "status": "unstable",
+      "sid": 27061
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/current-time/seconds",
+      "status": "unstable",
+      "sid": 27062
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/gate-closed-due-octets-exceeded",
+      "status": "unstable",
+      "sid": 27063
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/gate-closed-due-octets-exceeded-enable",
+      "status": "unstable",
+      "sid": 27064
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/gate-closed-due-to-invalid-rx",
+      "status": "unstable",
+      "sid": 27065
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/gate-closed-due-to-invalid-rx-enable",
+      "status": "unstable",
+      "sid": 27066
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/gate-enable",
+      "status": "unstable",
+      "sid": 27067
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/oper-base-time",
+      "status": "unstable",
+      "sid": 27068
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/oper-base-time/nanoseconds",
+      "status": "unstable",
+      "sid": 27069
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/oper-base-time/seconds",
+      "status": "unstable",
+      "sid": 27070
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/oper-control-list",
+      "status": "unstable",
+      "sid": 27071
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/oper-control-list/gate-control-entry",
+      "status": "unstable",
+      "sid": 27072
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/oper-control-list/gate-control-entry/gate-state-value",
+      "status": "unstable",
+      "sid": 27073
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/oper-control-list/gate-control-entry/index",
+      "status": "unstable",
+      "sid": 27074
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/oper-control-list/gate-control-entry/interval-octet-max",
+      "status": "unstable",
+      "sid": 27075
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/oper-control-list/gate-control-entry/ipv-spec",
+      "status": "unstable",
+      "sid": 27076
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/oper-control-list/gate-control-entry/operation-name",
+      "status": "unstable",
+      "sid": 27077
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/oper-control-list/gate-control-entry/time-interval-value",
+      "status": "unstable",
+      "sid": 27078
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/oper-cycle-time",
+      "status": "unstable",
+      "sid": 27079
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/oper-cycle-time-extension",
+      "status": "unstable",
+      "sid": 27080
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/oper-cycle-time/denominator",
+      "status": "unstable",
+      "sid": 27081
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/oper-cycle-time/numerator",
+      "status": "unstable",
+      "sid": 27082
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/oper-gate-state",
+      "status": "unstable",
+      "sid": 27083
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/oper-ipv",
+      "status": "unstable",
+      "sid": 27084
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/stream-gate-instance-id",
+      "status": "unstable",
+      "sid": 27085
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/stream-gate-instance-table/tick-granularity",
+      "status": "unstable",
+      "sid": 27086
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/supported-cycle-max",
+      "status": "unstable",
+      "sid": 27087
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/supported-cycle-max/denominator",
+      "status": "unstable",
+      "sid": 27088
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/supported-cycle-max/numerator",
+      "status": "unstable",
+      "sid": 27089
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/supported-interval-max",
+      "status": "unstable",
+      "sid": 27090
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/ieee802-dot1q-psfp-bridge:stream-gates/supported-list-max",
+      "status": "unstable",
+      "sid": 27091
+    }
+  ]
+}

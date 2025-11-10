@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ieee802-dot1ab-types</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-text);">"1.1"</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-comment);">/* L3C12 */</span><span id="L3C12"></span><span style="color:var(--color-yang-id);">urn:ieee:std:802.1Q:yang:ieee802-dot1ab-types</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">lldp-types</span>;
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IEEE 802.1 Working Group"</span>;
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG-URL: http://ieee802.org/1/
+    WG-EMail: stds-802-1-l@ieee.org
+    Contact: IEEE 802.1 Working Group Chair
+    Postal: C/O IEEE 802.1 Working Group
+    IEEE Standards Association
+         445 Hoes Lane
+         Piscataway, NJ 08854
+         USA
+    
+    E-mail: stds-802-1-chairs@ieee.org"</span>;
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"Common types used within ieee802-dot1ab-lldp modules. Copyright(C) IEEE
+    (2022). All rights reserved. This version of this YANG module is part of
+    IEEE Std 802.1ABcu; see the standard itself for full legal notices."</span>;
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L22C11 */</span><span id="L22C11"></span><span style="color:var(--color-yang-id);">2022-03-15</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1ABcu."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1AB-2016"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L28C10 */</span><span id="L28C10"></span><span style="color:var(--color-yang-id);">man-addr-if-subtype</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L29C9 */</span><span id="L29C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L30C11 */</span><span id="L30C11"></span><span style="color:var(--color-yang-id);">unknown</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L31C14 */</span><span id="L31C14"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Interface is not known."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L35C11 */</span><span id="L35C11"></span><span style="color:var(--color-yang-id);">port-ref</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L36C14 */</span><span id="L36C14"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Interface based on the port-ref MIB object."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L40C11 */</span><span id="L40C11"></span><span style="color:var(--color-yang-id);">system-port-number</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L41C14 */</span><span id="L41C14"></span><span style="color:var(--color-yang-id);">3</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Interface based on the system port number."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Management address interface subtype."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"8.5.9.5 of IEEE Std 802.1AB-2016"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L51C10 */</span><span id="L51C10"></span><span style="color:var(--color-yang-id);">man-addr-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L52C9 */</span><span id="L52C9"></span><span style="color:var(--color-yang-id);">string</span> {
+      <span style="color:var(--color-yang-keyword);">pattern</span> <span style="color:var(--color-yang-text);">"[0-9A-F]{2}([0-9A-F]{2}){0,30}"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Management address associated with the LLDP agent."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"8.5.9.4 of IEEE Std 802.1AB-2016"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L60C10 */</span><span id="L60C10"></span><span style="color:var(--color-yang-id);">system-capabilities-map</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L61C9 */</span><span id="L61C9"></span><span style="color:var(--color-yang-id);">bits</span> {
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L62C10 */</span><span id="L62C10"></span><span style="color:var(--color-yang-id);">other</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L63C17 */</span><span id="L63C17"></span><span style="color:var(--color-yang-id);">0</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"System has capabilities other than those listed below."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L67C10 */</span><span id="L67C10"></span><span style="color:var(--color-yang-id);">repeater</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L68C17 */</span><span id="L68C17"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"System has repeater capability."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L72C10 */</span><span id="L72C10"></span><span style="color:var(--color-yang-id);">bridge</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L73C17 */</span><span id="L73C17"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"System has bridge capability."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L77C10 */</span><span id="L77C10"></span><span style="color:var(--color-yang-id);">wlan-access-point</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L78C17 */</span><span id="L78C17"></span><span style="color:var(--color-yang-id);">3</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"System has WLAN access point capability."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L82C10 */</span><span id="L82C10"></span><span style="color:var(--color-yang-id);">router</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L83C17 */</span><span id="L83C17"></span><span style="color:var(--color-yang-id);">4</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"System has router capability."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L87C10 */</span><span id="L87C10"></span><span style="color:var(--color-yang-id);">telephone</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L88C17 */</span><span id="L88C17"></span><span style="color:var(--color-yang-id);">5</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"System has telephone capability."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L92C10 */</span><span id="L92C10"></span><span style="color:var(--color-yang-id);">docsis-cable-device</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L93C17 */</span><span id="L93C17"></span><span style="color:var(--color-yang-id);">6</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"System has DOCSIS Cable Device capability."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"IETF RFC 4639"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L99C10 */</span><span id="L99C10"></span><span style="color:var(--color-yang-id);">station-only</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L100C17 */</span><span id="L100C17"></span><span style="color:var(--color-yang-id);">7</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"System has only station capability."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L104C10 */</span><span id="L104C10"></span><span style="color:var(--color-yang-id);">cvlan-component</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L105C17 */</span><span id="L105C17"></span><span style="color:var(--color-yang-id);">8</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"System has C-VLAN component functionality."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L109C10 */</span><span id="L109C10"></span><span style="color:var(--color-yang-id);">svlan-component</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L110C17 */</span><span id="L110C17"></span><span style="color:var(--color-yang-id);">9</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"System has S-VLAN component functionality."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L114C10 */</span><span id="L114C10"></span><span style="color:var(--color-yang-id);">two-port-mac-relay</span> {
+        <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L115C17 */</span><span id="L115C17"></span><span style="color:var(--color-yang-id);">10</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"System has Two-port MAC Relay (TPMR) functionality."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This describes system capabilities."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"8.5.8.1 of IEEE Std 802.1AB-2016"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L125C10 */</span><span id="L125C10"></span><span style="color:var(--color-yang-id);">port-list</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L126C9 */</span><span id="L126C9"></span><span style="color:var(--color-yang-id);">binary</span> {
+      <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-text);">"0..512"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Each octet within this value specifies a set of eight ports, with the
+      first octet specifying ports 1 through 8, the second octet specifying
+      ports 9 through 16, etc. Within each octet, the most significant bit
+      represents the lowest numbered port, and the least significant bit
+      represents the highest numbered port. Thus, each port of the system is
+      represented by a single bit within the value of this object. If that
+      bit has a value of '1' then that port is included in the set of ports;
+      the port is not included if its bit has a value of '0'."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IETF RFC 2674 section 5"</span>;
+  }
+}

@@ -1,0 +1,268 @@
+// Copyright (c) 2021-2022 Microchip Technology Inc. and its subsidiaries.
+//
+// Unpublished rights reserved under the copyright laws of the United States
+// of America, other countries and international treaties. Permission to use,
+// copy, store and modify, the software and its source code is granted but
+// only in connection with products utilizing the Microsemi switch and PHY
+// products.  Permission is also granted for you to integrate into other
+// products, disclose, transmit and distribute the software only in an
+// absolute machine readable format (e.g. HEX file) and only in or with
+// products utilizing the Microsemi switch and PHY products.  The source code
+// of the software may not be disclosed, transmitted or distributed without
+// the prior written permission of Microsemi.
+//
+// This copyright notice must appear in any copy, modification, disclosure,
+// transmission or distribution of the software.  Microsemi retains all
+// ownership, copyright, trade secret and proprietary rights in the software
+// and its source code, including all modifications thereto.
+//
+// THIS SOFTWARE HAS BEEN PROVIDED "AS IS". MICROSEMI HEREBY DISCLAIMS ALL
+// WARRANTIES OF ANY KIND WITH RESPECT TO THE SOFTWARE, WHETHER SUCH
+// WARRANTIES ARE EXPRESS, IMPLIED, STATUTORY OR OTHERWISE INCLUDING, WITHOUT
+// LIMITATION, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR USE OR
+// PURPOSE AND NON-INFRINGEMENT.
+
+module ieee802-dot1q-bridge-dev {
+    yang-version 1.1;
+    namespace "urn:mchp:params:xml:ns:yang:ieee802-dot1q-bridge-dev";
+    prefix ieee802-dot1q-bridge-dev-pre;
+
+    import ieee802-dot1q-bridge {
+        prefix dot1q;
+    }
+
+    import ieee802-dot1q-psfp-bridge {
+        prefix psfp-bridge;
+    }
+
+    import mchp-velocitysp-bridge {
+        prefix lm-bridge;
+    }
+
+    revision 2024-04-12 {
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:address {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:bridge-type {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:address {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-mst {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-port {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:version {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:max-vids {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:override-default-pvid {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:protocol-template {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:max-msti {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:vlan {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:protocol-group-database {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:vid-to-fid-allocation {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:bridge-vlan/dot1q:fid-to-vid-allocation {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:capabilities {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:dynamic-entries {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:dynamic-vlan-registration-entries {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:filtering-entry/dot1q:port-map/dot1q:map-type {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:filtering-entry/dot1q:status {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:mac-address-registration-entries {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:size {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:static-entries {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:static-vlan-registration-entries {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:vlan-registration-entry/dot1q:port-map/dot1q:map-type/dot1q:dynamic-filtering-entries {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:vlan-registration-entry/dot1q:port-map/dot1q:map-type/dot1q:dynamic-reservation-entries {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:vlan-registration-entry/dot1q:port-map/dot1q:map-type/dot1q:dynamic-vlan-registration-entries {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:vlan-registration-entry/dot1q:port-map/dot1q:map-type/dot1q:mac-address-registration-entries {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:vlan-registration-entry/dot1q:port-map/dot1q:map-type/dot1q:static-filtering-entries {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:vlan-registration-entry/dot1q:port-map/dot1q:map-type/dot1q:static-vlan-registration-entries/dot1q:static-vlan-registration-entries/dot1q:registrar-admin-control {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:id {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:permanent-database {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:traffic-class-enabled {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:type {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-filters/psfp-bridge:stream-filter-instance-table/psfp-bridge:flow-meter-enable {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-filters/psfp-bridge:stream-filter-instance-table/psfp-bridge:stream-handle-spec/psfp-bridge:wildcard/psfp-bridge:wildcard {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:admin-control-list/psfp-bridge:gate-control-entry/psfp-bridge:operation-name {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:config-change {
+        deviate replace {
+            type lm-bridge:mchp-config-change-type;
+        }
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:config-change-error {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:oper-base-time {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:oper-control-list {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:oper-cycle-time {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:oper-cycle-time-extension {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:tick-granularity {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:supported-cycle-max {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:supported-interval-max {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:components {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:ports {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:up-time {
+        deviate not-supported;
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:supported-list-max {
+        deviate replace {
+            config false;
+        }
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:flow-meters/psfp-bridge:max-flow-meter-instances {
+        deviate replace {
+            config false;
+        }
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/psfp-bridge:stream-gates/psfp-bridge:stream-gate-instance-table/psfp-bridge:oper-ipv {
+        deviate replace {
+            config false;
+        }
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:filtering-entry/dot1q:vids {
+        deviate replace {
+            type lm-bridge:mchp-vid-type;
+        }
+    }
+
+    deviation /dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:vlan-registration-entry/dot1q:vids {
+        deviate replace {
+            type lm-bridge:mchp-vid-type;
+        }
+    }
+}

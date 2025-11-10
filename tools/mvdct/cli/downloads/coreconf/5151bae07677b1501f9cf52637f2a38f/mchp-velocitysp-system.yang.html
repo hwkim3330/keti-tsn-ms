@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">mchp-velocitysp-system</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L2C15 */</span><span id="L2C15"></span><span style="color:var(--color-yang-id);">1.1</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:mchp:params:xml:ns:yang:velocitysp-system"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">lm-system</span>;
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L6C9 */</span><span id="L6C9"></span><span style="color:var(--color-yang-id);">ietf-system</span> {
+      <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L7C13 */</span><span id="L7C13"></span><span style="color:var(--color-yang-id);">sys</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module contains a collection of YANG definitions for
+     managing MCHP systems running VelocitySP software."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L14C11 */</span><span id="L14C11"></span><span style="color:var(--color-yang-id);">2025-06-27</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Add Access Control."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L19C11 */</span><span id="L19C11"></span><span style="color:var(--color-yang-id);">2024-08-02</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Add Access Control."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L24C11 */</span><span id="L24C11"></span><span style="color:var(--color-yang-id);">2023-04-23</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">rpc</span> <span style="color:var(--color-yang-comment);">/* L29C6 */</span><span id="L29C6"></span><span style="color:var(--color-yang-id);">save-config</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Copy <running> to <startup-config>, which is applied at next reboot."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L34C12 */</span><span id="L34C12"></span><span style="color:var(--color-yang-id);">coap-server</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Information regarding the CoAP server."</span>;
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L38C14 */</span><span id="L38C14"></span><span style="color:var(--color-yang-id);">config</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"CoAP server related configuration attributes."</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L42C11 */</span><span id="L42C11"></span><span style="color:var(--color-yang-id);">security-mode</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Security mode."</span>;
+
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L46C13 */</span><span id="L46C13"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L47C15 */</span><span id="L47C15"></span><span style="color:var(--color-yang-id);">no-sec</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L48C18 */</span><span id="L48C18"></span><span style="color:var(--color-yang-id);">1</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"No security implemented as part of the protocol."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L52C15 */</span><span id="L52C15"></span><span style="color:var(--color-yang-id);">raw-public-key</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L53C18 */</span><span id="L53C18"></span><span style="color:var(--color-yang-id);">2</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"CoAP is secured by DTLS running in the raw public key mode."</span>;
+          }
+        }
+
+        <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L59C16 */</span><span id="L59C16"></span><span style="color:var(--color-yang-id);">raw-public-key</span>;
+      }
+      
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L62C11 */</span><span id="L62C11"></span><span style="color:var(--color-yang-id);">mup1-dtls-enable</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Enable dtls to coap over mup1 (type = 'd'). " +
+          "Disable direct to coap over mup1 (type = 'c'). " +
+          "Only applies when security-mode is not no-sec."</span>;
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L67C13 */</span><span id="L67C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"true"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L71C11 */</span><span id="L71C11"></span><span style="color:var(--color-yang-id);">ip-dtls-enable</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Enable dtls to coap over UDP/IP (port 5684). " +
+          "Disable direct to coap over UDP/IP (port 5683). " +
+          "Only applies when security-mode is not no-sec."</span>;
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L76C13 */</span><span id="L76C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"true"</span>;
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L82C11 */</span><span id="L82C11"></span><span style="color:var(--color-yang-id);">/sys:system/sys:authentication/sys:user"</span> {
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L83C9 */</span><span id="L83C9"></span><span style="color:var(--color-yang-id);">coap-authorized-key</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-comment);">/* L84C10 */</span><span id="L84C10"></span><span style="color:var(--color-yang-id);">name</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"A list of authorized keys used in CoAP/DTLS RawPublicKey"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"RFC 7252, section 9.1.3.2"</span>;
+
+      <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L90C14 */</span><span id="L90C14"></span><span style="color:var(--color-yang-id);">access-rights</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L91C13 */</span><span id="L91C13"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L92C15 */</span><span id="L92C15"></span><span style="color:var(--color-yang-id);">no-access</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L93C18 */</span><span id="L93C18"></span><span style="color:var(--color-yang-id);">0</span>;
+            <span style="color:var(--color-yang-keyword);">description</span> <span style="color:var(--color-yang-text);">"No access allowed for resource"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L96C15 */</span><span id="L96C15"></span><span style="color:var(--color-yang-id);">read-only</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L97C18 */</span><span id="L97C18"></span><span style="color:var(--color-yang-id);">1</span>;
+            <span style="color:var(--color-yang-keyword);">description</span> <span style="color:var(--color-yang-text);">"Read only access allowed for resource"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L100C15 */</span><span id="L100C15"></span><span style="color:var(--color-yang-id);">read-write</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L101C18 */</span><span id="L101C18"></span><span style="color:var(--color-yang-id);">2</span>;
+            <span style="color:var(--color-yang-keyword);">description</span> <span style="color:var(--color-yang-text);">"Read and Write access allowed for resource"</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L105C16 */</span><span id="L105C16"></span><span style="color:var(--color-yang-id);">no-access</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L108C11 */</span><span id="L108C11"></span><span style="color:var(--color-yang-id);">name</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L109C13 */</span><span id="L109C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"An arbitrary name for the key."</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L114C11 */</span><span id="L114C11"></span><span style="color:var(--color-yang-id);">key-data</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L115C13 */</span><span id="L115C13"></span><span style="color:var(--color-yang-id);">binary</span>;
+        <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L116C18 */</span><span id="L116C18"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The binary public key as specified in RFC6920 section 6."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 6920, section 6"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L123C16 */</span><span id="L123C16"></span><span style="color:var(--color-yang-id);">access-control</span> {
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L124C13 */</span><span id="L124C13"></span><span style="color:var(--color-yang-id);">cc-rights</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L125C15 */</span><span id="L125C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//mchp-velocitysp-system#L90C14">access-rights</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span> <span style="color:var(--color-yang-text);">"access-rights to the /c CORE CONF server."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L128C13 */</span><span id="L128C13"></span><span style="color:var(--color-yang-id);">startup-config-rights</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L129C15 */</span><span id="L129C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//mchp-velocitysp-system#L90C14">access-rights</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span> <span style="color:var(--color-yang-text);">"access-rights to the /startup-config server."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L132C13 */</span><span id="L132C13"></span><span style="color:var(--color-yang-id);">fw-rights</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L133C15 */</span><span id="L133C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//mchp-velocitysp-system#L90C14">access-rights</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span> <span style="color:var(--color-yang-text);">"access-rights to the /fw, firmware update server."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L136C13 */</span><span id="L136C13"></span><span style="color:var(--color-yang-id);">dbg-rights</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L137C15 */</span><span id="L137C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//mchp-velocitysp-system#L90C14">access-rights</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span> <span style="color:var(--color-yang-text);">"access-rights to the /dbg server."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L140C13 */</span><span id="L140C13"></span><span style="color:var(--color-yang-id);">well-known-rights</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L141C15 */</span><span id="L141C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//mchp-velocitysp-system#L90C14">access-rights</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span> <span style="color:var(--color-yang-text);">"access-rights to the /.well-known server."</span>;
+        }
+      }
+    }
+  }
+}

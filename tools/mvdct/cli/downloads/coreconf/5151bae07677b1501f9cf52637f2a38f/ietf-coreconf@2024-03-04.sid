@@ -1,0 +1,192 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 38430,
+      "size": 70
+    }
+  ],
+  "module-name": "ietf-coreconf",
+  "module-revision": "2024-03-04",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ietf-coreconf",
+      "status": "unstable",
+      "sid": 38430
+    },
+    {
+      "namespace": "identity",
+      "identifier": "bad-element",
+      "status": "unstable",
+      "sid": 38431
+    },
+    {
+      "namespace": "identity",
+      "identifier": "data-missing",
+      "status": "unstable",
+      "sid": 38432
+    },
+    {
+      "namespace": "identity",
+      "identifier": "data-not-unique",
+      "status": "unstable",
+      "sid": 38433
+    },
+    {
+      "namespace": "identity",
+      "identifier": "duplicate",
+      "status": "unstable",
+      "sid": 38434
+    },
+    {
+      "namespace": "identity",
+      "identifier": "error",
+      "status": "unstable",
+      "sid": 38435
+    },
+    {
+      "namespace": "identity",
+      "identifier": "error-app-tag",
+      "status": "unstable",
+      "sid": 38436
+    },
+    {
+      "namespace": "identity",
+      "identifier": "error-tag",
+      "status": "unstable",
+      "sid": 38437
+    },
+    {
+      "namespace": "identity",
+      "identifier": "instance-required",
+      "status": "unstable",
+      "sid": 38438
+    },
+    {
+      "namespace": "identity",
+      "identifier": "invalid-datatype",
+      "status": "unstable",
+      "sid": 38439
+    },
+    {
+      "namespace": "identity",
+      "identifier": "invalid-length",
+      "status": "unstable",
+      "sid": 38440
+    },
+    {
+      "namespace": "identity",
+      "identifier": "invalid-value",
+      "status": "unstable",
+      "sid": 38441
+    },
+    {
+      "namespace": "identity",
+      "identifier": "malformed-message",
+      "status": "unstable",
+      "sid": 38442
+    },
+    {
+      "namespace": "identity",
+      "identifier": "missing-choice",
+      "status": "unstable",
+      "sid": 38443
+    },
+    {
+      "namespace": "identity",
+      "identifier": "missing-element",
+      "status": "unstable",
+      "sid": 38444
+    },
+    {
+      "namespace": "identity",
+      "identifier": "missing-input-parameter",
+      "status": "unstable",
+      "sid": 38445
+    },
+    {
+      "namespace": "identity",
+      "identifier": "missing-key",
+      "status": "unstable",
+      "sid": 38446
+    },
+    {
+      "namespace": "identity",
+      "identifier": "must-violation",
+      "status": "unstable",
+      "sid": 38447
+    },
+    {
+      "namespace": "identity",
+      "identifier": "not-in-range",
+      "status": "unstable",
+      "sid": 38448
+    },
+    {
+      "namespace": "identity",
+      "identifier": "operation-failed",
+      "status": "unstable",
+      "sid": 38449
+    },
+    {
+      "namespace": "identity",
+      "identifier": "pattern-test-failed",
+      "status": "unstable",
+      "sid": 38450
+    },
+    {
+      "namespace": "identity",
+      "identifier": "too-few-elements",
+      "status": "unstable",
+      "sid": 38451
+    },
+    {
+      "namespace": "identity",
+      "identifier": "too-many-elements",
+      "status": "unstable",
+      "sid": 38452
+    },
+    {
+      "namespace": "identity",
+      "identifier": "unified",
+      "status": "unstable",
+      "sid": 38453
+    },
+    {
+      "namespace": "identity",
+      "identifier": "unknown-element",
+      "status": "unstable",
+      "sid": 38454
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-coreconf:error",
+      "status": "unstable",
+      "sid": 38455
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-coreconf:error/error-app-tag",
+      "status": "unstable",
+      "sid": 38456
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-coreconf:error/error-data-node",
+      "status": "unstable",
+      "sid": 38457
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-coreconf:error/error-message",
+      "status": "unstable",
+      "sid": 38458
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-coreconf:error/error-tag",
+      "status": "unstable",
+      "sid": 38459
+    }
+  ]
+}

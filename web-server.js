@@ -23,10 +23,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
 
-// mvdct 실행 경로
-const MVDCT_PATH = '/home/kim/Downloads/Microchip_VelocityDRIVE_CT-CLI-linux-2025.07.12/mvdct';
+// mvdct 실행 경로 (저장소에 포함됨)
+const MVDCT_PATH = join(__dirname, 'tools', 'mvdct', 'mvdct');
 const DEFAULT_DEVICE = '/dev/ttyACM0';
-const YANG_CATALOG_PATH = '/home/kim/Downloads/Microchip_VelocityDRIVE_CT-CLI-linux-2025.07.12/wwwroot/downloads/coreconf/5151bae07677b1501f9cf52637f2a38f';
 
 // 명령어 히스토리
 let commandHistory = [];

@@ -1,0 +1,126 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 30000,
+      "size": 1000
+    }
+  ],
+  "module-name": "mchp-velocitysp-bridge",
+  "module-revision": "2025-06-30",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "mchp-velocitysp-bridge",
+      "status": "unstable",
+      "sid": 30000
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/mchp-velocitysp-bridge:fdb-flush",
+      "status": "unstable",
+      "sid": 30001
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/mchp-velocitysp-bridge:fdb-flush/input/port",
+      "status": "unstable",
+      "sid": 30002
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/mchp-velocitysp-bridge:fdb-flush/input/vid",
+      "status": "unstable",
+      "sid": 30003
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/filtering-database/filtering-entry/mchp-velocitysp-bridge:ageing-disable",
+      "status": "unstable",
+      "sid": 30004
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/filtering-database/mchp-velocitysp-bridge:ageing-disable",
+      "status": "unstable",
+      "sid": 30005
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/filtering-database/mchp-velocitysp-bridge:one-shot",
+      "status": "unstable",
+      "sid": 30006
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/mchp-velocitysp-bridge:fdb-learning-disable",
+      "status": "unstable",
+      "sid": 30007
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/mchp-velocitysp-bridge:fdb-learning-limit",
+      "status": "unstable",
+      "sid": 30008
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/filtering-database/mchp-velocitysp-bridge:unknown-mac-flooding",
+      "status": "unstable",
+      "sid": 30009
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/filtering-database/mchp-velocitysp-bridge:unknown-mac-flooding/ipv4-mc-disable",
+      "status": "unstable",
+      "sid": 30010
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/filtering-database/mchp-velocitysp-bridge:unknown-mac-flooding/ipv6-mc-disable",
+      "status": "unstable",
+      "sid": 30011
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/filtering-database/mchp-velocitysp-bridge:unknown-mac-flooding/mc-disable",
+      "status": "unstable",
+      "sid": 30012
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/filtering-database/mchp-velocitysp-bridge:unknown-mac-flooding/uc-disable",
+      "status": "unstable",
+      "sid": 30013
+    },
+    {
+      "namespace": "identity",
+      "identifier": "provider-custom-network-port",
+      "status": "unstable",
+      "sid": 30014
+    },
+    {
+      "namespace": "feature",
+      "identifier": "tag_discard",
+      "status": "unstable",
+      "sid": 30015
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1q-bridge:bridges/bridge/component/mchp-velocitysp-bridge:custom-ethertype",
+      "status": "unstable",
+      "sid": 30016
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/mchp-velocitysp-bridge:forwarding-disable",
+      "status": "unstable",
+      "sid": 30017
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ieee802-dot1q-bridge:bridge-port/mchp-velocitysp-bridge:inner-tag-discard",
+      "status": "unstable",
+      "sid": 30018
+    }
+  ]
+}

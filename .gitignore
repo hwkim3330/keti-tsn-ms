@@ -59,3 +59,9 @@ Thumbs.db
 
 # Runtime data (board snapshots)
 board-data/
+
+# mvdct logs and temp files
+tools/mvdct/*.json
+tools/mvdct/last_log.*
+!tools/mvdct/*.deps.json
+!tools/mvdct/*.runtimeconfig.json

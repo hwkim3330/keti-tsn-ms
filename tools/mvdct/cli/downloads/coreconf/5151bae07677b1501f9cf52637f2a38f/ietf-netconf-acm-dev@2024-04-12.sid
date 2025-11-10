@@ -1,0 +1,18 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 18999,
+      "size": 1
+    }
+  ],
+  "module-name": "ietf-netconf-acm-dev",
+  "module-revision": "2024-04-12",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ietf-netconf-acm-dev",
+      "status": "unstable",
+      "sid": 18999
+    }
+  ]
+}

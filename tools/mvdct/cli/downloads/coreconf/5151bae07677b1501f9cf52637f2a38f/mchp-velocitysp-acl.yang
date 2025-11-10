@@ -1,0 +1,391 @@
+module mchp-velocitysp-acl {
+  yang-version 1.1;
+  namespace "urn:mchp:params:xml:ns:yang:velocitysp-acl";
+  prefix lm-acl;
+  import ieee802-types {
+    prefix "ieee";
+  }
+  import ietf-interfaces {
+    prefix if;
+  }
+  import ietf-inet-types {
+    prefix inet;
+  }
+  import iana-if-type {
+    prefix ianaif;
+  }
+  description
+    "This module contains a collection of YANG definitions for managing
+     ACL filtering of MCHP systems running VelocitySP software.";
+
+  revision 2025-06-30 {
+    description
+      "Added default values.";
+  }
+
+  revision 2025-03-31 {
+    description
+      "Initial revision.";
+  }
+
+  typedef acl-bit-type {
+    type enumeration {
+      enum any {
+        description
+          "Any value (0 or 1) matches.";
+      }
+      enum one {
+        description
+          "Value 1 matches.";
+      }
+      enum zero {
+        description
+          "Value 0 matches.";
+      }
+    }
+    description
+      "Type used for matching of a single bit of the frame.";
+  }
+
+  typedef acl-forwarding-type {
+    type enumeration {
+      enum none {
+        description
+          "No frame forwarding change.";
+      }
+      enum filter {
+        description
+          "Frame filtering using egress port list.";
+      }
+    }
+    description
+      "Type used for the forwarding action for the frame.";
+  }
+
+  grouping acl-parameters {
+    description
+      "ACL action parameters for an ACL rule or ingress port.";
+    leaf forwarding {
+      type acl-forwarding-type;
+      default "none";
+      description
+        "The forwarding action for the frame.";
+    }
+    leaf-list egress-port-list {
+      type if:interface-ref;
+      description
+        "The list of egress ports when filtering is enabled.";
+    }
+    leaf policer-enable {
+      type boolean;
+      default "false";
+      description
+        "Control whether policer is enabled.";
+    }
+    leaf policer-index {
+      type uint8;
+      default "0";
+      description
+        "Policer index.";
+    }
+    leaf rx-count {
+      type uint32;
+      config false;
+      description
+        "Frame match counter.";
+    }
+    action clear {
+      description
+        "Clear match counter.";
+    }
+  }
+
+  grouping acl-ip-parameters {
+    description
+      "ACL IPv4/IPv6 parameters.";
+    leaf ttl {
+      type acl-bit-type;
+      description
+        "The IP TTL property of the rule.
+         This can be used to match frames with TTL greater than zero.";
+    }
+    leaf proto {
+      type uint8;
+      description
+        "The IP protocol value of the rule.";
+    }
+    leaf proto-mask {
+      type uint8;
+      description
+        "The IP protocol mask of the rule.";
+    }
+    leaf ds {
+      type uint8;
+      description
+        "The IP DS value of the rule.";
+    }
+    leaf ds-mask {
+      type uint8;
+      description
+        "The IP DS mask of the rule.";
+    }
+    leaf data {
+      type uint32;
+      description
+        "The IP data (not UDP/TCP) of the rule.";
+    }
+    leaf data-mask {
+      type uint32;
+      description
+        "The IP data mask (not UDP/TCP) of the rule.";
+    }
+    leaf sport-min {
+      type uint16;
+      description
+        "The IP minimum UDP/TCP source port of the rule.";
+    }
+    leaf sport-max {
+      type uint16;
+      description
+        "The IP minimum UDP/TCP source port of the rule.";
+    }
+    leaf dport-min {
+      type uint16;
+      description
+        "The IP minimum UDP/TCP destination port of the rule.";
+    }
+    leaf dport-max {
+      type uint16;
+      description
+        "The IP minimum UDP/TCP destination port of the rule.";
+    }
+    leaf tcp-fin {
+      type acl-bit-type;
+      description
+        "The TCP FIN property of the rule.";
+    }
+    leaf tcp-syn {
+      type acl-bit-type;
+      description
+        "The TCP SYN property of the rule.";
+    }
+    leaf tcp-rst {
+      type acl-bit-type;
+      description
+        "The TCP RST property of the rule.";
+    }
+    leaf tcp-psh {
+      type acl-bit-type;
+      description
+        "The TCP PSH property of the rule.";
+    }
+    leaf tcp-ack {
+      type acl-bit-type;
+      description
+        "The TCP ACK property of the rule.";
+    }
+    leaf tcp-urg {
+      type acl-bit-type;
+      description
+        "The TCP URG property of the rule.";
+    }
+  }
+
+  container acl {
+    description
+      "Access Control List information.";
+    container acl-rules {
+      description
+        "ACL rules information.";
+      list rule-list {
+        key "id";
+        description
+          "The Access Control List consists of an ordered set of rules.
+           The first matching rule determines the action for an ingress frames.";
+        leaf id {
+          type uint16;
+          description
+            "The non-zero ID is used for ordering the ACL rules.
+             Rules with lower IDs have higher priority in the ordering";
+        }
+        leaf-list ingress-port-list {
+          type if:interface-ref;
+          description
+            "The list of ingress ports of the rule.";
+        }
+        leaf dmac {
+          type ieee:mac-address;
+          description
+            "The DMAC value of the rule.";
+        }
+        leaf dmac-mask {
+          type ieee:mac-address;
+          description
+            "The DMAC mask of the rule.";
+        }
+        leaf smac {
+          type ieee:mac-address;
+          description
+            "The SMAC value of the rule.";
+        }
+        leaf smac-mask {
+          type ieee:mac-address;
+          description
+            "The SMAC mask of the rule.";
+        }
+        leaf tagged {
+          type acl-bit-type;
+          description
+            "The tag property of the rule.";
+        }
+        leaf vid {
+          type uint16;
+          description
+            "The classified VLAN ID value of the rule.";
+        }
+        leaf vid-mask {
+          type uint16;
+          description
+            "The VLAN ID mask of the rule.";
+        }
+        leaf pcp {
+          type uint8;
+          description
+            "The classified PCP value of the rule.";
+        }
+        leaf pcp-mask {
+          type uint8;
+          description
+            "The PCP mask of the rule.";
+        }
+        leaf dei {
+         type acl-bit-type;
+          description
+            "The DEI property of the rule.";
+        }
+        choice parameters {
+          description
+            "Frame type specific parameters.";
+          container frame-any {
+            description
+              "Any frame type matching.";
+            leaf any {
+              type empty;
+              description
+                "The presence of this leaf indicates matching of all frame types.";
+            }
+          }
+          container frame-etype {
+            description
+              "Ethernet Type (not IPv4/IPv6) specific parameters.";
+            leaf etype {
+              type uint16;
+               description
+                "The Ethernet Type value of the rule.";
+            }
+            leaf etype-mask {
+            type uint16;
+            description
+             "The Ethernet Type mask of the rule.";
+            }
+            leaf data {
+              type uint16;
+              description
+                "The IP data (not UDP/TCP) of the rule.";
+            }
+            leaf data-mask {
+              type uint16;
+              description
+                "The IP data mask (not UDP/TCP) of the rule.";
+            }
+          }
+          container frame-ipv4 {
+            description
+              "IPv4 specific parameters.";
+            leaf fragment {
+              type acl-bit-type;
+              description
+                "The IPv4 fragment property of the rule.
+                 This can be used to match IPv4 fragments.";
+            }
+            leaf options {
+              type acl-bit-type;
+              description
+                "The IPv4 options property of the rule.
+                 This can be used to match IPv4 frames with header length greater than 20 bytes";
+            }
+            leaf sip {
+              type inet:ipv4-prefix;
+              description
+                "The IPv4 source address prefix of the rule.";
+            }
+            leaf dip {
+              type inet:ipv4-prefix;
+              description
+                "The IPv4 destination address prefix of the rule.";
+            }
+            uses acl-ip-parameters;  
+          }
+          container frame-ipv6 {
+            description
+              "IPv6 specific parameters.";
+            leaf sip {
+              type inet:ipv6-prefix;
+              description
+                "The IPv6 source address prefix of the rule.";
+            }
+            leaf dip {
+              type inet:ipv6-prefix;
+              description
+                "The IPv6 destination address prefix of the rule.";
+            }
+            uses acl-ip-parameters;  
+          }
+        }
+        uses acl-parameters;  
+      }
+    }
+
+    container acl-policers {
+      description
+        "ACL policer information.";
+      list policer-list {
+        key "index";
+        description
+          "The ACL policers can be referred to from an ACL rule or an ingress port.";
+        leaf index {
+          type uint8;
+          description
+            "The index of the ACL policer.";
+        }
+        choice rate {
+          leaf frame-rate {
+            type uint32;
+            description
+              "Frame rate (frames per second).";
+          }
+          leaf bit-rate {
+            type uint64;
+            description
+              "Bit rate (bits per second).";
+          }
+        }
+      }
+    }
+  }
+
+  augment "/if:interfaces/if:interface" {
+    when
+      "if:type = 'ianaif:ethernetCsmacd'" {
+      description
+        "Applies when an Ethernet bridge port.";
+    }
+    description
+      "Augment the interface model with the Ethernet bridge port";
+    container acl-port {
+      description
+        "ACL port extension of the IETF Interfaces model (RFC7223).";
+      uses acl-parameters;  
+    }
+  }
+}

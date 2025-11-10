@@ -1,0 +1,427 @@
+// Copyright (c) 2021-2022 Microchip Technology Inc. and its subsidiaries.
+//
+// Unpublished rights reserved under the copyright laws of the United States
+// of America, other countries and international treaties. Permission to use,
+// copy, store and modify, the software and its source code is granted but
+// only in connection with products utilizing the Microsemi switch and PHY
+// products.  Permission is also granted for you to integrate into other
+// products, disclose, transmit and distribute the software only in an
+// absolute machine readable format (e.g. HEX file) and only in or with
+// products utilizing the Microsemi switch and PHY products.  The source code
+// of the software may not be disclosed, transmitted or distributed without
+// the prior written permission of Microsemi.
+//
+// This copyright notice must appear in any copy, modification, disclosure,
+// transmission or distribution of the software.  Microsemi retains all
+// ownership, copyright, trade secret and proprietary rights in the software
+// and its source code, including all modifications thereto.
+//
+// THIS SOFTWARE HAS BEEN PROVIDED "AS IS". MICROSEMI HEREBY DISCLAIMS ALL
+// WARRANTIES OF ANY KIND WITH RESPECT TO THE SOFTWARE, WHETHER SUCH
+// WARRANTIES ARE EXPRESS, IMPLIED, STATUTORY OR OTHERWISE INCLUDING, WITHOUT
+// LIMITATION, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR USE OR
+// PURPOSE AND NON-INFRINGEMENT.
+
+module ieee1588-ptp-dev {
+    yang-version 1.1;
+    namespace "urn:mchp:params:xml:ns:yang:ieee1588-ptp-dev";
+    prefix ieee1588-ptp-dev-pre;
+
+    import ieee1588-ptp {
+        prefix ptp;
+    }
+
+    import ieee802-dot1as-ptp {
+        prefix dot1as-ptp;
+    }
+
+    import mchp-velocitysp-ptp {
+        prefix velocitysp-ptp;
+    }
+
+    revision 2024-04-12 {
+    }
+
+    deviation /ptp:ptp/ptp:common-services {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:acceptable-master-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:alternate-timescale-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:current-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/ptp:instance-type {
+        deviate replace {
+            type velocitysp-ptp:velocitysp-instance-type;
+        }
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:current-utc-offset {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:current-utc-offset-valid {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:frequency-traceable {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:gm-capable {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:leap59 {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:leap61 {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:ptp-timescale {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:time-source {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/dot1as-ptp:time-traceable {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/ptp:clock-quality {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/ptp:current-time {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/ptp:number-ports {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/ptp:sdo-id {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/ptp:slave-only {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:default-ds/ptp:two-step-flag {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:description-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:enhanced-metrics-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:fault-log-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:grandmaster-cluster-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:holdover-upgrade-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:parent-ds/ptp:grandmaster-clock-quality/ptp:offset-scaled-log-variance {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:parent-ds/ptp:observed-parent-clock-phase-change-rate {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:parent-ds/ptp:observed-parent-offset-scaled-log-variance {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:parent-ds/ptp:parent-stats {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:parent-ds/ptp:protocol-address {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:parent-ds/ptp:synchronization-uncertain {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:path-trace-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:performance-monitoring-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:acceptable-master-port-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:alternate-master-port-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:asymmetry-correction-port-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:common-services-port-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:communication-cap-port-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:description-port-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:l1-sync-basic-port-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:l1-sync-opt-params-port-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:performance-monitoring-port-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:allowed-faults {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:allowed-lost-responses {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:asymmetry-measurement-mode-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:current-compute-mean-link-delay {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:current-compute-rate-ratio {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:current-log-announce-interval {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:current-log-gptp-cap-interval {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:current-log-pdelay-req-interval {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:current-log-sync-interval {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:current-one-step-tx-oper {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:gptp-cap-receipt-timeout {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:initial-compute-mean-link-delay {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:initial-compute-rate-ratio {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:initial-log-announce-interval {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:initial-log-gptp-cap-interval {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:initial-log-pdelay-req-interval {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:initial-log-sync-interval {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:initial-one-step-tx-oper {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:is-measuring-delay {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:mgt-compute-mean-link-delay {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:mgt-compute-rate-ratio {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:mgt-log-pdelay-req-interval {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:ndown {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:nup {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:one-step-receive {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:one-step-transmit {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:one-step-tx-oper {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:pdelay-truncated-timestamps {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:port-statistics-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:sync-locked {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:sync-receipt-timeout-interval {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:use-mgt-compute-mean-link-delay {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:use-mgt-compute-rate-ratio {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:use-mgt-log-announce-interval {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:use-mgt-log-pdelay-req-interval {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/dot1as-ptp:use-mgt-log-sync-interval {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:announce-receipt-timeout {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:delay-asymmetry {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:delay-mechanism {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:log-announce-interval {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:log-min-delay-req-interval {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:master-only {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:minor-version-number {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:peer-mean-path-delay {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:port-identity {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:port-ds/ptp:version-number {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:slave-monitoring-port-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:underlying-interface {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:unicast-discovery-port-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:ports/ptp:port/ptp:unicast-negotiation-port-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:instances/ptp:instance/ptp:time-properties-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:transparent-clock-default-ds {
+        deviate not-supported;
+    }
+
+    deviation /ptp:ptp/ptp:transparent-clock-ports {
+        deviate not-supported;
+    }
+
+}

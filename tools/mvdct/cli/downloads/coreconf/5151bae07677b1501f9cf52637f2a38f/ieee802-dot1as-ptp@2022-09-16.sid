@@ -1,0 +1,678 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 16000,
+      "size": 1000
+    }
+  ],
+  "module-name": "ieee802-dot1as-ptp",
+  "module-revision": "2022-09-16",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ieee802-dot1as-ptp",
+      "status": "unstable",
+      "sid": 16000
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:allowed-faults",
+      "status": "unstable",
+      "sid": 16001
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:allowed-lost-responses",
+      "status": "unstable",
+      "sid": 16002
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:as-capable-across-domains",
+      "status": "unstable",
+      "sid": 16003
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:asymmetry-measurement-mode-ds",
+      "status": "unstable",
+      "sid": 16004
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:asymmetry-measurement-mode-ds/enabled",
+      "status": "unstable",
+      "sid": 16005
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:cmlds-link-port-enabled",
+      "status": "unstable",
+      "sid": 16006
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:current-compute-mean-link-delay",
+      "status": "unstable",
+      "sid": 16007
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:current-compute-rate-ratio",
+      "status": "unstable",
+      "sid": 16008
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:current-log-pdelay-req-interval",
+      "status": "unstable",
+      "sid": 16009
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:initial-compute-mean-link-delay",
+      "status": "unstable",
+      "sid": 16010
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:initial-compute-rate-ratio",
+      "status": "unstable",
+      "sid": 16011
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:initial-log-pdelay-req-interval",
+      "status": "unstable",
+      "sid": 16012
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:is-measuring-delay",
+      "status": "unstable",
+      "sid": 16013
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:mean-link-delay-thresh",
+      "status": "unstable",
+      "sid": 16014
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:mgt-compute-mean-link-delay",
+      "status": "unstable",
+      "sid": 16015
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:mgt-compute-rate-ratio",
+      "status": "unstable",
+      "sid": 16016
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:mgt-log-pdelay-req-interval",
+      "status": "unstable",
+      "sid": 16017
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:pdelay-truncated-timestamps",
+      "status": "unstable",
+      "sid": 16018
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:port-statistics-ds",
+      "status": "unstable",
+      "sid": 16019
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:port-statistics-ds/pdelay-allowed-lost-exceeded-count",
+      "status": "unstable",
+      "sid": 16020
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:port-statistics-ds/rx-packet-discard-count",
+      "status": "unstable",
+      "sid": 16021
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:port-statistics-ds/rx-pdelay-req-count",
+      "status": "unstable",
+      "sid": 16022
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:port-statistics-ds/rx-pdelay-resp-count",
+      "status": "unstable",
+      "sid": 16023
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:port-statistics-ds/rx-pdelay-resp-follow-up-count",
+      "status": "unstable",
+      "sid": 16024
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:port-statistics-ds/tx-pdelay-req-count",
+      "status": "unstable",
+      "sid": 16025
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:port-statistics-ds/tx-pdelay-resp-count",
+      "status": "unstable",
+      "sid": 16026
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:port-statistics-ds/tx-pdelay-resp-follow-up-count",
+      "status": "unstable",
+      "sid": 16027
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:use-mgt-compute-mean-link-delay",
+      "status": "unstable",
+      "sid": 16028
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:use-mgt-compute-rate-ratio",
+      "status": "unstable",
+      "sid": 16029
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/ieee802-dot1as-ptp:use-mgt-log-pdelay-req-interval",
+      "status": "unstable",
+      "sid": 16030
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/current-ds/ieee802-dot1as-ptp:gm-change-count",
+      "status": "unstable",
+      "sid": 16031
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/current-ds/ieee802-dot1as-ptp:gm-timebase-indicator",
+      "status": "unstable",
+      "sid": 16032
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/current-ds/ieee802-dot1as-ptp:last-gm-freq-change",
+      "status": "unstable",
+      "sid": 16033
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/current-ds/ieee802-dot1as-ptp:last-gm-phase-change",
+      "status": "unstable",
+      "sid": 16034
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/current-ds/ieee802-dot1as-ptp:time-of-last-freq-change",
+      "status": "unstable",
+      "sid": 16035
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/current-ds/ieee802-dot1as-ptp:time-of-last-gm-change",
+      "status": "unstable",
+      "sid": 16036
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/current-ds/ieee802-dot1as-ptp:time-of-last-phase-change",
+      "status": "unstable",
+      "sid": 16037
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/ieee802-dot1as-ptp:current-utc-offset",
+      "status": "unstable",
+      "sid": 16038
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/ieee802-dot1as-ptp:current-utc-offset-valid",
+      "status": "unstable",
+      "sid": 16039
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/ieee802-dot1as-ptp:frequency-traceable",
+      "status": "unstable",
+      "sid": 16040
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/ieee802-dot1as-ptp:gm-capable",
+      "status": "unstable",
+      "sid": 16041
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/ieee802-dot1as-ptp:leap59",
+      "status": "unstable",
+      "sid": 16042
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/ieee802-dot1as-ptp:leap61",
+      "status": "unstable",
+      "sid": 16043
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/ieee802-dot1as-ptp:ptp-timescale",
+      "status": "unstable",
+      "sid": 16044
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/ieee802-dot1as-ptp:time-source",
+      "status": "unstable",
+      "sid": 16045
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/ieee802-dot1as-ptp:time-traceable",
+      "status": "unstable",
+      "sid": 16046
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/ieee802-dot1as-ptp:cumulative-rate-ratio",
+      "status": "unstable",
+      "sid": 16047
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:allowed-faults",
+      "status": "unstable",
+      "sid": 16048
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:allowed-lost-responses",
+      "status": "unstable",
+      "sid": 16049
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:as-capable",
+      "status": "unstable",
+      "sid": 16050
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:asymmetry-measurement-mode-ds",
+      "status": "unstable",
+      "sid": 16051
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:asymmetry-measurement-mode-ds/enabled",
+      "status": "unstable",
+      "sid": 16052
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:current-compute-mean-link-delay",
+      "status": "unstable",
+      "sid": 16053
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:current-compute-rate-ratio",
+      "status": "unstable",
+      "sid": 16054
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:current-log-announce-interval",
+      "status": "unstable",
+      "sid": 16055
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:current-log-gptp-cap-interval",
+      "status": "unstable",
+      "sid": 16056
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:current-log-pdelay-req-interval",
+      "status": "unstable",
+      "sid": 16057
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:current-log-sync-interval",
+      "status": "unstable",
+      "sid": 16058
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:current-one-step-tx-oper",
+      "status": "unstable",
+      "sid": 16059
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:gptp-cap-receipt-timeout",
+      "status": "unstable",
+      "sid": 16060
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:initial-compute-mean-link-delay",
+      "status": "unstable",
+      "sid": 16061
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:initial-compute-rate-ratio",
+      "status": "unstable",
+      "sid": 16062
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:initial-log-announce-interval",
+      "status": "unstable",
+      "sid": 16063
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:initial-log-gptp-cap-interval",
+      "status": "unstable",
+      "sid": 16064
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:initial-log-pdelay-req-interval",
+      "status": "unstable",
+      "sid": 16065
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:initial-log-sync-interval",
+      "status": "unstable",
+      "sid": 16066
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:initial-one-step-tx-oper",
+      "status": "unstable",
+      "sid": 16067
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:is-measuring-delay",
+      "status": "unstable",
+      "sid": 16068
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:mean-link-delay-thresh",
+      "status": "unstable",
+      "sid": 16069
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:mgt-compute-mean-link-delay",
+      "status": "unstable",
+      "sid": 16070
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:mgt-compute-rate-ratio",
+      "status": "unstable",
+      "sid": 16071
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:mgt-log-gptp-cap-interval",
+      "status": "unstable",
+      "sid": 16072
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:mgt-log-pdelay-req-interval",
+      "status": "unstable",
+      "sid": 16073
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:mgt-one-step-tx-oper",
+      "status": "unstable",
+      "sid": 16074
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:ndown",
+      "status": "unstable",
+      "sid": 16075
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:neighbor-rate-ratio",
+      "status": "unstable",
+      "sid": 16076
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:nup",
+      "status": "unstable",
+      "sid": 16077
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:one-step-receive",
+      "status": "unstable",
+      "sid": 16078
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:one-step-transmit",
+      "status": "unstable",
+      "sid": 16079
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:one-step-tx-oper",
+      "status": "unstable",
+      "sid": 16080
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:pdelay-truncated-timestamps",
+      "status": "unstable",
+      "sid": 16081
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds",
+      "status": "unstable",
+      "sid": 16082
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/announce-receipt-timeout-count",
+      "status": "unstable",
+      "sid": 16083
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/pdelay-allowed-lost-exceeded-count",
+      "status": "unstable",
+      "sid": 16084
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/rx-announce-count",
+      "status": "unstable",
+      "sid": 16085
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/rx-follow-up-count",
+      "status": "unstable",
+      "sid": 16086
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/rx-one-step-sync-count",
+      "status": "unstable",
+      "sid": 16087
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/rx-packet-discard-count",
+      "status": "unstable",
+      "sid": 16088
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/rx-pdelay-req-count",
+      "status": "unstable",
+      "sid": 16089
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/rx-pdelay-resp-count",
+      "status": "unstable",
+      "sid": 16090
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/rx-pdelay-resp-follow-up-count",
+      "status": "unstable",
+      "sid": 16091
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/rx-sync-count",
+      "status": "unstable",
+      "sid": 16092
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/sync-receipt-timeout-count",
+      "status": "unstable",
+      "sid": 16093
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/tx-announce-count",
+      "status": "unstable",
+      "sid": 16094
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/tx-follow-up-count",
+      "status": "unstable",
+      "sid": 16095
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/tx-one-step-sync-count",
+      "status": "unstable",
+      "sid": 16096
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/tx-pdelay-req-count",
+      "status": "unstable",
+      "sid": 16097
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/tx-pdelay-resp-count",
+      "status": "unstable",
+      "sid": 16098
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/tx-pdelay-resp-follow-up-count",
+      "status": "unstable",
+      "sid": 16099
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:port-statistics-ds/tx-sync-count",
+      "status": "unstable",
+      "sid": 16100
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:sync-locked",
+      "status": "unstable",
+      "sid": 16101
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:sync-receipt-timeout",
+      "status": "unstable",
+      "sid": 16102
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:sync-receipt-timeout-interval",
+      "status": "unstable",
+      "sid": 16103
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:use-mgt-compute-mean-link-delay",
+      "status": "unstable",
+      "sid": 16104
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:use-mgt-compute-rate-ratio",
+      "status": "unstable",
+      "sid": 16105
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:use-mgt-log-announce-interval",
+      "status": "unstable",
+      "sid": 16106
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:use-mgt-log-gptp-cap-interval",
+      "status": "unstable",
+      "sid": 16107
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:use-mgt-log-pdelay-req-interval",
+      "status": "unstable",
+      "sid": 16108
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:use-mgt-log-sync-interval",
+      "status": "unstable",
+      "sid": 16109
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/ieee802-dot1as-ptp:use-mgt-one-step-tx-oper",
+      "status": "unstable",
+      "sid": 16110
+    }
+  ]
+}

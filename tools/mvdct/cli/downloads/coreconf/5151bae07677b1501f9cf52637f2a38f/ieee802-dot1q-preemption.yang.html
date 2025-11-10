@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-preemption</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-text);">"1.1"</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-comment);">/* L3C12 */</span><span id="L3C12"></span><span style="color:var(--color-yang-id);">urn:ieee:std:802.1Q:yang:ieee802-dot1q-preemption</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">preempt</span>;
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IEEE 802.1 Working Group"</span>;
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG-URL: http://www.ieee802.org/1/
+    WG-EMail: stds-802-1-l@ieee.org
+    
+    Contact: IEEE 802.1 Working Group Chair
+    Postal: C/O IEEE 802.1 Working Group
+    IEEE Standards Association
+    445 Hoes Lane
+    Piscataway, NJ 08854
+    USA
+    
+    E-mail: STDS-802-1-CHAIRS@IEEE.ORG"</span>;
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module provides for management of IEEE Std 802.1Q Bridges that
+    support Frame Preemption.
+    
+    Copyright (C) IEEE (2022).
+    
+    This version of this YANG module is part of IEEE Std 802.1Q; see the
+    standard itself for full legal notices."</span>;
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L27C11 */</span><span id="L27C11"></span><span style="color:var(--color-yang-id);">2022-08-18</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1Qcw. Initial version.
+      
+      The following reference statement identifies each referenced IEEE
+      Standard as updated by applicable amendments."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Q Bridges and Bridged Networks: 
+      IEEE Stds 802.1Q-2022, 802.1Qcw-2023."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L37C10 */</span><span id="L37C10"></span><span style="color:var(--color-yang-id);">frame-preemption</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Frame preemption supported."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L43C10 */</span><span id="L43C10"></span><span style="color:var(--color-yang-id);">frame-preemption-status-enum</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L44C9 */</span><span id="L44C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L45C11 */</span><span id="L45C11"></span><span style="color:var(--color-yang-id);">express</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Frames queued for the priority are to be transmitted using the
+          express service for the Port."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L50C11 */</span><span id="L50C11"></span><span style="color:var(--color-yang-id);">preemptable</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Frames queued for the priority are to be transmitted using the
+          preemptable service for the Port."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Frame preemption status of each priority."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L59C11 */</span><span id="L59C11"></span><span style="color:var(--color-yang-id);">preemption-parameters</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"preemption-parameters comprises all the parameters associated with
+      Frame Preemption configuration."</span>;
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L63C14 */</span><span id="L63C14"></span><span style="color:var(--color-yang-id);">frame-preemption-parameters</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"A table containing a set of frame preemption parameters, one for
+        each Port. All writeable objects in this table must be persistent
+        over power up restart/reboot."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.30.1 of IEEE Std 802.1Q"</span>;
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L70C16 */</span><span id="L70C16"></span><span style="color:var(--color-yang-id);">frame-preemption-status-table</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The framePreemptionStatusTable consists of 8 frame-preemption
+          status parameter leafs, one per priority"</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"12.30.1.1 of IEEE Std 802.1Q"</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L76C13 */</span><span id="L76C13"></span><span style="color:var(--color-yang-id);">priority0</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L77C15 */</span><span id="L77C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-preemption#L43C10">frame-preemption-status-enum</a></span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"express"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The value of the frame-preemption status parameter for the
+            priority 0. The default value of the parameter is express (1).
+            The value of this object MUST be retained across
+            reinitializations of the management system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.30.1.1.1 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L87C13 */</span><span id="L87C13"></span><span style="color:var(--color-yang-id);">priority1</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L88C15 */</span><span id="L88C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-preemption#L43C10">frame-preemption-status-enum</a></span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"express"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The value of the frame-preemption status parameter for the
+            priority 1. The default value of the parameter is express (1).
+            The value of this object MUST be retained across
+            reinitializations of the management system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.30.1.1.1 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L98C13 */</span><span id="L98C13"></span><span style="color:var(--color-yang-id);">priority2</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L99C15 */</span><span id="L99C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-preemption#L43C10">frame-preemption-status-enum</a></span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"express"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The value of the frame-preemption status parameter for the
+            priority 2. The default value of the parameter is express (1).
+            The value of this object MUST be retained across
+            reinitializations of the management system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.30.1.1.1 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L109C13 */</span><span id="L109C13"></span><span style="color:var(--color-yang-id);">priority3</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L110C15 */</span><span id="L110C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-preemption#L43C10">frame-preemption-status-enum</a></span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"express"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The value of the frame-preemption status parameter for the
+            priority 3. The default value of the parameter is express (1).
+            The value of this object MUST be retained across
+            reinitializations of the management system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.30.1.1.1 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L120C13 */</span><span id="L120C13"></span><span style="color:var(--color-yang-id);">priority4</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L121C15 */</span><span id="L121C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-preemption#L43C10">frame-preemption-status-enum</a></span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"express"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The value of the frame-preemption-status parameter for the
+            priority 4. The default value of the parameter is express (1).
+            The value of this object MUST be retained across
+            reinitializations of the management system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.30.1.1.1 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L131C13 */</span><span id="L131C13"></span><span style="color:var(--color-yang-id);">priority5</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L132C15 */</span><span id="L132C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-preemption#L43C10">frame-preemption-status-enum</a></span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"express"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The value of the frame-preemption status parameter for the
+            priority 5. The default value of the parameter is express (1).
+            The value of this object MUST be retained across
+            reinitializations of the management system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.30.1.1.1 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L142C13 */</span><span id="L142C13"></span><span style="color:var(--color-yang-id);">priority6</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L143C15 */</span><span id="L143C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-preemption#L43C10">frame-preemption-status-enum</a></span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"express"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The value of the frame-preemption status parameter for the
+            priority 6. The default value of the parameter is express (1).
+            The value of this object MUST be retained across
+            reinitializations of the management system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.30.1.1.1 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L153C13 */</span><span id="L153C13"></span><span style="color:var(--color-yang-id);">priority7</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L154C15 */</span><span id="L154C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-preemption#L43C10">frame-preemption-status-enum</a></span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"express"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The value of the frame-preemption status parameter for the
+            priority 7. The default value of the parameter is express (1).
+            The value of this object MUST be retained across
+            reinitializations of the management system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.30.1.1.1 of IEEE Std 802.1Q"</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L165C11 */</span><span id="L165C11"></span><span style="color:var(--color-yang-id);">hold-advance</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L166C13 */</span><span id="L166C13"></span><span style="color:var(--color-yang-id);">uint32</span>;
+        <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"nanoseconds"</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L168C15 */</span><span id="L168C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The value of the holdAdvance parameter for the Port in
+          nanoseconds. There is no default value; the holdAdvance is a
+          property of the underlying MAC."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"12.30.1.2 of IEEE Std 802.1Q"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L176C11 */</span><span id="L176C11"></span><span style="color:var(--color-yang-id);">release-advance</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L177C13 */</span><span id="L177C13"></span><span style="color:var(--color-yang-id);">uint32</span>;
+        <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"nanoseconds"</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L179C15 */</span><span id="L179C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The value of the releaseAdvance parameter for the Port in
+          nanoseconds. There is no default value; the releaseAdvance is a
+          property of the underlying MAC."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"12.30.1.3 of IEEE Std 802.1Q"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L187C11 */</span><span id="L187C11"></span><span style="color:var(--color-yang-id);">preemption-active</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L188C13 */</span><span id="L188C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L189C15 */</span><span id="L189C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"TRUE if preemption is both supported by the MAC and currently
+          active."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"12.30.1.4 of IEEE Std 802.1Q"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L196C11 */</span><span id="L196C11"></span><span style="color:var(--color-yang-id);">hold-request</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L197C13 */</span><span id="L197C13"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L198C15 */</span><span id="L198C15"></span><span style="color:var(--color-yang-id);">hold</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L199C18 */</span><span id="L199C18"></span><span style="color:var(--color-yang-id);">1</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A hold request has been issued to the MAC."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L203C15 */</span><span id="L203C15"></span><span style="color:var(--color-yang-id);">release</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L204C18 */</span><span id="L204C18"></span><span style="color:var(--color-yang-id);">2</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A release request has been issued to the MAC."</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L209C15 */</span><span id="L209C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The value of the holdRequest parameter for the Port, either hold
+          (1) or release (2). The value of this object is release (2) on
+          system initialization."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"12.30.1.5 of IEEE Std 802.1Q"</span>;
+      }
+    }
+  }
+}

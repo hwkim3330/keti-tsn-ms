@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ietf-coreconf</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L2C15 */</span><span id="L2C15"></span><span style="color:var(--color-yang-id);">1.1</span>;
+
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:ietf:params:xml:ns:yang:ietf-coreconf"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L5C9 */</span><span id="L5C9"></span><span style="color:var(--color-yang-id);">coreconf</span>;
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L7C9 */</span><span id="L7C9"></span><span style="color:var(--color-yang-id);">ietf-datastores</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L8C11 */</span><span id="L8C11"></span><span style="color:var(--color-yang-id);">ds</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 8342: Network Management Datastore Architecture (NMDA)"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L13C9 */</span><span id="L13C9"></span><span style="color:var(--color-yang-id);">ietf-restconf</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L14C11 */</span><span id="L14C11"></span><span style="color:var(--color-yang-id);">rc</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This import statement is required to access
+       the yang-data extension defined in RFC 8040."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span> <span style="color:var(--color-yang-text);">"RFC 8040: RESTCONF Protocol"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IETF Core Working Group"</span>;
+
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG Web:   <https://datatracker.ietf.org/wg/core/>
+     WG List:  <mailto:core@ietf.org>
+
+     Michel Veillette
+     <mailto:michel.veillette@trilliantinc.com>
+
+     Alexander Pelov
+     <mailto:alexander.pelov@imt-atlantique.fr>
+
+     Peter van der Stok
+     <mailto:stokcons@kpnmail.nl>
+
+     Andy Bierman
+     <mailto:andy@yumaworks.com>"</span>;
+
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module contains the different definitions required
+     by the CORECONF protocol.
+
+     Copyright (c) 2024 IETF Trust and the persons identified as
+     authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Revised BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC XXXX;
+     see the RFC itself for full legal notices."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L57C11 */</span><span id="L57C11"></span><span style="color:var(--color-yang-id);">2024-03-04</span> {
+     <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"[I-D.ietf-core-comi] CoAP Management Interface"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L64C11 */</span><span id="L64C11"></span><span style="color:var(--color-yang-id);">unified</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L65C9 */</span><span id="L65C9"></span><span style="color:var(--color-yang-id);">ds:datastore</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Identifier of the unified configuration and operational
+       state datastore."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L71C11 */</span><span id="L71C11"></span><span style="color:var(--color-yang-id);">error-tag</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Base identity for error-tag."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L76C11 */</span><span id="L76C11"></span><span style="color:var(--color-yang-id);">operation-failed</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L77C9 */</span><span id="L77C9"></span><span style="color:var(--color-yang-id);">error-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when the operation request
+       can't be processed successfully."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L83C11 */</span><span id="L83C11"></span><span style="color:var(--color-yang-id);">invalid-value</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L84C9 */</span><span id="L84C9"></span><span style="color:var(--color-yang-id);">error-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when the CORECONF client tries
+       to update or create a leaf with a value encoded using an
+       invalid CBOR datatype or if the 'range', 'length',
+       'pattern' or 'require-instance' constrain is not
+       fulfilled."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L92C11 */</span><span id="L92C11"></span><span style="color:var(--color-yang-id);">missing-element</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L93C9 */</span><span id="L93C9"></span><span style="color:var(--color-yang-id);">error-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when the operation requested
+       by a CORECONF client fails to comply with the 'mandatory'
+       constraint defined. The 'mandatory' constraint is
+       enforced for leafs and choices, unless the node or any of
+       its ancestors have a 'when' condition or 'if-feature'
+       expression that evaluates to 'false'."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L103C11 */</span><span id="L103C11"></span><span style="color:var(--color-yang-id);">unknown-element</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L104C9 */</span><span id="L104C9"></span><span style="color:var(--color-yang-id);">error-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when the CORECONF client tries
+       to access a data node of a YANG module not supported, of a
+       data node associated with an 'if-feature' expression
+       evaluated to 'false' or to a 'when' condition evaluated
+       to 'false'."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L113C11 */</span><span id="L113C11"></span><span style="color:var(--color-yang-id);">bad-element</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L114C9 */</span><span id="L114C9"></span><span style="color:var(--color-yang-id);">error-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when the CORECONF client tries
+       to create data nodes for more than one case in a choice."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L120C11 */</span><span id="L120C11"></span><span style="color:var(--color-yang-id);">data-missing</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L121C9 */</span><span id="L121C9"></span><span style="color:var(--color-yang-id);">error-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when a data node required to
+       accept the request is not present."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L127C11 */</span><span id="L127C11"></span><span style="color:var(--color-yang-id);">error</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L128C9 */</span><span id="L128C9"></span><span style="color:var(--color-yang-id);">error-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when an unspecified error has
+      occurred."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L134C11 */</span><span id="L134C11"></span><span style="color:var(--color-yang-id);">error-app-tag</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Base identity for error-app-tag."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L139C11 */</span><span id="L139C11"></span><span style="color:var(--color-yang-id);">malformed-message</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L140C9 */</span><span id="L140C9"></span><span style="color:var(--color-yang-id);">error-app-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when the payload received
+       from the CORECONF client don't contain a well-formed CBOR
+       content as defined in [RFC8949] or don't
+       comply with the CBOR structure defined within this
+       document."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L149C11 */</span><span id="L149C11"></span><span style="color:var(--color-yang-id);">data-not-unique</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L150C9 */</span><span id="L150C9"></span><span style="color:var(--color-yang-id);">error-app-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when the validation of the
+       'unique' constraint of a list or leaf-list fails."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L156C11 */</span><span id="L156C11"></span><span style="color:var(--color-yang-id);">too-many-elements</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L157C9 */</span><span id="L157C9"></span><span style="color:var(--color-yang-id);">error-app-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when the validation of the
+       'max-elements' constraint of a list or leaf-list fails."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L163C11 */</span><span id="L163C11"></span><span style="color:var(--color-yang-id);">too-few-elements</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L164C9 */</span><span id="L164C9"></span><span style="color:var(--color-yang-id);">error-app-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when the validation of the
+       'min-elements' constraint of a list or leaf-list fails."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L170C11 */</span><span id="L170C11"></span><span style="color:var(--color-yang-id);">must-violation</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L171C9 */</span><span id="L171C9"></span><span style="color:var(--color-yang-id);">error-app-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when the restrictions
+       imposed by a 'must' statement are violated."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L177C11 */</span><span id="L177C11"></span><span style="color:var(--color-yang-id);">duplicate</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L178C9 */</span><span id="L178C9"></span><span style="color:var(--color-yang-id);">error-app-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when a client tries to create
+       a duplicate list or leaf-list entry."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L184C11 */</span><span id="L184C11"></span><span style="color:var(--color-yang-id);">invalid-datatype</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L185C9 */</span><span id="L185C9"></span><span style="color:var(--color-yang-id);">error-app-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when CBOR encoding is
+       incorect or when the value encoded is incompatible with
+       the YANG Built-In type. (e.g., value greater than 127
+       for an int8, undefined enumeration)."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L193C11 */</span><span id="L193C11"></span><span style="color:var(--color-yang-id);">not-in-range</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L194C9 */</span><span id="L194C9"></span><span style="color:var(--color-yang-id);">error-app-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when the validation of the
+       'range' property fails."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L200C11 */</span><span id="L200C11"></span><span style="color:var(--color-yang-id);">invalid-length</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L201C9 */</span><span id="L201C9"></span><span style="color:var(--color-yang-id);">error-app-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when the validation of the
+       'length' property fails."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L207C11 */</span><span id="L207C11"></span><span style="color:var(--color-yang-id);">pattern-test-failed</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L208C9 */</span><span id="L208C9"></span><span style="color:var(--color-yang-id);">error-app-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when the validation of the
+       'pattern' property fails."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L214C11 */</span><span id="L214C11"></span><span style="color:var(--color-yang-id);">missing-key</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L215C9 */</span><span id="L215C9"></span><span style="color:var(--color-yang-id);">error-app-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server to further qualify a
+       missing-element error. This error is returned when the
+       CORECONF client tries to create a list instance, without all
+       the 'key' specified or when the CORECONF client tries to
+       delete a leaf listed as a 'key'."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L224C11 */</span><span id="L224C11"></span><span style="color:var(--color-yang-id);">missing-input-parameter</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L225C9 */</span><span id="L225C9"></span><span style="color:var(--color-yang-id);">error-app-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when the input parameters
+       of a RPC or action are incomplete."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L231C11 */</span><span id="L231C11"></span><span style="color:var(--color-yang-id);">instance-required</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L232C9 */</span><span id="L232C9"></span><span style="color:var(--color-yang-id);">error-app-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when a leaf of type
+       'instance-identifier' or 'leafref' marked with
+       require-instance set to 'true' refers to an instance
+       that does not exist."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L240C11 */</span><span id="L240C11"></span><span style="color:var(--color-yang-id);">missing-choice</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L241C9 */</span><span id="L241C9"></span><span style="color:var(--color-yang-id);">error-app-tag</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Returned by the CORECONF server when no nodes exist in a
+       mandatory choice."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">rc:yang-data</span> <span style="color:var(--color-yang-comment);">/* L247C15 */</span><span id="L247C15"></span><span style="color:var(--color-yang-id);">coreconf-error</span> {
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L248C14 */</span><span id="L248C14"></span><span style="color:var(--color-yang-id);">error</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Optional payload of a 4.00 Bad Request CoAP error."</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L252C11 */</span><span id="L252C11"></span><span style="color:var(--color-yang-id);">error-tag</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L253C13 */</span><span id="L253C13"></span><span style="color:var(--color-yang-id);">identityref</span> {
+          <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L254C15 */</span><span id="L254C15"></span><span style="color:var(--color-yang-id);">error-tag</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L256C18 */</span><span id="L256C18"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The enumerated error-tag."</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L261C11 */</span><span id="L261C11"></span><span style="color:var(--color-yang-id);">error-app-tag</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L262C13 */</span><span id="L262C13"></span><span style="color:var(--color-yang-id);">identityref</span> {
+          <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L263C15 */</span><span id="L263C15"></span><span style="color:var(--color-yang-id);">error-app-tag</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The application-specific error-tag."</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L269C11 */</span><span id="L269C11"></span><span style="color:var(--color-yang-id);">error-data-node</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L270C13 */</span><span id="L270C13"></span><span style="color:var(--color-yang-id);">instance-identifier</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"When the error reported is caused by a specific data node,
+           this leaf identifies the data node in error."</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L276C11 */</span><span id="L276C11"></span><span style="color:var(--color-yang-id);">error-message</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L277C13 */</span><span id="L277C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A message describing the error."</span>;
+      }
+    }
+  }
+}

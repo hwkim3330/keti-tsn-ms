@@ -1,0 +1,210 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 29300,
+      "size": 99
+    }
+  ],
+  "module-name": "ietf-constrained-yang-library",
+  "module-revision": "2019-03-28",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ietf-constrained-yang-library",
+      "status": "unstable",
+      "sid": 29300
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library",
+      "status": "unstable",
+      "sid": 29301
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library-update",
+      "status": "unstable",
+      "sid": 29302
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library-update/checksum",
+      "status": "unstable",
+      "sid": 29303
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/checksum",
+      "status": "unstable",
+      "sid": 29304
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/datastore",
+      "status": "unstable",
+      "sid": 29305
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/datastore/identifier",
+      "status": "unstable",
+      "sid": 29306
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/datastore/schema",
+      "status": "unstable",
+      "sid": 29307
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set",
+      "status": "unstable",
+      "sid": 29308
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/import-only-module",
+      "status": "unstable",
+      "sid": 29309
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/import-only-module/identifier",
+      "status": "unstable",
+      "sid": 29310
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/import-only-module/location",
+      "status": "unstable",
+      "sid": 29311
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/import-only-module/namespace",
+      "status": "unstable",
+      "sid": 29312
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/import-only-module/revision",
+      "status": "unstable",
+      "sid": 29313
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/import-only-module/submodule",
+      "status": "unstable",
+      "sid": 29314
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/import-only-module/submodule/identifier",
+      "status": "unstable",
+      "sid": 29315
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/import-only-module/submodule/location",
+      "status": "unstable",
+      "sid": 29316
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/import-only-module/submodule/revision",
+      "status": "unstable",
+      "sid": 29317
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/index",
+      "status": "unstable",
+      "sid": 29318
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/module",
+      "status": "unstable",
+      "sid": 29319
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/module/deviation",
+      "status": "unstable",
+      "sid": 29320
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/module/feature",
+      "status": "unstable",
+      "sid": 29321
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/module/identifier",
+      "status": "unstable",
+      "sid": 29322
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/module/location",
+      "status": "unstable",
+      "sid": 29323
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/module/namespace",
+      "status": "unstable",
+      "sid": 29324
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/module/revision",
+      "status": "unstable",
+      "sid": 29325
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/module/submodule",
+      "status": "unstable",
+      "sid": 29326
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/module/submodule/identifier",
+      "status": "unstable",
+      "sid": 29327
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/module/submodule/location",
+      "status": "unstable",
+      "sid": 29328
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/module-set/module/submodule/revision",
+      "status": "unstable",
+      "sid": 29329
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/schema",
+      "status": "unstable",
+      "sid": 29330
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/schema/index",
+      "status": "unstable",
+      "sid": 29331
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-constrained-yang-library:yang-library/schema/module-set",
+      "status": "unstable",
+      "sid": 29332
+    }
+  ]
+}

@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ieee802-dot1cb-stream-identification</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-text);">"1.1"</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-comment);">/* L3C12 */</span><span id="L3C12"></span><span style="color:var(--color-yang-id);">urn:ieee:std:802.1Q:yang:ieee802-dot1cb-stream-identification</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">dot1cb-sid</span>;
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L5C9 */</span><span id="L5C9"></span><span style="color:var(--color-yang-id);">ieee802-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L6C11 */</span><span id="L6C11"></span><span style="color:var(--color-yang-id);">ieee</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L8C9 */</span><span id="L8C9"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L9C11 */</span><span id="L9C11"></span><span style="color:var(--color-yang-id);">dot1qtypes</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L11C9 */</span><span id="L11C9"></span><span style="color:var(--color-yang-id);">ietf-inet-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L12C11 */</span><span id="L12C11"></span><span style="color:var(--color-yang-id);">inet</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L14C9 */</span><span id="L14C9"></span><span style="color:var(--color-yang-id);">ietf-interfaces</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L15C11 */</span><span id="L15C11"></span><span style="color:var(--color-yang-id);">if</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L17C9 */</span><span id="L17C9"></span><span style="color:var(--color-yang-id);">ieee802-dot1cb-stream-identification-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L18C11 */</span><span id="L18C11"></span><span style="color:var(--color-yang-id);">dot1cb-sid-types</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"Institute of Electrical and Electronics Engineers"</span>;
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG-URL: http://ieee802.org/1/
+    WG-EMail: stds-802-1-l@ieee.org
+    
+    Contact: IEEE 802.1 Working Group Chair
+    Postal: C/O IEEE 802.1 Working Group
+            IEEE Standards Association
+            445 Hoes Lane
+            Piscataway, NJ 08854
+            USA
+    
+    E-mail: stds-802-1-chairs@ieee.org"</span>;
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"Management objects that control the Stream identification from IEEE
+    Std 802.1CB-2017. This YANG data model conforms to the Network
+    Management Datastore Architecture defined in RFC 8342. Copyright (C)
+    IEEE (2021). This version of this YANG module is part of IEEE Std
+    802.1CBcv; see the standard itself for full legal notices."</span>;
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L40C11 */</span><span id="L40C11"></span><span style="color:var(--color-yang-id);">2021-12-08</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1CBcv-2021. Initial version."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1CBcv-2021, Frame Replication and Elimination for
+      Reliability - FRER YANG Data Model and Management Information Base
+      Module."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L48C11 */</span><span id="L48C11"></span><span style="color:var(--color-yang-id);">null-stream-identification</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L49C9 */</span><span id="L49C9"></span><span style="color:var(--color-yang-id);">dot1cb-sid-types:strid-idty</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Null Stream identification"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L53C11 */</span><span id="L53C11"></span><span style="color:var(--color-yang-id);">smac-vlan-stream-identification</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L54C9 */</span><span id="L54C9"></span><span style="color:var(--color-yang-id);">dot1cb-sid-types:strid-idty</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Source MAC and VLAN Stream identification"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L58C11 */</span><span id="L58C11"></span><span style="color:var(--color-yang-id);">dmac-vlan-stream-identification</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L59C9 */</span><span id="L59C9"></span><span style="color:var(--color-yang-id);">dot1cb-sid-types:strid-idty</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Active Destination MAC and VLAN Stream identification"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L63C11 */</span><span id="L63C11"></span><span style="color:var(--color-yang-id);">ip-stream-identification</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L64C9 */</span><span id="L64C9"></span><span style="color:var(--color-yang-id);">dot1cb-sid-types:strid-idty</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IP Stream identification"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L68C10 */</span><span id="L68C10"></span><span style="color:var(--color-yang-id);">vlan-tag-identification-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L69C9 */</span><span id="L69C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L70C11 */</span><span id="L70C11"></span><span style="color:var(--color-yang-id);">tagged</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L71C14 */</span><span id="L71C14"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A frame must have a VLAN tag to be recognized as belonging to
+          the Stream."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L76C11 */</span><span id="L76C11"></span><span style="color:var(--color-yang-id);">priority</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L77C14 */</span><span id="L77C14"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A frame must be untagged, or have a VLAN tag with a VLAN ID =
+          0 to be recognized as belonging to the Stream."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L82C11 */</span><span id="L82C11"></span><span style="color:var(--color-yang-id);">all</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L83C14 */</span><span id="L83C14"></span><span style="color:var(--color-yang-id);">3</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A frame is recognized as belonging to the Stream whether
+          tagged or not."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Enumeration describing how a Stream can be identified using the
+      VLAN tag."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L93C10 */</span><span id="L93C10"></span><span style="color:var(--color-yang-id);">vlan-identifier-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L94C9 */</span><span id="L94C9"></span><span style="color:var(--color-yang-id);">uint16</span> {
+      <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0 .. 4095"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Specifies the vlan_identifier. A value of 0 indicates that the
+      vlan_identifier carries a special meaning."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L101C7 */</span><span id="L101C7"></span><span style="color:var(--color-yang-id);">stream-identity</span> {
+    <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"index"</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The Stream identity table consists of a set of tsnStreamIdEntry
+      objects, each relating to a single Stream, specifying the points in
+      the system where Stream identification functions are to be
+      instantiated. Each entry in the Stream identity table has a
+      tsnStreamIdHandle object specifying a stream_handle value and one
+      or more tsnStreamIdEntry objects describing one identification
+      method for that Stream. If a single Stream has multiple
+      identification methods, perhaps (but not necessarily) on different
+      ports, then there can be multiple tsnStreamIdEntry objects with the
+      same value for the tsnStreamIdHandle. If the HSR or PRP method or
+      the Sequence encode/decode function is applied to a packet, then
+      the LanId or PathId fields are also used to identify the Stream to
+      which the packet belongs."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"9.1. of IEEE Std 802.1CB-2017"</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L119C9 */</span><span id="L119C9"></span><span style="color:var(--color-yang-id);">index</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L120C11 */</span><span id="L120C11"></span><span style="color:var(--color-yang-id);">uint32</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"If a single Stream has multiple identification methods, perhaps
+        (but not necessarily) on different ports, then there can be
+        multiple tsnStreamIdEntry objects with the same value for the
+        tsnStreamIdHandle"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L127C9 */</span><span id="L127C9"></span><span style="color:var(--color-yang-id);">handle</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L128C11 */</span><span id="L128C11"></span><span style="color:var(--color-yang-id);">uint32</span>;
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L129C16 */</span><span id="L129C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The objects in a given entry of the Stream identity table are
+        used to control packets whose stream_handle subparameter is equal
+        to the entry’s tsnStreamIdHandle object. The specific values used
+        in the tsnStreamIdHandle object are not necessarily used in the
+        system; they are used only to relate the various management
+        objects in Clause 9 and Clause 10."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"9.1.1.1 of IEEE Std 802.1CB-2017"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L140C14 */</span><span id="L140C14"></span><span style="color:var(--color-yang-id);">in-facing</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Container for in-facing Stream identification functions."</span>;
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L143C16 */</span><span id="L143C16"></span><span style="color:var(--color-yang-id);">input-port</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L144C13 */</span><span id="L144C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L55C10">if:interface-ref</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The list of ports on which an in-facing Stream identification
+          function using this identification method is to be placed for
+          this Stream in the input (coming from the system forwarding
+          function) direction. Any number of tsnStreamIdEntry objects can
+          list the same port for the same tsnStreamIdHandle in its
+          tsnStreamIdInFacInputPortList."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"9.1.1.4 of IEEE Std 802.1CB-2017"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L155C16 */</span><span id="L155C16"></span><span style="color:var(--color-yang-id);">output-port</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L156C13 */</span><span id="L156C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L55C10">if:interface-ref</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The list of ports on which an in-facing Stream identification
+          function using this identification method is to be placed for
+          this Stream in the output (towards the system forwarding
+          function) direction. At most one tsnStreamIdEntry can list a
+          given port for a given tsnStreamIdHandle in its
+          tsnStreamIdInFacOutputPortList."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"9.1.1.2 of IEEE Std 802.1CB-2017"</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L168C14 */</span><span id="L168C14"></span><span style="color:var(--color-yang-id);">out-facing</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Container for out-facing Stream identification functions."</span>;
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L171C16 */</span><span id="L171C16"></span><span style="color:var(--color-yang-id);">input-port</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L172C13 */</span><span id="L172C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L55C10">if:interface-ref</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The list of ports on which an out-facing Stream identification
+          function using this identification method is to be placed for
+          this Stream in the input (coming from the physical interface)
+          direction. Any number of tsnStreamIdEntry objects can list the
+          same port for the same tsnStreamIdHandle in its
+          tsnStreamIdOutFacInputPortList."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"9.1.1.5 of IEEE Std 802.1CB-2017"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L183C16 */</span><span id="L183C16"></span><span style="color:var(--color-yang-id);">output-port</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L184C13 */</span><span id="L184C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L55C10">if:interface-ref</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The list of ports on which an out-facing Stream identification
+          function using this identification method is to be placed for
+          this Stream in the output (towards the physical interface)
+          direction. At most one tsnStreamIdEntry can list a given port
+          for a given tsnStreamIdHandle in its
+          tsnStreamIdOutFacOutputPortList."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"9.1.1.3 of IEEE Std 802.1CB-2017"</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">choice</span> <span style="color:var(--color-yang-comment);">/* L196C11 */</span><span id="L196C11"></span><span style="color:var(--color-yang-id);">parameters</span> {
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L197C16 */</span><span id="L197C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The number of controlling parameters for a Stream identification
+        method, their types and values, are specific to the
+        tsnStreamIdIdentificationType."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"9.1.1.7 of IEEE Std 802.1CB-2017"</span>;
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L204C16 */</span><span id="L204C16"></span><span style="color:var(--color-yang-id);">null-stream-identification</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"When instantiating an instance of the Null Stream
+          identification function for a particular input Stream, the
+          managed objects in this container serve as the
+          tsnStreamIdParameters managed object."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"9.1.2 of IEEE Std 802.1CB-2017"</span>;
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L212C18 */</span><span id="L212C18"></span><span style="color:var(--color-yang-id);">identification-type</span> {
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L213C17 */</span><span id="L213C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The identification type indicating the method used to
+            identify packets belonging to the Stream. The identification
+            type contains a type number and an Organizationally Unique
+            Identifier (OUI) or Company ID (CID) to identify the
+            organization defining the identification method."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.1.6 of IEEE Std 802.1CB-2017"</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L222C15 */</span><span id="L222C15"></span><span style="color:var(--color-yang-id);">type-number</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L223C17 */</span><span id="L223C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1cb-stream-identification-types#L55C10">dot1cb-sid-types:stream-id-function</a></span>;
+            <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"null-stream"</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The Stream identification type used for the Null Stream
+              identification method."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.1.6 of IEEE Std 802.1CB-2017"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L231C15 */</span><span id="L231C15"></span><span style="color:var(--color-yang-id);">oui-cid</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L232C17 */</span><span id="L232C17"></span><span style="color:var(--color-yang-id);">string</span> {
+              <span style="color:var(--color-yang-keyword);">pattern</span> <span style="color:var(--color-yang-text);">"[0-9A-F]{2}(-[0-9A-F]{2}){2}"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"00-80-C2"</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The Organizationally Unique Identifier (OUI) or Company ID
+              (CID) to identify the organization defining the
+              identification method. For identification methods defined
+              in IEEE Std 802.1CB-2017 the OUI/CID is always 00-80-C2."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.1.6 of IEEE Std 802.1CB-2017"</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L245C13 */</span><span id="L245C13"></span><span style="color:var(--color-yang-id);">destination-mac</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L246C15 */</span><span id="L246C15"></span><span style="color:var(--color-yang-id);">ieee:mac-address</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Specifies the destination_address that identifies a packet
+            in an EISS indication primitive, to the Null Stream
+            identification function. The ieee:mac-address type has a
+            pattern that allows upper and lower case letters. To avoid
+            issues with string comparison, it is suggested to only use
+            upper case for the letters in the hexadecimal numbers. There
+            is still an issue with a difference between the IETF
+            mac-address definition and the IEEE mac-address definition,
+            so consider that if implementing code that compares
+            mac-addresses."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.2.1 of IEEE Std 802.1CB-2017"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L261C13 */</span><span id="L261C13"></span><span style="color:var(--color-yang-id);">tagged</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L262C15 */</span><span id="L262C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1cb-stream-identification#L68C10">vlan-tag-identification-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An enumerated value indicating whether a packet in an EISS
+            indication primitive to the Null Stream identification
+            function is permitted to have a VLAN tag."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.2.2 of IEEE Std 802.1CB-2017"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L270C13 */</span><span id="L270C13"></span><span style="color:var(--color-yang-id);">vlan</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L271C15 */</span><span id="L271C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1cb-stream-identification#L93C10">vlan-identifier-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Specifies the vlan_identifier parameter that identifies a
+            packet in an EISS indication primitive to the Null Stream
+            identification function. A value of 0 indicates that the
+            vlan_identifier parameter is ignored on EISS indication
+            primitives."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.2.3 of IEEE Std 802.1CB-2017"</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L282C16 */</span><span id="L282C16"></span><span style="color:var(--color-yang-id);">smac-vlan-stream-identification</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"When instantiating an instance of the Source MAC and VLAN
+          Stream identification function for a particular input Stream,
+          the managed objects in the following subclauses serve as the
+          tsnStreamIdParameters managed object."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"9.1.3 of IEEE Std 802.1CB-2017"</span>;
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L290C18 */</span><span id="L290C18"></span><span style="color:var(--color-yang-id);">identification-type</span> {
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L291C17 */</span><span id="L291C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The identification type indicating the method used to
+            identify packets belonging to the Stream. The identification
+            type contains a type number and an Organizationally Unique
+            Identifier (OUI) or Company ID (CID) to identify the
+            organization defining the identification method."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.1.6 of IEEE Std 802.1CB-2017"</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L300C15 */</span><span id="L300C15"></span><span style="color:var(--color-yang-id);">type-number</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L301C17 */</span><span id="L301C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1cb-stream-identification-types#L55C10">dot1cb-sid-types:stream-id-function</a></span>;
+            <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"smac-vlan"</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The Stream identification type used for the Source MAC and
+              VLAN Stream identification method."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.1.6 of IEEE Std 802.1CB-2017"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L309C15 */</span><span id="L309C15"></span><span style="color:var(--color-yang-id);">oui-cid</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L310C17 */</span><span id="L310C17"></span><span style="color:var(--color-yang-id);">string</span> {
+              <span style="color:var(--color-yang-keyword);">pattern</span> <span style="color:var(--color-yang-text);">"[0-9A-F]{2}(-[0-9A-F]{2}){2}"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"00-80-C2"</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The Organizationally Unique Identifier (OUI) or Company ID
+              (CID) to identify the organization defining the
+              identification method. For identification methods defined
+              in IEEE Std 802.1CB-2017 the OUI/CID is always 00-80-C2."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.1.6 of IEEE Std 802.1CB-2017"</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L323C13 */</span><span id="L323C13"></span><span style="color:var(--color-yang-id);">source-mac</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L324C15 */</span><span id="L324C15"></span><span style="color:var(--color-yang-id);">ieee:mac-address</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Specifies the source_address that identifies a packet in an
+            EISS indication primitive, to the Source MAC and VLAN Stream
+            identification function. The ieee:mac-address type has a
+            pattern that allows upper and lower case letters. To avoid
+            issues with string comparison, it is suggested to only use
+            upper case for the letters in the hexadecimal numbers. There
+            is still an issue with a difference between the IETF
+            mac-address definition and the IEEE mac-address definition,
+            so consider that if implementing code that compares
+            mac-addresses."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.3.1 of IEEE Std 802.1CB-2017"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L339C13 */</span><span id="L339C13"></span><span style="color:var(--color-yang-id);">tagged</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L340C15 */</span><span id="L340C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1cb-stream-identification#L68C10">vlan-tag-identification-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An enumerated value indicating whether a packet in an EISS
+            indication primitive to the Source MAC and VLAN Stream
+            identification function is permitted to have a VLAN tag."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.3.2 of IEEE Std 802.1CB-2017"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L348C13 */</span><span id="L348C13"></span><span style="color:var(--color-yang-id);">vlan</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L349C15 */</span><span id="L349C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1cb-stream-identification#L93C10">vlan-identifier-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Specifies the vlan_identifier parameter that identifies a
+            packet in an EISS indication primitive to the Source MAC and
+            VLAN Stream identification function. A value of 0 indicates
+            that the vlan_identifier parameter is ignored on EISS
+            indication primitives."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.3.3 of IEEE Std 802.1CB-2017"</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L360C16 */</span><span id="L360C16"></span><span style="color:var(--color-yang-id);">dmac-vlan-stream-identification</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"When instantiating an instance of the Active Destination MAC
+          and VLAN Stream identification function for a particular output
+          Stream, the managed objects in the following subclauses, along
+          with those listed in 9.1.2, serve as the tsnStreamIdParameters
+          managed object."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"9.1.4 of IEEE Std 802.1CB-2017"</span>;
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L369C18 */</span><span id="L369C18"></span><span style="color:var(--color-yang-id);">identification-type</span> {
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L370C17 */</span><span id="L370C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The identification type indicating the method used to
+            identify packets belonging to the Stream. The identification
+            type contains a type number and an Organizationally Unique
+            Identifier (OUI) or Company ID (CID) to identify the
+            organization defining the identification method."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.1.6 of IEEE Std 802.1CB-2017"</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L379C15 */</span><span id="L379C15"></span><span style="color:var(--color-yang-id);">type-number</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L380C17 */</span><span id="L380C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1cb-stream-identification-types#L55C10">dot1cb-sid-types:stream-id-function</a></span>;
+            <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"dmac-vlan"</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The Stream identification type used for the Active
+              Destination MAC and VLAN Stream identification method."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.1.6 of IEEE Std 802.1CB-2017"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L388C15 */</span><span id="L388C15"></span><span style="color:var(--color-yang-id);">oui-cid</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L389C17 */</span><span id="L389C17"></span><span style="color:var(--color-yang-id);">string</span> {
+              <span style="color:var(--color-yang-keyword);">pattern</span> <span style="color:var(--color-yang-text);">"[0-9A-F]{2}(-[0-9A-F]{2}){2}"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"00-80-C2"</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The Organizationally Unique Identifier (OUI) or Company ID
+              (CID) to identify the organization defining the
+              identification method. For identification methods defined
+              in IEEE Std 802.1CB-2017 the OUI/CID is always 00-80-C2."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.1.6 of IEEE Std 802.1CB-2017"</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L402C18 */</span><span id="L402C18"></span><span style="color:var(--color-yang-id);">down</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Container for all parameters which are sent to lower layers."</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L405C15 */</span><span id="L405C15"></span><span style="color:var(--color-yang-id);">destination-mac</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L406C17 */</span><span id="L406C17"></span><span style="color:var(--color-yang-id);">ieee:mac-address</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Specifies the destination_address parameter to use in the
+              EISS request primitive for output packets sent to lower
+              layers by the Active Destination MAC and VLAN Stream
+              identification function, and the destination_address that
+              identifies an input packet in an EISS indication primitive
+              to the Active Destination MAC and VLAN Stream
+              identification function. The ieee:mac-address type has a
+              pattern that allows upper and lower case letters. To avoid
+              issues with string comparison, it is suggested to only use
+              upper case for the letters in the hexadecimal numbers.
+              There is still an issue with a difference between the IETF
+              mac-address definition and the IEEE mac-address definition,
+              so consider that if implementing code that compares
+              mac-addresses."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.4.1 of IEEE Std 802.1CB-2017"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L425C15 */</span><span id="L425C15"></span><span style="color:var(--color-yang-id);">tagged</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L426C17 */</span><span id="L426C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1cb-stream-identification#L68C10">vlan-tag-identification-type</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"An enumerated value indicating whether a packet in an EISS
+              indication or request primitive between the Active
+              Destination MAC and VLAN Stream identification function and
+              the lower layers is to have a VLAN tag. This variable is
+              not used in an FRER C-component. See 8.4."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.4.2 of IEEE Std 802.1CB-2017"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L436C15 */</span><span id="L436C15"></span><span style="color:var(--color-yang-id);">vlan</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L437C17 */</span><span id="L437C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1cb-stream-identification#L93C10">vlan-identifier-type</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Specifies the vlan_identifier parameter to use in the EISS
+              request primitive for output packets sent to lower layers
+              by the Active Destination MAC and VLAN Stream
+              identification function, and the vlan_identifier that
+              identifies an input packet in an EISS indication primitive
+              to the Active Destination MAC and VLAN Stream
+              identification function. A value of 0 indicates that the
+              vlan_identifier parameter is ignored on EISS indication
+              primitives."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.4.3 of IEEE Std 802.1CB-2017"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L451C15 */</span><span id="L451C15"></span><span style="color:var(--color-yang-id);">priority</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L452C17 */</span><span id="L452C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">dot1qtypes:priority-type</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Specifies the priority parameter to use in the EISS
+              request primitive for output packets sent to lower layers
+              by the Active Destination MAC and VLAN Stream
+              identification function for all packets in a particular
+              Stream."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.4.4 of IEEE Std 802.1CB-2017"</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L463C18 */</span><span id="L463C18"></span><span style="color:var(--color-yang-id);">up</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Container for all parameters which are offered to higher
+            layers."</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L467C15 */</span><span id="L467C15"></span><span style="color:var(--color-yang-id);">destination-mac</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L468C17 */</span><span id="L468C17"></span><span style="color:var(--color-yang-id);">ieee:mac-address</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Specifies the destination_address parameter to use in the
+              EISS indication primitive for input packets offered to
+              upper layers by the Active Destination MAC and VLAN Stream
+              identification layer. This address replaces the address
+              that was used to identify the packet
+              (tsnCpeDmacVlanDownDestMac). The ieee:mac-address type has
+              a pattern that allows upper and lower case letters. To
+              avoid issues with string comparison, it is suggested to
+              only use upper case for the letters in the hexadecimal
+              numbers. There is still an issue with a difference between
+              the IETF mac-address definition and the IEEE mac-address
+              definition, so consider that if implementing code that
+              compares mac-addresses."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.4.5 of IEEE Std 802.1CB-2017"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L486C15 */</span><span id="L486C15"></span><span style="color:var(--color-yang-id);">tagged</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L487C17 */</span><span id="L487C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1cb-stream-identification#L68C10">vlan-tag-identification-type</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"An enumerated value indicating whether a packet in an EISS
+              indication or request primitive between the Active
+              Destination MAC and VLAN Stream identification function and
+              the upper layers is to have a VLAN tag. This variable is
+              used only by an end system and not by a relay system."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.4.6 of IEEE Std 802.1CB-2017"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L497C15 */</span><span id="L497C15"></span><span style="color:var(--color-yang-id);">vlan</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L498C17 */</span><span id="L498C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1cb-stream-identification#L93C10">vlan-identifier-type</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Specifies the vlan_identifier parameter to use in the EISS
+              indication primitive for packets offered to upper layers,
+              or the VLAN ID field for an IEEE 802.1Q tag in an ISS
+              mac_service_data_unit. This address replaces the VLAN ID
+              that was used to identify the packet
+              (tsnCpeDmacVlanDownVlan)."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.4.7 of IEEE Std 802.1CB-2017"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L509C15 */</span><span id="L509C15"></span><span style="color:var(--color-yang-id);">priority</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L510C17 */</span><span id="L510C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L146C10">dot1qtypes:priority-type</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Specifies the priority parameter to use in the EISS
+              indication primitive for packets offered to upper layers."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.4.8 of IEEE Std 802.1CB-2017"</span>;
+          }
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L519C16 */</span><span id="L519C16"></span><span style="color:var(--color-yang-id);">ip-stream-identification</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"When instantiating an instance of the IP Stream identification
+          function, the parameters in the following subclauses replace
+          the tsnStreamIdParameters managed object."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"9.1.5 of IEEE Std 802.1CB-2017"</span>;
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L526C18 */</span><span id="L526C18"></span><span style="color:var(--color-yang-id);">identification-type</span> {
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L527C17 */</span><span id="L527C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The identification type indicating the method used to
+            identify packets belonging to the Stream. The identification
+            type contains a type number and an Organizationally Unique
+            Identifier (OUI) or Company ID (CID) to identify the
+            organization defining the identification method."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.1.6 of IEEE Std 802.1CB-2017"</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L536C15 */</span><span id="L536C15"></span><span style="color:var(--color-yang-id);">type-number</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L537C17 */</span><span id="L537C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1cb-stream-identification-types#L55C10">dot1cb-sid-types:stream-id-function</a></span>;
+            <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"ip"</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The Stream identification type used for the IP Stream
+              identification method."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.1.6 of IEEE Std 802.1CB-2017"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L545C15 */</span><span id="L545C15"></span><span style="color:var(--color-yang-id);">oui-cid</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L546C17 */</span><span id="L546C17"></span><span style="color:var(--color-yang-id);">string</span> {
+              <span style="color:var(--color-yang-keyword);">pattern</span> <span style="color:var(--color-yang-text);">"[0-9A-F]{2}(-[0-9A-F]{2}){2}"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"00-80-C2"</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The Organizationally Unique Identifier (OUI) or Company ID
+              (CID) to identify the organization defining the
+              identification method. For identification methods defined
+              in IEEE Std 802.1CB-2017 the OUI/CID is always 00-80-C2."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.1.6 of IEEE Std 802.1CB-2017"</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L559C13 */</span><span id="L559C13"></span><span style="color:var(--color-yang-id);">destination-mac</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L560C15 */</span><span id="L560C15"></span><span style="color:var(--color-yang-id);">ieee:mac-address</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Specifies the destination_address parameter that identifies
+            a packet in an EISS indication primitive. The
+            ieee:mac-address type has a pattern that allows upper and
+            lower case letters. To avoid issues with string comparison,
+            it is suggested to only use upper case for the letters in the
+            hexadecimal numbers. There is still an issue with a
+            difference between the IETF mac-address definition and the
+            IEEE mac-address definition, so consider that if implementing
+            code that compares mac-addresses."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.5.1 of IEEE Std 802.1CB-2017"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L574C13 */</span><span id="L574C13"></span><span style="color:var(--color-yang-id);">tagged</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L575C15 */</span><span id="L575C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1cb-stream-identification#L68C10">vlan-tag-identification-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An enumerated value indicating whether a packet in an EISS
+            indication or request primitive to the IP Stream
+            identification function is to have a VLAN tag."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.5.2 of IEEE Std 802.1CB-2017"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L583C13 */</span><span id="L583C13"></span><span style="color:var(--color-yang-id);">vlan</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L584C15 */</span><span id="L584C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1cb-stream-identification#L93C10">vlan-identifier-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Specifies the vlan_identifier parameter that identifies a
+            packet in an EISS indication primitive. A value of 0
+            indicates that the frame is not to have a VLAN tag."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.5.3 of IEEE Std 802.1CB-2017"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L592C13 */</span><span id="L592C13"></span><span style="color:var(--color-yang-id);">ip-source</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L593C15 */</span><span id="L593C15"></span><span style="color:var(--color-yang-id);">inet:ip-address</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Specifies the IPv4 (RFC 791) or IPv6 (RFC 2460) source
+            address parameter that must be matched to identify packets
+            coming up from lower layers. An address of all 0 indicates
+            that the IP source address is to be ignored on packets
+            received from lower layers."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.5.4 of IEEE Std 802.1CB-2017"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L603C13 */</span><span id="L603C13"></span><span style="color:var(--color-yang-id);">ip-destination</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L604C15 */</span><span id="L604C15"></span><span style="color:var(--color-yang-id);">inet:ip-address</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Specifies the IPv4 (RFC 791) or IPv6 (RFC 2460) destination
+            address parameter that must be matched to identify packets
+            coming up from lower layers."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.5.5 of IEEE Std 802.1CB-2017"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L612C13 */</span><span id="L612C13"></span><span style="color:var(--color-yang-id);">dscp</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L613C15 */</span><span id="L613C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1cb-stream-identification-dev#L44C12">inet:dscp</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Specifies the IPv4 (RFC 791) or IPv6 (RFC 2460)
+            differentiated services codepoint (DSCP, RFC 2474) that must
+            be matched to identify packets coming up from the lower
+            layers. A value of 64 decimal indicates that the DSCP is to
+            be ignored on packets received from lower layers."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.5.6 of IEEE Std 802.1CB-2017"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L623C13 */</span><span id="L623C13"></span><span style="color:var(--color-yang-id);">next-protocol</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L624C15 */</span><span id="L624C15"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L625C17 */</span><span id="L625C17"></span><span style="color:var(--color-yang-id);">none</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"No protocol is specified"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L629C17 */</span><span id="L629C17"></span><span style="color:var(--color-yang-id);">udp</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"UDP is specified as the next protocol."</span>;
+              <span style="color:var(--color-yang-keyword);">reference</span>
+                <span style="color:var(--color-yang-text);">"RFC 768"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L635C17 */</span><span id="L635C17"></span><span style="color:var(--color-yang-id);">tcp</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"TCP is specified as the next protocol."</span>;
+              <span style="color:var(--color-yang-keyword);">reference</span>
+                <span style="color:var(--color-yang-text);">"RFC 793"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L641C17 */</span><span id="L641C17"></span><span style="color:var(--color-yang-id);">sctp</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"SCTP is specified as the next protocol."</span>;
+              <span style="color:var(--color-yang-keyword);">reference</span>
+                <span style="color:var(--color-yang-text);">"RFC 4960"</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Specifies the IP next protocol parameter that must be
+            matched to identify packets coming up from lower layers. The
+            value of this parameter must specify either none, UDP (RFC
+            768), TCP (RFC 793), or SCTP (RFC 4960). If “none,” then the
+            tsnCpeIpIdSourcePort and tsnCpeIpIdDestinationPort managed
+            objects are not used."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.5.7 of IEEE Std 802.1CB-2017"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L658C13 */</span><span id="L658C13"></span><span style="color:var(--color-yang-id);">source-port</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L659C15 */</span><span id="L659C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L122C10">inet:port-number</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Specifies the TCP or UDP Source Port parameter that must be
+            matched to identify packets coming up from lower layers. A
+            value of 0 indicates that the Source Port number of the
+            packet is to be ignored on packets received from lower
+            layers."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.5.8 of IEEE Std 802.1CB-2017"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L669C13 */</span><span id="L669C13"></span><span style="color:var(--color-yang-id);">destination-port</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L670C15 */</span><span id="L670C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L122C10">inet:port-number</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Specifies the TCP or UDP Destination Port parameter that
+            must be matched to identify packets coming up from lower
+            layers. A value of 0 indicates that the Destination Port
+            number of the packet is to be ignored on packets received
+            from lower layers."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.5.9 of IEEE Std 802.1CB-2017"</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L681C16 */</span><span id="L681C16"></span><span style="color:var(--color-yang-id);">organization-specific</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This container allows to select Stream identification methods
+          that are defined by entities outside of IEEE 802.1."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"9.1.1.6 of IEEE Std 802.1CB-2017"</span>;
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L687C18 */</span><span id="L687C18"></span><span style="color:var(--color-yang-id);">identification-type</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The identification type indicating the method used to
+            identify packets belonging to the Stream. The identification
+            type contains a type number and an Organizationally Unique
+            Identifier (OUI) or Company ID (CID) to identify the
+            organization defining the identification method."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.1.6 of IEEE Std 802.1CB-2017"</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L696C15 */</span><span id="L696C15"></span><span style="color:var(--color-yang-id);">type-number</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L697C17 */</span><span id="L697C17"></span><span style="color:var(--color-yang-id);">int32</span> {
+              <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"256..max"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The type number used for an identification method defined
+              by an entity owning the OUI or CID for this identification
+              type."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.1.6 of IEEE Std 802.1CB-2017"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L707C15 */</span><span id="L707C15"></span><span style="color:var(--color-yang-id);">oui-cid</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L708C17 */</span><span id="L708C17"></span><span style="color:var(--color-yang-id);">string</span> {
+              <span style="color:var(--color-yang-keyword);">pattern</span> <span style="color:var(--color-yang-text);">"[0-9A-F]{2}(-[0-9A-F]{2}){2}"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The Organizationally Unique Identifier (OUI) or Company ID
+              (CID) to identify the organization defining the
+              identification method."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.1.1.6 of IEEE Std 802.1CB-2017"</span>;
+          }
+        }
+      }
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L722C11 */</span><span id="L722C11"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/if:statistics"</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The following counters are the counters for Stream identification.
+      All counters are unsigned integers. If used on links faster than
+      650 000 000 bits per second, they shall be 64 bits in length to
+      ensure against excessively short wrap times."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"9.2 of IEEE Std 802.1CB-2017
+      9.3 of IEEE Std 802.1CB-2017"</span>;
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L731C14 */</span><span id="L731C14"></span><span style="color:var(--color-yang-id);">stream-id</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This container contains the per-port as well as the
+        per-port-per-stream counters for Stream identification."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"9.2 of IEEE Std 802.1CB-2017
+        9.3 of IEEE Std 802.1CB-2017"</span>;
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L738C16 */</span><span id="L738C16"></span><span style="color:var(--color-yang-id);">per-port-counters</span> {
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L739C15 */</span><span id="L739C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Contains the per-port counters for Stream identification. The
+          following counters are instantiated for each port on which the
+          Stream identification function is configured. The counters are
+          indexed by port number."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"9.3 of IEEE Std 802.1CB-2017"</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L747C13 */</span><span id="L747C13"></span><span style="color:var(--color-yang-id);">input-pkts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L748C15 */</span><span id="L748C15"></span><span style="color:var(--color-yang-id);">uint64</span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L749C17 */</span><span id="L749C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The tsnCpSidInputPackets counter is incremented once for
+            each packet identified by any Stream identification function
+            on this port. Its value equals the sum (modulo the size of
+            the counters) of all of the tsnCpsSidInputPackets counters on
+            this same port."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.3.1 of IEEE Std 802.1CB-2017"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L759C13 */</span><span id="L759C13"></span><span style="color:var(--color-yang-id);">output-pkts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L760C15 */</span><span id="L760C15"></span><span style="color:var(--color-yang-id);">uint64</span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L761C17 */</span><span id="L761C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The tsnCpSidOutputPackets counter is incremented once for
+            each packet passed down the stack by any Stream
+            identification function on this port. Its value equals the
+            sum (modulo the size of the counters) of all of the
+            tsnCpsSidOutputPackets counters on this same port."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.3.2 of IEEE Std 802.1CB-2017"</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L772C11 */</span><span id="L772C11"></span><span style="color:var(--color-yang-id);">per-port-per-stream-counters</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"direction-out-facing handle"</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L774C15 */</span><span id="L774C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Contains the per-port-per-stream counters for Stream
+          identification. The following counters are instantiated for
+          each port on which the Stream identification function is
+          configured. The counters are indexed by port number, facing
+          (in-facing or out-facing), and stream_handle value
+          (tsnStreamIdHandle)."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"9.2 of IEEE Std 802.1CB-2017"</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L784C13 */</span><span id="L784C13"></span><span style="color:var(--color-yang-id);">direction-out-facing</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L785C15 */</span><span id="L785C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1cb-stream-identification-types#L47C10">dot1cb-sid-types:direction</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An object indicating whether the counters apply to
+            out-facing (True) or in-facing (False)."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L790C13 */</span><span id="L790C13"></span><span style="color:var(--color-yang-id);">handle</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L791C15 */</span><span id="L791C15"></span><span style="color:var(--color-yang-id);">leafref</span> {
+            <span style="color:var(--color-yang-keyword);">path</span> '<span style="color:var(--color-yang-comment);">/* L792C18 */</span><span id="L792C18"></span><span style="color:var(--color-yang-id);">/stream-identity/handle'</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The according tsnStreamIdHandle for these counters."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L797C13 */</span><span id="L797C13"></span><span style="color:var(--color-yang-id);">input-pkts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L798C15 */</span><span id="L798C15"></span><span style="color:var(--color-yang-id);">uint64</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The tsnCpsSidInputPackets counter is incremented once for
+            each packet identified by the Stream identification function."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.2.1 of IEEE Std 802.1CB-2017"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L805C13 */</span><span id="L805C13"></span><span style="color:var(--color-yang-id);">output-pkts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L806C15 */</span><span id="L806C15"></span><span style="color:var(--color-yang-id);">uint64</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The tsnCpsSidOutputPackets counter is incremented once for
+            each packet passed down the stack by the Stream
+            identification function."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.2.2 of IEEE Std 802.1CB-2017"</span>;
+        }
+      }
+    }
+  }
+}

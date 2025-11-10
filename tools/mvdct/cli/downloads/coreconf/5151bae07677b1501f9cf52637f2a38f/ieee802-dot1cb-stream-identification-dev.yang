@@ -1,0 +1,86 @@
+// Copyright (c) 2021-2022 Microchip Technology Inc. and its subsidiaries.
+//
+// Unpublished rights reserved under the copyright laws of the United States
+// of America, other countries and international treaties. Permission to use,
+// copy, store and modify, the software and its source code is granted but
+// only in connection with products utilizing the Microsemi switch and PHY
+// products.  Permission is also granted for you to integrate into other
+// products, disclose, transmit and distribute the software only in an
+// absolute machine readable format (e.g. HEX file) and only in or with
+// products utilizing the Microsemi switch and PHY products.  The source code
+// of the software may not be disclosed, transmitted or distributed without
+// the prior written permission of Microsemi.
+//
+// This copyright notice must appear in any copy, modification, disclosure,
+// transmission or distribution of the software.  Microsemi retains all
+// ownership, copyright, trade secret and proprietary rights in the software
+// and its source code, including all modifications thereto.
+//
+// THIS SOFTWARE HAS BEEN PROVIDED "AS IS". MICROSEMI HEREBY DISCLAIMS ALL
+// WARRANTIES OF ANY KIND WITH RESPECT TO THE SOFTWARE, WHETHER SUCH
+// WARRANTIES ARE EXPRESS, IMPLIED, STATUTORY OR OTHERWISE INCLUDING, WITHOUT
+// LIMITATION, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR USE OR
+// PURPOSE AND NON-INFRINGEMENT.
+
+module ieee802-dot1cb-stream-identification-dev {
+    yang-version 1.1;
+    namespace "urn:mchp:params:xml:ns:yang:ieee802-dot1cb-stream-identification-dev";
+    prefix ieee802-dot1cb-stream-identification-dev-pre;
+
+    import ieee802-dot1cb-stream-identification {
+        prefix dot1cb-sid;
+    }
+
+    revision 2025-06-30 {
+      description
+        "Added DSCP type.";
+    }
+
+    revision 2024-04-12 {
+      description
+        "Initial revision.";
+    }
+
+    typedef dscp {
+      type uint8 {
+        range "0..64";
+      }
+      description
+        "The DSCP value that must be matched in the stream idenfication.
+         The value 64 indicates that the DSCP must be ignored.";
+    }
+
+    deviation /dot1cb-sid:stream-identity/dot1cb-sid:in-facing {
+        deviate not-supported;
+    }
+
+    deviation /dot1cb-sid:stream-identity/dot1cb-sid:out-facing/dot1cb-sid:output-port {
+        deviate not-supported;
+    }
+
+    deviation /dot1cb-sid:stream-identity/dot1cb-sid:parameters/dot1cb-sid:dmac-vlan-stream-identification/dot1cb-sid:dmac-vlan-stream-identification {
+        deviate not-supported;
+    }
+
+    deviation /dot1cb-sid:stream-identity/dot1cb-sid:parameters/dot1cb-sid:ip-stream-identification/dot1cb-sid:ip-stream-identification/dot1cb-sid:identification-type {
+        deviate not-supported;
+    }
+
+    deviation /dot1cb-sid:stream-identity/dot1cb-sid:parameters/dot1cb-sid:null-stream-identification/dot1cb-sid:null-stream-identification/dot1cb-sid:identification-type {
+        deviate not-supported;
+    }
+
+    deviation /dot1cb-sid:stream-identity/dot1cb-sid:parameters/dot1cb-sid:organization-specific/dot1cb-sid:organization-specific {
+        deviate not-supported;
+    }
+
+    deviation /dot1cb-sid:stream-identity/dot1cb-sid:parameters/dot1cb-sid:smac-vlan-stream-identification/dot1cb-sid:smac-vlan-stream-identification/dot1cb-sid:identification-type {
+        deviate not-supported;
+    }
+
+    deviation /dot1cb-sid:stream-identity/dot1cb-sid:parameters/dot1cb-sid:ip-stream-identification/dot1cb-sid:ip-stream-identification/dot1cb-sid:dscp {
+         deviate replace {
+             type dscp;
+         }
+    }
+}

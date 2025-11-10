@@ -1,0 +1,347 @@
+module mchp-velocitysp-redbox {
+  yang-version 1.1;
+  namespace "urn:mchp:params:xml:ns:yang:velocitysp-redbox";
+  prefix lm-redbox;
+  import ietf-yang-types {
+    prefix yang;
+  }
+  import ietf-interfaces {
+    prefix if;
+  }
+  import ieee802-types {
+    prefix "ieee";
+  }
+  import ieee802-dot1q-types {
+    prefix dot1qtypes;
+  }
+  description
+    "This module contains a collection of YANG definitions for managing
+     HSR and PRP RedBoxes of MCHP systems running VelocitySP software.
+     If the system supports RedBoxes, a number of RedBox instances can
+     be created for network redundancy purposes. Each RedBox is setup
+     with port A and port B towards the HSR/PRP network. The switch port
+     corresponding to RedBox port A becomes the interlink connecting to
+     RedBox port C. The RedBox mode determines the operation of the RedBox.
+     The RedBox maintains two tables based on learned source MAC addresses:
+     - Node Table with addresses seen on port A/B.
+     - Proxy Node Table with addresses seen on port C (unused in HSR-HSR mode).";
+  revision 2025-06-30 {
+    description
+      "Initial revision.";
+  }
+
+  container redbox {
+    description
+      "RedBox information.";
+
+    list redbox-capable-list {
+      config false;
+      key "id";
+      description
+        "The RedBox list includes an entry for each configurable RedBox in the system.";
+      leaf id {
+        type uint8;
+        description
+          "The zero-based ID identifies the RedBox";
+      }
+      leaf-list capable-port-list {
+        type if:interface-ref;
+        description
+          "The list of ports capable of being selected as RedBox port A/B.";
+      }
+    }
+
+    list redbox-list {
+      key "id";
+      description
+        "The RedBox list includes an entry for each configured RedBox in the system.";
+      leaf id {
+        type uint8;
+        description
+          "The zero-based ID identifies the RedBox";
+      }
+
+      container config {
+        description
+          "RedBox configuration";
+        leaf mode {
+          mandatory true;
+          type enumeration {
+            enum prp-san {
+              description
+                "RedBox PRP-SAN mode:
+                - Port A/B connected to PRP network.
+                - Port C connected to SAN network";
+            }
+            enum hsr-san {
+              description
+                "RedBox HSR-SAN mode:
+                - Port A/B connected to HSR network.
+                - Port C connected to SAN network";
+            }
+            enum hsr-prp {
+              description
+                "RedBox HSR-PRP mode:
+                - Port A/B connected to HSR network.
+                - Port C connected to PRP network";
+            }
+            enum hsr-hsr {
+              description
+                "RedBox HSR-HSR mode:
+                - Port A/B connected to HSR network.
+                - Port C connected to another HSR network";
+            }
+          }
+          description
+            "RedBox operation mode";
+        }
+        leaf port-a {
+          mandatory true;
+          type dot1qtypes:port-number-type;
+          description
+            "RedBox port A, must be one of the ports in capable-port-list.
+             The corresponding switch port is connected to the RedBox.";
+        }
+        leaf port-b {
+          mandatory true;
+          type dot1qtypes:port-number-type;
+          description
+            "RedBox port B, must be one of the ports in capable-port-list.
+             The corresponding switch port is unused/disabled.";
+        }
+        leaf net-id {
+          type uint8 {
+            range "0..7";
+          }
+          default "0";
+          description
+            "RedBox NetId (default zero), which may be used in HSR-PRP and HSR-HSR mode:
+             - Inserted in HSR tag when forwarding from port C to HSR port.
+             - If non-zero, other NetId values are blocked when forwarding from HSR port to port C.
+             - If non-zero, inserted in HSR tag when forwarding to port C in HSR-HSR mode";
+        }
+        leaf lan-id {
+          type enumeration {
+            enum lan-a {
+              description
+                "Connected to LAN A in PRP network";
+            }
+            enum lan-b {
+              description
+                "Connected to LAN B in PRP network";
+            }
+          }
+          default "lan-a";
+          description
+            "RedBox LanId used in HSR-PRP mode for indicating the connected PRP network.";
+        }
+        leaf nt-age-time {
+          type uint16;
+          default "60";
+          description
+            "Node Table age time in seconds (value zero disables ageing).";
+        }
+        leaf pnt-age-time {
+          type uint16;
+          default "60";
+          description
+            "Proxy Node Table age time in seconds (value zero disables ageing).";
+        }
+        leaf dd-age-time {
+          type uint16;
+          default "40";
+          description
+            "Duplicate Discard age time in milliseconds.";
+        }
+        leaf sv-forward-rx-port-c {
+          type boolean;
+          default "false";
+          description
+            "Enable forwarding of Supervision frames from RedBox port C to port A/B.";
+        }
+        leaf sv-forward-tx-port-c {
+          type boolean;
+          default "false";
+          description
+            "Enable forwarding of Supervision frames from RedBox port A/B to port C.";
+        }
+      }
+
+      container control { 
+        config false;
+        description
+          "RedBox control";
+        action clear-counters {
+          description
+            "Clear RedBox port counters.";
+        }
+        action clear-nt {
+          description
+            "Clear Node Table.";
+        }
+        action clear-pnt {
+          description
+            "Clear Proxy Node Table.";
+        }
+      }
+
+      list port-counters {
+        config false;
+        key "port";
+        description
+          "RedBox port counters";
+        leaf port {
+          type enumeration {
+             enum port-a {
+               description
+                 "RedBox port A";
+             }
+             enum port-b {
+               description
+                 "RedBox port B";
+             }
+             enum port-c {
+               description
+                 "RedBox port C";
+             }
+          }
+          description
+            "The RedBox port.";
+        }
+        leaf rx-local {
+          type yang:counter64;
+          description
+            "Number of received link-local (BPDU) frames.";
+        }
+        leaf rx-untagged {
+          type yang:counter64;
+          description
+            "Number of received frames without HSR tag or PRP RCT.";
+        }
+        leaf rx-tagged {
+          type yang:counter64;
+          description
+            "Number of received frames with HSR tag or PRP RCT.";
+        }
+        leaf rx-wrong-lan {
+         type yang:counter64;
+          description
+            "Number of received frames with wrong LanId (PRP port).";
+        }
+        leaf rx-own {
+          type yang:counter64;
+          description
+            "Number of received frames from this RedBox (HSR port).";
+        }
+        leaf tx-local {
+          type yang:counter64;
+          description
+            "Number of transmitted link-local (BPDU) frames.";
+        }
+        leaf tx-untagged {
+          type yang:counter64;
+          description
+            "Number of transmitted frames without HSR tag or PRP RCT.";
+        }
+        leaf tx-tagged {
+          type yang:counter64;
+          description
+            "Number of transmitted frames with HSR tag or PRP RCT.";
+        }
+        leaf tx-dupl-zero {
+          type yang:counter64;
+          description
+            "Number of transmitted frames with zero duplicates discarded.";
+        }
+        leaf tx-dupl-one {
+          type yang:counter64;
+          description
+            "Number of transmitted frames with one duplicate discarded.";
+        }
+        leaf tx-dupl-multi {
+          type yang:counter64;
+          description
+            "Number of transmitted frames with multiple duplicates discards.";
+        }
+      }
+
+      list node-table {
+        config false;
+        key "addr";
+        description
+          "Node Table with MAC addresses related to RedBox port A/B.";
+        leaf addr {
+          type ieee:mac-address;
+          description
+            "MAC address of the node.";
+        }
+        leaf type {
+          type enumeration {
+            enum san {
+              description
+                "SAN node.";
+            }
+            enum dan {
+              description
+                "DAN node.";
+            }
+          }
+        }   
+        leaf rx-a {
+          type uint32;
+          description
+            "Number of frames received from the node on port A";
+        }
+        leaf rx-wrong-lan-a {
+          type uint32;
+          description
+            "Number of frames received from the node with wrong LanId on port A (PRP-SAN mode)";
+        }
+        leaf rx-b {
+          type uint32;
+          description
+            "Number of frames received from the node on port B";
+        }
+        leaf rx-wrong-lan-b {
+          type uint32;
+          description
+            "Number of frames received from the node with wrong LanId on port B (PRP-SAN mode)";
+        }
+      }
+
+      list proxy-node-table {
+        config false;
+        key "addr";
+        description
+          "Proxy Node Table with MAC addresses related to RedBox port C.";
+        leaf addr {
+          type ieee:mac-address;
+          description
+            "MAC address of the proxy node.";
+        }
+        leaf type {
+          type enumeration {
+            enum san {
+              description
+                "SAN proxy node.";
+            }
+            enum dan {
+              description
+                "DAN proxy node.";
+            }
+          }
+        }   
+        leaf rx-c {
+          type uint32;
+          description
+            "Number of frames received from the node on port C";
+        }
+        leaf rx-wrong-lan-c {
+          type uint32;
+          description
+            "Number of frames received from the node with wrong LanId on port C (HSR-PRP mode)";
+        }
+      }
+    }
+  }
+}

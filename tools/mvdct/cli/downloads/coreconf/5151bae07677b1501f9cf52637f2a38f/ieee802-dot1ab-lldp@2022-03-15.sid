@@ -1,0 +1,534 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 11000,
+      "size": 999
+    }
+  ],
+  "module-name": "ieee802-dot1ab-lldp",
+  "module-revision": "2022-03-15",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ieee802-dot1ab-lldp",
+      "status": "unstable",
+      "sid": 11000
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp",
+      "status": "unstable",
+      "sid": 11001
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/local-system-data",
+      "status": "unstable",
+      "sid": 11002
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/local-system-data/chassis-id",
+      "status": "unstable",
+      "sid": 11003
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/local-system-data/chassis-id-subtype",
+      "status": "unstable",
+      "sid": 11004
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/local-system-data/system-capabilities-enabled",
+      "status": "unstable",
+      "sid": 11005
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/local-system-data/system-capabilities-supported",
+      "status": "unstable",
+      "sid": 11006
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/local-system-data/system-description",
+      "status": "unstable",
+      "sid": 11007
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/local-system-data/system-name",
+      "status": "unstable",
+      "sid": 11008
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/message-fast-tx",
+      "status": "unstable",
+      "sid": 11009
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/message-tx-hold-multiplier",
+      "status": "unstable",
+      "sid": 11010
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/message-tx-interval",
+      "status": "unstable",
+      "sid": 11011
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/notification-interval",
+      "status": "unstable",
+      "sid": 11012
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port",
+      "status": "unstable",
+      "sid": 11013
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/admin-status",
+      "status": "unstable",
+      "sid": 11014
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/dest-mac-address",
+      "status": "unstable",
+      "sid": 11015
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/management-address-tx-port",
+      "status": "unstable",
+      "sid": 11016
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/management-address-tx-port/addr-len",
+      "status": "unstable",
+      "sid": 11017
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/management-address-tx-port/address-subtype",
+      "status": "unstable",
+      "sid": 11018
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/management-address-tx-port/if-id",
+      "status": "unstable",
+      "sid": 11019
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/management-address-tx-port/if-subtype",
+      "status": "unstable",
+      "sid": 11020
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/management-address-tx-port/man-address",
+      "status": "unstable",
+      "sid": 11021
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/management-address-tx-port/tx-enable",
+      "status": "unstable",
+      "sid": 11022
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/message-fast-tx",
+      "status": "unstable",
+      "sid": 11023
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/message-tx-hold-multiplier",
+      "status": "unstable",
+      "sid": 11024
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/message-tx-interval",
+      "status": "unstable",
+      "sid": 11025
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/name",
+      "status": "unstable",
+      "sid": 11026
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/notification-enable",
+      "status": "unstable",
+      "sid": 11027
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/notification-interval",
+      "status": "unstable",
+      "sid": 11028
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/port-desc",
+      "status": "unstable",
+      "sid": 11029
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/port-id",
+      "status": "unstable",
+      "sid": 11030
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/port-id-subtype",
+      "status": "unstable",
+      "sid": 11031
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/reinit-delay",
+      "status": "unstable",
+      "sid": 11032
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data",
+      "status": "unstable",
+      "sid": 11033
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/chassis-id",
+      "status": "unstable",
+      "sid": 11034
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/chassis-id-subtype",
+      "status": "unstable",
+      "sid": 11035
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/management-address",
+      "status": "unstable",
+      "sid": 11036
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/management-address/address",
+      "status": "unstable",
+      "sid": 11037
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/management-address/address-subtype",
+      "status": "unstable",
+      "sid": 11038
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/management-address/if-id",
+      "status": "unstable",
+      "sid": 11039
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/management-address/if-subtype",
+      "status": "unstable",
+      "sid": 11040
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/port-desc",
+      "status": "unstable",
+      "sid": 11041
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/port-id",
+      "status": "unstable",
+      "sid": 11042
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/port-id-subtype",
+      "status": "unstable",
+      "sid": 11043
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/remote-changes",
+      "status": "unstable",
+      "sid": 11044
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/remote-index",
+      "status": "unstable",
+      "sid": 11045
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/remote-org-defined-info",
+      "status": "unstable",
+      "sid": 11046
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/remote-org-defined-info/info-identifier",
+      "status": "unstable",
+      "sid": 11047
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/remote-org-defined-info/info-index",
+      "status": "unstable",
+      "sid": 11048
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/remote-org-defined-info/info-subtype",
+      "status": "unstable",
+      "sid": 11049
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/remote-org-defined-info/remote-info",
+      "status": "unstable",
+      "sid": 11050
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/remote-too-many-neighbors",
+      "status": "unstable",
+      "sid": 11051
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/remote-unknown-tlv",
+      "status": "unstable",
+      "sid": 11052
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/remote-unknown-tlv/tlv-info",
+      "status": "unstable",
+      "sid": 11053
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/remote-unknown-tlv/tlv-type",
+      "status": "unstable",
+      "sid": 11054
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/system-capabilities-enabled",
+      "status": "unstable",
+      "sid": 11055
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/system-capabilities-supported",
+      "status": "unstable",
+      "sid": 11056
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/system-description",
+      "status": "unstable",
+      "sid": 11057
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/system-name",
+      "status": "unstable",
+      "sid": 11058
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/remote-systems-data/time-mark",
+      "status": "unstable",
+      "sid": 11059
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/rx-statistics",
+      "status": "unstable",
+      "sid": 11060
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/rx-statistics/error-frames",
+      "status": "unstable",
+      "sid": 11061
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/rx-statistics/total-ageouts",
+      "status": "unstable",
+      "sid": 11062
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/rx-statistics/total-discarded-frames",
+      "status": "unstable",
+      "sid": 11063
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/rx-statistics/total-discarded-tlvs",
+      "status": "unstable",
+      "sid": 11064
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/rx-statistics/total-frames",
+      "status": "unstable",
+      "sid": 11065
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/rx-statistics/total-unrecognized-tlvs",
+      "status": "unstable",
+      "sid": 11066
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/tlvs-tx-enable",
+      "status": "unstable",
+      "sid": 11067
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/tx-credit-max",
+      "status": "unstable",
+      "sid": 11068
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/tx-fast-init",
+      "status": "unstable",
+      "sid": 11069
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/tx-statistics",
+      "status": "unstable",
+      "sid": 11070
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/tx-statistics/total-frames",
+      "status": "unstable",
+      "sid": 11071
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/port/tx-statistics/total-length-errors",
+      "status": "unstable",
+      "sid": 11072
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/reinit-delay",
+      "status": "unstable",
+      "sid": 11073
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/remote-statistics",
+      "status": "unstable",
+      "sid": 11074
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/remote-statistics/last-change-time",
+      "status": "unstable",
+      "sid": 11075
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/remote-statistics/remote-ageouts",
+      "status": "unstable",
+      "sid": 11076
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/remote-statistics/remote-deletes",
+      "status": "unstable",
+      "sid": 11077
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/remote-statistics/remote-drops",
+      "status": "unstable",
+      "sid": 11078
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/remote-statistics/remote-inserts",
+      "status": "unstable",
+      "sid": 11079
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/tx-credit-max",
+      "status": "unstable",
+      "sid": 11080
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:lldp/tx-fast-init",
+      "status": "unstable",
+      "sid": 11081
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:remote-table-change",
+      "status": "unstable",
+      "sid": 11082
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:remote-table-change/remote-ageouts",
+      "status": "unstable",
+      "sid": 11083
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:remote-table-change/remote-delete",
+      "status": "unstable",
+      "sid": 11084
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:remote-table-change/remote-drops",
+      "status": "unstable",
+      "sid": 11085
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1ab-lldp:remote-table-change/remote-insert",
+      "status": "unstable",
+      "sid": 11086
+    }
+  ]
+}

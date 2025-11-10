@@ -1,0 +1,18 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 950,
+      "size": 50
+    }
+  ],
+  "module-name": "ietf-inet-types",
+  "module-revision": "2013-07-15",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ietf-inet-types",
+      "status": "unstable",
+      "sid": 950
+    }
+  ]
+}

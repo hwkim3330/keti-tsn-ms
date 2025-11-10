@@ -1,0 +1,251 @@
+module mchp-velocitysp-bridge {
+  yang-version 1.1;
+  namespace "urn:mchp:params:xml:ns:yang:velocitysp-bridge";
+  prefix lm-bridge;
+  import ieee802-dot1q-bridge {
+    prefix dot1q;
+  }
+  import ieee802-dot1q-types {
+    prefix dot1qtypes;
+  }
+  import ietf-interfaces {
+    prefix if;
+  }
+
+  description
+    "This module contains a collection of YANG definitions for
+     managing BRIDGE of MCHP systems running VelocitySP software.";
+
+  revision 2025-06-30 {
+    description
+      "Added default values.
+       Extended comment to ipv4-mc-disable";
+  }
+
+  revision 2025-03-31 {
+    description
+      "Added new VLAN port type definition.
+       Added Bridge Port forwarding state.
+       Added Bridge Custom EtherType";
+  }
+
+  revision 2024-10-23 {
+    description
+      "Added new FDB attributes for flooding control.";
+  }
+
+  revision 2024-10-01 {
+    description
+      "Added new FDB attributes on database, entry port.";
+  }
+
+  revision 2024-05-16 {
+    description
+      "Initial revision.";
+  }
+
+  feature tag_discard {
+    description
+      "This feature is the configuration of frame discard based on tags.
+       This only have effect if the port-type is VLAN aware";
+  }
+
+  typedef mchp-vid-type {
+    type string {
+      pattern
+        "[1-9][0-9]{0,3}";
+    }
+    description
+      "A single VLAN Id, between 1 and 4095.
+      This type is used to match a single VLAN Id.
+      For example: 1000";
+  }
+
+  identity provider-custom-network-port {
+    base dot1q:type-of-port;
+    description
+      "Indicates the port can be an Custom-TAG aware port of a Provider Bridge or
+      Backbone Edge Bridge used for connections within a PBN (Provider
+      Bridged Network) or PBBN (Provider Backbone Bridged Network).";
+  }
+
+  typedef mchp-vlan-port-type {
+    type identityref {
+      base dot1q:type-of-port;
+    }
+    description
+      "These VLAN port types are supported:
+      VLAN unaware port: 'd-bridge-port'.
+      VLAN aware port using C-tags: 'c-vlan-bridge-port'.
+      VLAN aware port using S-tags: 'provider-network-port'.
+      VLAN aware port using Custom-tags: 'provider-custom-network-port'.";
+  }
+
+  typedef mchp-config-change-type {
+    type boolean;
+    description
+      "A Boolean variable used to start the List Config state machine.
+      This variable can be set to TRUE to activate the AdminControlList.
+      The value read back reflects whether it has been attempted to activate
+      the current AdminControlList.";
+  }
+
+  augment "/dot1q:bridges/dot1q:bridge/dot1q:component" {
+    description
+      "Augment bridge component with MCHP specific model";
+
+    leaf custom-ethertype {
+      type dot1qtypes:ethertype-type;
+      default "88-A8";
+      description
+        "The custom 16-bit IEEE 802 EtherType field for the bridge";
+      reference
+        "9.3 of IEEE Std 802";
+    }
+
+    action fdb-flush {
+      description
+        "Flushing the filtering-database by deleting dynamic entries in
+         filtering-entry list based on VID and/or port";
+      input {
+        leaf vid {
+          type dot1qtypes:vlanid;
+          description
+            "All entries in filtering-entry on this VID will be addressed.
+             If this leaf is not present entries on all VIDs are addressed.";
+        }
+        leaf port {
+          type dot1qtypes:port-number-type;
+          description
+            "Entries in filtering-entry on this port and addressed by leaf vid
+             (specific or all) will be deleted. If this leaf is not present,
+             entries in filtering-entry on any port and addressed by leaf vid
+             (specific or all) will be deleted.";
+        }
+      }
+    }
+  }
+
+  augment "/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database" {
+    description
+      "Augment bridge filtering-database with MCHP specific model";
+
+    leaf one-shot {
+      type boolean;
+      default "false";
+      description
+        "Indicates if a Dynamic MAC cannot move to another port.";
+    }
+    leaf ageing-disable {
+      type boolean;
+      default "false";
+      description
+        "Indicates if ageing of Dynamic MAC is disabled.";
+    }
+    container unknown-mac-flooding {
+      description
+        "The list of port composing the flooding mask configuration.";
+      leaf-list uc-disable {
+        type if:interface-ref;
+        description
+          "Indicates if flooding of UC-MAC is disabled to this port. Default is enable";
+      }
+      leaf-list mc-disable {
+        type if:interface-ref;
+        description
+          "Indicates if flooding of MC-MAC is disabled to this port. Default is enable";
+      }
+      leaf-list ipv4-mc-disable {
+        type if:interface-ref;
+        description
+          "Indicates if flooding of IPV4 MC-MAC is disabled to this port. Default is enable.
+           Note that the range 224.0.0.0 - 224.0.0.255 is IPv4 multicast control and is not
+           filtered by this.";
+      }
+      leaf-list ipv6-mc-disable {
+        type if:interface-ref;
+        description
+          "Indicates if flooding of IPV6 MC-MAC is disabled to this port. Default is enable";
+      }
+    }
+  }
+
+  augment "/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:filtering-entry" {
+    status obsolete;
+    description
+      "Augment bridge filtering-entry with MCHP specific model";
+
+    leaf ageing-disable {
+      type boolean;
+      default "false";
+      status obsolete;
+      description
+        "Indicates if ageing of this specific Dynamic MAC is disabled.";
+    }
+  }
+
+  augment "/if:interfaces/if:interface/dot1q:bridge-port" {
+    description
+      "Augment the interface bridge-port with MCHP specific model";
+
+    leaf fdb-learning-disable {
+      type boolean;
+      default "false";
+      description
+        "Indicates if learning of Dynamic MAC is disabled.";
+    }
+
+    leaf fdb-learning-limit {
+      type uint16;
+      default "0";
+      description
+        "The limit of how many Dynamic MAC can be learned.
+         Zero means limitation is disabled.
+         Maximum is 32767";
+    }
+
+    leaf forwarding-disable {
+      type boolean;
+      default "false";
+      description
+        "The bridge port forwarding can be disabled.
+         When true, forwarding to/from the port is disabled.
+         When false, forwarding to/from the port is enabled.";
+    }
+
+    leaf inner-tag-discard {
+      if-feature tag_discard;
+      type bits {
+        bit no-tag {
+          position 0;
+          description
+            "Discard if there is no tag - tag is required.";
+        }
+        bit any-tag {
+          position 1;
+          description
+            "Discard if there is a tag - tag is not accepted.";
+        }
+        bit c-tag {
+          position 2;
+          description
+            "Discard if there is a c-tag.";
+        }
+        bit s-tag {
+          position 3;
+          description
+            "Discard if there is a s-tag.";
+        }
+        bit custom-tag {
+          position 4;
+          description
+            "Discard if there is a custom-tag.";
+        }
+      }
+      description
+        "Discard frame based on inner (second) tag.
+         If no bit is set the frame is not discarded based on tag.
+         This only have effect if the port-type is VLAN aware";
+    }
+  }
+}

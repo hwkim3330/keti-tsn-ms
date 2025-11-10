@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-comment);">// Copyright (c) 2021-2022 Microchip Technology Inc. and its subsidiaries.</span>
+<span style="color:var(--color-yang-comment);">//</span>
+<span style="color:var(--color-yang-comment);">// Unpublished rights reserved under the copyright laws of the United States</span>
+<span style="color:var(--color-yang-comment);">// of America, other countries and international treaties. Permission to use,</span>
+<span style="color:var(--color-yang-comment);">// copy, store and modify, the software and its source code is granted but</span>
+<span style="color:var(--color-yang-comment);">// only in connection with products utilizing the Microsemi switch and PHY</span>
+<span style="color:var(--color-yang-comment);">// products.  Permission is also granted for you to integrate into other</span>
+<span style="color:var(--color-yang-comment);">// products, disclose, transmit and distribute the software only in an</span>
+<span style="color:var(--color-yang-comment);">// absolute machine readable format (e.g. HEX file) and only in or with</span>
+<span style="color:var(--color-yang-comment);">// products utilizing the Microsemi switch and PHY products.  The source code</span>
+<span style="color:var(--color-yang-comment);">// of the software may not be disclosed, transmitted or distributed without</span>
+<span style="color:var(--color-yang-comment);">// the prior written permission of Microsemi.</span>
+<span style="color:var(--color-yang-comment);">//</span>
+<span style="color:var(--color-yang-comment);">// This copyright notice must appear in any copy, modification, disclosure,</span>
+<span style="color:var(--color-yang-comment);">// transmission or distribution of the software.  Microsemi retains all</span>
+<span style="color:var(--color-yang-comment);">// ownership, copyright, trade secret and proprietary rights in the software</span>
+<span style="color:var(--color-yang-comment);">// and its source code, including all modifications thereto.</span>
+<span style="color:var(--color-yang-comment);">//</span>
+<span style="color:var(--color-yang-comment);">// THIS SOFTWARE HAS BEEN PROVIDED "AS IS". MICROSEMI HEREBY DISCLAIMS ALL</span>
+<span style="color:var(--color-yang-comment);">// WARRANTIES OF ANY KIND WITH RESPECT TO THE SOFTWARE, WHETHER SUCH</span>
+<span style="color:var(--color-yang-comment);">// WARRANTIES ARE EXPRESS, IMPLIED, STATUTORY OR OTHERWISE INCLUDING, WITHOUT</span>
+<span style="color:var(--color-yang-comment);">// LIMITATION, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR USE OR</span>
+<span style="color:var(--color-yang-comment);">// PURPOSE AND NON-INFRINGEMENT.</span>
+
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L25C7 */</span><span id="L25C7"></span><span style="color:var(--color-yang-id);">ietf-interfaces-dev</span> {
+    <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L26C17 */</span><span id="L26C17"></span><span style="color:var(--color-yang-id);">1.1</span>;
+    <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:mchp:params:xml:ns:yang:ietf-interfaces-dev"</span>;
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L28C11 */</span><span id="L28C11"></span><span style="color:var(--color-yang-id);">ietf-interfaces-dev-pre</span>;
+
+    <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L30C11 */</span><span id="L30C11"></span><span style="color:var(--color-yang-id);">ietf-interfaces</span> {
+        <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L31C15 */</span><span id="L31C15"></span><span style="color:var(--color-yang-id);">if</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L34C11 */</span><span id="L34C11"></span><span style="color:var(--color-yang-id);">ietf-ip</span> {
+        <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L35C15 */</span><span id="L35C15"></span><span style="color:var(--color-yang-id);">ip</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L38C11 */</span><span id="L38C11"></span><span style="color:var(--color-yang-id);">ieee802-ethernet-interface</span> {
+        <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L39C15 */</span><span id="L39C15"></span><span style="color:var(--color-yang-id);">ieee802-eth-if</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L42C11 */</span><span id="L42C11"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-bridge</span> {
+        <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L43C15 */</span><span id="L43C15"></span><span style="color:var(--color-yang-id);">dot1q</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L46C11 */</span><span id="L46C11"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-preemption-bridge</span> {
+        <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L47C15 */</span><span id="L47C15"></span><span style="color:var(--color-yang-id);">preempt-bridge</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L50C11 */</span><span id="L50C11"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-sched-bridge</span> {
+        <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L51C15 */</span><span id="L51C15"></span><span style="color:var(--color-yang-id);">sched-bridge</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L54C11 */</span><span id="L54C11"></span><span style="color:var(--color-yang-id);">ieee802-dot1cb-stream-identification</span> {
+        <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L55C15 */</span><span id="L55C15"></span><span style="color:var(--color-yang-id);">dot1cb-sid</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L58C11 */</span><span id="L58C11"></span><span style="color:var(--color-yang-id);">mchp-velocitysp-port</span> {
+        <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L59C15 */</span><span id="L59C15"></span><span style="color:var(--color-yang-id);">lm-port</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L62C11 */</span><span id="L62C11"></span><span style="color:var(--color-yang-id);">mchp-velocitysp-bridge</span> {
+        <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L63C15 */</span><span id="L63C15"></span><span style="color:var(--color-yang-id);">lm-bridge</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L66C13 */</span><span id="L66C13"></span><span style="color:var(--color-yang-id);">2024-04-12</span> {
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L69C14 */</span><span id="L69C14"></span><span style="color:var(--color-yang-id);">/if:interfaces-state</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L70C16 */</span><span id="L70C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L73C14 */</span><span id="L73C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:address</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L74C16 */</span><span id="L74C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L77C14 */</span><span id="L77C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:admin-point-to-point</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L78C16 */</span><span id="L78C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L81C14 */</span><span id="L81C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:bridge-name</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L82C16 */</span><span id="L82C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L85C14 */</span><span id="L85C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:capabilities</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L86C16 */</span><span id="L86C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L89C14 */</span><span id="L89C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:component-name</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L90C16 */</span><span id="L90C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L93C14 */</span><span id="L93C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:drop-encoding</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L94C16 */</span><span id="L94C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L97C14 */</span><span id="L97C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:egress-vid-translations</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L98C16 */</span><span id="L98C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L101C14 */</span><span id="L101C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:enable-egress-vid-translation-table</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L102C16 */</span><span id="L102C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L105C14 */</span><span id="L105C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:enable-restricted-vlan-registration</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L106C16 */</span><span id="L106C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L109C14 */</span><span id="L109C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:enable-vid-translation-table</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L110C16 */</span><span id="L110C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L113C14 */</span><span id="L113C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:external</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L114C16 */</span><span id="L114C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L117C14 */</span><span id="L117C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:max-vid-set-entries</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L118C16 */</span><span id="L118C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L121C14 */</span><span id="L121C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:media-dependent-overhead</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L122C16 */</span><span id="L122C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L125C14 */</span><span id="L125C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:oper-point-to-point</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L126C16 */</span><span id="L126C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L129C14 */</span><span id="L129C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:pcp-selection</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L130C16 */</span><span id="L130C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L133C14 */</span><span id="L133C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:port-number</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L134C16 */</span><span id="L134C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L137C14 */</span><span id="L137C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:port-type</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L138C16 */</span><span id="L138C16"></span><span style="color:var(--color-yang-id);">replace</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L139C17 */</span><span id="L139C17"></span><span style="color:var(--color-yang-id);">lm-bridge:mchp-vlan-port-type</span>;
+        }
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L143C14 */</span><span id="L143C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:priority-regeneration</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L144C16 */</span><span id="L144C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L147C14 */</span><span id="L147C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:protocol-based-vlan-classification</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L148C16 */</span><span id="L148C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L151C14 */</span><span id="L151C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:protocol-group-vid-set</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L152C16 */</span><span id="L152C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L155C14 */</span><span id="L155C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:service-access-priority</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L156C16 */</span><span id="L156C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L159C14 */</span><span id="L159C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:service-access-priority-selection</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L160C16 */</span><span id="L160C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L163C14 */</span><span id="L163C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:statistics/dot1q:delay-exceeded-discards</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L164C16 */</span><span id="L164C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L167C14 */</span><span id="L167C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:statistics/dot1q:discard-lack-of-buffers</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L168C16 */</span><span id="L168C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L171C14 */</span><span id="L171C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:statistics/dot1q:discard-on-error</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L172C16 */</span><span id="L172C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L175C14 */</span><span id="L175C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:statistics/dot1q:discard-on-ingress-filtering</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L176C16 */</span><span id="L176C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L179C14 */</span><span id="L179C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:statistics/dot1q:discard-transit-delay-exceeded</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L180C16 */</span><span id="L180C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L183C14 */</span><span id="L183C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:statistics/dot1q:forward-outbound</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L184C16 */</span><span id="L184C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L187C14 */</span><span id="L187C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:statistics/dot1q:frame-rx</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L188C16 */</span><span id="L188C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L191C14 */</span><span id="L191C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:statistics/dot1q:frame-tx</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L192C16 */</span><span id="L192C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L195C14 */</span><span id="L195C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:statistics/dot1q:mtu-exceeded-discards</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L196C16 */</span><span id="L196C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L199C14 */</span><span id="L199C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:statistics/dot1q:octets-rx</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L200C16 */</span><span id="L200C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L203C14 */</span><span id="L203C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:statistics/dot1q:octets-tx</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L204C16 */</span><span id="L204C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L207C14 */</span><span id="L207C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:traffic-class</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L208C16 */</span><span id="L208C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L211C14 */</span><span id="L211C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:transmission-selection-algorithm-table</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L212C16 */</span><span id="L212C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L215C14 */</span><span id="L215C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:type-capabilties</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L216C16 */</span><span id="L216C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L219C14 */</span><span id="L219C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/dot1q:vid-translations</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L220C16 */</span><span id="L220C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L223C14 */</span><span id="L223C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/preempt-bridge:frame-preemption-parameters/preempt-bridge:hold-advance</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L224C16 */</span><span id="L224C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L227C14 */</span><span id="L227C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/preempt-bridge:frame-preemption-parameters/preempt-bridge:hold-request</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L228C16 */</span><span id="L228C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L231C14 */</span><span id="L231C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/preempt-bridge:frame-preemption-parameters/preempt-bridge:preemption-active</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L232C16 */</span><span id="L232C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L235C14 */</span><span id="L235C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/preempt-bridge:frame-preemption-parameters/preempt-bridge:release-advance</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L236C16 */</span><span id="L236C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L239C14 */</span><span id="L239C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/sched-bridge:gate-parameter-table/sched-bridge:queue-max-sdu-table/sched-bridge:transmission-overrun</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L240C16 */</span><span id="L240C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L243C14 */</span><span id="L243C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:auto-negotiation/ieee802-eth-if:negotiation-status</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L244C16 */</span><span id="L244C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L247C14 */</span><span id="L247C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:capabilities</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L248C16 */</span><span id="L248C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L251C14 */</span><span id="L251C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:flow-control/ieee802-eth-if:force-flow-control</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L252C16 */</span><span id="L252C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L255C14 */</span><span id="L255C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:flow-control/ieee802-eth-if:pfc</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L256C16 */</span><span id="L256C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L259C14 */</span><span id="L259C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:frame-limit-slow-protocol</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L260C16 */</span><span id="L260C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L263C14 */</span><span id="L263C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:mac-control-extension-control</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L264C16 */</span><span id="L264C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L267C14 */</span><span id="L267C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:max-frame-length</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L268C16 */</span><span id="L268C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L271C14 */</span><span id="L271C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:statistics/ieee802-eth-if:frame/ieee802-eth-if:in-broadcast-frames</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L272C16 */</span><span id="L272C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L275C14 */</span><span id="L275C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:statistics/ieee802-eth-if:frame/ieee802-eth-if:in-error-mac-internal-frames</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L276C16 */</span><span id="L276C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L279C14 */</span><span id="L279C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:statistics/ieee802-eth-if:frame/ieee802-eth-if:in-frames</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L280C16 */</span><span id="L280C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L283C14 */</span><span id="L283C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:statistics/ieee802-eth-if:frame/ieee802-eth-if:in-multicast-frames</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L284C16 */</span><span id="L284C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L287C14 */</span><span id="L287C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:statistics/ieee802-eth-if:frame/ieee802-eth-if:in-total-octets</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L288C16 */</span><span id="L288C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L291C14 */</span><span id="L291C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:statistics/ieee802-eth-if:frame/ieee802-eth-if:out-broadcast-frames</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L292C16 */</span><span id="L292C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L295C14 */</span><span id="L295C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:statistics/ieee802-eth-if:frame/ieee802-eth-if:out-error-mac-internal-frames</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L296C16 */</span><span id="L296C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L299C14 */</span><span id="L299C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:statistics/ieee802-eth-if:frame/ieee802-eth-if:out-multicast-frames</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L300C16 */</span><span id="L300C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L303C14 */</span><span id="L303C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:statistics/ieee802-eth-if:mac-control</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L304C16 */</span><span id="L304C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L307C14 */</span><span id="L307C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:statistics/ieee802-eth-if:phy</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L308C16 */</span><span id="L308C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L311C14 */</span><span id="L311C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/if:admin-status</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L312C16 */</span><span id="L312C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L315C14 */</span><span id="L315C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/if:description</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L316C16 */</span><span id="L316C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L319C14 */</span><span id="L319C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/if:higher-layer-if</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L320C16 */</span><span id="L320C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L323C14 */</span><span id="L323C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/if:last-change</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L324C16 */</span><span id="L324C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L327C14 */</span><span id="L327C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/if:link-up-down-trap-enable</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L328C16 */</span><span id="L328C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L331C14 */</span><span id="L331C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/if:lower-layer-if</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L332C16 */</span><span id="L332C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L335C14 */</span><span id="L335C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/if:speed</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L336C16 */</span><span id="L336C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L339C14 */</span><span id="L339C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/if:statistics/dot1cb-sid:stream-id</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L340C16 */</span><span id="L340C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L343C14 */</span><span id="L343C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/if:statistics/if:discontinuity-time</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L344C16 */</span><span id="L344C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L347C14 */</span><span id="L347C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ip:ipv4/ip:address/ip:subnet/ip:netmask</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L348C16 */</span><span id="L348C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L351C14 */</span><span id="L351C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ip:ipv4/ip:neighbor</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L352C16 */</span><span id="L352C16"></span><span style="color:var(--color-yang-id);">replace</span> {
+            <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L353C19 */</span><span id="L353C19"></span><span style="color:var(--color-yang-id);">false</span>;
+        }
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L357C14 */</span><span id="L357C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ip:ipv4/ip:neighbor/ip:origin</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L358C16 */</span><span id="L358C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L361C14 */</span><span id="L361C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ip:ipv4/ip:enabled</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L362C16 */</span><span id="L362C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L365C14 */</span><span id="L365C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ip:ipv4/ip:mtu</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L366C16 */</span><span id="L366C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L369C14 */</span><span id="L369C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ip:ipv6</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L370C16 */</span><span id="L370C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L373C14 */</span><span id="L373C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/sched-bridge:gate-parameter-table/sched-bridge:config-change</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L374C16 */</span><span id="L374C16"></span><span style="color:var(--color-yang-id);">replace</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L375C17 */</span><span id="L375C17"></span><span style="color:var(--color-yang-id);">lm-bridge:mchp-config-change-type</span>;
+        }
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L379C14 */</span><span id="L379C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/sched-bridge:gate-parameter-table/sched-bridge:supported-cycle-max/sched-bridge:denominator</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L380C16 */</span><span id="L380C16"></span><span style="color:var(--color-yang-id);">replace</span> {
+            <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L381C19 */</span><span id="L381C19"></span><span style="color:var(--color-yang-id);">false</span>;
+        }
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L385C14 */</span><span id="L385C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/sched-bridge:gate-parameter-table/sched-bridge:supported-cycle-max/sched-bridge:numerator</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L386C16 */</span><span id="L386C16"></span><span style="color:var(--color-yang-id);">replace</span> {
+            <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L387C19 */</span><span id="L387C19"></span><span style="color:var(--color-yang-id);">false</span>;
+        }
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L391C14 */</span><span id="L391C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/sched-bridge:gate-parameter-table/sched-bridge:supported-interval-max</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L392C16 */</span><span id="L392C16"></span><span style="color:var(--color-yang-id);">replace</span> {
+            <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L393C19 */</span><span id="L393C19"></span><span style="color:var(--color-yang-id);">false</span>;
+        }
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L397C14 */</span><span id="L397C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port/sched-bridge:gate-parameter-table/sched-bridge:supported-list-max</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L398C16 */</span><span id="L398C16"></span><span style="color:var(--color-yang-id);">replace</span> {
+            <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L399C19 */</span><span id="L399C19"></span><span style="color:var(--color-yang-id);">false</span>;
+        }
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L403C14 */</span><span id="L403C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/lm-port:eth-port/lm-port:statistics/lm-port:clear</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L404C16 */</span><span id="L404C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L407C14 */</span><span id="L407C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:duplex</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L408C16 */</span><span id="L408C16"></span><span style="color:var(--color-yang-id);">replace</span> {
+            <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L409C19 */</span><span id="L409C19"></span><span style="color:var(--color-yang-id);">false</span>;
+        }
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L413C14 */</span><span id="L413C14"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/ieee802-eth-if:ethernet/ieee802-eth-if:speed</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L414C16 */</span><span id="L414C16"></span><span style="color:var(--color-yang-id);">replace</span> {
+            <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L415C19 */</span><span id="L415C19"></span><span style="color:var(--color-yang-id);">false</span>;
+        }
+    }
+}

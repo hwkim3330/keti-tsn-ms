@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ietf-constrained-yang-library</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L2C15 */</span><span id="L2C15"></span><span style="color:var(--color-yang-id);">1.1</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span>
+    <span style="color:var(--color-yang-text);">"urn:ietf:params:xml:ns:yang:ietf-constrained-yang-library"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-text);">"yanglib"</span>;
+
+  <span style="color:var(--color-yang-comment);">// RFC Ed.: update ietf-core-sid reference.</span>
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L9C9 */</span><span id="L9C9"></span><span style="color:var(--color-yang-id);">ietf-sid-file</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L10C11 */</span><span id="L10C11"></span><span style="color:var(--color-yang-id);">sid</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span> <span style="color:var(--color-yang-text);">"RFC YYYY: YANG Schema Item iDentifier (SID)"</span>;
+    <span style="color:var(--color-yang-comment);">// RFC Editor: Please replace YYYY with RFC number of I-D.ietf-core-sid.</span>
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L14C9 */</span><span id="L14C9"></span><span style="color:var(--color-yang-id);">ietf-inet-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L15C11 */</span><span id="L15C11"></span><span style="color:var(--color-yang-id);">inet</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span> <span style="color:var(--color-yang-text);">"RFC 6991: Common YANG Data Types."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L18C9 */</span><span id="L18C9"></span><span style="color:var(--color-yang-id);">ietf-datastores</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L19C11 */</span><span id="L19C11"></span><span style="color:var(--color-yang-id);">ds</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 8342: Network Management Datastore Architecture (NMDA)."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IETF CoRE Working Group"</span>;
+
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG Web:   <http://datatracker.ietf.org/wg/core/>
+
+     WG List:  <mailto:core@ietf.org>
+
+     Editor:   Michel Veillette
+               <mailto:michel.veillette@trilliantinc.com>
+
+     Editor:   Ivaylo Petrov
+               <mailto:ivaylo@ackl.io>"</span>;
+
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"Copyright (c) 2021 IETF Trust and the persons identified as
+     authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject to
+     the license terms contained in, the Simplified BSD License set
+     forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC XXXX
+     (https://www.rfc-editor.org/info/rfcXXXX); see the RFC itself
+     for full legal notices.
+
+     The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
+     NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',
+     'MAY', and 'OPTIONAL' in this document are to be interpreted as
+     described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
+     they appear in all capitals, as shown here.
+
+     This module provides information about the YANG modules,
+     datastores, and datastore schemas implemented by a
+     constrained network management server."</span>;
+
+  <span style="color:var(--color-yang-comment);">// RFC Editor: Please replace XXXX with RFC number and remove this note</span>
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L65C11 */</span><span id="L65C11"></span><span style="color:var(--color-yang-id);">2019-03-28</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Second revision."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC XXXX: Constrained YANG Module Library"</span>;
+    <span style="color:var(--color-yang-comment);">// RFC Editor: Please replace XXXX with RFC number and remove this note</span>
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Typedefs
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L77C10 */</span><span id="L77C10"></span><span style="color:var(--color-yang-id);">revision-identifier</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L78C9 */</span><span id="L78C9"></span><span style="color:var(--color-yang-id);">binary</span> {
+      <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-text);">"4"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Revision date encoded as a binary string, each nibble
+       representing a digit of the revision date. For example,
+       revision 2018-09-21 is encoded as 0x20 0x18 0x09 0x21."</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Groupings
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L91C11 */</span><span id="L91C11"></span><span style="color:var(--color-yang-id);">module-identification-leafs</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Parameters for identifying YANG modules and submodules."</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L95C9 */</span><span id="L95C9"></span><span style="color:var(--color-yang-id);">identifier</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L96C11 */</span><span id="L96C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-sid-file#L83C10">sid:sid</a></span>;
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L97C16 */</span><span id="L97C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"SID assigned to this module or submodule."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L101C9 */</span><span id="L101C9"></span><span style="color:var(--color-yang-id);">revision</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L102C11 */</span><span id="L102C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-constrained-yang-library#L77C10">revision-identifier</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The YANG module or submodule revision date.  If no
+         revision statement is present in the YANG module
+         or submodule, this leaf is not instantiated."</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L110C11 */</span><span id="L110C11"></span><span style="color:var(--color-yang-id);">location-leaf-list</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Common location leaf list parameter for modules and
+       submodules."</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L115C14 */</span><span id="L115C14"></span><span style="color:var(--color-yang-id);">location</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L116C11 */</span><span id="L116C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L419C10">inet:uri</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Contains a URL that represents the YANG schema resource
+         for this module or submodule.
+
+         This leaf is present in the model to keep the alignment
+         with 'ietf-yang-library'. Support of this leaf in
+         constrained devices is not necessarily required, nor
+         expected. It is recommended that clients used the module
+         or sub-module SID as the handle used to retrieve the
+         corresponding YANG module"</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L130C11 */</span><span id="L130C11"></span><span style="color:var(--color-yang-id);">implementation-parameters</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Parameters for describing the implementation of a module."</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L134C14 */</span><span id="L134C14"></span><span style="color:var(--color-yang-id);">feature</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L135C11 */</span><span id="L135C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-sid-file#L83C10">sid:sid</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"List of all YANG feature names from this module that are
+         supported by the server, regardless whether they are
+         defined in the module or any included submodule."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L141C14 */</span><span id="L141C14"></span><span style="color:var(--color-yang-id);">deviation</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L142C11 */</span><span id="L142C11"></span><span style="color:var(--color-yang-id);">leafref</span> {
+        <span style="color:var(--color-yang-keyword);">path</span> "<span style="color:var(--color-yang-comment);">/* L143C14 */</span><span id="L143C14"></span><span style="color:var(--color-yang-id);">../../module/identifier"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"List of all YANG deviation modules used by this server to
+         modify the conformance of the module associated with this
+         entry.  Note that the same module can be used for
+         deviations for multiple modules, so the same entry MAY
+         appear within multiple 'module' entries.
+
+         This reference MUST NOT (directly or indirectly)
+         refer to the module being deviated.
+
+         Robust clients may want to make sure that they handle a
+         situation where a module deviates itself (directly or
+         indirectly) gracefully."</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L161C11 */</span><span id="L161C11"></span><span style="color:var(--color-yang-id);">module-set-parameters</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A set of parameters that describe a module set."</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L165C9 */</span><span id="L165C9"></span><span style="color:var(--color-yang-id);">index</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L166C11 */</span><span id="L166C11"></span><span style="color:var(--color-yang-id);">uint8</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"An arbitrary number assigned of the module set."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L170C9 */</span><span id="L170C9"></span><span style="color:var(--color-yang-id);">module</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"identifier"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"An entry in this list represents a module implemented
+         by the server, as per RFC 7950 section 5.6.5, with a
+         particular set of supported features and deviations."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"RFC 7950: The YANG 1.1 Data Modeling Language."</span>;
+
+      <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L179C11 */</span><span id="L179C11"></span><span style="color:var(--color-yang-id);">module-identification-leafs</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L181C11 */</span><span id="L181C11"></span><span style="color:var(--color-yang-id);">namespace</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L182C13 */</span><span id="L182C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L419C10">inet:uri</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The XML namespace identifier for this module.
+           This leaf is present in the model to keep the alignment
+           with 'ietf-yang-library'. Support of this leaf in
+           constrained devices is not required, nor expected."</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L190C11 */</span><span id="L190C11"></span><span style="color:var(--color-yang-id);">location-leaf-list</span>;
+
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L192C11 */</span><span id="L192C11"></span><span style="color:var(--color-yang-id);">submodule</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"identifier"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Each entry represents one submodule within the parent
+           module."</span>;
+        <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L197C13 */</span><span id="L197C13"></span><span style="color:var(--color-yang-id);">module-identification-leafs</span>;
+        <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L198C13 */</span><span id="L198C13"></span><span style="color:var(--color-yang-id);">location-leaf-list</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L201C11 */</span><span id="L201C11"></span><span style="color:var(--color-yang-id);">implementation-parameters</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L203C9 */</span><span id="L203C9"></span><span style="color:var(--color-yang-id);">import-only-module</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"identifier revision"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"An entry in this list indicates that the server imports
+         reusable definitions from the specified revision of the
+         module, but does not implement any protocol accessible
+         objects from this revision.
+
+         Multiple entries for the same module name MAY exist.
+         This can occur if multiple modules import the same
+         module, but specify different revision-dates in the
+         import statements."</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L216C11 */</span><span id="L216C11"></span><span style="color:var(--color-yang-id);">identifier</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L217C13 */</span><span id="L217C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-sid-file#L83C10">sid:sid</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The YANG module name."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L221C11 */</span><span id="L221C11"></span><span style="color:var(--color-yang-id);">revision</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L222C13 */</span><span id="L222C13"></span><span style="color:var(--color-yang-id);">union</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L223C15 */</span><span id="L223C15"></span><span style="color:var(--color-yang-id);">revision-identifier</span>;
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L224C15 */</span><span id="L224C15"></span><span style="color:var(--color-yang-id);">string</span> {
+            <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-comment);">/* L225C19 */</span><span id="L225C19"></span><span style="color:var(--color-yang-id);">0</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The YANG module revision date."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L231C11 */</span><span id="L231C11"></span><span style="color:var(--color-yang-id);">namespace</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L232C13 */</span><span id="L232C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L419C10">inet:uri</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The XML namespace identifier for this module.
+           This leaf is present in the model to keep the alignment
+           with 'ietf-yang-library'. Support of this leaf in
+           constrained devices is not required, nor expected."</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L240C11 */</span><span id="L240C11"></span><span style="color:var(--color-yang-id);">location-leaf-list</span>;
+
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L242C11 */</span><span id="L242C11"></span><span style="color:var(--color-yang-id);">submodule</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"identifier"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Each entry represents one submodule within the
+           parent module."</span>;
+
+        <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L248C13 */</span><span id="L248C13"></span><span style="color:var(--color-yang-id);">module-identification-leafs</span>;
+        <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L249C13 */</span><span id="L249C13"></span><span style="color:var(--color-yang-id);">location-leaf-list</span>;
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L254C11 */</span><span id="L254C11"></span><span style="color:var(--color-yang-id);">yang-library-parameters</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The YANG library data structure is represented as a grouping
+       so it can be reused in configuration or another monitoring
+       data structure."</span>;
+
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L260C9 */</span><span id="L260C9"></span><span style="color:var(--color-yang-id);">module-set</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-comment);">/* L261C10 */</span><span id="L261C10"></span><span style="color:var(--color-yang-id);">index</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"A set of modules that may be used by one or more schemas.
+
+         A module set does not have to be referentially complete,
+         i.e., it may define modules that contain import statements
+         for other modules not included in the module set."</span>;
+
+      <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L269C11 */</span><span id="L269C11"></span><span style="color:var(--color-yang-id);">module-set-parameters</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L272C9 */</span><span id="L272C9"></span><span style="color:var(--color-yang-id);">schema</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"index"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"A datastore schema that may be used by one or more
+         datastores.
+
+         The schema must be valid and referentially complete,
+         i.e., it must contain modules to satisfy all used import
+         statements for all modules specified in the schema."</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L282C11 */</span><span id="L282C11"></span><span style="color:var(--color-yang-id);">index</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L283C13 */</span><span id="L283C13"></span><span style="color:var(--color-yang-id);">uint8</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"An arbitrary reference number assigned to the schema."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L287C16 */</span><span id="L287C16"></span><span style="color:var(--color-yang-id);">module-set</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L288C13 */</span><span id="L288C13"></span><span style="color:var(--color-yang-id);">leafref</span> {
+          <span style="color:var(--color-yang-keyword);">path</span> "<span style="color:var(--color-yang-comment);">/* L289C16 */</span><span id="L289C16"></span><span style="color:var(--color-yang-id);">../../module-set/index"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A set of module-sets that are included in this schema.
+           If a non import-only module appears in multiple module
+           sets, then the module revision and the associated
+           features and deviations must be identical."</span>;
+      }
+    }
+
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L299C9 */</span><span id="L299C9"></span><span style="color:var(--color-yang-id);">datastore</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"identifier"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"A datastore supported by this server.
+
+         Each datastore indicates which schema it supports.
+
+         The server MUST instantiate one entry in this list
+         per specific datastore it supports.
+
+         Each datstore entry with the same datastore schema
+         SHOULD reference the same schema."</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L312C11 */</span><span id="L312C11"></span><span style="color:var(--color-yang-id);">identifier</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L313C13 */</span><span id="L313C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-datastores#L110C10">ds:datastore-ref</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The identity of the datastore."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L317C11 */</span><span id="L317C11"></span><span style="color:var(--color-yang-id);">schema</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L318C13 */</span><span id="L318C13"></span><span style="color:var(--color-yang-id);">leafref</span> {
+          <span style="color:var(--color-yang-keyword);">path</span> "<span style="color:var(--color-yang-comment);">/* L319C16 */</span><span id="L319C16"></span><span style="color:var(--color-yang-id);">../../schema/index"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L321C18 */</span><span id="L321C18"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A reference to the schema supported by this datastore.
+           All non import-only modules of the schema are
+           implemented with their associated features and
+           deviations."</span>;
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Top-level container
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L335C12 */</span><span id="L335C12"></span><span style="color:var(--color-yang-id);">yang-library</span> {
+    <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L336C11 */</span><span id="L336C11"></span><span style="color:var(--color-yang-id);">false</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Container holding the entire YANG library of this server."</span>;
+
+    <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L340C9 */</span><span id="L340C9"></span><span style="color:var(--color-yang-id);">yang-library-parameters</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L342C9 */</span><span id="L342C9"></span><span style="color:var(--color-yang-id);">checksum</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L343C11 */</span><span id="L343C11"></span><span style="color:var(--color-yang-id);">binary</span>;
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L344C16 */</span><span id="L344C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"A server-generated checksum or digest of the contents of
+         the 'yang-library' tree.  The server MUST change the
+         value of this leaf if the information represented by
+         the 'yang-library' tree, except 'yang-library/checksum',
+         has changed."</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Notifications
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">notification</span> <span style="color:var(--color-yang-comment);">/* L358C15 */</span><span id="L358C15"></span><span style="color:var(--color-yang-id);">yang-library-update</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Generated when any YANG library information on the
+       server has changed."</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L363C9 */</span><span id="L363C9"></span><span style="color:var(--color-yang-id);">checksum</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L364C11 */</span><span id="L364C11"></span><span style="color:var(--color-yang-id);">leafref</span> {
+        <span style="color:var(--color-yang-keyword);">path</span> "<span style="color:var(--color-yang-comment);">/* L365C14 */</span><span id="L365C14"></span><span style="color:var(--color-yang-id);">/yanglib:yang-library/yanglib:checksum"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L367C16 */</span><span id="L367C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Contains the YANG library checksum or digest for the
+         updated YANG library at the time the notification is
+         generated."</span>;
+    }
+  }
+}

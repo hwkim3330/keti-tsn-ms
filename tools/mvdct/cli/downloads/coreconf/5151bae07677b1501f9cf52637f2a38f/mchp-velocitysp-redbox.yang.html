@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">mchp-velocitysp-redbox</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L2C15 */</span><span id="L2C15"></span><span style="color:var(--color-yang-id);">1.1</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:mchp:params:xml:ns:yang:velocitysp-redbox"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">lm-redbox</span>;
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L5C9 */</span><span id="L5C9"></span><span style="color:var(--color-yang-id);">ietf-yang-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L6C11 */</span><span id="L6C11"></span><span style="color:var(--color-yang-id);">yang</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L8C9 */</span><span id="L8C9"></span><span style="color:var(--color-yang-id);">ietf-interfaces</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L9C11 */</span><span id="L9C11"></span><span style="color:var(--color-yang-id);">if</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L11C9 */</span><span id="L11C9"></span><span style="color:var(--color-yang-id);">ieee802-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-text);">"ieee"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L14C9 */</span><span id="L14C9"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L15C11 */</span><span id="L15C11"></span><span style="color:var(--color-yang-id);">dot1qtypes</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module contains a collection of YANG definitions for managing
+     HSR and PRP RedBoxes of MCHP systems running VelocitySP software.
+     If the system supports RedBoxes, a number of RedBox instances can
+     be created for network redundancy purposes. Each RedBox is setup
+     with port A and port B towards the HSR/PRP network. The switch port
+     corresponding to RedBox port A becomes the interlink connecting to
+     RedBox port C. The RedBox mode determines the operation of the RedBox.
+     The RedBox maintains two tables based on learned source MAC addresses:
+     - Node Table with addresses seen on port A/B.
+     - Proxy Node Table with addresses seen on port C (unused in HSR-HSR mode)."</span>;
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L28C11 */</span><span id="L28C11"></span><span style="color:var(--color-yang-id);">2025-06-30</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L33C12 */</span><span id="L33C12"></span><span style="color:var(--color-yang-id);">redbox</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"RedBox information."</span>;
+
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L37C9 */</span><span id="L37C9"></span><span style="color:var(--color-yang-id);">redbox-capable-list</span> {
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L38C13 */</span><span id="L38C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"id"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The RedBox list includes an entry for each configurable RedBox in the system."</span>;
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L42C11 */</span><span id="L42C11"></span><span style="color:var(--color-yang-id);">id</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L43C13 */</span><span id="L43C13"></span><span style="color:var(--color-yang-id);">uint8</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The zero-based ID identifies the RedBox"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L47C16 */</span><span id="L47C16"></span><span style="color:var(--color-yang-id);">capable-port-list</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L48C13 */</span><span id="L48C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L55C10">if:interface-ref</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The list of ports capable of being selected as RedBox port A/B."</span>;
+      }
+    }
+
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L54C9 */</span><span id="L54C9"></span><span style="color:var(--color-yang-id);">redbox-list</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"id"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The RedBox list includes an entry for each configured RedBox in the system."</span>;
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L58C11 */</span><span id="L58C11"></span><span style="color:var(--color-yang-id);">id</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L59C13 */</span><span id="L59C13"></span><span style="color:var(--color-yang-id);">uint8</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The zero-based ID identifies the RedBox"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L64C16 */</span><span id="L64C16"></span><span style="color:var(--color-yang-id);">config</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"RedBox configuration"</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L67C13 */</span><span id="L67C13"></span><span style="color:var(--color-yang-id);">mode</span> {
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L68C20 */</span><span id="L68C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L69C15 */</span><span id="L69C15"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L70C17 */</span><span id="L70C17"></span><span style="color:var(--color-yang-id);">prp-san</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"RedBox PRP-SAN mode:
+                - Port A/B connected to PRP network.
+                - Port C connected to SAN network"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L76C17 */</span><span id="L76C17"></span><span style="color:var(--color-yang-id);">hsr-san</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"RedBox HSR-SAN mode:
+                - Port A/B connected to HSR network.
+                - Port C connected to SAN network"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L82C17 */</span><span id="L82C17"></span><span style="color:var(--color-yang-id);">hsr-prp</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"RedBox HSR-PRP mode:
+                - Port A/B connected to HSR network.
+                - Port C connected to PRP network"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L88C17 */</span><span id="L88C17"></span><span style="color:var(--color-yang-id);">hsr-hsr</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"RedBox HSR-HSR mode:
+                - Port A/B connected to HSR network.
+                - Port C connected to another HSR network"</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"RedBox operation mode"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L98C13 */</span><span id="L98C13"></span><span style="color:var(--color-yang-id);">port-a</span> {
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L99C20 */</span><span id="L99C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L100C15 */</span><span id="L100C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L138C10">dot1qtypes:port-number-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"RedBox port A, must be one of the ports in capable-port-list.
+             The corresponding switch port is connected to the RedBox."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L105C13 */</span><span id="L105C13"></span><span style="color:var(--color-yang-id);">port-b</span> {
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L106C20 */</span><span id="L106C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L107C15 */</span><span id="L107C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L138C10">dot1qtypes:port-number-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"RedBox port B, must be one of the ports in capable-port-list.
+             The corresponding switch port is unused/disabled."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L112C13 */</span><span id="L112C13"></span><span style="color:var(--color-yang-id);">net-id</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L113C15 */</span><span id="L113C15"></span><span style="color:var(--color-yang-id);">uint8</span> {
+            <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0..7"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"0"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"RedBox NetId (default zero), which may be used in HSR-PRP and HSR-HSR mode:
+             - Inserted in HSR tag when forwarding from port C to HSR port.
+             - If non-zero, other NetId values are blocked when forwarding from HSR port to port C.
+             - If non-zero, inserted in HSR tag when forwarding to port C in HSR-HSR mode"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L123C13 */</span><span id="L123C13"></span><span style="color:var(--color-yang-id);">lan-id</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L124C15 */</span><span id="L124C15"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L125C17 */</span><span id="L125C17"></span><span style="color:var(--color-yang-id);">lan-a</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Connected to LAN A in PRP network"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L129C17 */</span><span id="L129C17"></span><span style="color:var(--color-yang-id);">lan-b</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Connected to LAN B in PRP network"</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"lan-a"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"RedBox LanId used in HSR-PRP mode for indicating the connected PRP network."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L138C13 */</span><span id="L138C13"></span><span style="color:var(--color-yang-id);">nt-age-time</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L139C15 */</span><span id="L139C15"></span><span style="color:var(--color-yang-id);">uint16</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"60"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Node Table age time in seconds (value zero disables ageing)."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L144C13 */</span><span id="L144C13"></span><span style="color:var(--color-yang-id);">pnt-age-time</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L145C15 */</span><span id="L145C15"></span><span style="color:var(--color-yang-id);">uint16</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"60"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Proxy Node Table age time in seconds (value zero disables ageing)."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L150C13 */</span><span id="L150C13"></span><span style="color:var(--color-yang-id);">dd-age-time</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L151C15 */</span><span id="L151C15"></span><span style="color:var(--color-yang-id);">uint16</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"40"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Duplicate Discard age time in milliseconds."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L156C13 */</span><span id="L156C13"></span><span style="color:var(--color-yang-id);">sv-forward-rx-port-c</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L157C15 */</span><span id="L157C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Enable forwarding of Supervision frames from RedBox port C to port A/B."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L162C13 */</span><span id="L162C13"></span><span style="color:var(--color-yang-id);">sv-forward-tx-port-c</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L163C15 */</span><span id="L163C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Enable forwarding of Supervision frames from RedBox port A/B to port C."</span>;
+        }
+      }
+
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L170C16 */</span><span id="L170C16"></span><span style="color:var(--color-yang-id);">control</span> { 
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L171C15 */</span><span id="L171C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"RedBox control"</span>;
+        <span style="color:var(--color-yang-keyword);">action</span> <span style="color:var(--color-yang-comment);">/* L174C15 */</span><span id="L174C15"></span><span style="color:var(--color-yang-id);">clear-counters</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Clear RedBox port counters."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">action</span> <span style="color:var(--color-yang-comment);">/* L178C15 */</span><span id="L178C15"></span><span style="color:var(--color-yang-id);">clear-nt</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Clear Node Table."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">action</span> <span style="color:var(--color-yang-comment);">/* L182C15 */</span><span id="L182C15"></span><span style="color:var(--color-yang-id);">clear-pnt</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Clear Proxy Node Table."</span>;
+        }
+      }
+
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L188C11 */</span><span id="L188C11"></span><span style="color:var(--color-yang-id);">port-counters</span> {
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L189C15 */</span><span id="L189C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"port"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"RedBox port counters"</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L193C13 */</span><span id="L193C13"></span><span style="color:var(--color-yang-id);">port</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L194C15 */</span><span id="L194C15"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+             <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L195C18 */</span><span id="L195C18"></span><span style="color:var(--color-yang-id);">port-a</span> {
+               <span style="color:var(--color-yang-keyword);">description</span>
+                 <span style="color:var(--color-yang-text);">"RedBox port A"</span>;
+             }
+             <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L199C18 */</span><span id="L199C18"></span><span style="color:var(--color-yang-id);">port-b</span> {
+               <span style="color:var(--color-yang-keyword);">description</span>
+                 <span style="color:var(--color-yang-text);">"RedBox port B"</span>;
+             }
+             <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L203C18 */</span><span id="L203C18"></span><span style="color:var(--color-yang-id);">port-c</span> {
+               <span style="color:var(--color-yang-keyword);">description</span>
+                 <span style="color:var(--color-yang-text);">"RedBox port C"</span>;
+             }
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The RedBox port."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L211C13 */</span><span id="L211C13"></span><span style="color:var(--color-yang-id);">rx-local</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L212C15 */</span><span id="L212C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Number of received link-local (BPDU) frames."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L216C13 */</span><span id="L216C13"></span><span style="color:var(--color-yang-id);">rx-untagged</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L217C15 */</span><span id="L217C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Number of received frames without HSR tag or PRP RCT."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L221C13 */</span><span id="L221C13"></span><span style="color:var(--color-yang-id);">rx-tagged</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L222C15 */</span><span id="L222C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Number of received frames with HSR tag or PRP RCT."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L226C13 */</span><span id="L226C13"></span><span style="color:var(--color-yang-id);">rx-wrong-lan</span> {
+         <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L227C14 */</span><span id="L227C14"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Number of received frames with wrong LanId (PRP port)."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L231C13 */</span><span id="L231C13"></span><span style="color:var(--color-yang-id);">rx-own</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L232C15 */</span><span id="L232C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Number of received frames from this RedBox (HSR port)."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L236C13 */</span><span id="L236C13"></span><span style="color:var(--color-yang-id);">tx-local</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L237C15 */</span><span id="L237C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Number of transmitted link-local (BPDU) frames."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L241C13 */</span><span id="L241C13"></span><span style="color:var(--color-yang-id);">tx-untagged</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L242C15 */</span><span id="L242C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Number of transmitted frames without HSR tag or PRP RCT."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L246C13 */</span><span id="L246C13"></span><span style="color:var(--color-yang-id);">tx-tagged</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L247C15 */</span><span id="L247C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Number of transmitted frames with HSR tag or PRP RCT."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L251C13 */</span><span id="L251C13"></span><span style="color:var(--color-yang-id);">tx-dupl-zero</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L252C15 */</span><span id="L252C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Number of transmitted frames with zero duplicates discarded."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L256C13 */</span><span id="L256C13"></span><span style="color:var(--color-yang-id);">tx-dupl-one</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L257C15 */</span><span id="L257C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Number of transmitted frames with one duplicate discarded."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L261C13 */</span><span id="L261C13"></span><span style="color:var(--color-yang-id);">tx-dupl-multi</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L262C15 */</span><span id="L262C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Number of transmitted frames with multiple duplicates discards."</span>;
+        }
+      }
+
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L268C11 */</span><span id="L268C11"></span><span style="color:var(--color-yang-id);">node-table</span> {
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L269C15 */</span><span id="L269C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"addr"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Node Table with MAC addresses related to RedBox port A/B."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L273C13 */</span><span id="L273C13"></span><span style="color:var(--color-yang-id);">addr</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L274C15 */</span><span id="L274C15"></span><span style="color:var(--color-yang-id);">ieee:mac-address</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"MAC address of the node."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L278C13 */</span><span id="L278C13"></span><span style="color:var(--color-yang-id);">type</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L279C15 */</span><span id="L279C15"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L280C17 */</span><span id="L280C17"></span><span style="color:var(--color-yang-id);">san</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"SAN node."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L284C17 */</span><span id="L284C17"></span><span style="color:var(--color-yang-id);">dan</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"DAN node."</span>;
+            }
+          }
+        }   
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L290C13 */</span><span id="L290C13"></span><span style="color:var(--color-yang-id);">rx-a</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L291C15 */</span><span id="L291C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Number of frames received from the node on port A"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L295C13 */</span><span id="L295C13"></span><span style="color:var(--color-yang-id);">rx-wrong-lan-a</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L296C15 */</span><span id="L296C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Number of frames received from the node with wrong LanId on port A (PRP-SAN mode)"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L300C13 */</span><span id="L300C13"></span><span style="color:var(--color-yang-id);">rx-b</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L301C15 */</span><span id="L301C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Number of frames received from the node on port B"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L305C13 */</span><span id="L305C13"></span><span style="color:var(--color-yang-id);">rx-wrong-lan-b</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L306C15 */</span><span id="L306C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Number of frames received from the node with wrong LanId on port B (PRP-SAN mode)"</span>;
+        }
+      }
+
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L312C11 */</span><span id="L312C11"></span><span style="color:var(--color-yang-id);">proxy-node-table</span> {
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L313C15 */</span><span id="L313C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"addr"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Proxy Node Table with MAC addresses related to RedBox port C."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L317C13 */</span><span id="L317C13"></span><span style="color:var(--color-yang-id);">addr</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L318C15 */</span><span id="L318C15"></span><span style="color:var(--color-yang-id);">ieee:mac-address</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"MAC address of the proxy node."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L322C13 */</span><span id="L322C13"></span><span style="color:var(--color-yang-id);">type</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L323C15 */</span><span id="L323C15"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L324C17 */</span><span id="L324C17"></span><span style="color:var(--color-yang-id);">san</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"SAN proxy node."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L328C17 */</span><span id="L328C17"></span><span style="color:var(--color-yang-id);">dan</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"DAN proxy node."</span>;
+            }
+          }
+        }   
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L334C13 */</span><span id="L334C13"></span><span style="color:var(--color-yang-id);">rx-c</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L335C15 */</span><span id="L335C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Number of frames received from the node on port C"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L339C13 */</span><span id="L339C13"></span><span style="color:var(--color-yang-id);">rx-wrong-lan-c</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L340C15 */</span><span id="L340C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Number of frames received from the node with wrong LanId on port C (HSR-PRP mode)"</span>;
+        }
+      }
+    }
+  }
+}

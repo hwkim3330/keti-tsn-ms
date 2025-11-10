@@ -1,0 +1,318 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 31050,
+      "size": 99
+    }
+  ],
+  "module-name": "ietf-hardware",
+  "module-revision": "2018-03-13",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ietf-hardware",
+      "status": "unstable",
+      "sid": 31050
+    },
+    {
+      "namespace": "feature",
+      "identifier": "entity-mib",
+      "status": "unstable",
+      "sid": 31051
+    },
+    {
+      "namespace": "feature",
+      "identifier": "hardware-sensor",
+      "status": "unstable",
+      "sid": 31052
+    },
+    {
+      "namespace": "feature",
+      "identifier": "hardware-state",
+      "status": "unstable",
+      "sid": 31053
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware",
+      "status": "unstable",
+      "sid": 31054
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware-state-change",
+      "status": "unstable",
+      "sid": 31055
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware-state-oper-disabled",
+      "status": "unstable",
+      "sid": 31056
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware-state-oper-disabled/admin-state",
+      "status": "unstable",
+      "sid": 31057
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware-state-oper-disabled/alarm-state",
+      "status": "unstable",
+      "sid": 31058
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware-state-oper-disabled/name",
+      "status": "unstable",
+      "sid": 31059
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware-state-oper-enabled",
+      "status": "unstable",
+      "sid": 31060
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware-state-oper-enabled/admin-state",
+      "status": "unstable",
+      "sid": 31061
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware-state-oper-enabled/alarm-state",
+      "status": "unstable",
+      "sid": 31062
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware-state-oper-enabled/name",
+      "status": "unstable",
+      "sid": 31063
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component",
+      "status": "unstable",
+      "sid": 31064
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/alias",
+      "status": "unstable",
+      "sid": 31065
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/asset-id",
+      "status": "unstable",
+      "sid": 31066
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/class",
+      "status": "unstable",
+      "sid": 31067
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/contains-child",
+      "status": "unstable",
+      "sid": 31068
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/description",
+      "status": "unstable",
+      "sid": 31069
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/firmware-rev",
+      "status": "unstable",
+      "sid": 31070
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/hardware-rev",
+      "status": "unstable",
+      "sid": 31071
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/is-fru",
+      "status": "unstable",
+      "sid": 31072
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/mfg-date",
+      "status": "unstable",
+      "sid": 31073
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/mfg-name",
+      "status": "unstable",
+      "sid": 31074
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/model-name",
+      "status": "unstable",
+      "sid": 31075
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/name",
+      "status": "unstable",
+      "sid": 31076
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/parent",
+      "status": "unstable",
+      "sid": 31077
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/parent-rel-pos",
+      "status": "unstable",
+      "sid": 31078
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/physical-index",
+      "status": "unstable",
+      "sid": 31079
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/sensor-data",
+      "status": "unstable",
+      "sid": 31080
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/sensor-data/oper-status",
+      "status": "unstable",
+      "sid": 31081
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/sensor-data/units-display",
+      "status": "unstable",
+      "sid": 31082
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/sensor-data/value",
+      "status": "unstable",
+      "sid": 31083
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/sensor-data/value-precision",
+      "status": "unstable",
+      "sid": 31084
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/sensor-data/value-scale",
+      "status": "unstable",
+      "sid": 31085
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/sensor-data/value-timestamp",
+      "status": "unstable",
+      "sid": 31086
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/sensor-data/value-type",
+      "status": "unstable",
+      "sid": 31087
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/sensor-data/value-update-rate",
+      "status": "unstable",
+      "sid": 31088
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/serial-num",
+      "status": "unstable",
+      "sid": 31089
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/software-rev",
+      "status": "unstable",
+      "sid": 31090
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/state",
+      "status": "unstable",
+      "sid": 31091
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/state/admin-state",
+      "status": "unstable",
+      "sid": 31092
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/state/alarm-state",
+      "status": "unstable",
+      "sid": 31093
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/state/oper-state",
+      "status": "unstable",
+      "sid": 31094
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/state/standby-state",
+      "status": "unstable",
+      "sid": 31095
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/state/state-last-changed",
+      "status": "unstable",
+      "sid": 31096
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/state/usage-state",
+      "status": "unstable",
+      "sid": 31097
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/uri",
+      "status": "unstable",
+      "sid": 31098
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/component/uuid",
+      "status": "unstable",
+      "sid": 31099
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-hardware:hardware/last-change",
+      "status": "unstable",
+      "sid": 31100
+    }
+  ]
+}

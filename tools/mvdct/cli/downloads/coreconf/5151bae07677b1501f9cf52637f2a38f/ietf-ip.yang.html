@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ietf-ip</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L2C15 */</span><span id="L2C15"></span><span style="color:var(--color-yang-id);">1.1</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:ietf:params:xml:ns:yang:ietf-ip"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">ip</span>;
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L6C9 */</span><span id="L6C9"></span><span style="color:var(--color-yang-id);">ietf-interfaces</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L7C11 */</span><span id="L7C11"></span><span style="color:var(--color-yang-id);">if</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L9C9 */</span><span id="L9C9"></span><span style="color:var(--color-yang-id);">ietf-inet-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L10C11 */</span><span id="L10C11"></span><span style="color:var(--color-yang-id);">inet</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L12C9 */</span><span id="L12C9"></span><span style="color:var(--color-yang-id);">ietf-yang-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L13C11 */</span><span id="L13C11"></span><span style="color:var(--color-yang-id);">yang</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IETF NETMOD (Network Modeling) Working Group"</span>;
+
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG Web:   <https://datatracker.ietf.org/wg/netmod/>
+     WG List:  <mailto:netmod@ietf.org>
+
+     Editor:   Martin Bjorklund
+               <mailto:mbj@tail-f.com>"</span>;
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module contains a collection of YANG definitions for
+     managing IP implementations.
+
+     Copyright (c) 2018 IETF Trust and the persons identified as
+     authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Simplified BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC 8344; see
+     the RFC itself for full legal notices."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L42C11 */</span><span id="L42C11"></span><span style="color:var(--color-yang-id);">2018-02-22</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Updated to support NMDA."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 8344: A YANG Data Model for IP Management"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L49C11 */</span><span id="L49C11"></span><span style="color:var(--color-yang-id);">2014-06-16</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 7277: A YANG Data Model for IP Management"</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Features
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L60C10 */</span><span id="L60C10"></span><span style="color:var(--color-yang-id);">ipv4-non-contiguous-netmasks</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates support for configuring non-contiguous
+       subnet masks."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L66C10 */</span><span id="L66C10"></span><span style="color:var(--color-yang-id);">ipv6-privacy-autoconf</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates support for privacy extensions for stateless address
+       autoconfiguration in IPv6."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 4941: Privacy Extensions for Stateless Address
+                 Autoconfiguration in IPv6"</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Typedefs
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L79C10 */</span><span id="L79C10"></span><span style="color:var(--color-yang-id);">ip-address-origin</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L80C9 */</span><span id="L80C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L81C11 */</span><span id="L81C11"></span><span style="color:var(--color-yang-id);">other</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"None of the following."</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L86C11 */</span><span id="L86C11"></span><span style="color:var(--color-yang-id);">static</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Indicates that the address has been statically
+           configured -- for example, using the Network Configuration
+           Protocol (NETCONF) or a command line interface."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L92C11 */</span><span id="L92C11"></span><span style="color:var(--color-yang-id);">dhcp</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Indicates an address that has been assigned to this
+           system by a DHCP server."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L97C11 */</span><span id="L97C11"></span><span style="color:var(--color-yang-id);">link-layer</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Indicates an address created by IPv6 stateless
+           autoconfiguration that embeds a link-layer address in its
+           interface identifier."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L103C11 */</span><span id="L103C11"></span><span style="color:var(--color-yang-id);">random</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Indicates an address chosen by the system at
+           random, e.g., an IPv4 address within 169.254/16, a
+           temporary address as described in RFC 4941, or a
+           semantically opaque address as described in RFC 7217."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 4941: Privacy Extensions for Stateless Address
+                     Autoconfiguration in IPv6
+           RFC 7217: A Method for Generating Semantically Opaque
+                     Interface Identifiers with IPv6 Stateless
+                     Address Autoconfiguration (SLAAC)"</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The origin of an address."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L121C10 */</span><span id="L121C10"></span><span style="color:var(--color-yang-id);">neighbor-origin</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L122C9 */</span><span id="L122C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L123C11 */</span><span id="L123C11"></span><span style="color:var(--color-yang-id);">other</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"None of the following."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L127C11 */</span><span id="L127C11"></span><span style="color:var(--color-yang-id);">static</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Indicates that the mapping has been statically
+           configured -- for example, using NETCONF or a command line
+           interface."</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L134C11 */</span><span id="L134C11"></span><span style="color:var(--color-yang-id);">dynamic</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Indicates that the mapping has been dynamically resolved
+           using, for example, IPv4 ARP or the IPv6 Neighbor
+           Discovery protocol."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The origin of a neighbor entry."</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Data nodes
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L149C11 */</span><span id="L149C11"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface"</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IP parameters on interfaces.
+
+       If an interface is not capable of running IP, the server
+       must not allow the client to configure these parameters."</span>;
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L156C14 */</span><span id="L156C14"></span><span style="color:var(--color-yang-id);">ipv4</span> {
+      <span style="color:var(--color-yang-keyword);">presence</span>
+        <span style="color:var(--color-yang-text);">"Enables IPv4 unless the 'enabled' leaf
+         (which defaults to 'true') is set to 'false'"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Parameters for the IPv4 address family."</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L163C11 */</span><span id="L163C11"></span><span style="color:var(--color-yang-id);">enabled</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L164C13 */</span><span id="L164C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L165C16 */</span><span id="L165C16"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Controls whether IPv4 is enabled or disabled on this
+           interface.  When IPv4 is enabled, this interface is
+           connected to an IPv4 stack, and the interface can send
+           and receive IPv4 packets."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L172C11 */</span><span id="L172C11"></span><span style="color:var(--color-yang-id);">forwarding</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L173C13 */</span><span id="L173C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L174C16 */</span><span id="L174C16"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Controls IPv4 packet forwarding of datagrams received by,
+           but not addressed to, this interface.  IPv4 routers
+           forward datagrams.  IPv4 hosts do not (except those
+           source-routed via the host)."</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L182C11 */</span><span id="L182C11"></span><span style="color:var(--color-yang-id);">mtu</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L183C13 */</span><span id="L183C13"></span><span style="color:var(--color-yang-id);">uint16</span> {
+          <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"68..max"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"octets"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The size, in octets, of the largest IPv4 packet that the
+           interface will send and receive.
+
+           The server may restrict the allowed values for this leaf,
+           depending on the interface's type.
+
+           If this leaf is not configured, the operationally used MTU
+           depends on the interface's type."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 791: Internet Protocol"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L199C11 */</span><span id="L199C11"></span><span style="color:var(--color-yang-id);">address</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"ip"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The list of IPv4 addresses on the interface."</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L204C13 */</span><span id="L204C13"></span><span style="color:var(--color-yang-id);">ip</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L205C15 */</span><span id="L205C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L263C10">inet:ipv4-address-no-zone</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The IPv4 address on the interface."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">choice</span> <span style="color:var(--color-yang-comment);">/* L209C15 */</span><span id="L209C15"></span><span style="color:var(--color-yang-id);">subnet</span> {
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L210C20 */</span><span id="L210C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The subnet can be specified as a prefix length or,
+             if the server supports non-contiguous netmasks, as
+             a netmask."</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L215C15 */</span><span id="L215C15"></span><span style="color:var(--color-yang-id);">prefix-length</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L216C17 */</span><span id="L216C17"></span><span style="color:var(--color-yang-id);">uint8</span> {
+              <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0..32"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The length of the subnet prefix."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L222C15 */</span><span id="L222C15"></span><span style="color:var(--color-yang-id);">netmask</span> {
+            <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L223C23 */</span><span id="L223C23"></span><span style="color:var(--color-yang-id);">ipv4-non-contiguous-netmasks</span>;
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L224C17 */</span><span id="L224C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L463C10">yang:dotted-quad</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The subnet specified as a netmask."</span>;
+          }
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L230C13 */</span><span id="L230C13"></span><span style="color:var(--color-yang-id);">origin</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L231C15 */</span><span id="L231C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-ip#L79C10">ip-address-origin</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L232C17 */</span><span id="L232C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The origin of this address."</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L237C11 */</span><span id="L237C11"></span><span style="color:var(--color-yang-id);">neighbor</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"ip"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A list of mappings from IPv4 addresses to
+           link-layer addresses.
+
+           Entries in this list in the intended configuration are
+           used as static entries in the ARP Cache.
+
+           In the operational state, this list represents the ARP
+           Cache."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 826: An Ethernet Address Resolution Protocol"</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L251C13 */</span><span id="L251C13"></span><span style="color:var(--color-yang-id);">ip</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L252C15 */</span><span id="L252C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L263C10">inet:ipv4-address-no-zone</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The IPv4 address of the neighbor node."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L256C13 */</span><span id="L256C13"></span><span style="color:var(--color-yang-id);">link-layer-address</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L257C15 */</span><span id="L257C15"></span><span style="color:var(--color-yang-id);">yang:phys-address</span>;
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L258C20 */</span><span id="L258C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The link-layer address of the neighbor node."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L262C13 */</span><span id="L262C13"></span><span style="color:var(--color-yang-id);">origin</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L263C15 */</span><span id="L263C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-ip#L121C10">neighbor-origin</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L264C17 */</span><span id="L264C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The origin of this neighbor entry."</span>;
+        }
+      }
+    }
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L271C14 */</span><span id="L271C14"></span><span style="color:var(--color-yang-id);">ipv6</span> {
+      <span style="color:var(--color-yang-keyword);">presence</span>
+        <span style="color:var(--color-yang-text);">"Enables IPv6 unless the 'enabled' leaf
+         (which defaults to 'true') is set to 'false'"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Parameters for the IPv6 address family."</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L278C11 */</span><span id="L278C11"></span><span style="color:var(--color-yang-id);">enabled</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L279C13 */</span><span id="L279C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L280C16 */</span><span id="L280C16"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Controls whether IPv6 is enabled or disabled on this
+           interface.  When IPv6 is enabled, this interface is
+           connected to an IPv6 stack, and the interface can send
+           and receive IPv6 packets."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L287C11 */</span><span id="L287C11"></span><span style="color:var(--color-yang-id);">forwarding</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L288C13 */</span><span id="L288C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L289C16 */</span><span id="L289C16"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Controls IPv6 packet forwarding of datagrams received by,
+           but not addressed to, this interface.  IPv6 routers
+           forward datagrams.  IPv6 hosts do not (except those
+           source-routed via the host)."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 4861: Neighbor Discovery for IP version 6 (IPv6)
+                     Section 6.2.1, IsRouter"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L299C11 */</span><span id="L299C11"></span><span style="color:var(--color-yang-id);">mtu</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L300C13 */</span><span id="L300C13"></span><span style="color:var(--color-yang-id);">uint32</span> {
+          <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1280..max"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"octets"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The size, in octets, of the largest IPv6 packet that the
+           interface will send and receive.
+
+           The server may restrict the allowed values for this leaf,
+           depending on the interface's type.
+
+           If this leaf is not configured, the operationally used MTU
+           depends on the interface's type."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 8200: Internet Protocol, Version 6 (IPv6)
+                     Specification
+                     Section 5"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L319C11 */</span><span id="L319C11"></span><span style="color:var(--color-yang-id);">address</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"ip"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The list of IPv6 addresses on the interface."</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L324C13 */</span><span id="L324C13"></span><span style="color:var(--color-yang-id);">ip</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L325C15 */</span><span id="L325C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L273C10">inet:ipv6-address-no-zone</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The IPv6 address on the interface."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L329C13 */</span><span id="L329C13"></span><span style="color:var(--color-yang-id);">prefix-length</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L330C15 */</span><span id="L330C15"></span><span style="color:var(--color-yang-id);">uint8</span> {
+            <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0..128"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L333C20 */</span><span id="L333C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The length of the subnet prefix."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L337C13 */</span><span id="L337C13"></span><span style="color:var(--color-yang-id);">origin</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L338C15 */</span><span id="L338C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-ip#L79C10">ip-address-origin</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L339C17 */</span><span id="L339C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The origin of this address."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L343C13 */</span><span id="L343C13"></span><span style="color:var(--color-yang-id);">status</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L344C15 */</span><span id="L344C15"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L345C17 */</span><span id="L345C17"></span><span style="color:var(--color-yang-id);">preferred</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"This is a valid address that can appear as the
+                 destination or source address of a packet."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L350C17 */</span><span id="L350C17"></span><span style="color:var(--color-yang-id);">deprecated</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"This is a valid but deprecated address that should
+                 no longer be used as a source address in new
+                 communications, but packets addressed to such an
+                 address are processed as expected."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L357C17 */</span><span id="L357C17"></span><span style="color:var(--color-yang-id);">invalid</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"This isn't a valid address, and it shouldn't appear
+                 as the destination or source address of a packet."</span>;
+            }
+
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L363C17 */</span><span id="L363C17"></span><span style="color:var(--color-yang-id);">inaccessible</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The address is not accessible because the interface
+                 to which this address is assigned is not
+                 operational."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L369C17 */</span><span id="L369C17"></span><span style="color:var(--color-yang-id);">unknown</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The status cannot be determined for some reason."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L373C17 */</span><span id="L373C17"></span><span style="color:var(--color-yang-id);">tentative</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The uniqueness of the address on the link is being
+                 verified.  Addresses in this state should not be
+                 used for general communication and should only be
+                 used to determine the uniqueness of the address."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L380C17 */</span><span id="L380C17"></span><span style="color:var(--color-yang-id);">duplicate</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The address has been determined to be non-unique on
+                 the link and so must not be used."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L385C17 */</span><span id="L385C17"></span><span style="color:var(--color-yang-id);">optimistic</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The address is available for use, subject to
+                 restrictions, while its uniqueness on a link is
+                 being verified."</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L392C17 */</span><span id="L392C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The status of an address.  Most of the states correspond
+             to states from the IPv6 Stateless Address
+             Autoconfiguration protocol."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 4293: Management Information Base for the
+                       Internet Protocol (IP)
+                       - IpAddressStatusTC
+             RFC 4862: IPv6 Stateless Address Autoconfiguration"</span>;
+        }
+      }
+
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L405C11 */</span><span id="L405C11"></span><span style="color:var(--color-yang-id);">neighbor</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"ip"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A list of mappings from IPv6 addresses to
+           link-layer addresses.
+
+           Entries in this list in the intended configuration are
+           used as static entries in the Neighbor Cache.
+
+           In the operational state, this list represents the
+           Neighbor Cache."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 4861: Neighbor Discovery for IP version 6 (IPv6)"</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L419C13 */</span><span id="L419C13"></span><span style="color:var(--color-yang-id);">ip</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L420C15 */</span><span id="L420C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L273C10">inet:ipv6-address-no-zone</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The IPv6 address of the neighbor node."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L424C13 */</span><span id="L424C13"></span><span style="color:var(--color-yang-id);">link-layer-address</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L425C15 */</span><span id="L425C15"></span><span style="color:var(--color-yang-id);">yang:phys-address</span>;
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L426C20 */</span><span id="L426C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The link-layer address of the neighbor node.
+
+             In the operational state, if the neighbor's 'state' leaf
+             is 'incomplete', this leaf is not instantiated."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L433C13 */</span><span id="L433C13"></span><span style="color:var(--color-yang-id);">origin</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L434C15 */</span><span id="L434C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-ip#L121C10">neighbor-origin</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L435C17 */</span><span id="L435C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The origin of this neighbor entry."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L439C13 */</span><span id="L439C13"></span><span style="color:var(--color-yang-id);">is-router</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L440C15 */</span><span id="L440C15"></span><span style="color:var(--color-yang-id);">empty</span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L441C17 */</span><span id="L441C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Indicates that the neighbor node acts as a router."</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L446C13 */</span><span id="L446C13"></span><span style="color:var(--color-yang-id);">state</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L447C15 */</span><span id="L447C15"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L448C17 */</span><span id="L448C17"></span><span style="color:var(--color-yang-id);">incomplete</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Address resolution is in progress, and the
+                 link-layer address of the neighbor has not yet been
+                 determined."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L454C17 */</span><span id="L454C17"></span><span style="color:var(--color-yang-id);">reachable</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Roughly speaking, the neighbor is known to have been
+                 reachable recently (within tens of seconds ago)."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L459C17 */</span><span id="L459C17"></span><span style="color:var(--color-yang-id);">stale</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The neighbor is no longer known to be reachable, but
+                 until traffic is sent to the neighbor no attempt
+                 should be made to verify its reachability."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L465C17 */</span><span id="L465C17"></span><span style="color:var(--color-yang-id);">delay</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The neighbor is no longer known to be reachable, and
+                 traffic has recently been sent to the neighbor.
+                 Rather than probe the neighbor immediately, however,
+                 delay sending probes for a short while in order to
+                 give upper-layer protocols a chance to provide
+                 reachability confirmation."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L474C17 */</span><span id="L474C17"></span><span style="color:var(--color-yang-id);">probe</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The neighbor is no longer known to be reachable, and
+                 unicast Neighbor Solicitation probes are being sent
+                 to verify reachability."</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L481C17 */</span><span id="L481C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The Neighbor Unreachability Detection state of this
+             entry."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 4861: Neighbor Discovery for IP version 6 (IPv6)
+                       Section 7.3.2"</span>;
+        }
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L491C11 */</span><span id="L491C11"></span><span style="color:var(--color-yang-id);">dup-addr-detect-transmits</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L492C13 */</span><span id="L492C13"></span><span style="color:var(--color-yang-id);">uint32</span>;
+        <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L493C16 */</span><span id="L493C16"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The number of consecutive Neighbor Solicitation messages
+           sent while performing Duplicate Address Detection on a
+           tentative address.  A value of zero indicates that
+           Duplicate Address Detection is not performed on
+           tentative addresses.  A value of one indicates a single
+           transmission with no follow-up retransmissions."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 4862: IPv6 Stateless Address Autoconfiguration"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L504C16 */</span><span id="L504C16"></span><span style="color:var(--color-yang-id);">autoconf</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Parameters to control the autoconfiguration of IPv6
+           addresses, as described in RFC 4862."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 4862: IPv6 Stateless Address Autoconfiguration"</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L511C13 */</span><span id="L511C13"></span><span style="color:var(--color-yang-id);">create-global-addresses</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L512C15 */</span><span id="L512C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L513C18 */</span><span id="L513C18"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"If enabled, the host creates global addresses as
+             described in RFC 4862."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 4862: IPv6 Stateless Address Autoconfiguration
+                       Section 5.5"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L521C13 */</span><span id="L521C13"></span><span style="color:var(--color-yang-id);">create-temporary-addresses</span> {
+          <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L522C21 */</span><span id="L522C21"></span><span style="color:var(--color-yang-id);">ipv6-privacy-autoconf</span>;
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L523C15 */</span><span id="L523C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L524C18 */</span><span id="L524C18"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"If enabled, the host creates temporary addresses as
+             described in RFC 4941."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 4941: Privacy Extensions for Stateless Address
+                       Autoconfiguration in IPv6"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L533C13 */</span><span id="L533C13"></span><span style="color:var(--color-yang-id);">temporary-valid-lifetime</span> {
+          <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L534C21 */</span><span id="L534C21"></span><span style="color:var(--color-yang-id);">ipv6-privacy-autoconf</span>;
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L535C15 */</span><span id="L535C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"seconds"</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L537C18 */</span><span id="L537C18"></span><span style="color:var(--color-yang-id);">604800</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The time period during which the temporary address
+             is valid."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 4941: Privacy Extensions for Stateless Address
+                       Autoconfiguration in IPv6
+                       - TEMP_VALID_LIFETIME"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L546C13 */</span><span id="L546C13"></span><span style="color:var(--color-yang-id);">temporary-preferred-lifetime</span> {
+          <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L547C21 */</span><span id="L547C21"></span><span style="color:var(--color-yang-id);">ipv6-privacy-autoconf</span>;
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L548C15 */</span><span id="L548C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"seconds"</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L550C18 */</span><span id="L550C18"></span><span style="color:var(--color-yang-id);">86400</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The time period during which the temporary address is
+             preferred."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 4941: Privacy Extensions for Stateless Address
+                       Autoconfiguration in IPv6
+                       - TEMP_PREFERRED_LIFETIME"</span>;
+        }
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Legacy operational state data nodes
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L567C11 */</span><span id="L567C11"></span><span style="color:var(--color-yang-id);">/if:interfaces-state/if:interface"</span> {
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L568C11 */</span><span id="L568C11"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Data nodes for the operational state of IP on interfaces."</span>;
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L572C14 */</span><span id="L572C14"></span><span style="color:var(--color-yang-id);">ipv4</span> {
+      <span style="color:var(--color-yang-keyword);">presence</span>
+        <span style="color:var(--color-yang-text);">"Present if IPv4 is enabled on this interface"</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L575C13 */</span><span id="L575C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L576C13 */</span><span id="L576C13"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Interface-specific parameters for the IPv4 address family."</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L580C11 */</span><span id="L580C11"></span><span style="color:var(--color-yang-id);">forwarding</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L581C13 */</span><span id="L581C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L582C15 */</span><span id="L582C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Indicates whether IPv4 packet forwarding is enabled or
+           disabled on this interface."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L587C11 */</span><span id="L587C11"></span><span style="color:var(--color-yang-id);">mtu</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L588C13 */</span><span id="L588C13"></span><span style="color:var(--color-yang-id);">uint16</span> {
+          <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"68..max"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"octets"</span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L592C15 */</span><span id="L592C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The size, in octets, of the largest IPv4 packet that the
+           interface will send and receive."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 791: Internet Protocol"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L599C11 */</span><span id="L599C11"></span><span style="color:var(--color-yang-id);">address</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"ip"</span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L601C15 */</span><span id="L601C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The list of IPv4 addresses on the interface."</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L605C13 */</span><span id="L605C13"></span><span style="color:var(--color-yang-id);">ip</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L606C15 */</span><span id="L606C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L263C10">inet:ipv4-address-no-zone</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L607C17 */</span><span id="L607C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The IPv4 address on the interface."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">choice</span> <span style="color:var(--color-yang-comment);">/* L611C15 */</span><span id="L611C15"></span><span style="color:var(--color-yang-id);">subnet</span> {
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L612C17 */</span><span id="L612C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The subnet can be specified as a prefix length or,
+             if the server supports non-contiguous netmasks, as
+             a netmask."</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L617C15 */</span><span id="L617C15"></span><span style="color:var(--color-yang-id);">prefix-length</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L618C17 */</span><span id="L618C17"></span><span style="color:var(--color-yang-id);">uint8</span> {
+              <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0..32"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L621C19 */</span><span id="L621C19"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The length of the subnet prefix."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L625C15 */</span><span id="L625C15"></span><span style="color:var(--color-yang-id);">netmask</span> {
+            <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L626C23 */</span><span id="L626C23"></span><span style="color:var(--color-yang-id);">ipv4-non-contiguous-netmasks</span>;
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L627C17 */</span><span id="L627C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L463C10">yang:dotted-quad</a></span>;
+            <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L628C19 */</span><span id="L628C19"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The subnet specified as a netmask."</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L633C13 */</span><span id="L633C13"></span><span style="color:var(--color-yang-id);">origin</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L634C15 */</span><span id="L634C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-ip#L79C10">ip-address-origin</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L635C17 */</span><span id="L635C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The origin of this address."</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L640C11 */</span><span id="L640C11"></span><span style="color:var(--color-yang-id);">neighbor</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"ip"</span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L642C15 */</span><span id="L642C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A list of mappings from IPv4 addresses to
+           link-layer addresses.
+
+           This list represents the ARP Cache."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 826: An Ethernet Address Resolution Protocol"</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L651C13 */</span><span id="L651C13"></span><span style="color:var(--color-yang-id);">ip</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L652C15 */</span><span id="L652C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L263C10">inet:ipv4-address-no-zone</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L653C17 */</span><span id="L653C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The IPv4 address of the neighbor node."</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L658C13 */</span><span id="L658C13"></span><span style="color:var(--color-yang-id);">link-layer-address</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L659C15 */</span><span id="L659C15"></span><span style="color:var(--color-yang-id);">yang:phys-address</span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L660C17 */</span><span id="L660C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The link-layer address of the neighbor node."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L664C13 */</span><span id="L664C13"></span><span style="color:var(--color-yang-id);">origin</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L665C15 */</span><span id="L665C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-ip#L121C10">neighbor-origin</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L666C17 */</span><span id="L666C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The origin of this neighbor entry."</span>;
+        }
+      }
+    }
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L673C14 */</span><span id="L673C14"></span><span style="color:var(--color-yang-id);">ipv6</span> {
+      <span style="color:var(--color-yang-keyword);">presence</span>
+        <span style="color:var(--color-yang-text);">"Present if IPv6 is enabled on this interface"</span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L676C13 */</span><span id="L676C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L677C13 */</span><span id="L677C13"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Parameters for the IPv6 address family."</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L681C11 */</span><span id="L681C11"></span><span style="color:var(--color-yang-id);">forwarding</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L682C13 */</span><span id="L682C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L683C16 */</span><span id="L683C16"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L684C15 */</span><span id="L684C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Indicates whether IPv6 packet forwarding is enabled or
+           disabled on this interface."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 4861: Neighbor Discovery for IP version 6 (IPv6)
+                     Section 6.2.1, IsRouter"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L692C11 */</span><span id="L692C11"></span><span style="color:var(--color-yang-id);">mtu</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L693C13 */</span><span id="L693C13"></span><span style="color:var(--color-yang-id);">uint32</span> {
+          <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1280..max"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"octets"</span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L697C15 */</span><span id="L697C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The size, in octets, of the largest IPv6 packet that the
+           interface will send and receive."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 8200: Internet Protocol, Version 6 (IPv6)
+                     Specification
+                     Section 5"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L706C11 */</span><span id="L706C11"></span><span style="color:var(--color-yang-id);">address</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"ip"</span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L708C15 */</span><span id="L708C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The list of IPv6 addresses on the interface."</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L712C13 */</span><span id="L712C13"></span><span style="color:var(--color-yang-id);">ip</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L713C15 */</span><span id="L713C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L273C10">inet:ipv6-address-no-zone</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L714C17 */</span><span id="L714C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The IPv6 address on the interface."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L718C13 */</span><span id="L718C13"></span><span style="color:var(--color-yang-id);">prefix-length</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L719C15 */</span><span id="L719C15"></span><span style="color:var(--color-yang-id);">uint8</span> {
+            <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0..128"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L722C20 */</span><span id="L722C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L723C17 */</span><span id="L723C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The length of the subnet prefix."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L727C13 */</span><span id="L727C13"></span><span style="color:var(--color-yang-id);">origin</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L728C15 */</span><span id="L728C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-ip#L79C10">ip-address-origin</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L729C17 */</span><span id="L729C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The origin of this address."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L733C13 */</span><span id="L733C13"></span><span style="color:var(--color-yang-id);">status</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L734C15 */</span><span id="L734C15"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L735C17 */</span><span id="L735C17"></span><span style="color:var(--color-yang-id);">preferred</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"This is a valid address that can appear as the
+                 destination or source address of a packet."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L740C17 */</span><span id="L740C17"></span><span style="color:var(--color-yang-id);">deprecated</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"This is a valid but deprecated address that should
+                 no longer be used as a source address in new
+                 communications, but packets addressed to such an
+                 address are processed as expected."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L747C17 */</span><span id="L747C17"></span><span style="color:var(--color-yang-id);">invalid</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"This isn't a valid address, and it shouldn't appear
+                 as the destination or source address of a packet."</span>;
+            }
+
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L753C17 */</span><span id="L753C17"></span><span style="color:var(--color-yang-id);">inaccessible</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The address is not accessible because the interface
+                 to which this address is assigned is not
+                 operational."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L759C17 */</span><span id="L759C17"></span><span style="color:var(--color-yang-id);">unknown</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The status cannot be determined for some reason."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L763C17 */</span><span id="L763C17"></span><span style="color:var(--color-yang-id);">tentative</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The uniqueness of the address on the link is being
+                 verified.  Addresses in this state should not be
+                 used for general communication and should only be
+                 used to determine the uniqueness of the address."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L770C17 */</span><span id="L770C17"></span><span style="color:var(--color-yang-id);">duplicate</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The address has been determined to be non-unique on
+                 the link and so must not be used."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L775C17 */</span><span id="L775C17"></span><span style="color:var(--color-yang-id);">optimistic</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The address is available for use, subject to
+                 restrictions, while its uniqueness on a link is
+                 being verified."</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L782C17 */</span><span id="L782C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The status of an address.  Most of the states correspond
+             to states from the IPv6 Stateless Address
+             Autoconfiguration protocol."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 4293: Management Information Base for the
+                       Internet Protocol (IP)
+                       - IpAddressStatusTC
+             RFC 4862: IPv6 Stateless Address Autoconfiguration"</span>;
+        }
+      }
+
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L795C11 */</span><span id="L795C11"></span><span style="color:var(--color-yang-id);">neighbor</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"ip"</span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L797C15 */</span><span id="L797C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A list of mappings from IPv6 addresses to
+           link-layer addresses.
+
+           This list represents the Neighbor Cache."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 4861: Neighbor Discovery for IP version 6 (IPv6)"</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L806C13 */</span><span id="L806C13"></span><span style="color:var(--color-yang-id);">ip</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L807C15 */</span><span id="L807C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L273C10">inet:ipv6-address-no-zone</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L808C17 */</span><span id="L808C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The IPv6 address of the neighbor node."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L812C13 */</span><span id="L812C13"></span><span style="color:var(--color-yang-id);">link-layer-address</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L813C15 */</span><span id="L813C15"></span><span style="color:var(--color-yang-id);">yang:phys-address</span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L814C17 */</span><span id="L814C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The link-layer address of the neighbor node."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L818C13 */</span><span id="L818C13"></span><span style="color:var(--color-yang-id);">origin</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L819C15 */</span><span id="L819C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-ip#L121C10">neighbor-origin</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L820C17 */</span><span id="L820C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The origin of this neighbor entry."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L824C13 */</span><span id="L824C13"></span><span style="color:var(--color-yang-id);">is-router</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L825C15 */</span><span id="L825C15"></span><span style="color:var(--color-yang-id);">empty</span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L826C17 */</span><span id="L826C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Indicates that the neighbor node acts as a router."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L830C13 */</span><span id="L830C13"></span><span style="color:var(--color-yang-id);">state</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L831C15 */</span><span id="L831C15"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L832C17 */</span><span id="L832C17"></span><span style="color:var(--color-yang-id);">incomplete</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Address resolution is in progress, and the
+                 link-layer address of the neighbor has not yet been
+                 determined."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L838C17 */</span><span id="L838C17"></span><span style="color:var(--color-yang-id);">reachable</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Roughly speaking, the neighbor is known to have been
+                 reachable recently (within tens of seconds ago)."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L843C17 */</span><span id="L843C17"></span><span style="color:var(--color-yang-id);">stale</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The neighbor is no longer known to be reachable, but
+                 until traffic is sent to the neighbor no attempt
+                 should be made to verify its reachability."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L849C17 */</span><span id="L849C17"></span><span style="color:var(--color-yang-id);">delay</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The neighbor is no longer known to be reachable, and
+                 traffic has recently been sent to the neighbor.
+                 Rather than probe the neighbor immediately, however,
+                 delay sending probes for a short while in order to
+                 give upper-layer protocols a chance to provide
+                 reachability confirmation."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L858C17 */</span><span id="L858C17"></span><span style="color:var(--color-yang-id);">probe</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The neighbor is no longer known to be reachable, and
+                 unicast Neighbor Solicitation probes are being sent
+                 to verify reachability."</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L865C17 */</span><span id="L865C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The Neighbor Unreachability Detection state of this
+             entry."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 4861: Neighbor Discovery for IP version 6 (IPv6)
+                       Section 7.3.2"</span>;
+        }
+      }
+    }
+  }
+}

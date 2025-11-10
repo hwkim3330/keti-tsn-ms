@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ieee802-dot1ab-lldp</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-text);">"1.1"</span>;
+  
+  <span style="color:var(--color-yang-comment);">/*** NAMESPACE / PREFIX DEFINITION ***/</span>
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-comment);">/* L5C12 */</span><span id="L5C12"></span><span style="color:var(--color-yang-id);">urn:ieee:std:802.1AB:yang:ieee802-dot1ab-lldp</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L6C9 */</span><span id="L6C9"></span><span style="color:var(--color-yang-id);">lldp</span>;
+  
+  <span style="color:var(--color-yang-comment);">/*** LINKAGE (IMPORTS / INCLUDES) ***/</span>
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L9C9 */</span><span id="L9C9"></span><span style="color:var(--color-yang-id);">ieee802-dot1ab-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L10C11 */</span><span id="L10C11"></span><span style="color:var(--color-yang-id);">lldp-types</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L12C9 */</span><span id="L12C9"></span><span style="color:var(--color-yang-id);">ietf-routing</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L13C11 */</span><span id="L13C11"></span><span style="color:var(--color-yang-id);">rt</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L15C9 */</span><span id="L15C9"></span><span style="color:var(--color-yang-id);">ietf-yang-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L16C11 */</span><span id="L16C11"></span><span style="color:var(--color-yang-id);">yang</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L18C9 */</span><span id="L18C9"></span><span style="color:var(--color-yang-id);">ietf-interfaces</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L19C11 */</span><span id="L19C11"></span><span style="color:var(--color-yang-id);">if</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L21C9 */</span><span id="L21C9"></span><span style="color:var(--color-yang-id);">ieee802-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L22C11 */</span><span id="L22C11"></span><span style="color:var(--color-yang-id);">ieee</span>;
+  }
+  
+  <span style="color:var(--color-yang-comment);">/*** META INFORMATION ***/</span>
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"Institute of Electrical and Electronics Engineers"</span>;
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG-URL: http://ieee802.org/1/
+    WG-EMail: stds-802-1-l@ieee.org
+    Contact: IEEE 802.1 Working Group Chair
+    Postal: C/O IEEE 802.1 Working Group
+    IEEE Standards Association
+         445 Hoes Lane
+         Piscataway, NJ 08854
+         USA
+    
+    E-mail: stds-802-1-chairs@ieee.org"</span>;
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"Management Information Base module for LLDP configuration, statistics,
+    local system data, and remote systems data components. Copyright(C) IEEE
+    (2022). All rights reserved. This version of this YANG module is part of
+    IEEE Std 802.1ABcu; see the standard itself for full legal notices."</span>;
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L44C11 */</span><span id="L44C11"></span><span style="color:var(--color-yang-id);">2022-03-15</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1ABcu."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1AB-2016"</span>;
+  }
+  
+  <span style="color:var(--color-yang-comment);">/*** GROUPING DEFINITIONS ***/</span>
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L52C11 */</span><span id="L52C11"></span><span style="color:var(--color-yang-id);">lldp-cfg</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"LLDP basic configuration group."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L55C9 */</span><span id="L55C9"></span><span style="color:var(--color-yang-id);">message-fast-tx</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L56C11 */</span><span id="L56C11"></span><span style="color:var(--color-yang-id);">uint32</span> {
+        <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..3600"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"ticks"</span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"1"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Time interval in timer ticks between transmissions during fast
+        transmission periods (i.e., txFast is non-zero)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"9.1.1, 9.2.5.5 of IEEE Std 802.1AB-2016"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L67C9 */</span><span id="L67C9"></span><span style="color:var(--color-yang-id);">message-tx-hold-multiplier</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L68C11 */</span><span id="L68C11"></span><span style="color:var(--color-yang-id);">uint32</span> {
+        <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"2..10"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"4"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Multiplier of msg-tx-interval."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"9.2.5.6 of IEEE Std 802.1AB-2016"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L77C9 */</span><span id="L77C9"></span><span style="color:var(--color-yang-id);">message-tx-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L78C11 */</span><span id="L78C11"></span><span style="color:var(--color-yang-id);">uint32</span> {
+        <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..3600"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"ticks"</span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"30"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Time interval in timer ticks between transmissions during normal
+        transmission periods (i.e., txFast is zero)."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"9.1.1, 9.2.5.7 of IEEE Std 802.1AB-2016"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L89C9 */</span><span id="L89C9"></span><span style="color:var(--color-yang-id);">reinit-delay</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L90C11 */</span><span id="L90C11"></span><span style="color:var(--color-yang-id);">uint32</span> {
+        <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..10"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"second"</span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"2"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Amount of delay (in units of seconds) from when admin-status becomes
+        'disabled' until re-initialization is attempted."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"9.2.5.10 of IEEE Std 802.1AB-2016"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L101C9 */</span><span id="L101C9"></span><span style="color:var(--color-yang-id);">tx-credit-max</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L102C11 */</span><span id="L102C11"></span><span style="color:var(--color-yang-id);">uint32</span> {
+        <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..10"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"5"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The maximum number of consecutive LLDPDUs that can be transmitted at
+        any time."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"9.2.5.17 of IEEE Std 802.1AB-2016"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L112C9 */</span><span id="L112C9"></span><span style="color:var(--color-yang-id);">tx-fast-init</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L113C11 */</span><span id="L113C11"></span><span style="color:var(--color-yang-id);">uint32</span> {
+        <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..8"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"4"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Initial value for the fast transmitting LLDPPDU."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"9.2.5.19 of IEEE Std 802.1AB-2016"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L122C9 */</span><span id="L122C9"></span><span style="color:var(--color-yang-id);">notification-interval</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L123C11 */</span><span id="L123C11"></span><span style="color:var(--color-yang-id);">uint32</span> {
+        <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..3600"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"second"</span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"30"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Controls the transmission of LLDP notifications."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"9.2.5.7 of IEEE Std 802.1AB-2016"</span>;
+    }
+  }
+  
+  <span style="color:var(--color-yang-comment);">/*** SCHEMA DEFINITIONS ***/</span>
+  <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L136C12 */</span><span id="L136C12"></span><span style="color:var(--color-yang-id);">lldp</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Link Layer Discovery Protocol configuration and operational
+      information."</span>;
+    <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L140C9 */</span><span id="L140C9"></span><span style="color:var(--color-yang-id);">lldp-cfg</span>;
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L141C14 */</span><span id="L141C14"></span><span style="color:var(--color-yang-id);">remote-statistics</span> {
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L142C13 */</span><span id="L142C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"LLDP remote operational statistics data."</span>;
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L145C11 */</span><span id="L145C11"></span><span style="color:var(--color-yang-id);">last-change-time</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L146C13 */</span><span id="L146C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L362C10">yang:timestamp</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The value of sysUpTime object."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"11.5.1 of IEEE Std 802.1AB-2016:
+          lldpV2StatsRemTablesLastChangeTime"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L153C11 */</span><span id="L153C11"></span><span style="color:var(--color-yang-id);">remote-inserts</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L154C13 */</span><span id="L154C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L90C10">yang:zero-based-counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"table entries"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The number of times the complete set of information advertised by
+          a particular MSAP has been inserted into tables contained in
+          remote-systems-data and lldpExtensions objects."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"11.5.1 of IEEE Std 802.1AB-2016: lldpV2StatsRemTablesInserts"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L163C11 */</span><span id="L163C11"></span><span style="color:var(--color-yang-id);">remote-deletes</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L164C13 */</span><span id="L164C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L90C10">yang:zero-based-counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"table entries"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The number of times the complete set of information advertised by
+          a particular MSAP has been deleted from tables contained in
+          remote-systems-data and lldpExtensions objects."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"11.5.1 of IEEE Std 802.1AB-2016: lldpV2StatsRemTablesDeletes"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L173C11 */</span><span id="L173C11"></span><span style="color:var(--color-yang-id);">remote-drops</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L174C13 */</span><span id="L174C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L90C10">yang:zero-based-counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"table entries"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The number of times the complete set of information advertised by
+          a particular MSAP could not be entered into tables contained in
+          remote-systems-data and lldpExtensions objects because of
+          insufficient resources."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"11.5.1 of IEEE Std 802.1AB-2016: lldpV2StatsRemTablesDrops"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L184C11 */</span><span id="L184C11"></span><span style="color:var(--color-yang-id);">remote-ageouts</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L185C13 */</span><span id="L185C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L90C10">yang:zero-based-counter32</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The number of times the complete set of information advertised by
+          a particular MSAP has been deleted from tables contained in
+          remote-systems-data and lldpExtensions objects because the
+          information timeliness interval has expired."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"11.5.1 of IEEE Std 802.1AB-2016: lldpV2StatsRemTablesAgeouts"</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L195C14 */</span><span id="L195C14"></span><span style="color:var(--color-yang-id);">local-system-data</span> {
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L196C13 */</span><span id="L196C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"LLDP local system operational data."</span>;
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L199C11 */</span><span id="L199C11"></span><span style="color:var(--color-yang-id);">chassis-id-subtype</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L200C13 */</span><span id="L200C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-types#L77C10">ieee:chassis-id-subtype-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The type of encoding used to identify the chassis associated with
+          the local system."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.5.2.2 of IEEE Std 802.1AB-2016"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L207C11 */</span><span id="L207C11"></span><span style="color:var(--color-yang-id);">chassis-id</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L208C13 */</span><span id="L208C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-types#L139C10">ieee:chassis-id-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Chassis component associated with the local system."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.5.2.3 of IEEE Std 802.1AB-2016"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L214C11 */</span><span id="L214C11"></span><span style="color:var(--color-yang-id);">system-name</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L215C13 */</span><span id="L215C13"></span><span style="color:var(--color-yang-id);">string</span> {
+          <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-text);">"0..255"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"System name of the local system."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.5.6.2 of IEEE Std 802.1AB-2016"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L223C11 */</span><span id="L223C11"></span><span style="color:var(--color-yang-id);">system-description</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L224C13 */</span><span id="L224C13"></span><span style="color:var(--color-yang-id);">string</span> {
+          <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-text);">"0..255"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"System description of the local system."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.5.7.2 of IEEE Std 802.1AB-2016"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L232C11 */</span><span id="L232C11"></span><span style="color:var(--color-yang-id);">system-capabilities-supported</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L233C13 */</span><span id="L233C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1ab-types#L60C10">lldp-types:system-capabilities-map</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"System capabilities are supported on the local system."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.5.8.1 of IEEE Std 802.1AB-2016"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L239C11 */</span><span id="L239C11"></span><span style="color:var(--color-yang-id);">system-capabilities-enabled</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L240C13 */</span><span id="L240C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1ab-types#L60C10">lldp-types:system-capabilities-map</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"System capabilities that are enabled on the local system."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.5.8.2 of IEEE Std 802.1AB-2016"</span>;
+      }
+    }
+    
+    <span style="color:var(--color-yang-comment);">/* LLDP port configuration table */</span>
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L249C9 */</span><span id="L249C9"></span><span style="color:var(--color-yang-id);">port</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"name dest-mac-address"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"LLDP configuration information for a particular port."</span>;
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L253C11 */</span><span id="L253C11"></span><span style="color:var(--color-yang-id);">name</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L254C13 */</span><span id="L254C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L55C10">if:interface-ref</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The port name used to identify the port component (contained in
+          the local chassis with the LLDP agent) associated with this entry."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L259C11 */</span><span id="L259C11"></span><span style="color:var(--color-yang-id);">dest-mac-address</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L260C13 */</span><span id="L260C13"></span><span style="color:var(--color-yang-id);">ieee:mac-address</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Destination MAC address. The ieee:mac-address type has a pattern
+          that allows upper and lower case letters. To avoid issues with
+          string compairson, it is suggested to only use upper case for the
+          letters in the hexadecimal numbers. Implementers using code
+          comparing MAC addresses should note that there is still an issue
+          with a difference between the IETF mac-address definition and the
+          IEEE mac-address definition."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L270C11 */</span><span id="L270C11"></span><span style="color:var(--color-yang-id);">admin-status</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L271C13 */</span><span id="L271C13"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L272C15 */</span><span id="L272C15"></span><span style="color:var(--color-yang-id);">tx-only</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L273C18 */</span><span id="L273C18"></span><span style="color:var(--color-yang-id);">1</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Transmit LLDP frames only."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L277C15 */</span><span id="L277C15"></span><span style="color:var(--color-yang-id);">rx-only</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L278C18 */</span><span id="L278C18"></span><span style="color:var(--color-yang-id);">2</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Receive LLDP frames only."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L282C15 */</span><span id="L282C15"></span><span style="color:var(--color-yang-id);">tx-and-rx</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L283C18 */</span><span id="L283C18"></span><span style="color:var(--color-yang-id);">3</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Transmit and Receive LLDP frames."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L287C15 */</span><span id="L287C15"></span><span style="color:var(--color-yang-id);">disabled</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L288C18 */</span><span id="L288C18"></span><span style="color:var(--color-yang-id);">4</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Do Not Transmit or Receive LLDP frames."</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"tx-and-rx"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Administrative status of the local LLDP agent."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"9.2.5.1 of IEEE Std 802.1AB-2016"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L299C11 */</span><span id="L299C11"></span><span style="color:var(--color-yang-id);">notification-enable</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L300C13 */</span><span id="L300C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Notification status."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L305C11 */</span><span id="L305C11"></span><span style="color:var(--color-yang-id);">tlvs-tx-enable</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L306C13 */</span><span id="L306C13"></span><span style="color:var(--color-yang-id);">bits</span> {
+          <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L307C14 */</span><span id="L307C14"></span><span style="color:var(--color-yang-id);">port-desc</span> {
+            <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L308C21 */</span><span id="L308C21"></span><span style="color:var(--color-yang-id);">0</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Transmit 'Port Description TLV'."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L312C14 */</span><span id="L312C14"></span><span style="color:var(--color-yang-id);">sys-name</span> {
+            <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L313C21 */</span><span id="L313C21"></span><span style="color:var(--color-yang-id);">1</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Transmit 'System Name TLV'."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L317C14 */</span><span id="L317C14"></span><span style="color:var(--color-yang-id);">sys-desc</span> {
+            <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L318C21 */</span><span id="L318C21"></span><span style="color:var(--color-yang-id);">2</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Transmit 'System Description TLV'."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L322C14 */</span><span id="L322C14"></span><span style="color:var(--color-yang-id);">sys-cap</span> {
+            <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L323C21 */</span><span id="L323C21"></span><span style="color:var(--color-yang-id);">3</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Transmit 'System Capabilities TLV'."</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"LLDP TLVs whose transmission is allowed on the local LLDP agent by
+          the network management."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"9.1.2.1 of IEEE Std 802.1AB-2016"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L334C11 */</span><span id="L334C11"></span><span style="color:var(--color-yang-id);">lldp-cfg</span>;
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L335C11 */</span><span id="L335C11"></span><span style="color:var(--color-yang-id);">management-address-tx-port</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"address-subtype man-address"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Set of ports (represented as a PortList) on which the local system
+          management address instance will be transmitted."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L340C13 */</span><span id="L340C13"></span><span style="color:var(--color-yang-id);">address-subtype</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L341C15 */</span><span id="L341C15"></span><span style="color:var(--color-yang-id);">identityref</span> {
+            <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L342C17 */</span><span id="L342C17"></span><span style="color:var(--color-yang-id);">rt:address-family</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Type of address."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.5.9.3 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L349C13 */</span><span id="L349C13"></span><span style="color:var(--color-yang-id);">man-address</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L350C15 */</span><span id="L350C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1ab-types#L51C10">lldp-types:man-addr-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Management address associated with this TLV."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.5.9.4 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L356C13 */</span><span id="L356C13"></span><span style="color:var(--color-yang-id);">tx-enable</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L357C15 */</span><span id="L357C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Transmission enabled status."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.1.2.1 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L364C13 */</span><span id="L364C13"></span><span style="color:var(--color-yang-id);">addr-len</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L365C15 */</span><span id="L365C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L366C17 */</span><span id="L366C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Length of the management address subtype and the management
+            address fields in LLDPDUs transmitted by the local LLDP agent."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.5.9.2 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L373C13 */</span><span id="L373C13"></span><span style="color:var(--color-yang-id);">if-subtype</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L374C15 */</span><span id="L374C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1ab-types#L28C10">lldp-types:man-addr-if-subtype</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L375C17 */</span><span id="L375C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Interface numbering method used for defining the interface
+            number, associated with the local system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.5.9.5 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L382C13 */</span><span id="L382C13"></span><span style="color:var(--color-yang-id);">if-id</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L383C15 */</span><span id="L383C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L384C17 */</span><span id="L384C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Interface number for the management address component associated
+            with the local system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.5.9.6 of IEEE Std 802.1AB-2016"</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L392C11 */</span><span id="L392C11"></span><span style="color:var(--color-yang-id);">port-id-subtype</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L393C13 */</span><span id="L393C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-types#L193C10">ieee:port-id-subtype-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L394C15 */</span><span id="L394C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Port identifier encoding used in the associated 'port-id' object."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.5.3.2 of IEEE Std 802.1AB-2016"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L400C11 */</span><span id="L400C11"></span><span style="color:var(--color-yang-id);">port-id</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L401C13 */</span><span id="L401C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-types#L250C10">ieee:port-id-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L402C15 */</span><span id="L402C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Port component associated with a given port in the local system."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.5.3.3 of IEEE Std 802.1AB-2016"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L408C11 */</span><span id="L408C11"></span><span style="color:var(--color-yang-id);">port-desc</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L409C13 */</span><span id="L409C13"></span><span style="color:var(--color-yang-id);">string</span> {
+          <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-text);">"0..255"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L412C15 */</span><span id="L412C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"802 LAN station's port description associated with the local
+          system."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"8.5.5.2 of IEEE Std 802.1AB-2016"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L419C16 */</span><span id="L419C16"></span><span style="color:var(--color-yang-id);">tx-statistics</span> {
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L420C15 */</span><span id="L420C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"LLDP frame transmission statistics for a particular port."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L423C13 */</span><span id="L423C13"></span><span style="color:var(--color-yang-id);">total-frames</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L424C15 */</span><span id="L424C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A count of all LLDP frames transmitted through the port."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.2.6.5 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L430C13 */</span><span id="L430C13"></span><span style="color:var(--color-yang-id);">total-length-errors</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L431C15 */</span><span id="L431C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A count of all LLDP length errors detected when constructing
+            LLPDU frames for transmission through the port."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.2.7.2 of IEEE Std 802.1AB-2016"</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L439C16 */</span><span id="L439C16"></span><span style="color:var(--color-yang-id);">rx-statistics</span> {
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L440C15 */</span><span id="L440C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"LLDP frame reception statistics for a particular port."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L443C13 */</span><span id="L443C13"></span><span style="color:var(--color-yang-id);">total-ageouts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L444C15 */</span><span id="L444C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L90C10">yang:zero-based-counter32</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A count of the times that a neighbor’s information is deleted
+            because of rxInfoTTL timer expiration."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.2.6.1 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L451C13 */</span><span id="L451C13"></span><span style="color:var(--color-yang-id);">total-discarded-frames</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L452C15 */</span><span id="L452C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A count of all LLDPDUs received and then discarded."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.2.6.2 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L458C13 */</span><span id="L458C13"></span><span style="color:var(--color-yang-id);">error-frames</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L459C15 */</span><span id="L459C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A count of all LLDPDUs received at the port with one or more
+            detectable errors."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.2.6.3 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L466C13 */</span><span id="L466C13"></span><span style="color:var(--color-yang-id);">total-frames</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L467C15 */</span><span id="L467C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A count of all LLDP frames received at the port."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.2.6.4 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L473C13 */</span><span id="L473C13"></span><span style="color:var(--color-yang-id);">total-discarded-tlvs</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L474C15 */</span><span id="L474C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A count of all TLVs received at the port and discarded for any
+            reason."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.2.6.5 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L481C13 */</span><span id="L481C13"></span><span style="color:var(--color-yang-id);">total-unrecognized-tlvs</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L482C15 */</span><span id="L482C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A count of all TLVs not recognized by the receiving LLDP local
+            agent."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.2.6.6 of IEEE Std 802.1AB-2016"</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L490C11 */</span><span id="L490C11"></span><span style="color:var(--color-yang-id);">remote-systems-data</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"time-mark remote-index"</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L492C15 */</span><span id="L492C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Information about a particular physical network connection."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L495C13 */</span><span id="L495C13"></span><span style="color:var(--color-yang-id);">time-mark</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L496C15 */</span><span id="L496C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L346C10">yang:timeticks</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A TimeFilter for this entry."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IETF RFC 2021 section 6"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L502C13 */</span><span id="L502C13"></span><span style="color:var(--color-yang-id);">remote-index</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L503C15 */</span><span id="L503C15"></span><span style="color:var(--color-yang-id);">uint32</span> {
+            <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..2147483647"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Represents an arbitrary local integer value used to identify a
+            remote system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"11.5.1 of IEEE Std 802.1AB-2016: lldpV2RemIndex"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L512C13 */</span><span id="L512C13"></span><span style="color:var(--color-yang-id);">remote-too-many-neighbors</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L513C15 */</span><span id="L513C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Indicates that there are too many neighbors as determined by the
+            variable tooManyNeighbors."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.2.5.15 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L520C13 */</span><span id="L520C13"></span><span style="color:var(--color-yang-id);">remote-changes</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L521C15 */</span><span id="L521C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Indicates that there are changes in the remote system's data, as
+            determined by the variable remoteChanges."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"9.2.5.11 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L528C13 */</span><span id="L528C13"></span><span style="color:var(--color-yang-id);">chassis-id-subtype</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L529C15 */</span><span id="L529C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-types#L77C10">ieee:chassis-id-subtype-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Identify the chassis associated with the remote system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.5.2.2 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L535C13 */</span><span id="L535C13"></span><span style="color:var(--color-yang-id);">chassis-id</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L536C15 */</span><span id="L536C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-types#L139C10">ieee:chassis-id-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Identify the chassis component associated with the remote
+            system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.5.2.3 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L543C13 */</span><span id="L543C13"></span><span style="color:var(--color-yang-id);">port-id-subtype</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L544C15 */</span><span id="L544C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-types#L193C10">ieee:port-id-subtype-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The type of port identifier encoding used in the associated
+            'port-id' object."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.5.3.2 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L551C13 */</span><span id="L551C13"></span><span style="color:var(--color-yang-id);">port-id</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L552C15 */</span><span id="L552C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-types#L250C10">ieee:port-id-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Port component associated with the remote system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.5.3.3 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L558C13 */</span><span id="L558C13"></span><span style="color:var(--color-yang-id);">port-desc</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L559C15 */</span><span id="L559C15"></span><span style="color:var(--color-yang-id);">string</span> {
+            <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-text);">"0..255"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Description of the given port associated with the remote system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.5.5.2 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L567C13 */</span><span id="L567C13"></span><span style="color:var(--color-yang-id);">system-name</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L568C15 */</span><span id="L568C15"></span><span style="color:var(--color-yang-id);">string</span> {
+            <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-text);">"0..255"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"System name of the remote system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.5.6.2 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L576C13 */</span><span id="L576C13"></span><span style="color:var(--color-yang-id);">system-description</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L577C15 */</span><span id="L577C15"></span><span style="color:var(--color-yang-id);">string</span> {
+            <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-text);">"0..255"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"System description of the remote system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.5.7.2 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L585C13 */</span><span id="L585C13"></span><span style="color:var(--color-yang-id);">system-capabilities-supported</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L586C15 */</span><span id="L586C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1ab-types#L60C10">lldp-types:system-capabilities-map</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Capabilities that are supported on the remote system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.5.8.1 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L592C13 */</span><span id="L592C13"></span><span style="color:var(--color-yang-id);">system-capabilities-enabled</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L593C15 */</span><span id="L593C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1ab-types#L60C10">lldp-types:system-capabilities-map</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"System capabilities that are enabled on the remote system."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.5.8.2 of IEEE Std 802.1AB-2016"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L599C13 */</span><span id="L599C13"></span><span style="color:var(--color-yang-id);">management-address</span> {
+          <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"address-subtype address"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Management address information about a particular chassis
+            component."</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L604C15 */</span><span id="L604C15"></span><span style="color:var(--color-yang-id);">address-subtype</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L605C17 */</span><span id="L605C17"></span><span style="color:var(--color-yang-id);">identityref</span> {
+              <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L606C19 */</span><span id="L606C19"></span><span style="color:var(--color-yang-id);">rt:address-family</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Management address identifier encoding."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"8.5.9.3 of IEEE Std 802.1AB-2016"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L613C15 */</span><span id="L613C15"></span><span style="color:var(--color-yang-id);">address</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L614C17 */</span><span id="L614C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1ab-types#L51C10">lldp-types:man-addr-type</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Management address component associated with the remote
+              system."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"8.5.9.4 of IEEE Std 802.1AB-2016"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L621C15 */</span><span id="L621C15"></span><span style="color:var(--color-yang-id);">if-subtype</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L622C17 */</span><span id="L622C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1ab-types#L28C10">lldp-types:man-addr-if-subtype</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Interface numbering method used for defining the interface
+              number, associated with the remote system."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"8.5.9.5 of IEEE Std 802.1AB-2016"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L629C15 */</span><span id="L629C15"></span><span style="color:var(--color-yang-id);">if-id</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L630C17 */</span><span id="L630C17"></span><span style="color:var(--color-yang-id);">uint32</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Interface number regarding the management address component
+              associated with the remote system."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"8.5.9.6 of IEEE Std 802.1AB-2016"</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L638C13 */</span><span id="L638C13"></span><span style="color:var(--color-yang-id);">remote-unknown-tlv</span> {
+          <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"tlv-type"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Information about an unrecognized TLV received from a physical
+            network connection. Entries may be created and deleted in this
+            table by the agent, if a physical topology discovery process is
+            active."</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L645C15 */</span><span id="L645C15"></span><span style="color:var(--color-yang-id);">tlv-type</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L646C17 */</span><span id="L646C17"></span><span style="color:var(--color-yang-id);">uint32</span> {
+              <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"9..126"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Type of TLV."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.2.7.7.1 of IEEE Std 802.1AB-2016"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L654C15 */</span><span id="L654C15"></span><span style="color:var(--color-yang-id);">tlv-info</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L655C17 */</span><span id="L655C17"></span><span style="color:var(--color-yang-id);">binary</span> {
+              <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-text);">"0..511"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Value extracted from TLV."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"9.2.7.7.1 of IEEE Std 802.1AB-2016"</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L664C13 */</span><span id="L664C13"></span><span style="color:var(--color-yang-id);">remote-org-defined-info</span> {
+          <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"info-identifier info-subtype info-index"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Information about the unrecognized organizationally defined
+            information advertised by the remote system."</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L669C15 */</span><span id="L669C15"></span><span style="color:var(--color-yang-id);">info-identifier</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L670C17 */</span><span id="L670C17"></span><span style="color:var(--color-yang-id);">uint32</span> {
+              <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0..16777215"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The Organizationally Unique Identifier (OUI) or Company ID
+              (CID)."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"8.6.1.3 of IEEE Std 802.1AB-2016"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L679C15 */</span><span id="L679C15"></span><span style="color:var(--color-yang-id);">info-subtype</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L680C17 */</span><span id="L680C17"></span><span style="color:var(--color-yang-id);">uint32</span> {
+              <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..255"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The subtype of the organizationally defined information
+              received from the remote system."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"8.6.1.4 of IEEE Std 802.1AB-2016"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L689C15 */</span><span id="L689C15"></span><span style="color:var(--color-yang-id);">info-index</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L690C17 */</span><span id="L690C17"></span><span style="color:var(--color-yang-id);">uint32</span> {
+              <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..2147483647"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Arbitrary local integer value."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L696C15 */</span><span id="L696C15"></span><span style="color:var(--color-yang-id);">remote-info</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L697C17 */</span><span id="L697C17"></span><span style="color:var(--color-yang-id);">binary</span> {
+              <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-text);">"0..507"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The organizationally defined information of the remote system."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"8.6.1.5 of IEEE Std 802.1AB-2016"</span>;
+          }
+        }
+      }
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">notification</span> <span style="color:var(--color-yang-comment);">/* L709C15 */</span><span id="L709C15"></span><span style="color:var(--color-yang-id);">remote-table-change</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A rem-table-change notification is sent when the value of
+      remote-table-last-change-time changes. It can be utilized by an NMS to
+      trigger LLDP remote systems table maintenance polls."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L714C9 */</span><span id="L714C9"></span><span style="color:var(--color-yang-id);">remote-insert</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L715C11 */</span><span id="L715C11"></span><span style="color:var(--color-yang-id);">leafref</span> {
+        <span style="color:var(--color-yang-keyword);">path</span> '<span style="color:var(--color-yang-comment);">/* L716C14 */</span><span id="L716C14"></span><span style="color:var(--color-yang-id);">/lldp:lldp/lldp:remote-statistics/lldp:remote-inserts'</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The number of times the complete set of information advertised by a
+        particular MSAP has been inserted into tables contained in
+        remote-systems-data and lldpExtensions objects."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"11.5.1 of IEEE Std 802.1AB-2016: lldpV2StatsRemTablesInserts"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L725C9 */</span><span id="L725C9"></span><span style="color:var(--color-yang-id);">remote-delete</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L726C11 */</span><span id="L726C11"></span><span style="color:var(--color-yang-id);">leafref</span> {
+        <span style="color:var(--color-yang-keyword);">path</span> '<span style="color:var(--color-yang-comment);">/* L727C14 */</span><span id="L727C14"></span><span style="color:var(--color-yang-id);">/lldp:lldp/lldp:remote-statistics/lldp:remote-deletes'</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The number of times the complete set of information advertised by a
+        particular MSAP has been deleted from tables contained in
+        remote-systems-data and lldpExtensions objects."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"11.5.1 of IEEE Std 802.1AB-2016: lldpV2StatsRemTablesDeletes"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L736C9 */</span><span id="L736C9"></span><span style="color:var(--color-yang-id);">remote-drops</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L737C11 */</span><span id="L737C11"></span><span style="color:var(--color-yang-id);">leafref</span> {
+        <span style="color:var(--color-yang-keyword);">path</span> '<span style="color:var(--color-yang-comment);">/* L738C14 */</span><span id="L738C14"></span><span style="color:var(--color-yang-id);">/lldp:lldp/lldp:remote-statistics/lldp:remote-drops'</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The number of times the complete set of information advertised by a
+        particular MSAP could not be entered into tables contained in
+        remote-systems-data and lldpExtensions objects because of
+        insufficient resources."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"11.5.1 of IEEE Std 802.1AB-2016: lldpV2StatsRemTablesDrops"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L748C9 */</span><span id="L748C9"></span><span style="color:var(--color-yang-id);">remote-ageouts</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L749C11 */</span><span id="L749C11"></span><span style="color:var(--color-yang-id);">leafref</span> {
+        <span style="color:var(--color-yang-keyword);">path</span> '<span style="color:var(--color-yang-comment);">/* L750C14 */</span><span id="L750C14"></span><span style="color:var(--color-yang-id);">/lldp:lldp/lldp:remote-statistics/lldp:remote-ageouts'</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The number of times the complete set of information advertised by a
+        particular MSAP has been deleted from tables contained in
+        remote-systems-data and lldpExtensions objects because the
+        information timeliness interval has expired."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"11.5.1 of IEEE Std 802.1AB-2016: lldpV2StatsRemTablesAgeouts"</span>;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 23000,
+      "size": 100
+    }
+  ],
+  "module-name": "ieee802-dot1q-sched",
+  "module-revision": "2023-03-16",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ieee802-dot1q-sched",
+      "status": "unstable",
+      "sid": 23000
+    },
+    {
+      "namespace": "identity",
+      "identifier": "set-and-hold-mac",
+      "status": "unstable",
+      "sid": 23001
+    },
+    {
+      "namespace": "identity",
+      "identifier": "set-and-release-mac",
+      "status": "unstable",
+      "sid": 23002
+    },
+    {
+      "namespace": "identity",
+      "identifier": "set-gate-states",
+      "status": "unstable",
+      "sid": 23003
+    },
+    {
+      "namespace": "feature",
+      "identifier": "scheduled-traffic",
+      "status": "unstable",
+      "sid": 23004
+    }
+  ]
+}

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-stream-filters-gates</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-text);">"1.1"</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-comment);">/* L3C12 */</span><span id="L3C12"></span><span style="color:var(--color-yang-id);">urn:ieee:std:802.1Q:yang:ieee802-dot1q-stream-filters-gates</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">sfsg</span>;
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IEEE 802.1 Working Group"</span>;
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG-URL: http://ieee802.org/1/
+    WG-EMail: stds-802-1-l@ieee.org
+    
+    Contact: IEEE 802.1 Working Group Chair
+    Postal: C/O IEEE 802.1 Working Group
+           IEEE Standards Association
+           445 Hoes Lane
+           Piscataway, NJ 08854
+           USA
+    
+    E-mail: stds-802-1-chairs@ieee.org"</span>;
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module provides management of 802.1Q bridge components that
+    support Stream Filters and Stream Gates.
+    
+    References in this YANG module to IEEE Std 802.1Q are to IEEE Std 
+    802.1Q-2022 as amended by IEEE Std 802.1Qcz-2023.
+
+    Copyright (C) IEEE (2023).
+    
+    This version of this YANG module is part of IEEE Std 802.1Q; see the
+    standard itself for full legal notices."</span>;
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L30C11 */</span><span id="L30C11"></span><span style="color:var(--color-yang-id);">2023-01-24</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1Qcz-2023."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Qcz-2023 - Bridges and Bridged Networks - Amendment:
+      Congestion Isolation."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L37C11 */</span><span id="L37C11"></span><span style="color:var(--color-yang-id);">2022-10-29</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1Q-2022."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Q-2022, Bridges and Bridged Networks."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L43C11 */</span><span id="L43C11"></span><span style="color:var(--color-yang-id);">2020-11-06</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1Qcr-2020."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Qcr-2020, Bridges and Bridged Networks -
+      Asynchronous Traffic Shaping."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L50C10 */</span><span id="L50C10"></span><span style="color:var(--color-yang-id);">closed-gate-state</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The bridge component supports gate state closed."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Q"</span>;
+  }
+  
+  <span style="color:var(--color-yang-comment);">/* Types and groupings */</span>
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L58C10 */</span><span id="L58C10"></span><span style="color:var(--color-yang-id);">priority-spec-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L59C9 */</span><span id="L59C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L60C11 */</span><span id="L60C11"></span><span style="color:var(--color-yang-id);">zero</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L61C14 */</span><span id="L61C14"></span><span style="color:var(--color-yang-id);">0</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Priority 0"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L65C11 */</span><span id="L65C11"></span><span style="color:var(--color-yang-id);">one</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L66C14 */</span><span id="L66C14"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Priority 1"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L70C11 */</span><span id="L70C11"></span><span style="color:var(--color-yang-id);">two</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L71C14 */</span><span id="L71C14"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Priority 2"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L75C11 */</span><span id="L75C11"></span><span style="color:var(--color-yang-id);">three</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L76C14 */</span><span id="L76C14"></span><span style="color:var(--color-yang-id);">3</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Priority 3"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L80C11 */</span><span id="L80C11"></span><span style="color:var(--color-yang-id);">four</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L81C14 */</span><span id="L81C14"></span><span style="color:var(--color-yang-id);">4</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Priority 4"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L85C11 */</span><span id="L85C11"></span><span style="color:var(--color-yang-id);">five</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L86C14 */</span><span id="L86C14"></span><span style="color:var(--color-yang-id);">5</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Priority 5"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L90C11 */</span><span id="L90C11"></span><span style="color:var(--color-yang-id);">six</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L91C14 */</span><span id="L91C14"></span><span style="color:var(--color-yang-id);">6</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Priority 6"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L95C11 */</span><span id="L95C11"></span><span style="color:var(--color-yang-id);">seven</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L96C14 */</span><span id="L96C14"></span><span style="color:var(--color-yang-id);">7</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Priority 7"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L100C11 */</span><span id="L100C11"></span><span style="color:var(--color-yang-id);">wildcard</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"wildcard value"</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The frame's priority value"</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"8.6.5.2 of IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L110C10 */</span><span id="L110C10"></span><span style="color:var(--color-yang-id);">ipv-spec-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L111C9 */</span><span id="L111C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L112C11 */</span><span id="L112C11"></span><span style="color:var(--color-yang-id);">zero</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L113C14 */</span><span id="L113C14"></span><span style="color:var(--color-yang-id);">0</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Priority 0"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L117C11 */</span><span id="L117C11"></span><span style="color:var(--color-yang-id);">one</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L118C14 */</span><span id="L118C14"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Priority 1"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L122C11 */</span><span id="L122C11"></span><span style="color:var(--color-yang-id);">two</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L123C14 */</span><span id="L123C14"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Priority 2"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L127C11 */</span><span id="L127C11"></span><span style="color:var(--color-yang-id);">three</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L128C14 */</span><span id="L128C14"></span><span style="color:var(--color-yang-id);">3</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Priority 3"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L132C11 */</span><span id="L132C11"></span><span style="color:var(--color-yang-id);">four</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L133C14 */</span><span id="L133C14"></span><span style="color:var(--color-yang-id);">4</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Priority 4"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L137C11 */</span><span id="L137C11"></span><span style="color:var(--color-yang-id);">five</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L138C14 */</span><span id="L138C14"></span><span style="color:var(--color-yang-id);">5</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Priority 5"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L142C11 */</span><span id="L142C11"></span><span style="color:var(--color-yang-id);">six</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L143C14 */</span><span id="L143C14"></span><span style="color:var(--color-yang-id);">6</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Priority 6"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L147C11 */</span><span id="L147C11"></span><span style="color:var(--color-yang-id);">seven</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L148C14 */</span><span id="L148C14"></span><span style="color:var(--color-yang-id);">7</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Priority 7"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L152C11 */</span><span id="L152C11"></span><span style="color:var(--color-yang-id);">null</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"null value"</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"An IPV can be either of the following:
+         1) The null value. For a frame that passes through the gate, the
+            priority value associated with the frame is used to determine
+            the frame's traffic class, using the Traffic Class Table as
+            specified in 8.6.6.
+         2) An internal priority value. For a frame that passes through
+            the gate, the IPV is used, in place of the priority value
+            associated with the frame, to determine the frame's traffic
+            class, using the Traffic Class Table as specified in 8.6.6."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"8.6.5.2 of IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L170C10 */</span><span id="L170C10"></span><span style="color:var(--color-yang-id);">gate-state-value-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L171C9 */</span><span id="L171C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L172C11 */</span><span id="L172C11"></span><span style="color:var(--color-yang-id);">closed</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Gate closed"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L176C11 */</span><span id="L176C11"></span><span style="color:var(--color-yang-id);">open</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Gate open"</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The gate-state-value-type indicates a gate state, open or closed,
+      for the stream gate."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"12.31.3.2.1 of IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L187C11 */</span><span id="L187C11"></span><span style="color:var(--color-yang-id);">sfsg-parameters</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The grouping of all stream filter and stream gate parameters."</span>;
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L190C14 */</span><span id="L190C14"></span><span style="color:var(--color-yang-id);">stream-gates</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This container encapsulates all nodes related to Stream Gates."</span>;
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L193C11 */</span><span id="L193C11"></span><span style="color:var(--color-yang-id);">stream-gate-instance-table</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"stream-gate-instance-id"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Each list entry contains a set of parameters that defines a
+          single stream gate (8.6.5.2), as detailed in Table 12-33.
+          Entries in the table can be created or removed dynamically in
+          implementations that support dynamic configuration of stream
+          gates."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"12.31.3 of IEEE Std 802.1Q"</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L203C13 */</span><span id="L203C13"></span><span style="color:var(--color-yang-id);">stream-gate-instance-id</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L204C15 */</span><span id="L204C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An integer table index that allows the stream gate to be
+            referenced from Stream Filter Instance Table entries."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.31.2.4 of IEEE Std 802.1Q
+            8.6.5.3 of IEEE Std 802.1Q
+            8.6.5.4 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L213C13 */</span><span id="L213C13"></span><span style="color:var(--color-yang-id);">gate-enable</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L214C15 */</span><span id="L214C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A Boolean variable that indicates whether the operation of
+            the state machines is enabled (TRUE) or disabled (FALSE).
+            This variable is set by management. The default value of this
+            variable is FALSE."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.9.4.14 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L224C13 */</span><span id="L224C13"></span><span style="color:var(--color-yang-id);">admin-gate-states</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L225C15 */</span><span id="L225C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-stream-filters-gates#L170C10">gate-state-value-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"open"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The administratively set gate state of this gate."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.31.3.2.1 of IEEE Std 802.1Q
+            8.6.10.4 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L233C13 */</span><span id="L233C13"></span><span style="color:var(--color-yang-id);">admin-ipv</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L234C15 */</span><span id="L234C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-stream-filters-gates#L110C10">ipv-spec-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"null"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The administratively set internal priority value
+            specification."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.31.3.3 of IEEE Std 802.1Q
+            8.6.10.6 of IEEE Std 802.1Q
+            8.6.5.4 of IEEE Std 802.1Q"</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L245C11 */</span><span id="L245C11"></span><span style="color:var(--color-yang-id);">max-stream-gate-instances</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L246C13 */</span><span id="L246C13"></span><span style="color:var(--color-yang-id);">uint32</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L247C15 */</span><span id="L247C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The maximum number of Stream Gate instances supported by this
+          Bridge component."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"12.31.1.2 of IEEE Std 802.1Q"</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L255C14 */</span><span id="L255C14"></span><span style="color:var(--color-yang-id);">stream-filters</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This container encapsulates all nodes related to stream filters."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"12.31 of IEEE Std 802.1Q"</span>;
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L260C11 */</span><span id="L260C11"></span><span style="color:var(--color-yang-id);">stream-filter-instance-table</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"stream-filter-instance-id"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Each list entry contains a set of parameters that defines a
+          single stream filter (8.6.5.1) with associated maximum SDU size
+          filtering (8.6.5.3.1), as detailed in Table 12-32. Entries can
+          be created or removed dynamically in implementations that
+          support dynamic configuration of stream filters. The value of
+          the stream-handle-spec and priority-spec parameters associated
+          with a received frame determine which stream filter is selected
+          by the frame, and therefore what combination of filtering and
+          policing actions is applied to the frame. If the
+          stream-handle-spec and priority-spec parameters associated with
+          a received frame match more than one stream filter, the stream
+          filter that is selected is the one that appears earliest in the
+          ordered list. If a received frame's stream-handle-spec and
+          priority-spec does not match any of the stream filters in the
+          list, the frame is processed as if stream filters and stream
+          gates would not be supported."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"12.31.2 of IEEE Std 802.1Q"</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L281C13 */</span><span id="L281C13"></span><span style="color:var(--color-yang-id);">stream-filter-instance-id</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L282C15 */</span><span id="L282C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L283C20 */</span><span id="L283C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An integer index value that determines the place of the
+            stream filter in the ordered list of stream filter instances.
+            The values are ordered according to their integer value;
+            smaller values appear earlier in the ordered list."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.31.2.1 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">choice</span> <span style="color:var(--color-yang-comment);">/* L292C15 */</span><span id="L292C15"></span><span style="color:var(--color-yang-id);">stream-handle-spec</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The stream_handle specification data type allows either of
+            the following to be represented:
+             a) A stream_handle value, represented as an integer.
+             b) The wildcard value, which matches any frame"</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.31.2.2 of IEEE Std 802.1Q"</span>;
+          
+          <span style="color:var(--color-yang-comment);">/* NOTE: The mapping of the wildcard literal is 
+           *       other than in the MIB definition, where
+           *       the wildcard value is mapped to -1.
+           */</span>
+          <span style="color:var(--color-yang-keyword);">case</span> <span style="color:var(--color-yang-comment);">/* L305C15 */</span><span id="L305C15"></span><span style="color:var(--color-yang-id);">wildcard</span> {
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L306C17 */</span><span id="L306C17"></span><span style="color:var(--color-yang-id);">wildcard</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L307C19 */</span><span id="L307C19"></span><span style="color:var(--color-yang-id);">empty</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The stream handle specification represents a wildcard
+                value."</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">case</span> <span style="color:var(--color-yang-comment);">/* L313C15 */</span><span id="L313C15"></span><span style="color:var(--color-yang-id);">stream-handle</span> {
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L314C17 */</span><span id="L314C17"></span><span style="color:var(--color-yang-id);">stream-handle</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L315C19 */</span><span id="L315C19"></span><span style="color:var(--color-yang-id);">uint32</span>;
+              <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L316C24 */</span><span id="L316C24"></span><span style="color:var(--color-yang-id);">true</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The stream handle specification refers to a
+                stream_handle value."</span>;
+            }
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L323C13 */</span><span id="L323C13"></span><span style="color:var(--color-yang-id);">priority-spec</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L324C15 */</span><span id="L324C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-stream-filters-gates#L58C10">priority-spec-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L325C20 */</span><span id="L325C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The priority specification data type allows either of the
+            following to be represented:
+             a) A priority value, represented as an integer.
+             b) The wildcard value, which matches any priority."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.31.2.3 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L334C13 */</span><span id="L334C13"></span><span style="color:var(--color-yang-id);">max-sdu-size</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L335C15 */</span><span id="L335C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"octets"</span>;
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L337C20 */</span><span id="L337C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The allowed maximum SDU size, in octets. If set to 0, any
+            SDU size is accepted."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.3.1 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L344C13 */</span><span id="L344C13"></span><span style="color:var(--color-yang-id);">stream-blocked-due-to-oversize-frame-enabled</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L345C15 */</span><span id="L345C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A value of true indicates that
+            stream-blocked-due-to-oversize-frame is set to true as soon
+            as a frame exceeds max-sdu-size."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.3.1 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L354C13 */</span><span id="L354C13"></span><span style="color:var(--color-yang-id);">stream-blocked-due-to-oversize-frame</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L355C15 */</span><span id="L355C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Indicates by value true that frames are permanently
+            discarded as a result of an initial frame exceeding
+            max-sdu-size. The value of
+            stream-blocked-due-to-oversize-frame can be administratively
+            reset to false."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.3.1 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L366C13 */</span><span id="L366C13"></span><span style="color:var(--color-yang-id);">stream-gate-ref</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L367C15 */</span><span id="L367C15"></span><span style="color:var(--color-yang-id);">leafref</span> {
+            <span style="color:var(--color-yang-keyword);">path</span>
+              '<span style="color:var(--color-yang-comment);">/* L369C15 */</span><span id="L369C15"></span><span style="color:var(--color-yang-id);">..'+
+              '/..'+
+              '/..'+
+              '/stream-gates'+
+              '/stream-gate-instance-table'+
+              '/stream-gate-instance-id'</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L376C20 */</span><span id="L376C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"This node refers to the stream gate (12.31.3) that is
+            associated with the stream filter. The relationship between
+            stream filters and stream gates is many to one; a given
+            stream filter can be associated with only one stream gate,
+            but there can be multiple stream filters associated with a
+            given stream gate."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.31.2.4 of IEEE Std 802.1Q"</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L388C11 */</span><span id="L388C11"></span><span style="color:var(--color-yang-id);">max-stream-filter-instances</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L389C13 */</span><span id="L389C13"></span><span style="color:var(--color-yang-id);">uint32</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L390C15 */</span><span id="L390C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The maximum number of stream filter instances supported by
+          this Bridge component."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"12.31.1.1, 8.6.5.1 of IEEE Std 802.1Q"</span>;
+      }
+    }
+  }
+}

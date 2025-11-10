@@ -1,0 +1,18 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 29000,
+      "size": 100
+    }
+  ],
+  "module-name": "ietf-sid-file",
+  "module-revision": "2023-10-27",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ietf-sid-file",
+      "status": "unstable",
+      "sid": 29000
+    }
+  ]
+}

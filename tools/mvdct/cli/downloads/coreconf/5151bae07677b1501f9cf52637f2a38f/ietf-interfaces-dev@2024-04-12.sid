@@ -1,0 +1,18 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 2999,
+      "size": 1
+    }
+  ],
+  "module-name": "ietf-interfaces-dev",
+  "module-revision": "2024-04-12",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ietf-interfaces-dev",
+      "status": "unstable",
+      "sid": 2999
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 38200,
+      "size": 200
+    }
+  ],
+  "module-name": "mchp-velocitysp-ip",
+  "module-revision": "2023-10-04",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "mchp-velocitysp-ip",
+      "status": "unstable",
+      "sid": 38200
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ietf-ip:ipv4/mchp-velocitysp-ip:statistics",
+      "status": "unstable",
+      "sid": 38201
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ietf-ip:ipv4/mchp-velocitysp-ip:statistics/clear",
+      "status": "unstable",
+      "sid": 38202
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ietf-ip:ipv4/mchp-velocitysp-ip:statistics/rx-addr-errors",
+      "status": "unstable",
+      "sid": 38203
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ietf-ip:ipv4/mchp-velocitysp-ip:statistics/rx-delivers",
+      "status": "unstable",
+      "sid": 38204
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ietf-ip:ipv4/mchp-velocitysp-ip:statistics/rx-forwards",
+      "status": "unstable",
+      "sid": 38205
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ietf-ip:ipv4/mchp-velocitysp-ip:statistics/rx-hdr-errors",
+      "status": "unstable",
+      "sid": 38206
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ietf-ip:ipv4/mchp-velocitysp-ip:statistics/rx-no-routes",
+      "status": "unstable",
+      "sid": 38207
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ietf-ip:ipv4/mchp-velocitysp-ip:statistics/rx-octets",
+      "status": "unstable",
+      "sid": 38208
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ietf-ip:ipv4/mchp-velocitysp-ip:statistics/rx-total",
+      "status": "unstable",
+      "sid": 38209
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ietf-ip:ipv4/mchp-velocitysp-ip:statistics/rx-unknown-protos",
+      "status": "unstable",
+      "sid": 38210
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ietf-ip:ipv4/mchp-velocitysp-ip:statistics/tx-forwards",
+      "status": "unstable",
+      "sid": 38211
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ietf-ip:ipv4/mchp-velocitysp-ip:statistics/tx-octets",
+      "status": "unstable",
+      "sid": 38212
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ietf-ip:ipv4/mchp-velocitysp-ip:statistics/tx-requests",
+      "status": "unstable",
+      "sid": 38213
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/ietf-ip:ipv4/mchp-velocitysp-ip:statistics/tx-total",
+      "status": "unstable",
+      "sid": 38214
+    }
+  ]
+}

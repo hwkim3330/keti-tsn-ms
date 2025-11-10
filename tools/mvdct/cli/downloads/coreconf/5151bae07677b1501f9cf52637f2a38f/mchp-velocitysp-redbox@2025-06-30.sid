@@ -1,0 +1,294 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 39200,
+      "size": 100
+    }
+  ],
+  "module-name": "mchp-velocitysp-redbox",
+  "module-revision": "2025-06-30",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "mchp-velocitysp-redbox",
+      "status": "unstable",
+      "sid": 39200
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox",
+      "status": "unstable",
+      "sid": 39201
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-capable-list",
+      "status": "unstable",
+      "sid": 39202
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-capable-list/capable-port-list",
+      "status": "unstable",
+      "sid": 39203
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-capable-list/id",
+      "status": "unstable",
+      "sid": 39204
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list",
+      "status": "unstable",
+      "sid": 39205
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/config",
+      "status": "unstable",
+      "sid": 39206
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/config/dd-age-time",
+      "status": "unstable",
+      "sid": 39207
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/config/lan-id",
+      "status": "unstable",
+      "sid": 39208
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/config/mode",
+      "status": "unstable",
+      "sid": 39209
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/config/net-id",
+      "status": "unstable",
+      "sid": 39210
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/config/nt-age-time",
+      "status": "unstable",
+      "sid": 39211
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/config/pnt-age-time",
+      "status": "unstable",
+      "sid": 39212
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/config/port-a",
+      "status": "unstable",
+      "sid": 39213
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/config/port-b",
+      "status": "unstable",
+      "sid": 39214
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/config/sv-forward-rx-port-c",
+      "status": "unstable",
+      "sid": 39215
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/config/sv-forward-tx-port-c",
+      "status": "unstable",
+      "sid": 39216
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/control",
+      "status": "unstable",
+      "sid": 39217
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/control/clear-counters",
+      "status": "unstable",
+      "sid": 39218
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/control/clear-nt",
+      "status": "unstable",
+      "sid": 39219
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/control/clear-pnt",
+      "status": "unstable",
+      "sid": 39220
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/id",
+      "status": "unstable",
+      "sid": 39221
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/node-table",
+      "status": "unstable",
+      "sid": 39222
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/node-table/addr",
+      "status": "unstable",
+      "sid": 39223
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/node-table/rx-a",
+      "status": "unstable",
+      "sid": 39224
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/node-table/rx-b",
+      "status": "unstable",
+      "sid": 39225
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/node-table/rx-wrong-lan-a",
+      "status": "unstable",
+      "sid": 39226
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/node-table/rx-wrong-lan-b",
+      "status": "unstable",
+      "sid": 39227
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/node-table/type",
+      "status": "unstable",
+      "sid": 39228
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/port-counters",
+      "status": "unstable",
+      "sid": 39229
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/port-counters/port",
+      "status": "unstable",
+      "sid": 39230
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/port-counters/rx-local",
+      "status": "unstable",
+      "sid": 39231
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/port-counters/rx-own",
+      "status": "unstable",
+      "sid": 39232
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/port-counters/rx-tagged",
+      "status": "unstable",
+      "sid": 39233
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/port-counters/rx-untagged",
+      "status": "unstable",
+      "sid": 39234
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/port-counters/rx-wrong-lan",
+      "status": "unstable",
+      "sid": 39235
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/port-counters/tx-dupl-multi",
+      "status": "unstable",
+      "sid": 39236
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/port-counters/tx-dupl-one",
+      "status": "unstable",
+      "sid": 39237
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/port-counters/tx-dupl-zero",
+      "status": "unstable",
+      "sid": 39238
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/port-counters/tx-local",
+      "status": "unstable",
+      "sid": 39239
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/port-counters/tx-tagged",
+      "status": "unstable",
+      "sid": 39240
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/port-counters/tx-untagged",
+      "status": "unstable",
+      "sid": 39241
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/proxy-node-table",
+      "status": "unstable",
+      "sid": 39242
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/proxy-node-table/addr",
+      "status": "unstable",
+      "sid": 39243
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/proxy-node-table/rx-c",
+      "status": "unstable",
+      "sid": 39244
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/proxy-node-table/rx-wrong-lan-c",
+      "status": "unstable",
+      "sid": 39245
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-redbox:redbox/redbox-list/proxy-node-table/type",
+      "status": "unstable",
+      "sid": 39246
+    }
+  ]
+}

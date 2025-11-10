@@ -1,0 +1,510 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 39000,
+      "size": 200
+    }
+  ],
+  "module-name": "mchp-velocitysp-acl",
+  "module-revision": "2025-06-30",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "mchp-velocitysp-acl",
+      "status": "unstable",
+      "sid": 39000
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-acl:acl-port",
+      "status": "unstable",
+      "sid": 39001
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-acl:acl-port/clear",
+      "status": "unstable",
+      "sid": 39002
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-acl:acl-port/egress-port-list",
+      "status": "unstable",
+      "sid": 39003
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-acl:acl-port/forwarding",
+      "status": "unstable",
+      "sid": 39004
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-acl:acl-port/policer-enable",
+      "status": "unstable",
+      "sid": 39005
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-acl:acl-port/policer-index",
+      "status": "unstable",
+      "sid": 39006
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-acl:acl-port/rx-count",
+      "status": "unstable",
+      "sid": 39007
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl",
+      "status": "unstable",
+      "sid": 39008
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-policers",
+      "status": "unstable",
+      "sid": 39009
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-policers/policer-list",
+      "status": "unstable",
+      "sid": 39010
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-policers/policer-list/index",
+      "status": "unstable",
+      "sid": 39011
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-policers/policer-list/rate/bit-rate/bit-rate",
+      "status": "unstable",
+      "sid": 39012
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-policers/policer-list/rate/frame-rate/frame-rate",
+      "status": "unstable",
+      "sid": 39013
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules",
+      "status": "unstable",
+      "sid": 39014
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list",
+      "status": "unstable",
+      "sid": 39015
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/clear",
+      "status": "unstable",
+      "sid": 39016
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/dei",
+      "status": "unstable",
+      "sid": 39017
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/dmac",
+      "status": "unstable",
+      "sid": 39018
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/dmac-mask",
+      "status": "unstable",
+      "sid": 39019
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/egress-port-list",
+      "status": "unstable",
+      "sid": 39020
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/forwarding",
+      "status": "unstable",
+      "sid": 39021
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/id",
+      "status": "unstable",
+      "sid": 39022
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/ingress-port-list",
+      "status": "unstable",
+      "sid": 39023
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-any/frame-any",
+      "status": "unstable",
+      "sid": 39024
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-any/frame-any/any",
+      "status": "unstable",
+      "sid": 39025
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-etype/frame-etype",
+      "status": "unstable",
+      "sid": 39026
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-etype/frame-etype/data",
+      "status": "unstable",
+      "sid": 39027
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-etype/frame-etype/data-mask",
+      "status": "unstable",
+      "sid": 39028
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-etype/frame-etype/etype",
+      "status": "unstable",
+      "sid": 39029
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-etype/frame-etype/etype-mask",
+      "status": "unstable",
+      "sid": 39030
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4",
+      "status": "unstable",
+      "sid": 39031
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/data",
+      "status": "unstable",
+      "sid": 39032
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/data-mask",
+      "status": "unstable",
+      "sid": 39033
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/dip",
+      "status": "unstable",
+      "sid": 39034
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/dport-max",
+      "status": "unstable",
+      "sid": 39035
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/dport-min",
+      "status": "unstable",
+      "sid": 39036
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/ds",
+      "status": "unstable",
+      "sid": 39037
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/ds-mask",
+      "status": "unstable",
+      "sid": 39038
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/fragment",
+      "status": "unstable",
+      "sid": 39039
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/options",
+      "status": "unstable",
+      "sid": 39040
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/proto",
+      "status": "unstable",
+      "sid": 39041
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/proto-mask",
+      "status": "unstable",
+      "sid": 39042
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/sip",
+      "status": "unstable",
+      "sid": 39043
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/sport-max",
+      "status": "unstable",
+      "sid": 39044
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/sport-min",
+      "status": "unstable",
+      "sid": 39045
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/tcp-ack",
+      "status": "unstable",
+      "sid": 39046
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/tcp-fin",
+      "status": "unstable",
+      "sid": 39047
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/tcp-psh",
+      "status": "unstable",
+      "sid": 39048
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/tcp-rst",
+      "status": "unstable",
+      "sid": 39049
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/tcp-syn",
+      "status": "unstable",
+      "sid": 39050
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/tcp-urg",
+      "status": "unstable",
+      "sid": 39051
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv4/frame-ipv4/ttl",
+      "status": "unstable",
+      "sid": 39052
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6",
+      "status": "unstable",
+      "sid": 39053
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/data",
+      "status": "unstable",
+      "sid": 39054
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/data-mask",
+      "status": "unstable",
+      "sid": 39055
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/dip",
+      "status": "unstable",
+      "sid": 39056
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/dport-max",
+      "status": "unstable",
+      "sid": 39057
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/dport-min",
+      "status": "unstable",
+      "sid": 39058
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/ds",
+      "status": "unstable",
+      "sid": 39059
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/ds-mask",
+      "status": "unstable",
+      "sid": 39060
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/proto",
+      "status": "unstable",
+      "sid": 39061
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/proto-mask",
+      "status": "unstable",
+      "sid": 39062
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/sip",
+      "status": "unstable",
+      "sid": 39063
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/sport-max",
+      "status": "unstable",
+      "sid": 39064
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/sport-min",
+      "status": "unstable",
+      "sid": 39065
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/tcp-ack",
+      "status": "unstable",
+      "sid": 39066
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/tcp-fin",
+      "status": "unstable",
+      "sid": 39067
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/tcp-psh",
+      "status": "unstable",
+      "sid": 39068
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/tcp-rst",
+      "status": "unstable",
+      "sid": 39069
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/tcp-syn",
+      "status": "unstable",
+      "sid": 39070
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/tcp-urg",
+      "status": "unstable",
+      "sid": 39071
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/parameters/frame-ipv6/frame-ipv6/ttl",
+      "status": "unstable",
+      "sid": 39072
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/pcp",
+      "status": "unstable",
+      "sid": 39073
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/pcp-mask",
+      "status": "unstable",
+      "sid": 39074
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/policer-enable",
+      "status": "unstable",
+      "sid": 39075
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/policer-index",
+      "status": "unstable",
+      "sid": 39076
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/rx-count",
+      "status": "unstable",
+      "sid": 39077
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/smac",
+      "status": "unstable",
+      "sid": 39078
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/smac-mask",
+      "status": "unstable",
+      "sid": 39079
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/tagged",
+      "status": "unstable",
+      "sid": 39080
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/vid",
+      "status": "unstable",
+      "sid": 39081
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-acl:acl/acl-rules/rule-list/vid-mask",
+      "status": "unstable",
+      "sid": 39082
+    }
+  ]
+}

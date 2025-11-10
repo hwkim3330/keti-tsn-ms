@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ietf-system</span> {
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:ietf:params:xml:ns:yang:ietf-system"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-text);">"sys"</span>;
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L5C9 */</span><span id="L5C9"></span><span style="color:var(--color-yang-id);">ietf-yang-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L6C11 */</span><span id="L6C11"></span><span style="color:var(--color-yang-id);">yang</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L9C9 */</span><span id="L9C9"></span><span style="color:var(--color-yang-id);">ietf-inet-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L10C11 */</span><span id="L10C11"></span><span style="color:var(--color-yang-id);">inet</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L13C9 */</span><span id="L13C9"></span><span style="color:var(--color-yang-id);">ietf-netconf-acm</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L14C11 */</span><span id="L14C11"></span><span style="color:var(--color-yang-id);">nacm</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L17C9 */</span><span id="L17C9"></span><span style="color:var(--color-yang-id);">iana-crypt-hash</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L18C11 */</span><span id="L18C11"></span><span style="color:var(--color-yang-id);">ianach</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IETF NETMOD (NETCONF Data Modeling Language) Working Group"</span>;
+
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG Web:   <http://tools.ietf.org/wg/netmod/>
+     WG List:  <mailto:netmod@ietf.org>
+
+     WG Chair: Thomas Nadeau
+               <mailto:tnadeau@lucidvision.com>
+
+     WG Chair: Juergen Schoenwaelder
+               <mailto:j.schoenwaelder@jacobs-university.de>
+
+     Editor:   Andy Bierman
+               <mailto:andy@yumaworks.com>
+
+     Editor:   Martin Bjorklund
+               <mailto:mbj@tail-f.com>"</span>;
+
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module contains a collection of YANG definitions for the
+     configuration and identification of some common system
+     properties within a device containing a NETCONF server.  This
+     includes data node definitions for system identification,
+     time-of-day management, user management, DNS resolver
+     configuration, and some protocol operations for system
+     management.
+
+     Copyright (c) 2014 IETF Trust and the persons identified as
+     authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Simplified BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (http://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC 7317; see
+     the RFC itself for full legal notices."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L62C11 */</span><span id="L62C11"></span><span style="color:var(--color-yang-id);">2014-08-06</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 7317: A YANG Data Model for System Management"</span>;
+  }
+
+ <span style="color:var(--color-yang-comment);">/*
+  * Typedefs
+  */</span>
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L73C10 */</span><span id="L73C10"></span><span style="color:var(--color-yang-id);">timezone-name</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L74C9 */</span><span id="L74C9"></span><span style="color:var(--color-yang-id);">string</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A time zone name as used by the Time Zone Database,
+       sometimes referred to as the 'Olson Database'.
+
+       The exact set of valid values is an implementation-specific
+       matter.  Client discovery of the exact set of time zone names
+       for a particular server is out of scope."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 6557: Procedures for Maintaining the Time Zone Database"</span>;
+   }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Features
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L90C10 */</span><span id="L90C10"></span><span style="color:var(--color-yang-id);">radius</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates that the device can be configured as a RADIUS
+       client."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 2865: Remote Authentication Dial In User Service (RADIUS)"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L98C10 */</span><span id="L98C10"></span><span style="color:var(--color-yang-id);">authentication</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates that the device supports configuration of
+       user authentication."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L104C10 */</span><span id="L104C10"></span><span style="color:var(--color-yang-id);">local-users</span> {
+    <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L105C15 */</span><span id="L105C15"></span><span style="color:var(--color-yang-id);">authentication</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates that the device supports configuration of
+       local user authentication."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L111C10 */</span><span id="L111C10"></span><span style="color:var(--color-yang-id);">radius-authentication</span> {
+    <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L112C15 */</span><span id="L112C15"></span><span style="color:var(--color-yang-id);">radius</span>;
+    <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L113C15 */</span><span id="L113C15"></span><span style="color:var(--color-yang-id);">authentication</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates that the device supports configuration of user
+       authentication over RADIUS."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 2865: Remote Authentication Dial In User Service (RADIUS)
+       RFC 5607: Remote Authentication Dial-In User Service (RADIUS)
+                 Authorization for Network Access Server (NAS)
+                 Management"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L124C10 */</span><span id="L124C10"></span><span style="color:var(--color-yang-id);">ntp</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates that the device can be configured to use one or
+       more NTP servers to set the system date and time."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L130C10 */</span><span id="L130C10"></span><span style="color:var(--color-yang-id);">ntp-udp-port</span> {
+    <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L131C15 */</span><span id="L131C15"></span><span style="color:var(--color-yang-id);">ntp</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates that the device supports the configuration of
+       the UDP port for NTP servers.
+
+       This is a 'feature', since many implementations do not support
+       any port other than the default port."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L140C10 */</span><span id="L140C10"></span><span style="color:var(--color-yang-id);">timezone-name</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates that the local time zone on the device
+       can be configured to use the TZ database
+       to set the time zone and manage daylight saving time."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 6557: Procedures for Maintaining the Time Zone Database"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L149C10 */</span><span id="L149C10"></span><span style="color:var(--color-yang-id);">dns-udp-tcp-port</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates that the device supports the configuration of
+       the UDP and TCP port for DNS servers.
+
+       This is a 'feature', since many implementations do not support
+       any port other than the default port."</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Identities
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L162C11 */</span><span id="L162C11"></span><span style="color:var(--color-yang-id);">authentication-method</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Base identity for user authentication methods."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L167C11 */</span><span id="L167C11"></span><span style="color:var(--color-yang-id);">radius</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L168C9 */</span><span id="L168C9"></span><span style="color:var(--color-yang-id);">authentication-method</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates user authentication using RADIUS."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 2865: Remote Authentication Dial In User Service (RADIUS)
+       RFC 5607: Remote Authentication Dial-In User Service (RADIUS)
+                 Authorization for Network Access Server (NAS)
+                 Management"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L178C11 */</span><span id="L178C11"></span><span style="color:var(--color-yang-id);">local-users</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L179C9 */</span><span id="L179C9"></span><span style="color:var(--color-yang-id);">authentication-method</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates password-based authentication of locally
+       configured users."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L185C11 */</span><span id="L185C11"></span><span style="color:var(--color-yang-id);">radius-authentication-type</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Base identity for RADIUS authentication types."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L190C11 */</span><span id="L190C11"></span><span style="color:var(--color-yang-id);">radius-pap</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L191C9 */</span><span id="L191C9"></span><span style="color:var(--color-yang-id);">radius-authentication-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The device requests Password Authentication Protocol (PAP)
+       authentication from the RADIUS server."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 2865: Remote Authentication Dial In User Service (RADIUS)"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L199C11 */</span><span id="L199C11"></span><span style="color:var(--color-yang-id);">radius-chap</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L200C9 */</span><span id="L200C9"></span><span style="color:var(--color-yang-id);">radius-authentication-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The device requests Challenge Handshake Authentication
+       Protocol (CHAP) authentication from the RADIUS server."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 2865: Remote Authentication Dial In User Service (RADIUS)"</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Configuration data nodes
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L212C12 */</span><span id="L212C12"></span><span style="color:var(--color-yang-id);">system</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"System group configuration."</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L216C9 */</span><span id="L216C9"></span><span style="color:var(--color-yang-id);">contact</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L217C11 */</span><span id="L217C11"></span><span style="color:var(--color-yang-id);">string</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The administrator contact information for the system.
+
+         A server implementation MAY map this leaf to the sysContact
+         MIB object.  Such an implementation needs to use some
+         mechanism to handle the differences in size and characters
+         allowed between this leaf and sysContact.  The definition of
+         such a mechanism is outside the scope of this document."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"RFC 3418: Management Information Base (MIB) for the
+                   Simple Network Management Protocol (SNMP)
+                   SNMPv2-MIB.sysContact"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L231C9 */</span><span id="L231C9"></span><span style="color:var(--color-yang-id);">hostname</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L232C11 */</span><span id="L232C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L355C10">inet:domain-name</a></span>;
+     <span style="color:var(--color-yang-keyword);">description</span>
+       <span style="color:var(--color-yang-text);">"The name of the host.  This name can be a single domain
+        label or the fully qualified domain name of the host."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L237C9 */</span><span id="L237C9"></span><span style="color:var(--color-yang-id);">location</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L238C11 */</span><span id="L238C11"></span><span style="color:var(--color-yang-id);">string</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The system location.
+
+         A server implementation MAY map this leaf to the sysLocation
+         MIB object.  Such an implementation needs to use some
+         mechanism to handle the differences in size and characters
+         allowed between this leaf and sysLocation.  The definition
+         of such a mechanism is outside the scope of this document."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"RFC 3418: Management Information Base (MIB) for the
+                   Simple Network Management Protocol (SNMP)
+                   SNMPv2-MIB.sysLocation"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L253C14 */</span><span id="L253C14"></span><span style="color:var(--color-yang-id);">clock</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Configuration of the system date and time properties."</span>;
+
+      <span style="color:var(--color-yang-keyword);">choice</span> <span style="color:var(--color-yang-comment);">/* L257C13 */</span><span id="L257C13"></span><span style="color:var(--color-yang-id);">timezone</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The system time zone information."</span>;
+
+        <span style="color:var(--color-yang-keyword);">case</span> <span style="color:var(--color-yang-comment);">/* L261C13 */</span><span id="L261C13"></span><span style="color:var(--color-yang-id);">timezone-name</span> {
+          <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L262C21 */</span><span id="L262C21"></span><span style="color:var(--color-yang-id);">timezone-name</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L263C15 */</span><span id="L263C15"></span><span style="color:var(--color-yang-id);">timezone-name</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L264C17 */</span><span id="L264C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-system#L73C10">timezone-name</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The TZ database name to use for the system, such
+               as 'Europe/Stockholm'."</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">case</span> <span style="color:var(--color-yang-comment);">/* L270C13 */</span><span id="L270C13"></span><span style="color:var(--color-yang-id);">timezone-utc-offset</span> {
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L271C15 */</span><span id="L271C15"></span><span style="color:var(--color-yang-id);">timezone-utc-offset</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L272C17 */</span><span id="L272C17"></span><span style="color:var(--color-yang-id);">int16</span> {
+              <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"-1500 .. 1500"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"minutes"</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The number of minutes to add to UTC time to
+               identify the time zone for this system.  For example,
+               'UTC - 8:00 hours' would be represented as '-480'.
+               Note that automatic daylight saving time adjustment
+               is not provided if this object is used."</span>;
+          }
+        }
+      }
+    }
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L287C14 */</span><span id="L287C14"></span><span style="color:var(--color-yang-id);">ntp</span> {
+      <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L288C17 */</span><span id="L288C17"></span><span style="color:var(--color-yang-id);">ntp</span>;
+      <span style="color:var(--color-yang-keyword);">presence</span>
+        <span style="color:var(--color-yang-text);">"Enables the NTP client unless the 'enabled' leaf
+         (which defaults to 'true') is set to 'false'"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Configuration of the NTP client."</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L295C11 */</span><span id="L295C11"></span><span style="color:var(--color-yang-id);">enabled</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L296C13 */</span><span id="L296C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L297C16 */</span><span id="L297C16"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Indicates that the system should attempt to
+           synchronize the system clock with an NTP server
+           from the 'ntp/server' list."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L303C11 */</span><span id="L303C11"></span><span style="color:var(--color-yang-id);">server</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-comment);">/* L304C12 */</span><span id="L304C12"></span><span style="color:var(--color-yang-id);">name</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"List of NTP servers to use for system clock
+           synchronization.  If '/system/ntp/enabled'
+           is 'true', then the system will attempt to
+           contact and utilize the specified NTP servers."</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L311C13 */</span><span id="L311C13"></span><span style="color:var(--color-yang-id);">name</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L312C15 */</span><span id="L312C15"></span><span style="color:var(--color-yang-id);">string</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An arbitrary name for the NTP server."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">choice</span> <span style="color:var(--color-yang-comment);">/* L316C15 */</span><span id="L316C15"></span><span style="color:var(--color-yang-id);">transport</span> {
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L317C20 */</span><span id="L317C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The transport-protocol-specific parameters for this
+             server."</span>;
+
+          <span style="color:var(--color-yang-keyword);">case</span> <span style="color:var(--color-yang-comment);">/* L322C15 */</span><span id="L322C15"></span><span style="color:var(--color-yang-id);">udp</span> {
+            <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L323C22 */</span><span id="L323C22"></span><span style="color:var(--color-yang-id);">udp</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Contains UDP-specific configuration parameters
+                 for NTP."</span>;
+              <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L327C19 */</span><span id="L327C19"></span><span style="color:var(--color-yang-id);">address</span> {
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L328C21 */</span><span id="L328C21"></span><span style="color:var(--color-yang-id);">inet:host</span>;
+                <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L329C26 */</span><span id="L329C26"></span><span style="color:var(--color-yang-id);">true</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"The address of the NTP server."</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L333C19 */</span><span id="L333C19"></span><span style="color:var(--color-yang-id);">port</span> {
+                <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L334C27 */</span><span id="L334C27"></span><span style="color:var(--color-yang-id);">ntp-udp-port</span>;
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L335C21 */</span><span id="L335C21"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L122C10">inet:port-number</a></span>;
+                <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L336C24 */</span><span id="L336C24"></span><span style="color:var(--color-yang-id);">123</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"The port number of the NTP server."</span>;
+              }
+            }
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L343C13 */</span><span id="L343C13"></span><span style="color:var(--color-yang-id);">association-type</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L344C15 */</span><span id="L344C15"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L345C17 */</span><span id="L345C17"></span><span style="color:var(--color-yang-id);">server</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Use client association mode.  This device
+                 will not provide synchronization to the
+                 configured NTP server."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L351C17 */</span><span id="L351C17"></span><span style="color:var(--color-yang-id);">peer</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Use symmetric active association mode.
+                 This device may provide synchronization
+                 to the configured NTP server."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L357C17 */</span><span id="L357C17"></span><span style="color:var(--color-yang-id);">pool</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Use client association mode with one or
+                 more of the NTP servers found by DNS
+                 resolution of the domain name given by
+                 the 'address' leaf.  This device will not
+                 provide synchronization to the servers."</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L366C18 */</span><span id="L366C18"></span><span style="color:var(--color-yang-id);">server</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The desired association type for this NTP server."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L370C13 */</span><span id="L370C13"></span><span style="color:var(--color-yang-id);">iburst</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L371C15 */</span><span id="L371C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L372C18 */</span><span id="L372C18"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Indicates whether this server should enable burst
+             synchronization or not."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L377C13 */</span><span id="L377C13"></span><span style="color:var(--color-yang-id);">prefer</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L378C15 */</span><span id="L378C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L379C18 */</span><span id="L379C18"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Indicates whether this server should be preferred
+             or not."</span>;
+        }
+      }
+    }
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L387C14 */</span><span id="L387C14"></span><span style="color:var(--color-yang-id);">dns-resolver</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Configuration of the DNS resolver."</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L391C16 */</span><span id="L391C16"></span><span style="color:var(--color-yang-id);">search</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L392C13 */</span><span id="L392C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L355C10">inet:domain-name</a></span>;
+        <span style="color:var(--color-yang-keyword);">ordered-by</span> <span style="color:var(--color-yang-comment);">/* L393C19 */</span><span id="L393C19"></span><span style="color:var(--color-yang-id);">user</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"An ordered list of domains to search when resolving
+           a host name."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L398C11 */</span><span id="L398C11"></span><span style="color:var(--color-yang-id);">server</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-comment);">/* L399C12 */</span><span id="L399C12"></span><span style="color:var(--color-yang-id);">name</span>;
+        <span style="color:var(--color-yang-keyword);">ordered-by</span> <span style="color:var(--color-yang-comment);">/* L400C19 */</span><span id="L400C19"></span><span style="color:var(--color-yang-id);">user</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"List of the DNS servers that the resolver should query.
+
+           When the resolver is invoked by a calling application, it
+           sends the query to the first name server in this list.  If
+           no response has been received within 'timeout' seconds,
+           the resolver continues with the next server in the list.
+           If no response is received from any server, the resolver
+           continues with the first server again.  When the resolver
+           has traversed the list 'attempts' times without receiving
+           any response, it gives up and returns an error to the
+           calling application.
+
+           Implementations MAY limit the number of entries in this
+           list."</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L417C13 */</span><span id="L417C13"></span><span style="color:var(--color-yang-id);">name</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L418C15 */</span><span id="L418C15"></span><span style="color:var(--color-yang-id);">string</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An arbitrary name for the DNS server."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">choice</span> <span style="color:var(--color-yang-comment);">/* L422C15 */</span><span id="L422C15"></span><span style="color:var(--color-yang-id);">transport</span> {
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L423C20 */</span><span id="L423C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The transport-protocol-specific parameters for this
+             server."</span>;
+
+          <span style="color:var(--color-yang-keyword);">case</span> <span style="color:var(--color-yang-comment);">/* L428C15 */</span><span id="L428C15"></span><span style="color:var(--color-yang-id);">udp-and-tcp</span> {
+            <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L429C22 */</span><span id="L429C22"></span><span style="color:var(--color-yang-id);">udp-and-tcp</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Contains UDP- and TCP-specific configuration
+                 parameters for DNS."</span>;
+              <span style="color:var(--color-yang-keyword);">reference</span>
+                <span style="color:var(--color-yang-text);">"RFC 1035: Domain Names - Implementation and
+                           Specification
+                 RFC 5966: DNS Transport over TCP - Implementation
+                           Requirements"</span>;
+
+              <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L439C19 */</span><span id="L439C19"></span><span style="color:var(--color-yang-id);">address</span> {
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L440C21 */</span><span id="L440C21"></span><span style="color:var(--color-yang-id);">inet:ip-address</span>;
+                <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L441C26 */</span><span id="L441C26"></span><span style="color:var(--color-yang-id);">true</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"The address of the DNS server."</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L445C19 */</span><span id="L445C19"></span><span style="color:var(--color-yang-id);">port</span> {
+                <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L446C27 */</span><span id="L446C27"></span><span style="color:var(--color-yang-id);">dns-udp-tcp-port</span>;
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L447C21 */</span><span id="L447C21"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L122C10">inet:port-number</a></span>;
+                <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L448C24 */</span><span id="L448C24"></span><span style="color:var(--color-yang-id);">53</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"The UDP and TCP port number of the DNS server."</span>;
+              }
+            }
+          }
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L456C16 */</span><span id="L456C16"></span><span style="color:var(--color-yang-id);">options</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Resolver options.  The set of available options has been
+           limited to those that are generally available across
+           different resolver implementations and generally useful."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L461C13 */</span><span id="L461C13"></span><span style="color:var(--color-yang-id);">timeout</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L462C15 */</span><span id="L462C15"></span><span style="color:var(--color-yang-id);">uint8</span> {
+            <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..max"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"seconds"</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"5"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The amount of time the resolver will wait for a
+             response from each remote name server before
+             retrying the query via a different name server."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L472C13 */</span><span id="L472C13"></span><span style="color:var(--color-yang-id);">attempts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L473C15 */</span><span id="L473C15"></span><span style="color:var(--color-yang-id);">uint8</span> {
+            <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..max"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"2"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of times the resolver will send a query to
+             all of its name servers before giving up and returning
+             an error to the calling application."</span>;
+        }
+      }
+    }
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L485C14 */</span><span id="L485C14"></span><span style="color:var(--color-yang-id);">radius</span> {
+      <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L486C17 */</span><span id="L486C17"></span><span style="color:var(--color-yang-id);">radius</span>;
+
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Configuration of the RADIUS client."</span>;
+
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L491C11 */</span><span id="L491C11"></span><span style="color:var(--color-yang-id);">server</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-comment);">/* L492C12 */</span><span id="L492C12"></span><span style="color:var(--color-yang-id);">name</span>;
+        <span style="color:var(--color-yang-keyword);">ordered-by</span> <span style="color:var(--color-yang-comment);">/* L493C19 */</span><span id="L493C19"></span><span style="color:var(--color-yang-id);">user</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"List of RADIUS servers used by the device.
+
+           When the RADIUS client is invoked by a calling
+           application, it sends the query to the first server in
+           this list.  If no response has been received within
+           'timeout' seconds, the client continues with the next
+           server in the list.  If no response is received from any
+           server, the client continues with the first server again.
+           When the client has traversed the list 'attempts' times
+           without receiving any response, it gives up and returns an
+           error to the calling application."</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L507C13 */</span><span id="L507C13"></span><span style="color:var(--color-yang-id);">name</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L508C15 */</span><span id="L508C15"></span><span style="color:var(--color-yang-id);">string</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An arbitrary name for the RADIUS server."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">choice</span> <span style="color:var(--color-yang-comment);">/* L512C15 */</span><span id="L512C15"></span><span style="color:var(--color-yang-id);">transport</span> {
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L513C20 */</span><span id="L513C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The transport-protocol-specific parameters for this
+             server."</span>;
+
+          <span style="color:var(--color-yang-keyword);">case</span> <span style="color:var(--color-yang-comment);">/* L518C15 */</span><span id="L518C15"></span><span style="color:var(--color-yang-id);">udp</span> {
+            <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L519C22 */</span><span id="L519C22"></span><span style="color:var(--color-yang-id);">udp</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Contains UDP-specific configuration parameters
+                 for RADIUS."</span>;
+              <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L523C19 */</span><span id="L523C19"></span><span style="color:var(--color-yang-id);">address</span> {
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L524C21 */</span><span id="L524C21"></span><span style="color:var(--color-yang-id);">inet:host</span>;
+                <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L525C26 */</span><span id="L525C26"></span><span style="color:var(--color-yang-id);">true</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"The address of the RADIUS server."</span>;
+              }
+
+              <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L530C19 */</span><span id="L530C19"></span><span style="color:var(--color-yang-id);">authentication-port</span> {
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L531C21 */</span><span id="L531C21"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L122C10">inet:port-number</a></span>;
+                <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"1812"</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"The port number of the RADIUS server."</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L536C19 */</span><span id="L536C19"></span><span style="color:var(--color-yang-id);">shared-secret</span> {
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L537C21 */</span><span id="L537C21"></span><span style="color:var(--color-yang-id);">string</span>;
+                <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L538C26 */</span><span id="L538C26"></span><span style="color:var(--color-yang-id);">true</span>;
+                <span style="color:var(--color-yang-keyword);">nacm:default-deny-all</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"The shared secret, which is known to both the
+                   RADIUS client and server."</span>;
+                <span style="color:var(--color-yang-keyword);">reference</span>
+                  <span style="color:var(--color-yang-text);">"RFC 2865: Remote Authentication Dial In User
+                             Service (RADIUS)"</span>;
+              }
+            }
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L550C13 */</span><span id="L550C13"></span><span style="color:var(--color-yang-id);">authentication-type</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L551C15 */</span><span id="L551C15"></span><span style="color:var(--color-yang-id);">identityref</span> {
+            <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L552C17 */</span><span id="L552C17"></span><span style="color:var(--color-yang-id);">radius-authentication-type</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L554C18 */</span><span id="L554C18"></span><span style="color:var(--color-yang-id);">radius-pap</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The authentication type requested from the RADIUS
+             server."</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L560C16 */</span><span id="L560C16"></span><span style="color:var(--color-yang-id);">options</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"RADIUS client options."</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L564C13 */</span><span id="L564C13"></span><span style="color:var(--color-yang-id);">timeout</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L565C15 */</span><span id="L565C15"></span><span style="color:var(--color-yang-id);">uint8</span> {
+            <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..max"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"seconds"</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"5"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of seconds the device will wait for a
+             response from each RADIUS server before trying with a
+             different server."</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L576C13 */</span><span id="L576C13"></span><span style="color:var(--color-yang-id);">attempts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L577C15 */</span><span id="L577C15"></span><span style="color:var(--color-yang-id);">uint8</span> {
+            <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..max"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"2"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of times the device will send a query to
+             all of its RADIUS servers before giving up."</span>;
+        }
+      }
+    }
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L588C14 */</span><span id="L588C14"></span><span style="color:var(--color-yang-id);">authentication</span> {
+      <span style="color:var(--color-yang-keyword);">nacm:default-deny-write</span>;
+      <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L590C17 */</span><span id="L590C17"></span><span style="color:var(--color-yang-id);">authentication</span>;
+
+       <span style="color:var(--color-yang-keyword);">description</span>
+         <span style="color:var(--color-yang-text);">"The authentication configuration subtree."</span>;
+
+       <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L595C17 */</span><span id="L595C17"></span><span style="color:var(--color-yang-id);">user-authentication-order</span> {
+         <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L596C14 */</span><span id="L596C14"></span><span style="color:var(--color-yang-id);">identityref</span> {
+           <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L597C16 */</span><span id="L597C16"></span><span style="color:var(--color-yang-id);">authentication-method</span>;
+         }
+         <span style="color:var(--color-yang-keyword);">must</span> <span style="color:var(--color-yang-text);">'(. != "sys:radius" or ../../radius/server)'</span> {
+           <span style="color:var(--color-yang-keyword);">error-message</span>
+             <span style="color:var(--color-yang-text);">"When 'radius' is used, a RADIUS server"
+           + " must be configured."</span>;
+           <span style="color:var(--color-yang-keyword);">description</span>
+             <span style="color:var(--color-yang-text);">"When 'radius' is used as an authentication method,
+              a RADIUS server must be configured."</span>;
+         }
+         <span style="color:var(--color-yang-keyword);">ordered-by</span> <span style="color:var(--color-yang-comment);">/* L607C20 */</span><span id="L607C20"></span><span style="color:var(--color-yang-id);">user</span>;
+
+         <span style="color:var(--color-yang-keyword);">description</span>
+           <span style="color:var(--color-yang-text);">"When the device authenticates a user with a password,
+            it tries the authentication methods in this leaf-list in
+            order.  If authentication with one method fails, the next
+            method is used.  If no method succeeds, the user is
+            denied access.
+
+            An empty user-authentication-order leaf-list still allows
+            authentication of users using mechanisms that do not
+            involve a password.
+
+            If the 'radius-authentication' feature is advertised by
+            the NETCONF server, the 'radius' identity can be added to
+            this list.
+
+            If the 'local-users' feature is advertised by the
+            NETCONF server, the 'local-users' identity can be
+            added to this list."</span>;
+       }
+
+       <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L629C12 */</span><span id="L629C12"></span><span style="color:var(--color-yang-id);">user</span> {
+         <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L630C20 */</span><span id="L630C20"></span><span style="color:var(--color-yang-id);">local-users</span>;
+         <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-comment);">/* L631C13 */</span><span id="L631C13"></span><span style="color:var(--color-yang-id);">name</span>;
+         <span style="color:var(--color-yang-keyword);">description</span>
+           <span style="color:var(--color-yang-text);">"The list of local users configured on this device."</span>;
+
+         <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L635C14 */</span><span id="L635C14"></span><span style="color:var(--color-yang-id);">name</span> {
+           <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L636C16 */</span><span id="L636C16"></span><span style="color:var(--color-yang-id);">string</span>;
+           <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The user name string identifying this entry."</span>;
+         }
+         <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L640C14 */</span><span id="L640C14"></span><span style="color:var(--color-yang-id);">password</span> {
+           <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L641C16 */</span><span id="L641C16"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//iana-crypt-hash#L47C10">ianach:crypt-hash</a></span>;
+           <span style="color:var(--color-yang-keyword);">description</span>
+             <span style="color:var(--color-yang-text);">"The password for this entry."</span>;
+         }
+         <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L645C14 */</span><span id="L645C14"></span><span style="color:var(--color-yang-id);">authorized-key</span> {
+           <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-comment);">/* L646C15 */</span><span id="L646C15"></span><span style="color:var(--color-yang-id);">name</span>;
+           <span style="color:var(--color-yang-keyword);">description</span>
+             <span style="color:var(--color-yang-text);">"A list of public SSH keys for this user.  These keys
+              are allowed for SSH authentication, as described in
+              RFC 4253."</span>;
+           <span style="color:var(--color-yang-keyword);">reference</span>
+             <span style="color:var(--color-yang-text);">"RFC 4253: The Secure Shell (SSH) Transport Layer
+                        Protocol"</span>;
+
+           <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L655C16 */</span><span id="L655C16"></span><span style="color:var(--color-yang-id);">name</span> {
+             <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L656C18 */</span><span id="L656C18"></span><span style="color:var(--color-yang-id);">string</span>;
+             <span style="color:var(--color-yang-keyword);">description</span>
+               <span style="color:var(--color-yang-text);">"An arbitrary name for the SSH key."</span>;
+           }
+
+           <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L661C16 */</span><span id="L661C16"></span><span style="color:var(--color-yang-id);">algorithm</span> {
+             <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L662C18 */</span><span id="L662C18"></span><span style="color:var(--color-yang-id);">string</span>;
+             <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L663C23 */</span><span id="L663C23"></span><span style="color:var(--color-yang-id);">true</span>;
+             <span style="color:var(--color-yang-keyword);">description</span>
+               <span style="color:var(--color-yang-text);">"The public key algorithm name for this SSH key.
+
+                Valid values are the values in the IANA 'Secure Shell
+                (SSH) Protocol Parameters' registry, Public Key
+                Algorithm Names."</span>;
+             <span style="color:var(--color-yang-keyword);">reference</span>
+               <span style="color:var(--color-yang-text);">"IANA 'Secure Shell (SSH) Protocol Parameters'
+                registry, Public Key Algorithm Names"</span>;
+           }
+           <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L674C16 */</span><span id="L674C16"></span><span style="color:var(--color-yang-id);">key-data</span> {
+             <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L675C18 */</span><span id="L675C18"></span><span style="color:var(--color-yang-id);">binary</span>;
+             <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L676C23 */</span><span id="L676C23"></span><span style="color:var(--color-yang-id);">true</span>;
+             <span style="color:var(--color-yang-keyword);">description</span>
+               <span style="color:var(--color-yang-text);">"The binary public key data for this SSH key, as
+                specified by RFC 4253, Section 6.6, i.e.:
+
+                  string    certificate or public key format
+                            identifier
+                  byte[n]   key/certificate data."</span>;
+             <span style="color:var(--color-yang-keyword);">reference</span>
+               <span style="color:var(--color-yang-text);">"RFC 4253: The Secure Shell (SSH) Transport Layer
+                          Protocol"</span>;
+           }
+         }
+       }
+     }
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Operational state data nodes
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L697C12 */</span><span id="L697C12"></span><span style="color:var(--color-yang-id);">system-state</span> {
+    <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L698C11 */</span><span id="L698C11"></span><span style="color:var(--color-yang-id);">false</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"System group operational state."</span>;
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L702C14 */</span><span id="L702C14"></span><span style="color:var(--color-yang-id);">platform</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Contains vendor-specific information for
+         identifying the system platform and operating system."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"IEEE Std 1003.1-2008 - sys/utsname.h"</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L709C11 */</span><span id="L709C11"></span><span style="color:var(--color-yang-id);">os-name</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L710C13 */</span><span id="L710C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The name of the operating system in use -
+           for example, 'Linux'."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"IEEE Std 1003.1-2008 - utsname.sysname"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L717C11 */</span><span id="L717C11"></span><span style="color:var(--color-yang-id);">os-release</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L718C13 */</span><span id="L718C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The current release level of the operating
+           system in use.  This string MAY indicate
+           the OS source code revision."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"IEEE Std 1003.1-2008 - utsname.release"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L726C11 */</span><span id="L726C11"></span><span style="color:var(--color-yang-id);">os-version</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L727C13 */</span><span id="L727C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The current version level of the operating
+           system in use.  This string MAY indicate
+           the specific OS build date and target variant
+           information."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"IEEE Std 1003.1-2008 - utsname.version"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L736C11 */</span><span id="L736C11"></span><span style="color:var(--color-yang-id);">machine</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L737C13 */</span><span id="L737C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A vendor-specific identifier string representing
+           the hardware in use."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"IEEE Std 1003.1-2008 - utsname.machine"</span>;
+      }
+    }
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L746C14 */</span><span id="L746C14"></span><span style="color:var(--color-yang-id);">clock</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Monitoring of the system date and time properties."</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L750C11 */</span><span id="L750C11"></span><span style="color:var(--color-yang-id);">current-datetime</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L751C13 */</span><span id="L751C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L300C10">yang:date-and-time</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The current system date and time."</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L756C11 */</span><span id="L756C11"></span><span style="color:var(--color-yang-id);">boot-datetime</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L757C13 */</span><span id="L757C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L300C10">yang:date-and-time</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The system date and time when the system last restarted."</span>;
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">rpc</span> <span style="color:var(--color-yang-comment);">/* L764C6 */</span><span id="L764C6"></span><span style="color:var(--color-yang-id);">set-current-datetime</span> {
+    <span style="color:var(--color-yang-keyword);">nacm:default-deny-all</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Set the /system-state/clock/current-datetime leaf
+       to the specified value.
+
+       If the system is using NTP (i.e., /system/ntp/enabled
+       is set to 'true'), then this operation will fail with
+       error-tag 'operation-failed' and error-app-tag value of
+       'ntp-active'."</span>;
+    <span style="color:var(--color-yang-keyword);">input</span> {
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L775C11 */</span><span id="L775C11"></span><span style="color:var(--color-yang-id);">current-datetime</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L776C13 */</span><span id="L776C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L300C10">yang:date-and-time</a></span>;
+        <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L777C18 */</span><span id="L777C18"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The current system date and time."</span>;
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">rpc</span> <span style="color:var(--color-yang-comment);">/* L784C6 */</span><span id="L784C6"></span><span style="color:var(--color-yang-id);">system-restart</span> {
+    <span style="color:var(--color-yang-keyword);">nacm:default-deny-all</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Request that the entire system be restarted immediately.
+       A server SHOULD send an rpc reply to the client before
+       restarting the system."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">rpc</span> <span style="color:var(--color-yang-comment);">/* L792C6 */</span><span id="L792C6"></span><span style="color:var(--color-yang-id);">system-shutdown</span> {
+    <span style="color:var(--color-yang-keyword);">nacm:default-deny-all</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Request that the entire system be shut down immediately.
+       A server SHOULD send an rpc reply to the client before
+       shutting down the system."</span>;
+  }
+
+}

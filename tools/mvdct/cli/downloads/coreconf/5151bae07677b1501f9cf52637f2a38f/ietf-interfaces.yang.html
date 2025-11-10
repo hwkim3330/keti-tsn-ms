@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ietf-interfaces</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L2C15 */</span><span id="L2C15"></span><span style="color:var(--color-yang-id);">1.1</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:ietf:params:xml:ns:yang:ietf-interfaces"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">if</span>;
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L6C9 */</span><span id="L6C9"></span><span style="color:var(--color-yang-id);">ietf-yang-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L7C11 */</span><span id="L7C11"></span><span style="color:var(--color-yang-id);">yang</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IETF NETMOD (Network Modeling) Working Group"</span>;
+
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG Web:   <https://datatracker.ietf.org/wg/netmod/>
+     WG List:  <mailto:netmod@ietf.org>
+
+     Editor:   Martin Bjorklund
+               <mailto:mbj@tail-f.com>"</span>;
+
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module contains a collection of YANG definitions for
+     managing network interfaces.
+
+     Copyright (c) 2018 IETF Trust and the persons identified as
+     authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Simplified BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC 8343; see
+     the RFC itself for full legal notices."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L37C11 */</span><span id="L37C11"></span><span style="color:var(--color-yang-id);">2018-02-20</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Updated to support NMDA."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 8343: A YANG Data Model for Interface Management"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L44C11 */</span><span id="L44C11"></span><span style="color:var(--color-yang-id);">2014-05-08</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 7223: A YANG Data Model for Interface Management"</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Typedefs
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L55C10 */</span><span id="L55C10"></span><span style="color:var(--color-yang-id);">interface-ref</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L56C9 */</span><span id="L56C9"></span><span style="color:var(--color-yang-id);">leafref</span> {
+      <span style="color:var(--color-yang-keyword);">path</span> "<span style="color:var(--color-yang-comment);">/* L57C12 */</span><span id="L57C12"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/if:name"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This type is used by data models that need to reference
+       interfaces."</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Identities
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L68C11 */</span><span id="L68C11"></span><span style="color:var(--color-yang-id);">interface-type</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Base identity from which specific interface types are
+       derived."</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Features
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L78C10 */</span><span id="L78C10"></span><span style="color:var(--color-yang-id);">arbitrary-names</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This feature indicates that the device allows user-controlled
+       interfaces to be named arbitrarily."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L83C10 */</span><span id="L83C10"></span><span style="color:var(--color-yang-id);">pre-provisioning</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This feature indicates that the device supports
+       pre-provisioning of interface configuration, i.e., it is
+       possible to configure an interface whose physical interface
+       hardware is not present on the device."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L90C10 */</span><span id="L90C10"></span><span style="color:var(--color-yang-id);">if-mib</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This feature indicates that the device implements
+       the IF-MIB."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB"</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Data nodes
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L102C12 */</span><span id="L102C12"></span><span style="color:var(--color-yang-id);">interfaces</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Interface parameters."</span>;
+
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L106C9 */</span><span id="L106C9"></span><span style="color:var(--color-yang-id);">interface</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"name"</span>;
+
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The list of interfaces on the device.
+
+         The status of an interface is available in this list in the
+         operational state.  If the configuration of a
+         system-controlled interface cannot be used by the system
+         (e.g., the interface hardware present does not match the
+         interface type), then the configuration is not applied to
+         the system-controlled interface shown in the operational
+         state.  If the configuration of a user-controlled interface
+         cannot be used by the system, the configured interface is
+         not instantiated in the operational state.
+
+         System-controlled interfaces created by the system are
+         always present in this list in the operational state,
+         whether or not they are configured."</span>;
+
+     <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L126C10 */</span><span id="L126C10"></span><span style="color:var(--color-yang-id);">name</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L127C13 */</span><span id="L127C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The name of the interface.
+
+           A device MAY restrict the allowed values for this leaf,
+           possibly depending on the type of the interface.
+           For system-controlled interfaces, this leaf is the
+           device-specific name of the interface.
+
+           If a client tries to create configuration for a
+           system-controlled interface that is not present in the
+           operational state, the server MAY reject the request if
+           the implementation does not support pre-provisioning of
+           interfaces or if the name refers to an interface that can
+           never exist in the system.  A Network Configuration
+           Protocol (NETCONF) server MUST reply with an rpc-error
+           with the error-tag 'invalid-value' in this case.
+
+           If the device supports pre-provisioning of interface
+           configuration, the 'pre-provisioning' feature is
+           advertised.
+
+           If the device allows arbitrarily named user-controlled
+           interfaces, the 'arbitrary-names' feature is advertised.
+
+           When a configured user-controlled interface is created by
+           the system, it is instantiated with the same name in the
+           operational state.
+
+           A server implementation MAY map this leaf to the ifName
+           MIB object.  Such an implementation needs to use some
+           mechanism to handle the differences in size and characters
+           allowed between this leaf and ifName.  The definition of
+           such a mechanism is outside the scope of this document."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifName"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L165C11 */</span><span id="L165C11"></span><span style="color:var(--color-yang-id);">description</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L166C13 */</span><span id="L166C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A textual description of the interface.
+
+           A server implementation MAY map this leaf to the ifAlias
+           MIB object.  Such an implementation needs to use some
+           mechanism to handle the differences in size and characters
+           allowed between this leaf and ifAlias.  The definition of
+           such a mechanism is outside the scope of this document.
+
+           Since ifAlias is defined to be stored in non-volatile
+           storage, the MIB implementation MUST map ifAlias to the
+           value of 'description' in the persistently stored
+           configuration."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifAlias"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L184C11 */</span><span id="L184C11"></span><span style="color:var(--color-yang-id);">type</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L185C13 */</span><span id="L185C13"></span><span style="color:var(--color-yang-id);">identityref</span> {
+          <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L186C15 */</span><span id="L186C15"></span><span style="color:var(--color-yang-id);">interface-type</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L188C18 */</span><span id="L188C18"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The type of the interface.
+
+           When an interface entry is created, a server MAY
+           initialize the type leaf with a valid value, e.g., if it
+           is possible to derive the type from the name of the
+           interface.
+
+           If a client tries to set the type of an interface to a
+           value that can never be used by the system, e.g., if the
+           type is not supported or if the type does not match the
+           name of the interface, the server MUST reject the request.
+           A NETCONF server MUST reply with an rpc-error with the
+           error-tag 'invalid-value' in this case."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifType"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L207C11 */</span><span id="L207C11"></span><span style="color:var(--color-yang-id);">enabled</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L208C13 */</span><span id="L208C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"true"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This leaf contains the configured, desired state of the
+           interface.
+
+           Systems that implement the IF-MIB use the value of this
+           leaf in the intended configuration to set
+           IF-MIB.ifAdminStatus to 'up' or 'down' after an ifEntry
+           has been initialized, as described in RFC 2863.
+
+           Changes in this leaf in the intended configuration are
+           reflected in ifAdminStatus."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifAdminStatus"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L225C11 */</span><span id="L225C11"></span><span style="color:var(--color-yang-id);">link-up-down-trap-enable</span> {
+        <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L226C19 */</span><span id="L226C19"></span><span style="color:var(--color-yang-id);">if-mib</span>;
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L227C13 */</span><span id="L227C13"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L228C15 */</span><span id="L228C15"></span><span style="color:var(--color-yang-id);">enabled</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L229C18 */</span><span id="L229C18"></span><span style="color:var(--color-yang-id);">1</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The device will generate linkUp/linkDown SNMP
+               notifications for this interface."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L234C15 */</span><span id="L234C15"></span><span style="color:var(--color-yang-id);">disabled</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L235C18 */</span><span id="L235C18"></span><span style="color:var(--color-yang-id);">2</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The device will not generate linkUp/linkDown SNMP
+               notifications for this interface."</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Controls whether linkUp/linkDown SNMP notifications
+           should be generated for this interface.
+
+           If this node is not configured, the value 'enabled' is
+           operationally used by the server for interfaces that do
+           not operate on top of any other interface (i.e., there are
+           no 'lower-layer-if' entries), and 'disabled' otherwise."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB -
+                     ifLinkUpDownTrapEnable"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L254C11 */</span><span id="L254C11"></span><span style="color:var(--color-yang-id);">admin-status</span> {
+        <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L255C19 */</span><span id="L255C19"></span><span style="color:var(--color-yang-id);">if-mib</span>;
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L256C13 */</span><span id="L256C13"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L257C15 */</span><span id="L257C15"></span><span style="color:var(--color-yang-id);">up</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L258C18 */</span><span id="L258C18"></span><span style="color:var(--color-yang-id);">1</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Ready to pass packets."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L262C15 */</span><span id="L262C15"></span><span style="color:var(--color-yang-id);">down</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L263C18 */</span><span id="L263C18"></span><span style="color:var(--color-yang-id);">2</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Not ready to pass packets and not in some test mode."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L267C15 */</span><span id="L267C15"></span><span style="color:var(--color-yang-id);">testing</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L268C18 */</span><span id="L268C18"></span><span style="color:var(--color-yang-id);">3</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"In some test mode."</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L273C15 */</span><span id="L273C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L274C18 */</span><span id="L274C18"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The desired state of the interface.
+
+           This leaf has the same read semantics as ifAdminStatus."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifAdminStatus"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L283C11 */</span><span id="L283C11"></span><span style="color:var(--color-yang-id);">oper-status</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L284C13 */</span><span id="L284C13"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L285C15 */</span><span id="L285C15"></span><span style="color:var(--color-yang-id);">up</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L286C18 */</span><span id="L286C18"></span><span style="color:var(--color-yang-id);">1</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Ready to pass packets."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L290C15 */</span><span id="L290C15"></span><span style="color:var(--color-yang-id);">down</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L291C18 */</span><span id="L291C18"></span><span style="color:var(--color-yang-id);">2</span>;
+
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The interface does not pass any packets."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L296C15 */</span><span id="L296C15"></span><span style="color:var(--color-yang-id);">testing</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L297C18 */</span><span id="L297C18"></span><span style="color:var(--color-yang-id);">3</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"In some test mode.  No operational packets can
+               be passed."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L302C15 */</span><span id="L302C15"></span><span style="color:var(--color-yang-id);">unknown</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L303C18 */</span><span id="L303C18"></span><span style="color:var(--color-yang-id);">4</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Status cannot be determined for some reason."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L307C15 */</span><span id="L307C15"></span><span style="color:var(--color-yang-id);">dormant</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L308C18 */</span><span id="L308C18"></span><span style="color:var(--color-yang-id);">5</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Waiting for some external event."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L312C15 */</span><span id="L312C15"></span><span style="color:var(--color-yang-id);">not-present</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L313C18 */</span><span id="L313C18"></span><span style="color:var(--color-yang-id);">6</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Some component (typically hardware) is missing."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L317C15 */</span><span id="L317C15"></span><span style="color:var(--color-yang-id);">lower-layer-down</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L318C18 */</span><span id="L318C18"></span><span style="color:var(--color-yang-id);">7</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Down due to state of lower-layer interface(s)."</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L323C15 */</span><span id="L323C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L324C18 */</span><span id="L324C18"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The current operational state of the interface.
+
+           This leaf has the same semantics as ifOperStatus."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifOperStatus"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L333C11 */</span><span id="L333C11"></span><span style="color:var(--color-yang-id);">last-change</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L334C13 */</span><span id="L334C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L300C10">yang:date-and-time</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L335C15 */</span><span id="L335C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The time the interface entered its current operational
+           state.  If the current state was entered prior to the
+           last re-initialization of the local network management
+           subsystem, then this node is not present."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifLastChange"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L345C11 */</span><span id="L345C11"></span><span style="color:var(--color-yang-id);">if-index</span> {
+        <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L346C19 */</span><span id="L346C19"></span><span style="color:var(--color-yang-id);">if-mib</span>;
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L347C13 */</span><span id="L347C13"></span><span style="color:var(--color-yang-id);">int32</span> {
+          <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..2147483647"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L350C15 */</span><span id="L350C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L351C18 */</span><span id="L351C18"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The ifIndex value for the ifEntry represented by this
+           interface."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifIndex"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L359C11 */</span><span id="L359C11"></span><span style="color:var(--color-yang-id);">phys-address</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L360C13 */</span><span id="L360C13"></span><span style="color:var(--color-yang-id);">yang:phys-address</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L361C15 */</span><span id="L361C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The interface's address at its protocol sub-layer.  For
+           example, for an 802.x interface, this object normally
+           contains a Media Access Control (MAC) address.  The
+           interface's media-specific modules must define the bit
+           and byte ordering and the format of the value of this
+           object.  For interfaces that do not have such an address
+           (e.g., a serial line), this node is not present."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifPhysAddress"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L374C16 */</span><span id="L374C16"></span><span style="color:var(--color-yang-id);">higher-layer-if</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L375C13 */</span><span id="L375C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L55C10">interface-ref</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L376C15 */</span><span id="L376C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A list of references to interfaces layered on top of this
+           interface."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifStackTable"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L384C16 */</span><span id="L384C16"></span><span style="color:var(--color-yang-id);">lower-layer-if</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L385C13 */</span><span id="L385C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L55C10">interface-ref</a></span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L386C15 */</span><span id="L386C15"></span><span style="color:var(--color-yang-id);">false</span>;
+
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A list of references to interfaces layered underneath this
+           interface."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifStackTable"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L395C11 */</span><span id="L395C11"></span><span style="color:var(--color-yang-id);">speed</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L396C13 */</span><span id="L396C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L196C10">yang:gauge64</a></span>;
+        <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"bits/second"</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L398C15 */</span><span id="L398C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An estimate of the interface's current bandwidth in bits
+             per second.  For interfaces that do not vary in
+             bandwidth or for those where no accurate estimation can
+             be made, this node should contain the nominal bandwidth.
+             For interfaces that have no concept of bandwidth, this
+             node is not present."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB -
+                     ifSpeed, ifHighSpeed"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L411C16 */</span><span id="L411C16"></span><span style="color:var(--color-yang-id);">statistics</span> {
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L412C15 */</span><span id="L412C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A collection of interface-related statistics objects."</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L416C13 */</span><span id="L416C13"></span><span style="color:var(--color-yang-id);">discontinuity-time</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L417C15 */</span><span id="L417C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L300C10">yang:date-and-time</a></span>;
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L418C20 */</span><span id="L418C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The time on the most recent occasion at which any one or
+             more of this interface's counters suffered a
+             discontinuity.  If no such discontinuities have occurred
+             since the last re-initialization of the local management
+             subsystem, then this node contains the time the local
+             management subsystem re-initialized itself."</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L428C13 */</span><span id="L428C13"></span><span style="color:var(--color-yang-id);">in-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L429C15 */</span><span id="L429C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The total number of octets received on the interface,
+             including framing characters.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifHCInOctets"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L442C13 */</span><span id="L442C13"></span><span style="color:var(--color-yang-id);">in-unicast-pkts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L443C15 */</span><span id="L443C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of packets, delivered by this sub-layer to a
+             higher (sub-)layer, that were not addressed to a
+             multicast or broadcast address at this sub-layer.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifHCInUcastPkts"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L457C13 */</span><span id="L457C13"></span><span style="color:var(--color-yang-id);">in-broadcast-pkts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L458C15 */</span><span id="L458C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of packets, delivered by this sub-layer to a
+             higher (sub-)layer, that were addressed to a broadcast
+             address at this sub-layer.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB -
+                       ifHCInBroadcastPkts"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L473C13 */</span><span id="L473C13"></span><span style="color:var(--color-yang-id);">in-multicast-pkts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L474C15 */</span><span id="L474C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of packets, delivered by this sub-layer to a
+             higher (sub-)layer, that were addressed to a multicast
+             address at this sub-layer.  For a MAC-layer protocol,
+             this includes both Group and Functional addresses.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB -
+                       ifHCInMulticastPkts"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L490C13 */</span><span id="L490C13"></span><span style="color:var(--color-yang-id);">in-discards</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L491C15 */</span><span id="L491C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of inbound packets that were chosen to be
+             discarded even though no errors had been detected to
+             prevent their being deliverable to a higher-layer
+             protocol.  One possible reason for discarding such a
+             packet could be to free up buffer space.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifInDiscards"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L507C13 */</span><span id="L507C13"></span><span style="color:var(--color-yang-id);">in-errors</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L508C15 */</span><span id="L508C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"For packet-oriented interfaces, the number of inbound
+             packets that contained errors preventing them from being
+             deliverable to a higher-layer protocol.  For character-
+             oriented or fixed-length interfaces, the number of
+             inbound transmission units that contained errors
+             preventing them from being deliverable to a higher-layer
+             protocol.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifInErrors"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L526C13 */</span><span id="L526C13"></span><span style="color:var(--color-yang-id);">in-unknown-protos</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L527C15 */</span><span id="L527C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"For packet-oriented interfaces, the number of packets
+             received via the interface that were discarded because
+             of an unknown or unsupported protocol.  For
+             character-oriented or fixed-length interfaces that
+             support protocol multiplexing, the number of
+             transmission units received via the interface that were
+             discarded because of an unknown or unsupported protocol.
+             For any interface that does not support protocol
+             multiplexing, this counter is not present.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifInUnknownProtos"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L548C13 */</span><span id="L548C13"></span><span style="color:var(--color-yang-id);">out-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L549C15 */</span><span id="L549C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The total number of octets transmitted out of the
+             interface, including framing characters.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifHCOutOctets"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L562C13 */</span><span id="L562C13"></span><span style="color:var(--color-yang-id);">out-unicast-pkts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L563C15 */</span><span id="L563C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The total number of packets that higher-level protocols
+             requested be transmitted and that were not addressed
+             to a multicast or broadcast address at this sub-layer,
+             including those that were discarded or not sent.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifHCOutUcastPkts"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L578C13 */</span><span id="L578C13"></span><span style="color:var(--color-yang-id);">out-broadcast-pkts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L579C15 */</span><span id="L579C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The total number of packets that higher-level protocols
+             requested be transmitted and that were addressed to a
+             broadcast address at this sub-layer, including those
+             that were discarded or not sent.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB -
+                       ifHCOutBroadcastPkts"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L595C13 */</span><span id="L595C13"></span><span style="color:var(--color-yang-id);">out-multicast-pkts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L596C15 */</span><span id="L596C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The total number of packets that higher-level protocols
+             requested be transmitted and that were addressed to a
+             multicast address at this sub-layer, including those
+             that were discarded or not sent.  For a MAC-layer
+             protocol, this includes both Group and Functional
+             addresses.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB -
+                       ifHCOutMulticastPkts"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L614C13 */</span><span id="L614C13"></span><span style="color:var(--color-yang-id);">out-discards</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L615C15 */</span><span id="L615C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of outbound packets that were chosen to be
+             discarded even though no errors had been detected to
+             prevent their being transmitted.  One possible reason
+             for discarding such a packet could be to free up buffer
+             space.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifOutDiscards"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L631C13 */</span><span id="L631C13"></span><span style="color:var(--color-yang-id);">out-errors</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L632C15 */</span><span id="L632C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"For packet-oriented interfaces, the number of outbound
+             packets that could not be transmitted because of errors.
+             For character-oriented or fixed-length interfaces, the
+             number of outbound transmission units that could not be
+             transmitted because of errors.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifOutErrors"</span>;
+        }
+      }
+
+    }
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Legacy typedefs
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L656C10 */</span><span id="L656C10"></span><span style="color:var(--color-yang-id);">interface-state-ref</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L657C9 */</span><span id="L657C9"></span><span style="color:var(--color-yang-id);">leafref</span> {
+      <span style="color:var(--color-yang-keyword);">path</span> "<span style="color:var(--color-yang-comment);">/* L658C12 */</span><span id="L658C12"></span><span style="color:var(--color-yang-id);">/if:interfaces-state/if:interface/if:name"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L660C11 */</span><span id="L660C11"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This type is used by data models that need to reference
+       the operationally present interfaces."</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Legacy operational state data nodes
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L670C12 */</span><span id="L670C12"></span><span style="color:var(--color-yang-id);">interfaces-state</span> {
+    <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L671C11 */</span><span id="L671C11"></span><span style="color:var(--color-yang-id);">false</span>;
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L672C11 */</span><span id="L672C11"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Data nodes for the operational state of interfaces."</span>;
+
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L676C9 */</span><span id="L676C9"></span><span style="color:var(--color-yang-id);">interface</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"name"</span>;
+      <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L678C13 */</span><span id="L678C13"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The list of interfaces on the device.
+
+         System-controlled interfaces created by the system are
+         always present in this list, whether or not they are
+         configured."</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L687C11 */</span><span id="L687C11"></span><span style="color:var(--color-yang-id);">name</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L688C13 */</span><span id="L688C13"></span><span style="color:var(--color-yang-id);">string</span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L689C15 */</span><span id="L689C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The name of the interface.
+
+           A server implementation MAY map this leaf to the ifName
+           MIB object.  Such an implementation needs to use some
+           mechanism to handle the differences in size and characters
+           allowed between this leaf and ifName.  The definition of
+           such a mechanism is outside the scope of this document."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifName"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L702C11 */</span><span id="L702C11"></span><span style="color:var(--color-yang-id);">type</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L703C13 */</span><span id="L703C13"></span><span style="color:var(--color-yang-id);">identityref</span> {
+          <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L704C15 */</span><span id="L704C15"></span><span style="color:var(--color-yang-id);">interface-type</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L706C18 */</span><span id="L706C18"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L707C15 */</span><span id="L707C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The type of the interface."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifType"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L714C11 */</span><span id="L714C11"></span><span style="color:var(--color-yang-id);">admin-status</span> {
+        <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L715C19 */</span><span id="L715C19"></span><span style="color:var(--color-yang-id);">if-mib</span>;
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L716C13 */</span><span id="L716C13"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L717C15 */</span><span id="L717C15"></span><span style="color:var(--color-yang-id);">up</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L718C18 */</span><span id="L718C18"></span><span style="color:var(--color-yang-id);">1</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Ready to pass packets."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L722C15 */</span><span id="L722C15"></span><span style="color:var(--color-yang-id);">down</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L723C18 */</span><span id="L723C18"></span><span style="color:var(--color-yang-id);">2</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Not ready to pass packets and not in some test mode."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L727C15 */</span><span id="L727C15"></span><span style="color:var(--color-yang-id);">testing</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L728C18 */</span><span id="L728C18"></span><span style="color:var(--color-yang-id);">3</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"In some test mode."</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L733C18 */</span><span id="L733C18"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L734C15 */</span><span id="L734C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The desired state of the interface.
+
+           This leaf has the same read semantics as ifAdminStatus."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifAdminStatus"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L743C11 */</span><span id="L743C11"></span><span style="color:var(--color-yang-id);">oper-status</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L744C13 */</span><span id="L744C13"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L745C15 */</span><span id="L745C15"></span><span style="color:var(--color-yang-id);">up</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L746C18 */</span><span id="L746C18"></span><span style="color:var(--color-yang-id);">1</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Ready to pass packets."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L750C15 */</span><span id="L750C15"></span><span style="color:var(--color-yang-id);">down</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L751C18 */</span><span id="L751C18"></span><span style="color:var(--color-yang-id);">2</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The interface does not pass any packets."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L755C15 */</span><span id="L755C15"></span><span style="color:var(--color-yang-id);">testing</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L756C18 */</span><span id="L756C18"></span><span style="color:var(--color-yang-id);">3</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"In some test mode.  No operational packets can
+               be passed."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L761C15 */</span><span id="L761C15"></span><span style="color:var(--color-yang-id);">unknown</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L762C18 */</span><span id="L762C18"></span><span style="color:var(--color-yang-id);">4</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Status cannot be determined for some reason."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L766C15 */</span><span id="L766C15"></span><span style="color:var(--color-yang-id);">dormant</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L767C18 */</span><span id="L767C18"></span><span style="color:var(--color-yang-id);">5</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Waiting for some external event."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L771C15 */</span><span id="L771C15"></span><span style="color:var(--color-yang-id);">not-present</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L772C18 */</span><span id="L772C18"></span><span style="color:var(--color-yang-id);">6</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Some component (typically hardware) is missing."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L776C15 */</span><span id="L776C15"></span><span style="color:var(--color-yang-id);">lower-layer-down</span> {
+            <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L777C18 */</span><span id="L777C18"></span><span style="color:var(--color-yang-id);">7</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Down due to state of lower-layer interface(s)."</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L782C18 */</span><span id="L782C18"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L783C15 */</span><span id="L783C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The current operational state of the interface.
+
+           This leaf has the same semantics as ifOperStatus."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifOperStatus"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L792C11 */</span><span id="L792C11"></span><span style="color:var(--color-yang-id);">last-change</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L793C13 */</span><span id="L793C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L300C10">yang:date-and-time</a></span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L794C15 */</span><span id="L794C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The time the interface entered its current operational
+           state.  If the current state was entered prior to the
+           last re-initialization of the local network management
+           subsystem, then this node is not present."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifLastChange"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L804C11 */</span><span id="L804C11"></span><span style="color:var(--color-yang-id);">if-index</span> {
+        <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L805C19 */</span><span id="L805C19"></span><span style="color:var(--color-yang-id);">if-mib</span>;
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L806C13 */</span><span id="L806C13"></span><span style="color:var(--color-yang-id);">int32</span> {
+          <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..2147483647"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L809C18 */</span><span id="L809C18"></span><span style="color:var(--color-yang-id);">true</span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L810C15 */</span><span id="L810C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The ifIndex value for the ifEntry represented by this
+           interface."</span>;
+
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifIndex"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L819C11 */</span><span id="L819C11"></span><span style="color:var(--color-yang-id);">phys-address</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L820C13 */</span><span id="L820C13"></span><span style="color:var(--color-yang-id);">yang:phys-address</span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L821C15 */</span><span id="L821C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The interface's address at its protocol sub-layer.  For
+           example, for an 802.x interface, this object normally
+           contains a Media Access Control (MAC) address.  The
+           interface's media-specific modules must define the bit
+           and byte ordering and the format of the value of this
+           object.  For interfaces that do not have such an address
+           (e.g., a serial line), this node is not present."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifPhysAddress"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L834C16 */</span><span id="L834C16"></span><span style="color:var(--color-yang-id);">higher-layer-if</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L835C13 */</span><span id="L835C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L656C10">interface-state-ref</a></span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L836C15 */</span><span id="L836C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A list of references to interfaces layered on top of this
+           interface."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifStackTable"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L844C16 */</span><span id="L844C16"></span><span style="color:var(--color-yang-id);">lower-layer-if</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L845C13 */</span><span id="L845C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L656C10">interface-state-ref</a></span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L846C15 */</span><span id="L846C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A list of references to interfaces layered underneath this
+           interface."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifStackTable"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L854C11 */</span><span id="L854C11"></span><span style="color:var(--color-yang-id);">speed</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L855C13 */</span><span id="L855C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L196C10">yang:gauge64</a></span>;
+        <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"bits/second"</span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L857C15 */</span><span id="L857C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An estimate of the interface's current bandwidth in bits
+             per second.  For interfaces that do not vary in
+             bandwidth or for those where no accurate estimation can
+
+             be made, this node should contain the nominal bandwidth.
+             For interfaces that have no concept of bandwidth, this
+             node is not present."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB -
+                     ifSpeed, ifHighSpeed"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L871C16 */</span><span id="L871C16"></span><span style="color:var(--color-yang-id);">statistics</span> {
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L872C15 */</span><span id="L872C15"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A collection of interface-related statistics objects."</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L876C13 */</span><span id="L876C13"></span><span style="color:var(--color-yang-id);">discontinuity-time</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L877C15 */</span><span id="L877C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L300C10">yang:date-and-time</a></span>;
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L878C20 */</span><span id="L878C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L879C17 */</span><span id="L879C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The time on the most recent occasion at which any one or
+             more of this interface's counters suffered a
+             discontinuity.  If no such discontinuities have occurred
+             since the last re-initialization of the local management
+             subsystem, then this node contains the time the local
+             management subsystem re-initialized itself."</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L889C13 */</span><span id="L889C13"></span><span style="color:var(--color-yang-id);">in-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L890C15 */</span><span id="L890C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L891C17 */</span><span id="L891C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The total number of octets received on the interface,
+             including framing characters.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifHCInOctets"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L904C13 */</span><span id="L904C13"></span><span style="color:var(--color-yang-id);">in-unicast-pkts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L905C15 */</span><span id="L905C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L906C17 */</span><span id="L906C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of packets, delivered by this sub-layer to a
+             higher (sub-)layer, that were not addressed to a
+             multicast or broadcast address at this sub-layer.
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifHCInUcastPkts"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L919C13 */</span><span id="L919C13"></span><span style="color:var(--color-yang-id);">in-broadcast-pkts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L920C15 */</span><span id="L920C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L921C17 */</span><span id="L921C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of packets, delivered by this sub-layer to a
+             higher (sub-)layer, that were addressed to a broadcast
+             address at this sub-layer.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB -
+                       ifHCInBroadcastPkts"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L936C13 */</span><span id="L936C13"></span><span style="color:var(--color-yang-id);">in-multicast-pkts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L937C15 */</span><span id="L937C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L938C17 */</span><span id="L938C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of packets, delivered by this sub-layer to a
+             higher (sub-)layer, that were addressed to a multicast
+             address at this sub-layer.  For a MAC-layer protocol,
+             this includes both Group and Functional addresses.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB -
+                       ifHCInMulticastPkts"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L954C13 */</span><span id="L954C13"></span><span style="color:var(--color-yang-id);">in-discards</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L955C15 */</span><span id="L955C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L956C17 */</span><span id="L956C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of inbound packets that were chosen to be
+             discarded even though no errors had been detected to
+             prevent their being deliverable to a higher-layer
+             protocol.  One possible reason for discarding such a
+             packet could be to free up buffer space.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifInDiscards"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L973C13 */</span><span id="L973C13"></span><span style="color:var(--color-yang-id);">in-errors</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L974C15 */</span><span id="L974C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L975C17 */</span><span id="L975C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"For packet-oriented interfaces, the number of inbound
+             packets that contained errors preventing them from being
+             deliverable to a higher-layer protocol.  For character-
+             oriented or fixed-length interfaces, the number of
+             inbound transmission units that contained errors
+             preventing them from being deliverable to a higher-layer
+             protocol.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifInErrors"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L993C13 */</span><span id="L993C13"></span><span style="color:var(--color-yang-id);">in-unknown-protos</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L994C15 */</span><span id="L994C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L995C17 */</span><span id="L995C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"For packet-oriented interfaces, the number of packets
+             received via the interface that were discarded because
+             of an unknown or unsupported protocol.  For
+             character-oriented or fixed-length interfaces that
+             support protocol multiplexing, the number of
+             transmission units received via the interface that were
+             discarded because of an unknown or unsupported protocol.
+             For any interface that does not support protocol
+             multiplexing, this counter is not present.
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifInUnknownProtos"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1014C13 */</span><span id="L1014C13"></span><span style="color:var(--color-yang-id);">out-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1015C15 */</span><span id="L1015C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L1016C17 */</span><span id="L1016C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The total number of octets transmitted out of the
+             interface, including framing characters.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifHCOutOctets"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1029C13 */</span><span id="L1029C13"></span><span style="color:var(--color-yang-id);">out-unicast-pkts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1030C15 */</span><span id="L1030C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L1031C17 */</span><span id="L1031C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The total number of packets that higher-level protocols
+             requested be transmitted and that were not addressed
+             to a multicast or broadcast address at this sub-layer,
+             including those that were discarded or not sent.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifHCOutUcastPkts"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1046C13 */</span><span id="L1046C13"></span><span style="color:var(--color-yang-id);">out-broadcast-pkts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1047C15 */</span><span id="L1047C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L1048C17 */</span><span id="L1048C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The total number of packets that higher-level protocols
+             requested be transmitted and that were addressed to a
+             broadcast address at this sub-layer, including those
+             that were discarded or not sent.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB -
+                       ifHCOutBroadcastPkts"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1065C13 */</span><span id="L1065C13"></span><span style="color:var(--color-yang-id);">out-multicast-pkts</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1066C15 */</span><span id="L1066C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L1067C17 */</span><span id="L1067C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The total number of packets that higher-level protocols
+             requested be transmitted and that were addressed to a
+             multicast address at this sub-layer, including those
+             that were discarded or not sent.  For a MAC-layer
+             protocol, this includes both Group and Functional
+             addresses.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB -
+                       ifHCOutMulticastPkts"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1085C13 */</span><span id="L1085C13"></span><span style="color:var(--color-yang-id);">out-discards</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1086C15 */</span><span id="L1086C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L1087C17 */</span><span id="L1087C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of outbound packets that were chosen to be
+             discarded even though no errors had been detected to
+             prevent their being transmitted.  One possible reason
+             for discarding such a packet could be to free up buffer
+             space.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifOutDiscards"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L1103C13 */</span><span id="L1103C13"></span><span style="color:var(--color-yang-id);">out-errors</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L1104C15 */</span><span id="L1104C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L59C10">yang:counter32</a></span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L1105C17 */</span><span id="L1105C17"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"For packet-oriented interfaces, the number of outbound
+             packets that could not be transmitted because of errors.
+             For character-oriented or fixed-length interfaces, the
+             number of outbound transmission units that could not be
+             transmitted because of errors.
+
+             Discontinuities in the value of this counter can occur
+             at re-initialization of the management system and at
+             other times as indicated by the value of
+             'discontinuity-time'."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2863: The Interfaces Group MIB - ifOutErrors"</span>;
+        }
+      }
+    }
+  }
+}

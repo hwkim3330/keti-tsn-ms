@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-comment);">// Copyright (c) 2021-2022 Microchip Technology Inc. and its subsidiaries.</span>
+<span style="color:var(--color-yang-comment);">//</span>
+<span style="color:var(--color-yang-comment);">// Unpublished rights reserved under the copyright laws of the United States</span>
+<span style="color:var(--color-yang-comment);">// of America, other countries and international treaties. Permission to use,</span>
+<span style="color:var(--color-yang-comment);">// copy, store and modify, the software and its source code is granted but</span>
+<span style="color:var(--color-yang-comment);">// only in connection with products utilizing the Microsemi switch and PHY</span>
+<span style="color:var(--color-yang-comment);">// products.  Permission is also granted for you to integrate into other</span>
+<span style="color:var(--color-yang-comment);">// products, disclose, transmit and distribute the software only in an</span>
+<span style="color:var(--color-yang-comment);">// absolute machine readable format (e.g. HEX file) and only in or with</span>
+<span style="color:var(--color-yang-comment);">// products utilizing the Microsemi switch and PHY products.  The source code</span>
+<span style="color:var(--color-yang-comment);">// of the software may not be disclosed, transmitted or distributed without</span>
+<span style="color:var(--color-yang-comment);">// the prior written permission of Microsemi.</span>
+<span style="color:var(--color-yang-comment);">//</span>
+<span style="color:var(--color-yang-comment);">// This copyright notice must appear in any copy, modification, disclosure,</span>
+<span style="color:var(--color-yang-comment);">// transmission or distribution of the software.  Microsemi retains all</span>
+<span style="color:var(--color-yang-comment);">// ownership, copyright, trade secret and proprietary rights in the software</span>
+<span style="color:var(--color-yang-comment);">// and its source code, including all modifications thereto.</span>
+<span style="color:var(--color-yang-comment);">//</span>
+<span style="color:var(--color-yang-comment);">// THIS SOFTWARE HAS BEEN PROVIDED "AS IS". MICROSEMI HEREBY DISCLAIMS ALL</span>
+<span style="color:var(--color-yang-comment);">// WARRANTIES OF ANY KIND WITH RESPECT TO THE SOFTWARE, WHETHER SUCH</span>
+<span style="color:var(--color-yang-comment);">// WARRANTIES ARE EXPRESS, IMPLIED, STATUTORY OR OTHERWISE INCLUDING, WITHOUT</span>
+<span style="color:var(--color-yang-comment);">// LIMITATION, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR USE OR</span>
+<span style="color:var(--color-yang-comment);">// PURPOSE AND NON-INFRINGEMENT.</span>
+
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L25C7 */</span><span id="L25C7"></span><span style="color:var(--color-yang-id);">ietf-hardware-dev</span> {
+    <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L26C17 */</span><span id="L26C17"></span><span style="color:var(--color-yang-id);">1.1</span>;
+    <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:mchp:params:xml:ns:yang:ietf-hardware-dev"</span>;
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L28C11 */</span><span id="L28C11"></span><span style="color:var(--color-yang-id);">ietf-hardware-dev-pre</span>;
+
+    <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L30C11 */</span><span id="L30C11"></span><span style="color:var(--color-yang-id);">ietf-hardware</span> {
+        <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L31C15 */</span><span id="L31C15"></span><span style="color:var(--color-yang-id);">hw</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L34C13 */</span><span id="L34C13"></span><span style="color:var(--color-yang-id);">2025-03-31</span> {
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L37C14 */</span><span id="L37C14"></span><span style="color:var(--color-yang-id);">/hw:hardware</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L38C16 */</span><span id="L38C16"></span><span style="color:var(--color-yang-id);">replace</span> {
+            <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L39C19 */</span><span id="L39C19"></span><span style="color:var(--color-yang-id);">false</span>;
+        }
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L43C14 */</span><span id="L43C14"></span><span style="color:var(--color-yang-id);">/hw:hardware-state-change</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L44C16 */</span><span id="L44C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L47C14 */</span><span id="L47C14"></span><span style="color:var(--color-yang-id);">/hw:hardware-state-oper-disabled</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L48C16 */</span><span id="L48C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L51C14 */</span><span id="L51C14"></span><span style="color:var(--color-yang-id);">/hw:hardware-state-oper-enabled</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L52C16 */</span><span id="L52C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L55C14 */</span><span id="L55C14"></span><span style="color:var(--color-yang-id);">/hw:hardware/hw:component/hw:alias</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L56C16 */</span><span id="L56C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L59C14 */</span><span id="L59C14"></span><span style="color:var(--color-yang-id);">/hw:hardware/hw:component/hw:asset-id</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L60C16 */</span><span id="L60C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L63C14 */</span><span id="L63C14"></span><span style="color:var(--color-yang-id);">/hw:hardware/hw:component/hw:contains-child</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L64C16 */</span><span id="L64C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L67C14 */</span><span id="L67C14"></span><span style="color:var(--color-yang-id);">/hw:hardware/hw:component/hw:description</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L68C16 */</span><span id="L68C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L71C14 */</span><span id="L71C14"></span><span style="color:var(--color-yang-id);">/hw:hardware/hw:component/hw:is-fru</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L72C16 */</span><span id="L72C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L75C14 */</span><span id="L75C14"></span><span style="color:var(--color-yang-id);">/hw:hardware/hw:component/hw:mfg-date</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L76C16 */</span><span id="L76C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L79C14 */</span><span id="L79C14"></span><span style="color:var(--color-yang-id);">/hw:hardware/hw:component/hw:parent-rel-pos</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L80C16 */</span><span id="L80C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L83C14 */</span><span id="L83C14"></span><span style="color:var(--color-yang-id);">/hw:hardware/hw:component/hw:physical-index</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L84C16 */</span><span id="L84C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L87C14 */</span><span id="L87C14"></span><span style="color:var(--color-yang-id);">/hw:hardware/hw:component/hw:sensor-data/hw:value-timestamp</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L88C16 */</span><span id="L88C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L91C14 */</span><span id="L91C14"></span><span style="color:var(--color-yang-id);">/hw:hardware/hw:component/hw:software-rev</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L92C16 */</span><span id="L92C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L95C14 */</span><span id="L95C14"></span><span style="color:var(--color-yang-id);">/hw:hardware/hw:component/hw:state</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L96C16 */</span><span id="L96C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L99C14 */</span><span id="L99C14"></span><span style="color:var(--color-yang-id);">/hw:hardware/hw:component/hw:uri</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L100C16 */</span><span id="L100C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L103C14 */</span><span id="L103C14"></span><span style="color:var(--color-yang-id);">/hw:hardware/hw:component/hw:uuid</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L104C16 */</span><span id="L104C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L107C14 */</span><span id="L107C14"></span><span style="color:var(--color-yang-id);">/hw:hardware/hw:last-change</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L108C16 */</span><span id="L108C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+}

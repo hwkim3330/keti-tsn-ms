@@ -1,0 +1,78 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 6000,
+      "size": 1000
+    }
+  ],
+  "module-name": "ieee802-dot1q-types",
+  "module-revision": "2023-03-16",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ieee802-dot1q-types",
+      "status": "unstable",
+      "sid": 6000
+    },
+    {
+      "namespace": "identity",
+      "identifier": "asynchronous-traffic-shaping",
+      "status": "unstable",
+      "sid": 6001
+    },
+    {
+      "namespace": "identity",
+      "identifier": "c-vlan",
+      "status": "unstable",
+      "sid": 6002
+    },
+    {
+      "namespace": "identity",
+      "identifier": "credit-based-shaper",
+      "status": "unstable",
+      "sid": 6003
+    },
+    {
+      "namespace": "identity",
+      "identifier": "dot1q-vlan-type",
+      "status": "unstable",
+      "sid": 6004
+    },
+    {
+      "namespace": "identity",
+      "identifier": "enhanced-transmission-selection",
+      "status": "unstable",
+      "sid": 6005
+    },
+    {
+      "namespace": "identity",
+      "identifier": "s-vlan",
+      "status": "unstable",
+      "sid": 6006
+    },
+    {
+      "namespace": "identity",
+      "identifier": "strict-priority",
+      "status": "unstable",
+      "sid": 6007
+    },
+    {
+      "namespace": "identity",
+      "identifier": "transmission-selection-algorithm",
+      "status": "unstable",
+      "sid": 6008
+    },
+    {
+      "namespace": "identity",
+      "identifier": "type-of-operation",
+      "status": "unstable",
+      "sid": 6009
+    },
+    {
+      "namespace": "identity",
+      "identifier": "vendor-specific",
+      "status": "unstable",
+      "sid": 6010
+    }
+  ]
+}

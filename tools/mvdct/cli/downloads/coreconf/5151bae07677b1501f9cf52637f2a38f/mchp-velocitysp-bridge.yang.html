@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">mchp-velocitysp-bridge</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L2C15 */</span><span id="L2C15"></span><span style="color:var(--color-yang-id);">1.1</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:mchp:params:xml:ns:yang:velocitysp-bridge"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">lm-bridge</span>;
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L5C9 */</span><span id="L5C9"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-bridge</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L6C11 */</span><span id="L6C11"></span><span style="color:var(--color-yang-id);">dot1q</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L8C9 */</span><span id="L8C9"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L9C11 */</span><span id="L9C11"></span><span style="color:var(--color-yang-id);">dot1qtypes</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L11C9 */</span><span id="L11C9"></span><span style="color:var(--color-yang-id);">ietf-interfaces</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L12C11 */</span><span id="L12C11"></span><span style="color:var(--color-yang-id);">if</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module contains a collection of YANG definitions for
+     managing BRIDGE of MCHP systems running VelocitySP software."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L19C11 */</span><span id="L19C11"></span><span style="color:var(--color-yang-id);">2025-06-30</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Added default values.
+       Extended comment to ipv4-mc-disable"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L25C11 */</span><span id="L25C11"></span><span style="color:var(--color-yang-id);">2025-03-31</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Added new VLAN port type definition.
+       Added Bridge Port forwarding state.
+       Added Bridge Custom EtherType"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L32C11 */</span><span id="L32C11"></span><span style="color:var(--color-yang-id);">2024-10-23</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Added new FDB attributes for flooding control."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L37C11 */</span><span id="L37C11"></span><span style="color:var(--color-yang-id);">2024-10-01</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Added new FDB attributes on database, entry port."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L42C11 */</span><span id="L42C11"></span><span style="color:var(--color-yang-id);">2024-05-16</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L47C10 */</span><span id="L47C10"></span><span style="color:var(--color-yang-id);">tag_discard</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This feature is the configuration of frame discard based on tags.
+       This only have effect if the port-type is VLAN aware"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L53C10 */</span><span id="L53C10"></span><span style="color:var(--color-yang-id);">mchp-vid-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L54C9 */</span><span id="L54C9"></span><span style="color:var(--color-yang-id);">string</span> {
+      <span style="color:var(--color-yang-keyword);">pattern</span>
+        <span style="color:var(--color-yang-text);">"[1-9][0-9]{0,3}"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A single VLAN Id, between 1 and 4095.
+      This type is used to match a single VLAN Id.
+      For example: 1000"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L64C11 */</span><span id="L64C11"></span><span style="color:var(--color-yang-id);">provider-custom-network-port</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L65C9 */</span><span id="L65C9"></span><span style="color:var(--color-yang-id);">dot1q:type-of-port</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Indicates the port can be an Custom-TAG aware port of a Provider Bridge or
+      Backbone Edge Bridge used for connections within a PBN (Provider
+      Bridged Network) or PBBN (Provider Backbone Bridged Network)."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L72C10 */</span><span id="L72C10"></span><span style="color:var(--color-yang-id);">mchp-vlan-port-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L73C9 */</span><span id="L73C9"></span><span style="color:var(--color-yang-id);">identityref</span> {
+      <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L74C11 */</span><span id="L74C11"></span><span style="color:var(--color-yang-id);">dot1q:type-of-port</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"These VLAN port types are supported:
+      VLAN unaware port: 'd-bridge-port'.
+      VLAN aware port using C-tags: 'c-vlan-bridge-port'.
+      VLAN aware port using S-tags: 'provider-network-port'.
+      VLAN aware port using Custom-tags: 'provider-custom-network-port'."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L84C10 */</span><span id="L84C10"></span><span style="color:var(--color-yang-id);">mchp-config-change-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L85C9 */</span><span id="L85C9"></span><span style="color:var(--color-yang-id);">boolean</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A Boolean variable used to start the List Config state machine.
+      This variable can be set to TRUE to activate the AdminControlList.
+      The value read back reflects whether it has been attempted to activate
+      the current AdminControlList."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L93C11 */</span><span id="L93C11"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component"</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment bridge component with MCHP specific model"</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L97C9 */</span><span id="L97C9"></span><span style="color:var(--color-yang-id);">custom-ethertype</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L98C11 */</span><span id="L98C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L270C10">dot1qtypes:ethertype-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"88-A8"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The custom 16-bit IEEE 802 EtherType field for the bridge"</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"9.3 of IEEE Std 802"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">action</span> <span style="color:var(--color-yang-comment);">/* L106C11 */</span><span id="L106C11"></span><span style="color:var(--color-yang-id);">fdb-flush</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Flushing the filtering-database by deleting dynamic entries in
+         filtering-entry list based on VID and/or port"</span>;
+      <span style="color:var(--color-yang-keyword);">input</span> {
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L111C13 */</span><span id="L111C13"></span><span style="color:var(--color-yang-id);">vid</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L112C15 */</span><span id="L112C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L184C10">dot1qtypes:vlanid</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"All entries in filtering-entry on this VID will be addressed.
+             If this leaf is not present entries on all VIDs are addressed."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L117C13 */</span><span id="L117C13"></span><span style="color:var(--color-yang-id);">port</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L118C15 */</span><span id="L118C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L138C10">dot1qtypes:port-number-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Entries in filtering-entry on this port and addressed by leaf vid
+             (specific or all) will be deleted. If this leaf is not present,
+             entries in filtering-entry on any port and addressed by leaf vid
+             (specific or all) will be deleted."</span>;
+        }
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L129C11 */</span><span id="L129C11"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database"</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment bridge filtering-database with MCHP specific model"</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L133C9 */</span><span id="L133C9"></span><span style="color:var(--color-yang-id);">one-shot</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L134C11 */</span><span id="L134C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Indicates if a Dynamic MAC cannot move to another port."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L139C9 */</span><span id="L139C9"></span><span style="color:var(--color-yang-id);">ageing-disable</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L140C11 */</span><span id="L140C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Indicates if ageing of Dynamic MAC is disabled."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L145C14 */</span><span id="L145C14"></span><span style="color:var(--color-yang-id);">unknown-mac-flooding</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The list of port composing the flooding mask configuration."</span>;
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L148C16 */</span><span id="L148C16"></span><span style="color:var(--color-yang-id);">uc-disable</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L149C13 */</span><span id="L149C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L55C10">if:interface-ref</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Indicates if flooding of UC-MAC is disabled to this port. Default is enable"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L153C16 */</span><span id="L153C16"></span><span style="color:var(--color-yang-id);">mc-disable</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L154C13 */</span><span id="L154C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L55C10">if:interface-ref</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Indicates if flooding of MC-MAC is disabled to this port. Default is enable"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L158C16 */</span><span id="L158C16"></span><span style="color:var(--color-yang-id);">ipv4-mc-disable</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L159C13 */</span><span id="L159C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L55C10">if:interface-ref</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Indicates if flooding of IPV4 MC-MAC is disabled to this port. Default is enable.
+           Note that the range 224.0.0.0 - 224.0.0.255 is IPv4 multicast control and is not
+           filtered by this."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L165C16 */</span><span id="L165C16"></span><span style="color:var(--color-yang-id);">ipv6-mc-disable</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L166C13 */</span><span id="L166C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L55C10">if:interface-ref</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Indicates if flooding of IPV6 MC-MAC is disabled to this port. Default is enable"</span>;
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L173C11 */</span><span id="L173C11"></span><span style="color:var(--color-yang-id);">/dot1q:bridges/dot1q:bridge/dot1q:component/dot1q:filtering-database/dot1q:filtering-entry"</span> {
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L174C11 */</span><span id="L174C11"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment bridge filtering-entry with MCHP specific model"</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L178C9 */</span><span id="L178C9"></span><span style="color:var(--color-yang-id);">ageing-disable</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L179C11 */</span><span id="L179C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+      <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L181C13 */</span><span id="L181C13"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Indicates if ageing of this specific Dynamic MAC is disabled."</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L187C11 */</span><span id="L187C11"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface/dot1q:bridge-port"</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment the interface bridge-port with MCHP specific model"</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L191C9 */</span><span id="L191C9"></span><span style="color:var(--color-yang-id);">fdb-learning-disable</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L192C11 */</span><span id="L192C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Indicates if learning of Dynamic MAC is disabled."</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L198C9 */</span><span id="L198C9"></span><span style="color:var(--color-yang-id);">fdb-learning-limit</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L199C11 */</span><span id="L199C11"></span><span style="color:var(--color-yang-id);">uint16</span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"0"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The limit of how many Dynamic MAC can be learned.
+         Zero means limitation is disabled.
+         Maximum is 32767"</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L207C9 */</span><span id="L207C9"></span><span style="color:var(--color-yang-id);">forwarding-disable</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L208C11 */</span><span id="L208C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The bridge port forwarding can be disabled.
+         When true, forwarding to/from the port is disabled.
+         When false, forwarding to/from the port is enabled."</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L216C9 */</span><span id="L216C9"></span><span style="color:var(--color-yang-id);">inner-tag-discard</span> {
+      <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L217C17 */</span><span id="L217C17"></span><span style="color:var(--color-yang-id);">tag_discard</span>;
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L218C11 */</span><span id="L218C11"></span><span style="color:var(--color-yang-id);">bits</span> {
+        <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L219C12 */</span><span id="L219C12"></span><span style="color:var(--color-yang-id);">no-tag</span> {
+          <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L220C19 */</span><span id="L220C19"></span><span style="color:var(--color-yang-id);">0</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Discard if there is no tag - tag is required."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L224C12 */</span><span id="L224C12"></span><span style="color:var(--color-yang-id);">any-tag</span> {
+          <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L225C19 */</span><span id="L225C19"></span><span style="color:var(--color-yang-id);">1</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Discard if there is a tag - tag is not accepted."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L229C12 */</span><span id="L229C12"></span><span style="color:var(--color-yang-id);">c-tag</span> {
+          <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L230C19 */</span><span id="L230C19"></span><span style="color:var(--color-yang-id);">2</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Discard if there is a c-tag."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L234C12 */</span><span id="L234C12"></span><span style="color:var(--color-yang-id);">s-tag</span> {
+          <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L235C19 */</span><span id="L235C19"></span><span style="color:var(--color-yang-id);">3</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Discard if there is a s-tag."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L239C12 */</span><span id="L239C12"></span><span style="color:var(--color-yang-id);">custom-tag</span> {
+          <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L240C19 */</span><span id="L240C19"></span><span style="color:var(--color-yang-id);">4</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Discard if there is a custom-tag."</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Discard frame based on inner (second) tag.
+         If no bit is set the frame is not discarded based on tag.
+         This only have effect if the port-type is VLAN aware"</span>;
+    }
+  }
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">mchp-velocitysp-dhcp</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L2C15 */</span><span id="L2C15"></span><span style="color:var(--color-yang-id);">1.1</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:mchp:params:xml:ns:yang:velocitysp-dhcp"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">lm-dhcp</span>;
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L5C9 */</span><span id="L5C9"></span><span style="color:var(--color-yang-id);">ietf-interfaces</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L6C11 */</span><span id="L6C11"></span><span style="color:var(--color-yang-id);">if</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L8C9 */</span><span id="L8C9"></span><span style="color:var(--color-yang-id);">iana-if-type</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L9C11 */</span><span id="L9C11"></span><span style="color:var(--color-yang-id);">ianaif</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L11C9 */</span><span id="L11C9"></span><span style="color:var(--color-yang-id);">ietf-inet-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L12C11 */</span><span id="L12C11"></span><span style="color:var(--color-yang-id);">inet</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module contains a collection of YANG definitions for
+     managing DHCP of MCHP systems running VelocitySP software."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L19C11 */</span><span id="L19C11"></span><span style="color:var(--color-yang-id);">2023-02-23</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L24C11 */</span><span id="L24C11"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span>
+      "<span style="color:var(--color-yang-comment);">/* L26C7 */</span><span id="L26C7"></span><span style="color:var(--color-yang-id);">if:type = 'ianaif:l3ipvlan'"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Applies when a Layer 3 Virtual LAN using IP"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment the interface model with the Layer 3 Virtual LAN using IP interface"</span>;
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L32C14 */</span><span id="L32C14"></span><span style="color:var(--color-yang-id);">dhcp</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Layer 3 VLAN DHCP is an extension of the IETF Interfaces model (RFC7223)."</span>;
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L35C16 */</span><span id="L35C16"></span><span style="color:var(--color-yang-id);">client</span> {
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L36C18 */</span><span id="L36C18"></span><span style="color:var(--color-yang-id);">config</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Container of configuration for each interface."</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L39C15 */</span><span id="L39C15"></span><span style="color:var(--color-yang-id);">enabled</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L40C17 */</span><span id="L40C17"></span><span style="color:var(--color-yang-id);">boolean</span>;
+            <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L41C20 */</span><span id="L41C20"></span><span style="color:var(--color-yang-id);">false</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Indicates that the DHCP client is enabled.
+               State change from false to true will activate DHCP Discover.
+               State change from true to false will activate DHCP Release"</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L48C18 */</span><span id="L48C18"></span><span style="color:var(--color-yang-id);">status</span> {
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L49C17 */</span><span id="L49C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Container of status for each interface."</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L52C15 */</span><span id="L52C15"></span><span style="color:var(--color-yang-id);">state</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L53C17 */</span><span id="L53C17"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L54C19 */</span><span id="L54C19"></span><span style="color:var(--color-yang-id);">DISABLED</span> {
+                  <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"DHCP client is disabled"</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L58C19 */</span><span id="L58C19"></span><span style="color:var(--color-yang-id);">SELECTING</span> {
+                  <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"DHCP client is in SELECTING state"</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L62C19 */</span><span id="L62C19"></span><span style="color:var(--color-yang-id);">REQUESTING</span> {
+                  <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"DHCP client is in REQUESTING state"</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L66C19 */</span><span id="L66C19"></span><span style="color:var(--color-yang-id);">REBINDING</span> {
+                  <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"DHCP client is in REBINDING state"</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L70C19 */</span><span id="L70C19"></span><span style="color:var(--color-yang-id);">BOUND</span> {
+                  <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"DHCP client is in BOUND state"</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L74C19 */</span><span id="L74C19"></span><span style="color:var(--color-yang-id);">RENEWING</span> {
+                  <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"DHCP client is in RENEWING state"</span>;
+              }
+            }
+            <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L79C19 */</span><span id="L79C19"></span><span style="color:var(--color-yang-id);">false</span>;
+
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The DHCP client state"</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"4.4 of RFC 2131"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L86C15 */</span><span id="L86C15"></span><span style="color:var(--color-yang-id);">server-ip</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L87C17 */</span><span id="L87C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L263C10">inet:ipv4-address-no-zone</a></span>;
+            <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L88C19 */</span><span id="L88C19"></span><span style="color:var(--color-yang-id);">false</span>;
+            <span style="color:var(--color-yang-keyword);">description</span> <span style="color:var(--color-yang-text);">"DHCP server IP"</span>;
+          }
+        }
+      }
+    }
+  }
+}

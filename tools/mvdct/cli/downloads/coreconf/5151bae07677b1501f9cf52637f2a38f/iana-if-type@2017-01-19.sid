@@ -1,0 +1,1734 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 3000,
+      "size": 1000
+    }
+  ],
+  "module-name": "iana-if-type",
+  "module-revision": "2017-01-19",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "iana-if-type",
+      "status": "unstable",
+      "sid": 3000
+    },
+    {
+      "namespace": "identity",
+      "identifier": "a12MppSwitch",
+      "status": "unstable",
+      "sid": 3001
+    },
+    {
+      "namespace": "identity",
+      "identifier": "aal2",
+      "status": "unstable",
+      "sid": 3002
+    },
+    {
+      "namespace": "identity",
+      "identifier": "aal5",
+      "status": "unstable",
+      "sid": 3003
+    },
+    {
+      "namespace": "identity",
+      "identifier": "actelisMetaLOOP",
+      "status": "unstable",
+      "sid": 3004
+    },
+    {
+      "namespace": "identity",
+      "identifier": "adsl",
+      "status": "unstable",
+      "sid": 3005
+    },
+    {
+      "namespace": "identity",
+      "identifier": "adsl2",
+      "status": "unstable",
+      "sid": 3006
+    },
+    {
+      "namespace": "identity",
+      "identifier": "adsl2plus",
+      "status": "unstable",
+      "sid": 3007
+    },
+    {
+      "namespace": "identity",
+      "identifier": "aflane8023",
+      "status": "unstable",
+      "sid": 3008
+    },
+    {
+      "namespace": "identity",
+      "identifier": "aflane8025",
+      "status": "unstable",
+      "sid": 3009
+    },
+    {
+      "namespace": "identity",
+      "identifier": "aluELP",
+      "status": "unstable",
+      "sid": 3010
+    },
+    {
+      "namespace": "identity",
+      "identifier": "aluEpon",
+      "status": "unstable",
+      "sid": 3011
+    },
+    {
+      "namespace": "identity",
+      "identifier": "aluEponLogicalLink",
+      "status": "unstable",
+      "sid": 3012
+    },
+    {
+      "namespace": "identity",
+      "identifier": "aluEponOnu",
+      "status": "unstable",
+      "sid": 3013
+    },
+    {
+      "namespace": "identity",
+      "identifier": "aluEponPhysicalUni",
+      "status": "unstable",
+      "sid": 3014
+    },
+    {
+      "namespace": "identity",
+      "identifier": "aluGponOnu",
+      "status": "unstable",
+      "sid": 3015
+    },
+    {
+      "namespace": "identity",
+      "identifier": "aluGponPhysicalUni",
+      "status": "unstable",
+      "sid": 3016
+    },
+    {
+      "namespace": "identity",
+      "identifier": "arap",
+      "status": "unstable",
+      "sid": 3017
+    },
+    {
+      "namespace": "identity",
+      "identifier": "arcnet",
+      "status": "unstable",
+      "sid": 3018
+    },
+    {
+      "namespace": "identity",
+      "identifier": "arcnetPlus",
+      "status": "unstable",
+      "sid": 3019
+    },
+    {
+      "namespace": "identity",
+      "identifier": "async",
+      "status": "unstable",
+      "sid": 3020
+    },
+    {
+      "namespace": "identity",
+      "identifier": "atm",
+      "status": "unstable",
+      "sid": 3021
+    },
+    {
+      "namespace": "identity",
+      "identifier": "atmDxi",
+      "status": "unstable",
+      "sid": 3022
+    },
+    {
+      "namespace": "identity",
+      "identifier": "atmFuni",
+      "status": "unstable",
+      "sid": 3023
+    },
+    {
+      "namespace": "identity",
+      "identifier": "atmIma",
+      "status": "unstable",
+      "sid": 3024
+    },
+    {
+      "namespace": "identity",
+      "identifier": "atmLogical",
+      "status": "unstable",
+      "sid": 3025
+    },
+    {
+      "namespace": "identity",
+      "identifier": "atmRadio",
+      "status": "unstable",
+      "sid": 3026
+    },
+    {
+      "namespace": "identity",
+      "identifier": "atmSubInterface",
+      "status": "unstable",
+      "sid": 3027
+    },
+    {
+      "namespace": "identity",
+      "identifier": "atmVciEndPt",
+      "status": "unstable",
+      "sid": 3028
+    },
+    {
+      "namespace": "identity",
+      "identifier": "atmVirtual",
+      "status": "unstable",
+      "sid": 3029
+    },
+    {
+      "namespace": "identity",
+      "identifier": "atmbond",
+      "status": "unstable",
+      "sid": 3030
+    },
+    {
+      "namespace": "identity",
+      "identifier": "aviciOpticalEther",
+      "status": "unstable",
+      "sid": 3031
+    },
+    {
+      "namespace": "identity",
+      "identifier": "basicISDN",
+      "status": "unstable",
+      "sid": 3032
+    },
+    {
+      "namespace": "identity",
+      "identifier": "bgppolicyaccounting",
+      "status": "unstable",
+      "sid": 3033
+    },
+    {
+      "namespace": "identity",
+      "identifier": "bits",
+      "status": "unstable",
+      "sid": 3034
+    },
+    {
+      "namespace": "identity",
+      "identifier": "bridge",
+      "status": "unstable",
+      "sid": 3035
+    },
+    {
+      "namespace": "identity",
+      "identifier": "bsc",
+      "status": "unstable",
+      "sid": 3036
+    },
+    {
+      "namespace": "identity",
+      "identifier": "cableDownstreamRfPort",
+      "status": "unstable",
+      "sid": 3037
+    },
+    {
+      "namespace": "identity",
+      "identifier": "capwapDot11Bss",
+      "status": "unstable",
+      "sid": 3038
+    },
+    {
+      "namespace": "identity",
+      "identifier": "capwapDot11Profile",
+      "status": "unstable",
+      "sid": 3039
+    },
+    {
+      "namespace": "identity",
+      "identifier": "capwapWtpVirtualRadio",
+      "status": "unstable",
+      "sid": 3040
+    },
+    {
+      "namespace": "identity",
+      "identifier": "cblVectaStar",
+      "status": "unstable",
+      "sid": 3041
+    },
+    {
+      "namespace": "identity",
+      "identifier": "cctEmul",
+      "status": "unstable",
+      "sid": 3042
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ces",
+      "status": "unstable",
+      "sid": 3043
+    },
+    {
+      "namespace": "identity",
+      "identifier": "channel",
+      "status": "unstable",
+      "sid": 3044
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ciscoISLvlan",
+      "status": "unstable",
+      "sid": 3045
+    },
+    {
+      "namespace": "identity",
+      "identifier": "cnr",
+      "status": "unstable",
+      "sid": 3046
+    },
+    {
+      "namespace": "identity",
+      "identifier": "coffee",
+      "status": "unstable",
+      "sid": 3047
+    },
+    {
+      "namespace": "identity",
+      "identifier": "compositeLink",
+      "status": "unstable",
+      "sid": 3048
+    },
+    {
+      "namespace": "identity",
+      "identifier": "dcn",
+      "status": "unstable",
+      "sid": 3049
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ddnX25",
+      "status": "unstable",
+      "sid": 3050
+    },
+    {
+      "namespace": "identity",
+      "identifier": "digitalPowerline",
+      "status": "unstable",
+      "sid": 3051
+    },
+    {
+      "namespace": "identity",
+      "identifier": "digitalWrapperOverheadChannel",
+      "status": "unstable",
+      "sid": 3052
+    },
+    {
+      "namespace": "identity",
+      "identifier": "dlsw",
+      "status": "unstable",
+      "sid": 3053
+    },
+    {
+      "namespace": "identity",
+      "identifier": "docsCableDownstream",
+      "status": "unstable",
+      "sid": 3054
+    },
+    {
+      "namespace": "identity",
+      "identifier": "docsCableMCmtsDownstream",
+      "status": "unstable",
+      "sid": 3055
+    },
+    {
+      "namespace": "identity",
+      "identifier": "docsCableMaclayer",
+      "status": "unstable",
+      "sid": 3056
+    },
+    {
+      "namespace": "identity",
+      "identifier": "docsCableNdf",
+      "status": "unstable",
+      "sid": 3057
+    },
+    {
+      "namespace": "identity",
+      "identifier": "docsCableNdr",
+      "status": "unstable",
+      "sid": 3058
+    },
+    {
+      "namespace": "identity",
+      "identifier": "docsCableScte55d1FwdOob",
+      "status": "unstable",
+      "sid": 3059
+    },
+    {
+      "namespace": "identity",
+      "identifier": "docsCableScte55d1RetOob",
+      "status": "unstable",
+      "sid": 3060
+    },
+    {
+      "namespace": "identity",
+      "identifier": "docsCableScte55d2DsOob",
+      "status": "unstable",
+      "sid": 3061
+    },
+    {
+      "namespace": "identity",
+      "identifier": "docsCableScte55d2UsOob",
+      "status": "unstable",
+      "sid": 3062
+    },
+    {
+      "namespace": "identity",
+      "identifier": "docsCableUpstream",
+      "status": "unstable",
+      "sid": 3063
+    },
+    {
+      "namespace": "identity",
+      "identifier": "docsCableUpstreamChannel",
+      "status": "unstable",
+      "sid": 3064
+    },
+    {
+      "namespace": "identity",
+      "identifier": "docsCableUpstreamRfPort",
+      "status": "unstable",
+      "sid": 3065
+    },
+    {
+      "namespace": "identity",
+      "identifier": "docsOfdmDownstream",
+      "status": "unstable",
+      "sid": 3066
+    },
+    {
+      "namespace": "identity",
+      "identifier": "docsOfdmaUpstream",
+      "status": "unstable",
+      "sid": 3067
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ds0",
+      "status": "unstable",
+      "sid": 3068
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ds0Bundle",
+      "status": "unstable",
+      "sid": 3069
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ds1",
+      "status": "unstable",
+      "sid": 3070
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ds1FDL",
+      "status": "unstable",
+      "sid": 3071
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ds3",
+      "status": "unstable",
+      "sid": 3072
+    },
+    {
+      "namespace": "identity",
+      "identifier": "dtm",
+      "status": "unstable",
+      "sid": 3073
+    },
+    {
+      "namespace": "identity",
+      "identifier": "dvbAsiIn",
+      "status": "unstable",
+      "sid": 3074
+    },
+    {
+      "namespace": "identity",
+      "identifier": "dvbAsiOut",
+      "status": "unstable",
+      "sid": 3075
+    },
+    {
+      "namespace": "identity",
+      "identifier": "dvbRccDownstream",
+      "status": "unstable",
+      "sid": 3076
+    },
+    {
+      "namespace": "identity",
+      "identifier": "dvbRccMacLayer",
+      "status": "unstable",
+      "sid": 3077
+    },
+    {
+      "namespace": "identity",
+      "identifier": "dvbRccUpstream",
+      "status": "unstable",
+      "sid": 3078
+    },
+    {
+      "namespace": "identity",
+      "identifier": "dvbRcsMacLayer",
+      "status": "unstable",
+      "sid": 3079
+    },
+    {
+      "namespace": "identity",
+      "identifier": "dvbRcsTdma",
+      "status": "unstable",
+      "sid": 3080
+    },
+    {
+      "namespace": "identity",
+      "identifier": "dvbTdm",
+      "status": "unstable",
+      "sid": 3081
+    },
+    {
+      "namespace": "identity",
+      "identifier": "e1",
+      "status": "unstable",
+      "sid": 3082
+    },
+    {
+      "namespace": "identity",
+      "identifier": "econet",
+      "status": "unstable",
+      "sid": 3083
+    },
+    {
+      "namespace": "identity",
+      "identifier": "eon",
+      "status": "unstable",
+      "sid": 3084
+    },
+    {
+      "namespace": "identity",
+      "identifier": "eplrs",
+      "status": "unstable",
+      "sid": 3085
+    },
+    {
+      "namespace": "identity",
+      "identifier": "escon",
+      "status": "unstable",
+      "sid": 3086
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ethernet3Mbit",
+      "status": "unstable",
+      "sid": 3087
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ethernetCsmacd",
+      "status": "unstable",
+      "sid": 3088
+    },
+    {
+      "namespace": "identity",
+      "identifier": "fast",
+      "status": "unstable",
+      "sid": 3089
+    },
+    {
+      "namespace": "identity",
+      "identifier": "fastEther",
+      "status": "unstable",
+      "sid": 3090
+    },
+    {
+      "namespace": "identity",
+      "identifier": "fastEtherFX",
+      "status": "unstable",
+      "sid": 3091
+    },
+    {
+      "namespace": "identity",
+      "identifier": "fastdsl",
+      "status": "unstable",
+      "sid": 3092
+    },
+    {
+      "namespace": "identity",
+      "identifier": "fcipLink",
+      "status": "unstable",
+      "sid": 3093
+    },
+    {
+      "namespace": "identity",
+      "identifier": "fddi",
+      "status": "unstable",
+      "sid": 3094
+    },
+    {
+      "namespace": "identity",
+      "identifier": "fibreChannel",
+      "status": "unstable",
+      "sid": 3095
+    },
+    {
+      "namespace": "identity",
+      "identifier": "frDlciEndPt",
+      "status": "unstable",
+      "sid": 3096
+    },
+    {
+      "namespace": "identity",
+      "identifier": "frForward",
+      "status": "unstable",
+      "sid": 3097
+    },
+    {
+      "namespace": "identity",
+      "identifier": "frameRelay",
+      "status": "unstable",
+      "sid": 3098
+    },
+    {
+      "namespace": "identity",
+      "identifier": "frameRelayInterconnect",
+      "status": "unstable",
+      "sid": 3099
+    },
+    {
+      "namespace": "identity",
+      "identifier": "frameRelayMPI",
+      "status": "unstable",
+      "sid": 3100
+    },
+    {
+      "namespace": "identity",
+      "identifier": "frameRelayService",
+      "status": "unstable",
+      "sid": 3101
+    },
+    {
+      "namespace": "identity",
+      "identifier": "frf16MfrBundle",
+      "status": "unstable",
+      "sid": 3102
+    },
+    {
+      "namespace": "identity",
+      "identifier": "g703at2mb",
+      "status": "unstable",
+      "sid": 3103
+    },
+    {
+      "namespace": "identity",
+      "identifier": "g703at64k",
+      "status": "unstable",
+      "sid": 3104
+    },
+    {
+      "namespace": "identity",
+      "identifier": "g9981",
+      "status": "unstable",
+      "sid": 3105
+    },
+    {
+      "namespace": "identity",
+      "identifier": "g9982",
+      "status": "unstable",
+      "sid": 3106
+    },
+    {
+      "namespace": "identity",
+      "identifier": "g9983",
+      "status": "unstable",
+      "sid": 3107
+    },
+    {
+      "namespace": "identity",
+      "identifier": "gfast",
+      "status": "unstable",
+      "sid": 3108
+    },
+    {
+      "namespace": "identity",
+      "identifier": "gfp",
+      "status": "unstable",
+      "sid": 3109
+    },
+    {
+      "namespace": "identity",
+      "identifier": "gigabitEthernet",
+      "status": "unstable",
+      "sid": 3110
+    },
+    {
+      "namespace": "identity",
+      "identifier": "gpon",
+      "status": "unstable",
+      "sid": 3111
+    },
+    {
+      "namespace": "identity",
+      "identifier": "gr303IDT",
+      "status": "unstable",
+      "sid": 3112
+    },
+    {
+      "namespace": "identity",
+      "identifier": "gr303RDT",
+      "status": "unstable",
+      "sid": 3113
+    },
+    {
+      "namespace": "identity",
+      "identifier": "gtp",
+      "status": "unstable",
+      "sid": 3114
+    },
+    {
+      "namespace": "identity",
+      "identifier": "h323Gatekeeper",
+      "status": "unstable",
+      "sid": 3115
+    },
+    {
+      "namespace": "identity",
+      "identifier": "h323Proxy",
+      "status": "unstable",
+      "sid": 3116
+    },
+    {
+      "namespace": "identity",
+      "identifier": "hdh1822",
+      "status": "unstable",
+      "sid": 3117
+    },
+    {
+      "namespace": "identity",
+      "identifier": "hdlc",
+      "status": "unstable",
+      "sid": 3118
+    },
+    {
+      "namespace": "identity",
+      "identifier": "hdsl2",
+      "status": "unstable",
+      "sid": 3119
+    },
+    {
+      "namespace": "identity",
+      "identifier": "hiperlan2",
+      "status": "unstable",
+      "sid": 3120
+    },
+    {
+      "namespace": "identity",
+      "identifier": "hippi",
+      "status": "unstable",
+      "sid": 3121
+    },
+    {
+      "namespace": "identity",
+      "identifier": "hippiInterface",
+      "status": "unstable",
+      "sid": 3122
+    },
+    {
+      "namespace": "identity",
+      "identifier": "homepna",
+      "status": "unstable",
+      "sid": 3123
+    },
+    {
+      "namespace": "identity",
+      "identifier": "hostPad",
+      "status": "unstable",
+      "sid": 3124
+    },
+    {
+      "namespace": "identity",
+      "identifier": "hssi",
+      "status": "unstable",
+      "sid": 3125
+    },
+    {
+      "namespace": "identity",
+      "identifier": "hyperchannel",
+      "status": "unstable",
+      "sid": 3126
+    },
+    {
+      "namespace": "identity",
+      "identifier": "iana-interface-type",
+      "status": "unstable",
+      "sid": 3127
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ibm370parChan",
+      "status": "unstable",
+      "sid": 3128
+    },
+    {
+      "namespace": "identity",
+      "identifier": "idsl",
+      "status": "unstable",
+      "sid": 3129
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ieee1394",
+      "status": "unstable",
+      "sid": 3130
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ieee80211",
+      "status": "unstable",
+      "sid": 3131
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ieee80212",
+      "status": "unstable",
+      "sid": 3132
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ieee802154",
+      "status": "unstable",
+      "sid": 3133
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ieee80216WMAN",
+      "status": "unstable",
+      "sid": 3134
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ieee8023adLag",
+      "status": "unstable",
+      "sid": 3135
+    },
+    {
+      "namespace": "identity",
+      "identifier": "if-gsn",
+      "status": "unstable",
+      "sid": 3136
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ifPwType",
+      "status": "unstable",
+      "sid": 3137
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ifVfiType",
+      "status": "unstable",
+      "sid": 3138
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ilan",
+      "status": "unstable",
+      "sid": 3139
+    },
+    {
+      "namespace": "identity",
+      "identifier": "imt",
+      "status": "unstable",
+      "sid": 3140
+    },
+    {
+      "namespace": "identity",
+      "identifier": "infiniband",
+      "status": "unstable",
+      "sid": 3141
+    },
+    {
+      "namespace": "identity",
+      "identifier": "interleave",
+      "status": "unstable",
+      "sid": 3142
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ip",
+      "status": "unstable",
+      "sid": 3143
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ipForward",
+      "status": "unstable",
+      "sid": 3144
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ipOverAtm",
+      "status": "unstable",
+      "sid": 3145
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ipOverCdlc",
+      "status": "unstable",
+      "sid": 3146
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ipOverClaw",
+      "status": "unstable",
+      "sid": 3147
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ipSwitch",
+      "status": "unstable",
+      "sid": 3148
+    },
+    {
+      "namespace": "identity",
+      "identifier": "isdn",
+      "status": "unstable",
+      "sid": 3149
+    },
+    {
+      "namespace": "identity",
+      "identifier": "isdns",
+      "status": "unstable",
+      "sid": 3150
+    },
+    {
+      "namespace": "identity",
+      "identifier": "isdnu",
+      "status": "unstable",
+      "sid": 3151
+    },
+    {
+      "namespace": "identity",
+      "identifier": "iso88022llc",
+      "status": "unstable",
+      "sid": 3152
+    },
+    {
+      "namespace": "identity",
+      "identifier": "iso88023Csmacd",
+      "status": "unstable",
+      "sid": 3153
+    },
+    {
+      "namespace": "identity",
+      "identifier": "iso88024TokenBus",
+      "status": "unstable",
+      "sid": 3154
+    },
+    {
+      "namespace": "identity",
+      "identifier": "iso88025CRFPInt",
+      "status": "unstable",
+      "sid": 3155
+    },
+    {
+      "namespace": "identity",
+      "identifier": "iso88025Dtr",
+      "status": "unstable",
+      "sid": 3156
+    },
+    {
+      "namespace": "identity",
+      "identifier": "iso88025Fiber",
+      "status": "unstable",
+      "sid": 3157
+    },
+    {
+      "namespace": "identity",
+      "identifier": "iso88025TokenRing",
+      "status": "unstable",
+      "sid": 3158
+    },
+    {
+      "namespace": "identity",
+      "identifier": "iso88026Man",
+      "status": "unstable",
+      "sid": 3159
+    },
+    {
+      "namespace": "identity",
+      "identifier": "isup",
+      "status": "unstable",
+      "sid": 3160
+    },
+    {
+      "namespace": "identity",
+      "identifier": "l2vlan",
+      "status": "unstable",
+      "sid": 3161
+    },
+    {
+      "namespace": "identity",
+      "identifier": "l3ipvlan",
+      "status": "unstable",
+      "sid": 3162
+    },
+    {
+      "namespace": "identity",
+      "identifier": "l3ipxvlan",
+      "status": "unstable",
+      "sid": 3163
+    },
+    {
+      "namespace": "identity",
+      "identifier": "lapb",
+      "status": "unstable",
+      "sid": 3164
+    },
+    {
+      "namespace": "identity",
+      "identifier": "lapd",
+      "status": "unstable",
+      "sid": 3165
+    },
+    {
+      "namespace": "identity",
+      "identifier": "lapf",
+      "status": "unstable",
+      "sid": 3166
+    },
+    {
+      "namespace": "identity",
+      "identifier": "linegroup",
+      "status": "unstable",
+      "sid": 3167
+    },
+    {
+      "namespace": "identity",
+      "identifier": "lmp",
+      "status": "unstable",
+      "sid": 3168
+    },
+    {
+      "namespace": "identity",
+      "identifier": "localTalk",
+      "status": "unstable",
+      "sid": 3169
+    },
+    {
+      "namespace": "identity",
+      "identifier": "macSecControlledIF",
+      "status": "unstable",
+      "sid": 3170
+    },
+    {
+      "namespace": "identity",
+      "identifier": "macSecUncontrolledIF",
+      "status": "unstable",
+      "sid": 3171
+    },
+    {
+      "namespace": "identity",
+      "identifier": "mediaMailOverIp",
+      "status": "unstable",
+      "sid": 3172
+    },
+    {
+      "namespace": "identity",
+      "identifier": "mfSigLink",
+      "status": "unstable",
+      "sid": 3173
+    },
+    {
+      "namespace": "identity",
+      "identifier": "miox25",
+      "status": "unstable",
+      "sid": 3174
+    },
+    {
+      "namespace": "identity",
+      "identifier": "mocaVersion1",
+      "status": "unstable",
+      "sid": 3175
+    },
+    {
+      "namespace": "identity",
+      "identifier": "modem",
+      "status": "unstable",
+      "sid": 3176
+    },
+    {
+      "namespace": "identity",
+      "identifier": "mpc",
+      "status": "unstable",
+      "sid": 3177
+    },
+    {
+      "namespace": "identity",
+      "identifier": "mpegTransport",
+      "status": "unstable",
+      "sid": 3178
+    },
+    {
+      "namespace": "identity",
+      "identifier": "mpls",
+      "status": "unstable",
+      "sid": 3179
+    },
+    {
+      "namespace": "identity",
+      "identifier": "mplsTunnel",
+      "status": "unstable",
+      "sid": 3180
+    },
+    {
+      "namespace": "identity",
+      "identifier": "msdsl",
+      "status": "unstable",
+      "sid": 3181
+    },
+    {
+      "namespace": "identity",
+      "identifier": "mvl",
+      "status": "unstable",
+      "sid": 3182
+    },
+    {
+      "namespace": "identity",
+      "identifier": "myrinet",
+      "status": "unstable",
+      "sid": 3183
+    },
+    {
+      "namespace": "identity",
+      "identifier": "nfas",
+      "status": "unstable",
+      "sid": 3184
+    },
+    {
+      "namespace": "identity",
+      "identifier": "nsip",
+      "status": "unstable",
+      "sid": 3185
+    },
+    {
+      "namespace": "identity",
+      "identifier": "opticalChannel",
+      "status": "unstable",
+      "sid": 3186
+    },
+    {
+      "namespace": "identity",
+      "identifier": "opticalChannelGroup",
+      "status": "unstable",
+      "sid": 3187
+    },
+    {
+      "namespace": "identity",
+      "identifier": "opticalTransport",
+      "status": "unstable",
+      "sid": 3188
+    },
+    {
+      "namespace": "identity",
+      "identifier": "other",
+      "status": "unstable",
+      "sid": 3189
+    },
+    {
+      "namespace": "identity",
+      "identifier": "otnOdu",
+      "status": "unstable",
+      "sid": 3190
+    },
+    {
+      "namespace": "identity",
+      "identifier": "otnOtu",
+      "status": "unstable",
+      "sid": 3191
+    },
+    {
+      "namespace": "identity",
+      "identifier": "para",
+      "status": "unstable",
+      "sid": 3192
+    },
+    {
+      "namespace": "identity",
+      "identifier": "pdnEtherLoop1",
+      "status": "unstable",
+      "sid": 3193
+    },
+    {
+      "namespace": "identity",
+      "identifier": "pdnEtherLoop2",
+      "status": "unstable",
+      "sid": 3194
+    },
+    {
+      "namespace": "identity",
+      "identifier": "pip",
+      "status": "unstable",
+      "sid": 3195
+    },
+    {
+      "namespace": "identity",
+      "identifier": "plc",
+      "status": "unstable",
+      "sid": 3196
+    },
+    {
+      "namespace": "identity",
+      "identifier": "pon155",
+      "status": "unstable",
+      "sid": 3197
+    },
+    {
+      "namespace": "identity",
+      "identifier": "pon622",
+      "status": "unstable",
+      "sid": 3198
+    },
+    {
+      "namespace": "identity",
+      "identifier": "pos",
+      "status": "unstable",
+      "sid": 3199
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ppp",
+      "status": "unstable",
+      "sid": 3200
+    },
+    {
+      "namespace": "identity",
+      "identifier": "pppMultilinkBundle",
+      "status": "unstable",
+      "sid": 3201
+    },
+    {
+      "namespace": "identity",
+      "identifier": "primaryISDN",
+      "status": "unstable",
+      "sid": 3202
+    },
+    {
+      "namespace": "identity",
+      "identifier": "propAtm",
+      "status": "unstable",
+      "sid": 3203
+    },
+    {
+      "namespace": "identity",
+      "identifier": "propBWAp2Mp",
+      "status": "unstable",
+      "sid": 3204
+    },
+    {
+      "namespace": "identity",
+      "identifier": "propCnls",
+      "status": "unstable",
+      "sid": 3205
+    },
+    {
+      "namespace": "identity",
+      "identifier": "propDocsWirelessDownstream",
+      "status": "unstable",
+      "sid": 3206
+    },
+    {
+      "namespace": "identity",
+      "identifier": "propDocsWirelessMaclayer",
+      "status": "unstable",
+      "sid": 3207
+    },
+    {
+      "namespace": "identity",
+      "identifier": "propDocsWirelessUpstream",
+      "status": "unstable",
+      "sid": 3208
+    },
+    {
+      "namespace": "identity",
+      "identifier": "propMultiplexor",
+      "status": "unstable",
+      "sid": 3209
+    },
+    {
+      "namespace": "identity",
+      "identifier": "propPointToPointSerial",
+      "status": "unstable",
+      "sid": 3210
+    },
+    {
+      "namespace": "identity",
+      "identifier": "propVirtual",
+      "status": "unstable",
+      "sid": 3211
+    },
+    {
+      "namespace": "identity",
+      "identifier": "propWirelessP2P",
+      "status": "unstable",
+      "sid": 3212
+    },
+    {
+      "namespace": "identity",
+      "identifier": "proteon10Mbit",
+      "status": "unstable",
+      "sid": 3213
+    },
+    {
+      "namespace": "identity",
+      "identifier": "proteon80Mbit",
+      "status": "unstable",
+      "sid": 3214
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ptm",
+      "status": "unstable",
+      "sid": 3215
+    },
+    {
+      "namespace": "identity",
+      "identifier": "q2931",
+      "status": "unstable",
+      "sid": 3216
+    },
+    {
+      "namespace": "identity",
+      "identifier": "qam",
+      "status": "unstable",
+      "sid": 3217
+    },
+    {
+      "namespace": "identity",
+      "identifier": "qllc",
+      "status": "unstable",
+      "sid": 3218
+    },
+    {
+      "namespace": "identity",
+      "identifier": "radioMAC",
+      "status": "unstable",
+      "sid": 3219
+    },
+    {
+      "namespace": "identity",
+      "identifier": "radsl",
+      "status": "unstable",
+      "sid": 3220
+    },
+    {
+      "namespace": "identity",
+      "identifier": "reachDSL",
+      "status": "unstable",
+      "sid": 3221
+    },
+    {
+      "namespace": "identity",
+      "identifier": "regular1822",
+      "status": "unstable",
+      "sid": 3222
+    },
+    {
+      "namespace": "identity",
+      "identifier": "rfc1483",
+      "status": "unstable",
+      "sid": 3223
+    },
+    {
+      "namespace": "identity",
+      "identifier": "rfc877x25",
+      "status": "unstable",
+      "sid": 3224
+    },
+    {
+      "namespace": "identity",
+      "identifier": "rpr",
+      "status": "unstable",
+      "sid": 3225
+    },
+    {
+      "namespace": "identity",
+      "identifier": "rs232",
+      "status": "unstable",
+      "sid": 3226
+    },
+    {
+      "namespace": "identity",
+      "identifier": "rsrb",
+      "status": "unstable",
+      "sid": 3227
+    },
+    {
+      "namespace": "identity",
+      "identifier": "sdci",
+      "status": "unstable",
+      "sid": 3228
+    },
+    {
+      "namespace": "identity",
+      "identifier": "sdlc",
+      "status": "unstable",
+      "sid": 3229
+    },
+    {
+      "namespace": "identity",
+      "identifier": "sdsl",
+      "status": "unstable",
+      "sid": 3230
+    },
+    {
+      "namespace": "identity",
+      "identifier": "shdsl",
+      "status": "unstable",
+      "sid": 3231
+    },
+    {
+      "namespace": "identity",
+      "identifier": "sip",
+      "status": "unstable",
+      "sid": 3232
+    },
+    {
+      "namespace": "identity",
+      "identifier": "sipSig",
+      "status": "unstable",
+      "sid": 3233
+    },
+    {
+      "namespace": "identity",
+      "identifier": "sipTg",
+      "status": "unstable",
+      "sid": 3234
+    },
+    {
+      "namespace": "identity",
+      "identifier": "sixToFour",
+      "status": "unstable",
+      "sid": 3235
+    },
+    {
+      "namespace": "identity",
+      "identifier": "slip",
+      "status": "unstable",
+      "sid": 3236
+    },
+    {
+      "namespace": "identity",
+      "identifier": "smdsDxi",
+      "status": "unstable",
+      "sid": 3237
+    },
+    {
+      "namespace": "identity",
+      "identifier": "smdsIcip",
+      "status": "unstable",
+      "sid": 3238
+    },
+    {
+      "namespace": "identity",
+      "identifier": "softwareLoopback",
+      "status": "unstable",
+      "sid": 3239
+    },
+    {
+      "namespace": "identity",
+      "identifier": "sonet",
+      "status": "unstable",
+      "sid": 3240
+    },
+    {
+      "namespace": "identity",
+      "identifier": "sonetOverheadChannel",
+      "status": "unstable",
+      "sid": 3241
+    },
+    {
+      "namespace": "identity",
+      "identifier": "sonetPath",
+      "status": "unstable",
+      "sid": 3242
+    },
+    {
+      "namespace": "identity",
+      "identifier": "sonetVT",
+      "status": "unstable",
+      "sid": 3243
+    },
+    {
+      "namespace": "identity",
+      "identifier": "srp",
+      "status": "unstable",
+      "sid": 3244
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ss7SigLink",
+      "status": "unstable",
+      "sid": 3245
+    },
+    {
+      "namespace": "identity",
+      "identifier": "stackToStack",
+      "status": "unstable",
+      "sid": 3246
+    },
+    {
+      "namespace": "identity",
+      "identifier": "starLan",
+      "status": "unstable",
+      "sid": 3247
+    },
+    {
+      "namespace": "identity",
+      "identifier": "tdlc",
+      "status": "unstable",
+      "sid": 3248
+    },
+    {
+      "namespace": "identity",
+      "identifier": "teLink",
+      "status": "unstable",
+      "sid": 3249
+    },
+    {
+      "namespace": "identity",
+      "identifier": "termPad",
+      "status": "unstable",
+      "sid": 3250
+    },
+    {
+      "namespace": "identity",
+      "identifier": "tr008",
+      "status": "unstable",
+      "sid": 3251
+    },
+    {
+      "namespace": "identity",
+      "identifier": "transpHdlc",
+      "status": "unstable",
+      "sid": 3252
+    },
+    {
+      "namespace": "identity",
+      "identifier": "tunnel",
+      "status": "unstable",
+      "sid": 3253
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ultra",
+      "status": "unstable",
+      "sid": 3254
+    },
+    {
+      "namespace": "identity",
+      "identifier": "usb",
+      "status": "unstable",
+      "sid": 3255
+    },
+    {
+      "namespace": "identity",
+      "identifier": "v11",
+      "status": "unstable",
+      "sid": 3256
+    },
+    {
+      "namespace": "identity",
+      "identifier": "v35",
+      "status": "unstable",
+      "sid": 3257
+    },
+    {
+      "namespace": "identity",
+      "identifier": "v36",
+      "status": "unstable",
+      "sid": 3258
+    },
+    {
+      "namespace": "identity",
+      "identifier": "v37",
+      "status": "unstable",
+      "sid": 3259
+    },
+    {
+      "namespace": "identity",
+      "identifier": "vdsl",
+      "status": "unstable",
+      "sid": 3260
+    },
+    {
+      "namespace": "identity",
+      "identifier": "vdsl2",
+      "status": "unstable",
+      "sid": 3261
+    },
+    {
+      "namespace": "identity",
+      "identifier": "virtualIpAddress",
+      "status": "unstable",
+      "sid": 3262
+    },
+    {
+      "namespace": "identity",
+      "identifier": "virtualTg",
+      "status": "unstable",
+      "sid": 3263
+    },
+    {
+      "namespace": "identity",
+      "identifier": "vmwareNicTeam",
+      "status": "unstable",
+      "sid": 3264
+    },
+    {
+      "namespace": "identity",
+      "identifier": "vmwareVirtualNic",
+      "status": "unstable",
+      "sid": 3265
+    },
+    {
+      "namespace": "identity",
+      "identifier": "voiceDID",
+      "status": "unstable",
+      "sid": 3266
+    },
+    {
+      "namespace": "identity",
+      "identifier": "voiceEBS",
+      "status": "unstable",
+      "sid": 3267
+    },
+    {
+      "namespace": "identity",
+      "identifier": "voiceEM",
+      "status": "unstable",
+      "sid": 3268
+    },
+    {
+      "namespace": "identity",
+      "identifier": "voiceEMFGD",
+      "status": "unstable",
+      "sid": 3269
+    },
+    {
+      "namespace": "identity",
+      "identifier": "voiceEncap",
+      "status": "unstable",
+      "sid": 3270
+    },
+    {
+      "namespace": "identity",
+      "identifier": "voiceFGDEANA",
+      "status": "unstable",
+      "sid": 3271
+    },
+    {
+      "namespace": "identity",
+      "identifier": "voiceFGDOS",
+      "status": "unstable",
+      "sid": 3272
+    },
+    {
+      "namespace": "identity",
+      "identifier": "voiceFXO",
+      "status": "unstable",
+      "sid": 3273
+    },
+    {
+      "namespace": "identity",
+      "identifier": "voiceFXS",
+      "status": "unstable",
+      "sid": 3274
+    },
+    {
+      "namespace": "identity",
+      "identifier": "voiceOverAtm",
+      "status": "unstable",
+      "sid": 3275
+    },
+    {
+      "namespace": "identity",
+      "identifier": "voiceOverCable",
+      "status": "unstable",
+      "sid": 3276
+    },
+    {
+      "namespace": "identity",
+      "identifier": "voiceOverFrameRelay",
+      "status": "unstable",
+      "sid": 3277
+    },
+    {
+      "namespace": "identity",
+      "identifier": "voiceOverIp",
+      "status": "unstable",
+      "sid": 3278
+    },
+    {
+      "namespace": "identity",
+      "identifier": "wwanPP",
+      "status": "unstable",
+      "sid": 3279
+    },
+    {
+      "namespace": "identity",
+      "identifier": "wwanPP2",
+      "status": "unstable",
+      "sid": 3280
+    },
+    {
+      "namespace": "identity",
+      "identifier": "x213",
+      "status": "unstable",
+      "sid": 3281
+    },
+    {
+      "namespace": "identity",
+      "identifier": "x25huntGroup",
+      "status": "unstable",
+      "sid": 3282
+    },
+    {
+      "namespace": "identity",
+      "identifier": "x25mlp",
+      "status": "unstable",
+      "sid": 3283
+    },
+    {
+      "namespace": "identity",
+      "identifier": "x25ple",
+      "status": "unstable",
+      "sid": 3284
+    },
+    {
+      "namespace": "identity",
+      "identifier": "x86Laps",
+      "status": "unstable",
+      "sid": 3285
+    },
+    {
+      "namespace": "identity",
+      "identifier": "xboxWireless",
+      "status": "unstable",
+      "sid": 3286
+    }
+  ]
+}

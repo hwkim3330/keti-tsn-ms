@@ -1,0 +1,95 @@
+module mchp-velocitysp-dhcp {
+  yang-version 1.1;
+  namespace "urn:mchp:params:xml:ns:yang:velocitysp-dhcp";
+  prefix lm-dhcp;
+  import ietf-interfaces {
+    prefix if;
+  }
+  import iana-if-type {
+    prefix ianaif;
+  }
+  import ietf-inet-types {
+    prefix inet;
+  }
+
+  description
+    "This module contains a collection of YANG definitions for
+     managing DHCP of MCHP systems running VelocitySP software.";
+
+  revision 2023-02-23 {
+    description
+      "Initial revision.";
+  }
+
+  augment "/if:interfaces/if:interface" {
+    when
+      "if:type = 'ianaif:l3ipvlan'" {
+      description
+        "Applies when a Layer 3 Virtual LAN using IP";
+    }
+    description
+      "Augment the interface model with the Layer 3 Virtual LAN using IP interface";
+    container dhcp {
+      description
+        "Layer 3 VLAN DHCP is an extension of the IETF Interfaces model (RFC7223).";
+      container client {
+        container config {
+          description
+            "Container of configuration for each interface.";
+          leaf enabled {
+            type boolean;
+            default false;
+            description
+              "Indicates that the DHCP client is enabled.
+               State change from false to true will activate DHCP Discover.
+               State change from true to false will activate DHCP Release";
+          }
+        }
+        container status {
+          config false;
+          description
+            "Container of status for each interface.";
+          leaf state {
+            type enumeration {
+              enum DISABLED {
+                  description
+                  "DHCP client is disabled";
+              }
+              enum SELECTING {
+                  description
+                  "DHCP client is in SELECTING state";
+              }
+              enum REQUESTING {
+                  description
+                  "DHCP client is in REQUESTING state";
+              }
+              enum REBINDING {
+                  description
+                  "DHCP client is in REBINDING state";
+              }
+              enum BOUND {
+                  description
+                  "DHCP client is in BOUND state";
+              }
+              enum RENEWING {
+                  description
+                  "DHCP client is in RENEWING state";
+              }
+            }
+            config false;
+
+            description
+              "The DHCP client state";
+            reference
+              "4.4 of RFC 2131";
+          }
+          leaf server-ip {
+            type inet:ipv4-address-no-zone;
+            config false;
+            description "DHCP server IP";
+          }
+        }
+      }
+    }
+  }
+}

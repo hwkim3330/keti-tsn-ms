@@ -1,0 +1,60 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 28000,
+      "size": 1000
+    }
+  ],
+  "module-name": "mchp-velocitysp-dhcp",
+  "module-revision": "2023-02-23",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "mchp-velocitysp-dhcp",
+      "status": "unstable",
+      "sid": 28000
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-dhcp:dhcp",
+      "status": "unstable",
+      "sid": 28001
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-dhcp:dhcp/client",
+      "status": "unstable",
+      "sid": 28002
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-dhcp:dhcp/client/config",
+      "status": "unstable",
+      "sid": 28003
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-dhcp:dhcp/client/config/enabled",
+      "status": "unstable",
+      "sid": 28004
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-dhcp:dhcp/client/status",
+      "status": "unstable",
+      "sid": 28005
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-dhcp:dhcp/client/status/server-ip",
+      "status": "unstable",
+      "sid": 28006
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-dhcp:dhcp/client/status/state",
+      "status": "unstable",
+      "sid": 28007
+    }
+  ]
+}

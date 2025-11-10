@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-comment);">// Copyright (c) 2021-2022 Microchip Technology Inc. and its subsidiaries.</span>
+<span style="color:var(--color-yang-comment);">//</span>
+<span style="color:var(--color-yang-comment);">// Unpublished rights reserved under the copyright laws of the United States</span>
+<span style="color:var(--color-yang-comment);">// of America, other countries and international treaties. Permission to use,</span>
+<span style="color:var(--color-yang-comment);">// copy, store and modify, the software and its source code is granted but</span>
+<span style="color:var(--color-yang-comment);">// only in connection with products utilizing the Microsemi switch and PHY</span>
+<span style="color:var(--color-yang-comment);">// products.  Permission is also granted for you to integrate into other</span>
+<span style="color:var(--color-yang-comment);">// products, disclose, transmit and distribute the software only in an</span>
+<span style="color:var(--color-yang-comment);">// absolute machine readable format (e.g. HEX file) and only in or with</span>
+<span style="color:var(--color-yang-comment);">// products utilizing the Microsemi switch and PHY products.  The source code</span>
+<span style="color:var(--color-yang-comment);">// of the software may not be disclosed, transmitted or distributed without</span>
+<span style="color:var(--color-yang-comment);">// the prior written permission of Microsemi.</span>
+<span style="color:var(--color-yang-comment);">//</span>
+<span style="color:var(--color-yang-comment);">// This copyright notice must appear in any copy, modification, disclosure,</span>
+<span style="color:var(--color-yang-comment);">// transmission or distribution of the software.  Microsemi retains all</span>
+<span style="color:var(--color-yang-comment);">// ownership, copyright, trade secret and proprietary rights in the software</span>
+<span style="color:var(--color-yang-comment);">// and its source code, including all modifications thereto.</span>
+<span style="color:var(--color-yang-comment);">//</span>
+<span style="color:var(--color-yang-comment);">// THIS SOFTWARE HAS BEEN PROVIDED "AS IS". MICROSEMI HEREBY DISCLAIMS ALL</span>
+<span style="color:var(--color-yang-comment);">// WARRANTIES OF ANY KIND WITH RESPECT TO THE SOFTWARE, WHETHER SUCH</span>
+<span style="color:var(--color-yang-comment);">// WARRANTIES ARE EXPRESS, IMPLIED, STATUTORY OR OTHERWISE INCLUDING, WITHOUT</span>
+<span style="color:var(--color-yang-comment);">// LIMITATION, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR USE OR</span>
+<span style="color:var(--color-yang-comment);">// PURPOSE AND NON-INFRINGEMENT.</span>
+
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L25C7 */</span><span id="L25C7"></span><span style="color:var(--color-yang-id);">ietf-netconf-acm-dev</span> {
+    <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L26C17 */</span><span id="L26C17"></span><span style="color:var(--color-yang-id);">1.1</span>;
+    <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:mchp:params:xml:ns:yang:ietf-netconf-acm-dev"</span>;
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L28C11 */</span><span id="L28C11"></span><span style="color:var(--color-yang-id);">ietf-netconf-acm-dev-pre</span>;
+
+    <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L30C11 */</span><span id="L30C11"></span><span style="color:var(--color-yang-id);">ietf-netconf-acm</span> {
+        <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L31C15 */</span><span id="L31C15"></span><span style="color:var(--color-yang-id);">nacm</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L34C13 */</span><span id="L34C13"></span><span style="color:var(--color-yang-id);">2024-04-12</span> {
+    }
+
+    <span style="color:var(--color-yang-keyword);">deviation</span> <span style="color:var(--color-yang-comment);">/* L37C14 */</span><span id="L37C14"></span><span style="color:var(--color-yang-id);">/nacm:nacm</span> {
+        <span style="color:var(--color-yang-keyword);">deviate</span> <span style="color:var(--color-yang-comment);">/* L38C16 */</span><span id="L38C16"></span><span style="color:var(--color-yang-id);">not-supported</span>;
+    }
+
+}

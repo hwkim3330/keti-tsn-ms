@@ -1,0 +1,18 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 1000,
+      "size": 1000
+    }
+  ],
+  "module-name": "ietf-yang-types",
+  "module-revision": "2013-07-15",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ietf-yang-types",
+      "status": "unstable",
+      "sid": 1000
+    }
+  ]
+}

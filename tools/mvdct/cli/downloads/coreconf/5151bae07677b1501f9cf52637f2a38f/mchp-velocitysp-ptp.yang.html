@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">mchp-velocitysp-ptp</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L2C15 */</span><span id="L2C15"></span><span style="color:var(--color-yang-id);">1.1</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-comment);">/* L3C12 */</span><span id="L3C12"></span><span style="color:var(--color-yang-id);">urn:mchp:params:xml:ns:yang:velocitysp-ptp</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">velocitysp-ptp</span>;
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L6C9 */</span><span id="L6C9"></span><span style="color:var(--color-yang-id);">ieee1588-ptp</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L7C11 */</span><span id="L7C11"></span><span style="color:var(--color-yang-id);">ptp</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L10C9 */</span><span id="L10C9"></span><span style="color:var(--color-yang-id);">ieee802-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-text);">"ieee"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module contains a colletion of YANG definitions for
+     managing MHCP systems running VelocitySP software."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L18C11 */</span><span id="L18C11"></span><span style="color:var(--color-yang-id);">2025-06-27</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Extend the enumeration for auto profiles"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L23C11 */</span><span id="L23C11"></span><span style="color:var(--color-yang-id);">2025-03-28</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Add enumaration for PTP instance type"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L28C11 */</span><span id="L28C11"></span><span style="color:var(--color-yang-id);">2025-01-31</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Add support for configuring MAC and VLAN"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L33C11 */</span><span id="L33C11"></span><span style="color:var(--color-yang-id);">2024-10-11</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Extend clock accuracy types"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L38C11 */</span><span id="L38C11"></span><span style="color:var(--color-yang-id);">2024-09-20</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Extend for automotive"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L43C11 */</span><span id="L43C11"></span><span style="color:var(--color-yang-id);">2024-04-23</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L48C10 */</span><span id="L48C10"></span><span style="color:var(--color-yang-id);">servo-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L49C9 */</span><span id="L49C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L50C11 */</span><span id="L50C11"></span><span style="color:var(--color-yang-id);">empty</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L51C14 */</span><span id="L51C14"></span><span style="color:var(--color-yang-id);">0</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Empty servo - doesn't do anything"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L55C11 */</span><span id="L55C11"></span><span style="color:var(--color-yang-id);">dummy</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L56C14 */</span><span id="L56C14"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Dummy servo"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L60C11 */</span><span id="L60C11"></span><span style="color:var(--color-yang-id);">pi</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L61C14 */</span><span id="L61C14"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"PI servo. The P and the I constants can't be modified and they
+           have a value of 1.306 and 0.130."</span>;
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L69C10 */</span><span id="L69C10"></span><span style="color:var(--color-yang-id);">velocitysp-instance-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L70C9 */</span><span id="L70C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L71C11 */</span><span id="L71C11"></span><span style="color:var(--color-yang-id);">oc</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L72C14 */</span><span id="L72C14"></span><span style="color:var(--color-yang-id);">0</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Ordinary Clock"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L76C11 */</span><span id="L76C11"></span><span style="color:var(--color-yang-id);">bc</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L77C14 */</span><span id="L77C14"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Boundary Clock"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L81C11 */</span><span id="L81C11"></span><span style="color:var(--color-yang-id);">p2p-tc</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L82C14 */</span><span id="L82C14"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Peer-to-peer Transparent Clock"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L86C11 */</span><span id="L86C11"></span><span style="color:var(--color-yang-id);">e2e-tc</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L87C14 */</span><span id="L87C14"></span><span style="color:var(--color-yang-id);">3</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"End-to-end Transparent Clock"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L92C11 */</span><span id="L92C11"></span><span style="color:var(--color-yang-id);">relay</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L93C14 */</span><span id="L93C14"></span><span style="color:var(--color-yang-id);">255</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Relay Clock"</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Enumeration for the type of PTP Instance.
+      Values for this enumeration are specified by the IEEE 1588
+      standard exclusively."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"8.2.1.5.5 of IEEE Std 1588-2019"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L106C10 */</span><span id="L106C10"></span><span style="color:var(--color-yang-id);">pin-function</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L107C9 */</span><span id="L107C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L108C11 */</span><span id="L108C11"></span><span style="color:var(--color-yang-id);">disable</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L109C14 */</span><span id="L109C14"></span><span style="color:var(--color-yang-id);">0</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Doesn't have any functionality"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L113C11 */</span><span id="L113C11"></span><span style="color:var(--color-yang-id);">1pps-out</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L114C14 */</span><span id="L114C14"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Generate 1 pps"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L118C11 */</span><span id="L118C11"></span><span style="color:var(--color-yang-id);">1pps-in</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L119C14 */</span><span id="L119C14"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Save the time when detecting 1 pps"</span>;
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L126C10 */</span><span id="L126C10"></span><span style="color:var(--color-yang-id);">profile-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L127C9 */</span><span id="L127C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L128C11 */</span><span id="L128C11"></span><span style="color:var(--color-yang-id);">none</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L129C14 */</span><span id="L129C14"></span><span style="color:var(--color-yang-id);">0</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This means that the automotive profile is not used"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L133C11 */</span><span id="L133C11"></span><span style="color:var(--color-yang-id);">bridge</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L134C14 */</span><span id="L134C14"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The DUT will have the profile of AED-B"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L138C11 */</span><span id="L138C11"></span><span style="color:var(--color-yang-id);">gm</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L139C14 */</span><span id="L139C14"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The DUT will have the profile of AED-GM"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L143C11 */</span><span id="L143C11"></span><span style="color:var(--color-yang-id);">end</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L144C14 */</span><span id="L144C14"></span><span style="color:var(--color-yang-id);">3</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The DUT will have the profile of AED-E"</span>;
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L151C11 */</span><span id="L151C11"></span><span style="color:var(--color-yang-id);">/ptp:ptp"</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment IEEE Std 1588"</span>;
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L155C14 */</span><span id="L155C14"></span><span style="color:var(--color-yang-id);">ltcs</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"YANG container that is used to get all LTCs (local time clock)"</span>;
+
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L159C11 */</span><span id="L159C11"></span><span style="color:var(--color-yang-id);">ltc</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"ltc-index"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"List of zero or more LTC"</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L164C13 */</span><span id="L164C13"></span><span style="color:var(--color-yang-id);">ltc-index</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L165C15 */</span><span id="L165C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The LTC list is indexed using this number"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L170C18 */</span><span id="L170C18"></span><span style="color:var(--color-yang-id);">ptp-pins</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"YANG container that is used to get all PTP pins"</span>;
+
+          <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L174C15 */</span><span id="L174C15"></span><span style="color:var(--color-yang-id);">ptp-pin</span> {
+            <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"index"</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"List of zero or more pins"</span>;
+
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L179C17 */</span><span id="L179C17"></span><span style="color:var(--color-yang-id);">index</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L180C19 */</span><span id="L180C19"></span><span style="color:var(--color-yang-id);">uint32</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The PTP pins list is indexed using this number"</span>;
+            }
+
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L185C17 */</span><span id="L185C17"></span><span style="color:var(--color-yang-id);">function</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L186C19 */</span><span id="L186C19"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//mchp-velocitysp-ptp#L106C10">pin-function</a></span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The function of the pin"</span>;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L196C11 */</span><span id="L196C11"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance"</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment IEEE Std 1588 instances"</span>;
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L200C14 */</span><span id="L200C14"></span><span style="color:var(--color-yang-id);">servos</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"YANG container that for servos"</span>;
+
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L204C11 */</span><span id="L204C11"></span><span style="color:var(--color-yang-id);">servo</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"servo-index"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"List of one or more servos"</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L209C13 */</span><span id="L209C13"></span><span style="color:var(--color-yang-id);">servo-index</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L210C15 */</span><span id="L210C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The servo list is indexed using a number"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L215C13 */</span><span id="L215C13"></span><span style="color:var(--color-yang-id);">servo-type</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L216C15 */</span><span id="L216C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//mchp-velocitysp-ptp#L48C10">servo-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The type of the servo"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L221C13 */</span><span id="L221C13"></span><span style="color:var(--color-yang-id);">ltc-index</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L222C15 */</span><span id="L222C15"></span><span style="color:var(--color-yang-id);">uint8</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The LTC index"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L227C13 */</span><span id="L227C13"></span><span style="color:var(--color-yang-id);">offset</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L228C15 */</span><span id="L228C15"></span><span style="color:var(--color-yang-id);">int64</span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L229C17 */</span><span id="L229C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The offset from master"</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L234C13 */</span><span id="L234C13"></span><span style="color:var(--color-yang-id);">state</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L235C15 */</span><span id="L235C15"></span><span style="color:var(--color-yang-id);">uint8</span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L236C17 */</span><span id="L236C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The state of the servo"</span>;
+        }
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L244C11 */</span><span id="L244C11"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance"</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment IEEE Std 1588 instances"</span>;
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L248C14 */</span><span id="L248C14"></span><span style="color:var(--color-yang-id);">automotive</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"YANG container automotive"</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L252C11 */</span><span id="L252C11"></span><span style="color:var(--color-yang-id);">profile</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L253C13 */</span><span id="L253C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//mchp-velocitysp-ptp#L126C10">profile-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Profile for automotive"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L258C11 */</span><span id="L258C11"></span><span style="color:var(--color-yang-id);">oper-log-pdelay-req-interval</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L259C13 */</span><span id="L259C13"></span><span style="color:var(--color-yang-id);">int8</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Operating pdelay request interval, this is set once the link is
+          stable"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L265C11 */</span><span id="L265C11"></span><span style="color:var(--color-yang-id);">oper-log-sync-interval</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L266C13 */</span><span id="L266C13"></span><span style="color:var(--color-yang-id);">int8</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Operating sync interval, this is set once the system is locked"</span>;
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L273C11 */</span><span id="L273C11"></span><span style="color:var(--color-yang-id);">ca-time-accurate-unknown</span> {
+      <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L274C11 */</span><span id="L274C11"></span><span style="color:var(--color-yang-id);">ptp:clock-accuracy</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The time accuracy is unknown.
+        Number vaue is FE in hex."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L280C11 */</span><span id="L280C11"></span><span style="color:var(--color-yang-id);">/ptp:ptp/ptp:instances/ptp:instance"</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment IEEE Std 1588 instances"</span>;
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L284C14 */</span><span id="L284C14"></span><span style="color:var(--color-yang-id);">l2</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"YANG container L2 configuration"</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L288C11 */</span><span id="L288C11"></span><span style="color:var(--color-yang-id);">mac-address</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L289C13 */</span><span id="L289C13"></span><span style="color:var(--color-yang-id);">ieee:mac-address</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"MAC address to be used by PTP frames"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L294C11 */</span><span id="L294C11"></span><span style="color:var(--color-yang-id);">mac-address-enable</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L295C13 */</span><span id="L295C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Enable to use or not the configured MAC address"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L300C11 */</span><span id="L300C11"></span><span style="color:var(--color-yang-id);">vlan</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L301C13 */</span><span id="L301C13"></span><span style="color:var(--color-yang-id);">uint16</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"VLAN to be used by PTP frames"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L306C11 */</span><span id="L306C11"></span><span style="color:var(--color-yang-id);">vlan-enable</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L307C13 */</span><span id="L307C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Enable to use or not the configured VLAN"</span>;
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 10000,
+      "size": 1000
+    }
+  ],
+  "module-name": "ieee802-dot1ab-types",
+  "module-revision": "2022-03-15",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ieee802-dot1ab-types",
+      "status": "unstable",
+      "sid": 10000
+    }
+  ]
+}

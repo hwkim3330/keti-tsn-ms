@@ -1,0 +1,127 @@
+module mchp-velocitysp-ip {
+  yang-version 1.1;
+  namespace "urn:mchp:params:xml:ns:yang:velocitysp-ip";
+  prefix lm-ip;
+  import ietf-yang-types {
+    prefix yang;
+  }
+  import ietf-interfaces {
+    prefix if;
+  }
+  import ietf-ip {
+    prefix ip;
+  }
+  description
+    "This module contains a collection of YANG definitions for
+     managing IP of MCHP systems running VelocitySP software.";
+
+  revision 2023-10-04 {
+    description
+      "Initial revision.";
+  }
+
+  grouping ip-statistics {
+    description
+      "IP statistics from RFC 4293.";
+    action clear {
+      description
+        "Clear IP interface counters.";
+    }
+    leaf rx-total {
+      type yang:counter64;
+      description
+        "The total number of received packets.";
+      reference
+        "RFC 4293: ipIfStatsInReceives";
+    }
+    leaf rx-octets {
+      type yang:counter64;
+      description
+        "The total number of received octets.";
+      reference
+        "RFC 4293: ipIfStatsInOctets";
+    }
+    leaf rx-hdr-errors {
+      type yang:counter64;
+      description
+        "The number of received packets with header errors.";
+      reference
+        "RFC 4293: ipIfStatsInHdrErrors";
+    }
+    leaf rx-addr-errors {
+      type yang:counter64;
+      description
+        "The number of received packets with address errors.";
+      reference
+        "RFC 4293: ipIfStatsInAddrErrors";
+    }
+    leaf rx-forwards {
+      type yang:counter64;
+      description
+        "The number of received packets attempted forwarded.";
+      reference
+        "RFC 4293: ipIfStatsInForwDatagrams";
+    }
+    leaf rx-no-routes {
+      type yang:counter64;
+      description
+        "The number of received packets discarded because no route was found.";
+      reference
+        "RFC 4293: ipIfStatsInNoRoutes";
+    }
+    leaf rx-unknown-protos {
+      type yang:counter64;
+      description
+        "The number of received locally addressed packets discarded because the
+         protocol was not supported. The counter operates on the receiving
+         interface, which may be different from the addressed interface.";
+      reference
+        "RFC 4293: ipIfStatsInUnknownProtos";
+    }
+    leaf rx-delivers {
+      type yang:counter64;
+      description
+        "The number of received packets delivered locally. The counter operates on
+         the receiving interface, which may be different from the addressed interface";
+      reference
+        "RFC 4293: ipIfStatsInDelivers";
+    }
+    leaf tx-requests {
+      type yang:counter64;
+      description
+        "The number of packets sent from local protocols.";
+      reference
+        "RFC 4293: ipIfStatsOutRequests";
+    }
+    leaf tx-forwards {
+      type yang:counter64;
+      description
+        "The number of forwarded packets sent.";
+      reference
+        "RFC 4293: ipIfStatsOutForwDatagrams";
+    }
+    leaf tx-total {
+      type yang:counter64;
+      description
+        "The total number of packets sent.";
+      reference
+        "RFC 4293: ipIfStatsOutTransmits";
+    }
+    leaf tx-octets {
+      type yang:counter64;
+      description
+        "The total number of octets sent.";
+      reference
+        "RFC 4293: ipIfStatsOutOctets";
+    }
+  }
+
+  augment "/if:interfaces/if:interface/ip:ipv4" {
+    container statistics {
+      config false;
+      description
+        "Container of IPv4 statistics for each interface.";
+      uses ip-statistics;
+    }
+  }
+}

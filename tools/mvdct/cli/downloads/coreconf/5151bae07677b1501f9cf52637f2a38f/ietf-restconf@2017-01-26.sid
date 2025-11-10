@@ -1,0 +1,90 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 38400,
+      "size": 30
+    }
+  ],
+  "module-name": "ietf-restconf",
+  "module-revision": "2017-01-26",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ietf-restconf",
+      "status": "unstable",
+      "sid": 38400
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-restconf:errors",
+      "status": "unstable",
+      "sid": 38401
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-restconf:errors/error",
+      "status": "unstable",
+      "sid": 38402
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-restconf:errors/error/error-app-tag",
+      "status": "unstable",
+      "sid": 38403
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-restconf:errors/error/error-info",
+      "status": "unstable",
+      "sid": 38404
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-restconf:errors/error/error-message",
+      "status": "unstable",
+      "sid": 38405
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-restconf:errors/error/error-path",
+      "status": "unstable",
+      "sid": 38406
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-restconf:errors/error/error-tag",
+      "status": "unstable",
+      "sid": 38407
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-restconf:errors/error/error-type",
+      "status": "unstable",
+      "sid": 38408
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-restconf:restconf",
+      "status": "unstable",
+      "sid": 38409
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-restconf:restconf/data",
+      "status": "unstable",
+      "sid": 38410
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-restconf:restconf/operations",
+      "status": "unstable",
+      "sid": 38411
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-restconf:restconf/yang-library-version",
+      "status": "unstable",
+      "sid": 38412
+    }
+  ]
+}

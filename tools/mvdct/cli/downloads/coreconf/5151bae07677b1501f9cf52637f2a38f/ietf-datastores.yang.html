@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ietf-datastores</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L2C15 */</span><span id="L2C15"></span><span style="color:var(--color-yang-id);">1.1</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:ietf:params:xml:ns:yang:ietf-datastores"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">ds</span>;
+
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IETF Network Modeling (NETMOD) Working Group"</span>;
+
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG Web:   <https://datatracker.ietf.org/wg/netmod/>
+
+     WG List:  <mailto:netmod@ietf.org>
+
+     Author:   Martin Bjorklund
+               <mailto:mbj@tail-f.com>
+
+     Author:   Juergen Schoenwaelder
+               <mailto:j.schoenwaelder@jacobs-university.de>
+
+     Author:   Phil Shafer
+               <mailto:phil@juniper.net>
+
+     Author:   Kent Watsen
+               <mailto:kwatsen@juniper.net>
+
+     Author:   Rob Wilton
+               <rwilton@cisco.com>"</span>;
+
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This YANG module defines a set of identities for identifying
+     datastores.
+
+     Copyright (c) 2018 IETF Trust and the persons identified as
+     authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject to
+     the license terms contained in, the Simplified BSD License set
+     forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC 8342
+     (https://www.rfc-editor.org/info/rfc8342); see the RFC itself
+     for full legal notices."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L47C11 */</span><span id="L47C11"></span><span style="color:var(--color-yang-id);">2018-02-14</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 8342: Network Management Datastore Architecture (NMDA)"</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Identities
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L58C11 */</span><span id="L58C11"></span><span style="color:var(--color-yang-id);">datastore</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Abstract base identity for datastore identities."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L63C11 */</span><span id="L63C11"></span><span style="color:var(--color-yang-id);">conventional</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L64C9 */</span><span id="L64C9"></span><span style="color:var(--color-yang-id);">datastore</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Abstract base identity for conventional configuration
+       datastores."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L70C11 */</span><span id="L70C11"></span><span style="color:var(--color-yang-id);">running</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L71C9 */</span><span id="L71C9"></span><span style="color:var(--color-yang-id);">conventional</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The running configuration datastore."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L76C11 */</span><span id="L76C11"></span><span style="color:var(--color-yang-id);">candidate</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L77C9 */</span><span id="L77C9"></span><span style="color:var(--color-yang-id);">conventional</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The candidate configuration datastore."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L82C11 */</span><span id="L82C11"></span><span style="color:var(--color-yang-id);">startup</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L83C9 */</span><span id="L83C9"></span><span style="color:var(--color-yang-id);">conventional</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The startup configuration datastore."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L88C11 */</span><span id="L88C11"></span><span style="color:var(--color-yang-id);">intended</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L89C9 */</span><span id="L89C9"></span><span style="color:var(--color-yang-id);">conventional</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The intended configuration datastore."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L94C11 */</span><span id="L94C11"></span><span style="color:var(--color-yang-id);">dynamic</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L95C9 */</span><span id="L95C9"></span><span style="color:var(--color-yang-id);">datastore</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Abstract base identity for dynamic configuration datastores."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L100C11 */</span><span id="L100C11"></span><span style="color:var(--color-yang-id);">operational</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L101C9 */</span><span id="L101C9"></span><span style="color:var(--color-yang-id);">datastore</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The operational state datastore."</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Type definitions
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L110C10 */</span><span id="L110C10"></span><span style="color:var(--color-yang-id);">datastore-ref</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L111C9 */</span><span id="L111C9"></span><span style="color:var(--color-yang-id);">identityref</span> {
+      <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L112C11 */</span><span id="L112C11"></span><span style="color:var(--color-yang-id);">datastore</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A datastore identity reference."</span>;
+  }
+}

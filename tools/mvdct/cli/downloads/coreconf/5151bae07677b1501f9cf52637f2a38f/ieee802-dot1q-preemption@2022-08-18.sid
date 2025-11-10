@@ -1,0 +1,24 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 13000,
+      "size": 1000
+    }
+  ],
+  "module-name": "ieee802-dot1q-preemption",
+  "module-revision": "2022-08-18",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ieee802-dot1q-preemption",
+      "status": "unstable",
+      "sid": 13000
+    },
+    {
+      "namespace": "feature",
+      "identifier": "frame-preemption",
+      "status": "unstable",
+      "sid": 13001
+    }
+  ]
+}

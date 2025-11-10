@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ieee802-types</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-text);">"1.1"</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-comment);">/* L3C12 */</span><span id="L3C12"></span><span style="color:var(--color-yang-id);">urn:ieee:std:802.1Q:yang:ieee802-types</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">ieee</span>;
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IEEE 802.1 Working Group"</span>;
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG-URL: http://ieee802.org/1/
+    WG-EMail: stds-802-1-l@ieee.org
+
+    Contact: IEEE 802.1 Working Group Chair
+    Postal: C/O IEEE 802.1 Working Group
+          IEEE Standards Association
+          445 Hoes Lane
+          Piscataway, NJ 08854
+          USA
+
+    E-mail: stds-802-1-chairs@ieee.org"</span>;
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module contains a collection of generally useful derived data
+    types for IEEE YANG models.
+
+    Copyright (C) IEEE (2023). All rights reserved.
+
+    This version of this YANG module is part of IEEE Std 802.1Q; see the
+    standard itself for full legal notices."</span>;
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L27C11 */</span><span id="L27C11"></span><span style="color:var(--color-yang-id);">2023-04-19</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1Qcw-2023.
+
+      The following reference statement identifies each referenced IEEE
+      Standard as updated by applicable amendments."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Q Bridges and Bridged Networks:
+      IEEE Stds 802.1Q-2022, 802.1Qcw-2023.
+      IEEE Std 802 Overview and Architecture:
+      IEEE Std 802-2014.
+      IEEE 802.1AS Timing and Synchronization for Time-Sensitive Applications:
+      IEEE Std 802.1AS-2020."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L41C11 */</span><span id="L41C11"></span><span style="color:var(--color-yang-id);">2022-10-29</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1Q-2022."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Q-2022, Bridges and Bridged Networks."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L47C11 */</span><span id="L47C11"></span><span style="color:var(--color-yang-id);">2022-03-16</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1ABcu."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1AB-2016"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L53C11 */</span><span id="L53C11"></span><span style="color:var(--color-yang-id);">2020-06-04</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1Qcx-2020. Second version."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Qcx-2020, Bridges and Bridged Networks - YANG Data
+      Model for Connectivity Fault Management."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L60C11 */</span><span id="L60C11"></span><span style="color:var(--color-yang-id);">2018-03-07</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1Q-2018. Initial version."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Q-2018, Bridges and Bridged Networks."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L66C10 */</span><span id="L66C10"></span><span style="color:var(--color-yang-id);">mac-address</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L67C9 */</span><span id="L67C9"></span><span style="color:var(--color-yang-id);">string</span> {
+      <span style="color:var(--color-yang-keyword);">pattern</span> <span style="color:var(--color-yang-text);">"[0-9a-fA-F]{2}(-[0-9a-fA-F]{2}){5}"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The mac-address type represents a MAC address in the canonical format
+      and hexadecimal format specified by IEEE Std 802. The hexadecimal
+      representation uses uppercase characters."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"3.1, 8.1 of IEEE Std 802"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L77C10 */</span><span id="L77C10"></span><span style="color:var(--color-yang-id);">chassis-id-subtype-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L78C9 */</span><span id="L78C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L79C11 */</span><span id="L79C11"></span><span style="color:var(--color-yang-id);">chassis-component</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L80C14 */</span><span id="L80C14"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Represents a chassis identifier based on the value of the
+          entPhysicalAlias object (defined in IETF RFC 2737) for a chassis
+          component (i.e., an entPhysicalClass value of chassis(3))."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L86C11 */</span><span id="L86C11"></span><span style="color:var(--color-yang-id);">interface-alias</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L87C14 */</span><span id="L87C14"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Represents a chassis identifier based on the value of ifAlias
+          object (defined in IETF RFC 2863) for an interface on the
+          containing chassis."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L93C11 */</span><span id="L93C11"></span><span style="color:var(--color-yang-id);">port-component</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L94C14 */</span><span id="L94C14"></span><span style="color:var(--color-yang-id);">3</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Represents a chassis identifier based on the value of the
+          entPhysicalAlias object (defined in IETF RFC 2737) for a port or
+          backplane component (i.e., entPhysicalClass value of port(10) or
+          backplane(4)), within the containing chassis."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L101C11 */</span><span id="L101C11"></span><span style="color:var(--color-yang-id);">mac-address</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L102C14 */</span><span id="L102C14"></span><span style="color:var(--color-yang-id);">4</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Represents a chassis identifier based on the value of a unicast
+          source address (encoded in network byte order and IEEE 802.3
+          bit significance), of a port on the containing chassis as
+          defined in IEEE Std 802."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L109C11 */</span><span id="L109C11"></span><span style="color:var(--color-yang-id);">network-address</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L110C14 */</span><span id="L110C14"></span><span style="color:var(--color-yang-id);">5</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Represents a chassis identifier based on a network address,
+          associated with a particular chassis. The encoded address is
+          actually composed of two fields. The first field is a single
+          octet, representing the IANA AddressFamilyNumbers value for the
+          specific address type, and the second field is the network address
+          value."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L119C11 */</span><span id="L119C11"></span><span style="color:var(--color-yang-id);">interface-name</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L120C14 */</span><span id="L120C14"></span><span style="color:var(--color-yang-id);">6</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Represents a chassis identifier based on the value of the ifName
+          object (defined in IETF RFC 2863) for an interface on the
+          containing chassis."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L126C11 */</span><span id="L126C11"></span><span style="color:var(--color-yang-id);">local</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L127C14 */</span><span id="L127C14"></span><span style="color:var(--color-yang-id);">7</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Represents a chassis identifier based on a locally defined value."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The source of a chassis identifier."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802
+      IETF RFC 2737
+      IETF RFC 2863"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L139C10 */</span><span id="L139C10"></span><span style="color:var(--color-yang-id);">chassis-id-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L140C9 */</span><span id="L140C9"></span><span style="color:var(--color-yang-id);">string</span> {
+      <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-text);">"1..255"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The format of a chassis identifier string. Objects of this type are
+      always used with an associated chassis-id-subtype object, which
+      identifies the format of the particular chassis-id object
+      instance.
+
+      If the associated chassis-id-subtype object has a value of
+      chassis-component, then the octet string identifies a particular
+      instance of the entPhysicalAlias object (defined in IETF RFC 2737) for
+      a chassis component (i.e., an entPhysicalClass value of chassis(3)).
+
+      If the associated chassis-id-subtype object has a value of
+      interface-alias, then the octet string identifies a particular
+      instance of the ifAlias object (defined in IETF RFC 2863) for an
+      interface on the containing chassis. If the particular ifAlias object
+      does not contain any values, another chassis identifier type should be
+      used.
+
+      If the associated chassis-id-subtype object has a value of
+      port-component, then the octet string identifies a particular instance
+      of the entPhysicalAlias object (defined in IETF RFC 2737) for a port
+      or backplane component within the containing chassis.
+
+      If the associated chassis-id-subtype object has a value of
+      mac-address, then this string identifies a particular unicast source
+      address (encoded in network byte order and IEEE 802.3 bit
+      significance), of a port on the containing chassis as defined in
+      IEEE Std 802.
+
+      If the associated chassis-id-subtype object has a value of
+      network-address, then this string identifies a particular network
+      address, encoded in network byte order, associated with one or more
+      ports on the containing chassis. The first octet contains the IANA
+      Address Family Numbers enumeration value for the specific address
+      type, and octets 2 through N contain the network address value in
+      network byte order.
+
+      If the associated chassis-id-subtype object has a value of
+      interface-name, then the octet string identifies a particular instance
+      of the ifName object (defined in IETF RFC 2863) for an interface on
+      the containing chassis. If the particular ifName object does not
+      contain any values, another chassis identifier type should be used.
+
+      If the associated chassis-id-subtype object has a value of local,
+      then this string identifies a locally assigned Chassis ID."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802
+      IETF RFC 2737
+      IETF RFC 2863"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L193C10 */</span><span id="L193C10"></span><span style="color:var(--color-yang-id);">port-id-subtype-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L194C9 */</span><span id="L194C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L195C11 */</span><span id="L195C11"></span><span style="color:var(--color-yang-id);">interface-alias</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L196C14 */</span><span id="L196C14"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Represents a port identifier based on the ifAlias MIB object,
+          defined in IETF RFC 2863."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L201C11 */</span><span id="L201C11"></span><span style="color:var(--color-yang-id);">port-component</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L202C14 */</span><span id="L202C14"></span><span style="color:var(--color-yang-id);">2</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Represents a port identifier based on the value of
+          entPhysicalAlias (defined in IETF RFC 2737) for a port component
+          (i.e., entPhysicalClass value of port(10)), within the containing
+          chassis."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L209C11 */</span><span id="L209C11"></span><span style="color:var(--color-yang-id);">mac-address</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L210C14 */</span><span id="L210C14"></span><span style="color:var(--color-yang-id);">3</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Represents a port identifier based on a unicast source address
+          (encoded in network byte order and IEEE 802.3 bit significance),
+          which has been detected by the agent and associated with a
+          particular port (IEEE Std 802)."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L217C11 */</span><span id="L217C11"></span><span style="color:var(--color-yang-id);">network-address</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L218C14 */</span><span id="L218C14"></span><span style="color:var(--color-yang-id);">4</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Represents a port identifier based on a network address, detected
+          by the agent and associated with a particular port."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L223C11 */</span><span id="L223C11"></span><span style="color:var(--color-yang-id);">interface-name</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L224C14 */</span><span id="L224C14"></span><span style="color:var(--color-yang-id);">5</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Represents a port identifier based on the ifName MIB object,
+          defined in IETF RFC 2863."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L229C11 */</span><span id="L229C11"></span><span style="color:var(--color-yang-id);">agent-circuit-id</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L230C14 */</span><span id="L230C14"></span><span style="color:var(--color-yang-id);">6</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Represents a port identifier based on the agent-local identifier
+          of the circuit (defined in RFC 3046), detected by the agent and
+          associated with a particular port."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L236C11 */</span><span id="L236C11"></span><span style="color:var(--color-yang-id);">local</span> {
+        <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L237C14 */</span><span id="L237C14"></span><span style="color:var(--color-yang-id);">7</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Represents a port identifier based on a value locally assigned."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The source of a particular type of port identifier."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802
+      IETF RFC 2737
+      IETF RFC 2863
+      IETF RFC 3046"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L250C10 */</span><span id="L250C10"></span><span style="color:var(--color-yang-id);">port-id-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L251C9 */</span><span id="L251C9"></span><span style="color:var(--color-yang-id);">string</span> {
+      <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-text);">"1..255"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The format of a port identifier string. Objects of this type are
+      always used with an associated port-id-subtype object, which
+      identifies the format of the particular port-id object instance.
+
+      If the associated port-id-subtype object has a value of
+      interface-alias, then the octet string identifies a particular
+      instance of the ifAlias object (defined in IETF RFC 2863). If the
+      particular ifAlias object does not contain any values, another port
+      identifier type should be used.
+
+      If the associated port-id-subtype object has a value of
+      port-component, then the octet string identifies a particular instance
+      of the entPhysicalAlias object (defined in IETF RFC 2737) for a port
+      or backplane component.
+
+      If the associated port-id-subtype object has a value of
+      mac-address, then this string identifies a particular unicast source
+      address (encoded in network byte order and IEEE 802.3 bit
+      significance) associated with the port (IEEE Std 802).
+
+      If the associated port-id-subtype object has a value of
+      network-address, then this string identifies a network address
+      associated with the port. The first octet contains the IANA
+      AddressFamilyNumbers enumeration value for the specific address type,
+      and octets 2 through N contain the networkAddress address value in
+      network byte order.
+
+      If the associated port-id-subtype object has a value of
+      interface-name, then the octet string identifies a particular instance
+      of the ifName object (defined in IETF RFC 2863). If the particular
+      ifName object does not contain any values, another port identifier
+      type should be used.
+
+      If the associated port-id-subtype object has a value of
+      agent-circuit-id, then this string identifies a agent-local identifier
+      of the circuit (defined in RFC 3046).
+
+      If the associated port-id-subtype object has a value of local,
+      then this string identifies a locally assigned port ID."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802
+      IETF RFC 2737
+      IETF RFC 2863
+      IETF RFC 3046"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L300C11 */</span><span id="L300C11"></span><span style="color:var(--color-yang-id);">rational-grouping</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Definition of a non-negative rational number."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L303C9 */</span><span id="L303C9"></span><span style="color:var(--color-yang-id);">numerator</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L304C11 */</span><span id="L304C11"></span><span style="color:var(--color-yang-id);">uint32</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Numerator of the rational number."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L308C9 */</span><span id="L308C9"></span><span style="color:var(--color-yang-id);">denominator</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L309C11 */</span><span id="L309C11"></span><span style="color:var(--color-yang-id);">uint32</span> {
+        <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..4294967295"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Denominator of the rational number."</span>;
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L316C11 */</span><span id="L316C11"></span><span style="color:var(--color-yang-id);">ptp-time-grouping</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This grouping specifies a PTP timestamp, represented as a 48-bit
+      unsigned integer number of seconds and a 32-bit unsigned integer
+      number of nanoseconds."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"6.3.3.4 of IEEE Std 802.1AS"</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L323C9 */</span><span id="L323C9"></span><span style="color:var(--color-yang-id);">seconds</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L324C11 */</span><span id="L324C11"></span><span style="color:var(--color-yang-id);">uint64</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This is the integer portion of the timestamp in units of seconds.
+        The upper 16 bits are always zero."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L329C9 */</span><span id="L329C9"></span><span style="color:var(--color-yang-id);">nanoseconds</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L330C11 */</span><span id="L330C11"></span><span style="color:var(--color-yang-id);">uint32</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This is the fractional portion of the timestamp in units of
+        nanoseconds. This value is always less than 10^9."</span>;
+    }
+  }
+}

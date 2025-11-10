@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ietf-ipv4-unicast-routing</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-text);">"1.1"</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span>
+    <span style="color:var(--color-yang-text);">"urn:ietf:params:xml:ns:yang:ietf-ipv4-unicast-routing"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-text);">"v4ur"</span>;
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L7C9 */</span><span id="L7C9"></span><span style="color:var(--color-yang-id);">ietf-routing</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-text);">"rt"</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"An 'ietf-routing' module version that is compatible with
+       the Network Management Datastore Architecture (NMDA)
+       is required."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L15C9 */</span><span id="L15C9"></span><span style="color:var(--color-yang-id);">ietf-inet-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-text);">"inet"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IETF NETMOD (Network Modeling) Working Group"</span>;
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG Web:   <https://datatracker.ietf.org/wg/netmod/>
+     WG List:  <mailto:rtgwg@ietf.org>
+
+     Editor:   Ladislav Lhotka
+               <mailto:lhotka@nic.cz>
+               Acee Lindem
+               <mailto:acee@cisco.com>
+               Yingzhen Qu
+               <mailto:yingzhen.qu@huawei.com>"</span>;
+
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This YANG module augments the 'ietf-routing' module with basic
+     parameters for IPv4 unicast routing.  The model fully conforms
+     to the Network Management Datastore Architecture (NMDA).
+
+     Copyright (c) 2018 IETF Trust and the persons
+     identified as authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Simplified BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC 8349; see
+     the RFC itself for full legal notices."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L49C11 */</span><span id="L49C11"></span><span style="color:var(--color-yang-id);">2018-03-13</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Network Management Datastore Architecture (NMDA) revision."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 8349: A YANG Data Model for Routing Management
+                 (NMDA Version)"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L57C11 */</span><span id="L57C11"></span><span style="color:var(--color-yang-id);">2016-11-04</span> {
+       <span style="color:var(--color-yang-keyword);">description</span>
+         <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+       <span style="color:var(--color-yang-keyword);">reference</span>
+         <span style="color:var(--color-yang-text);">"RFC 8022: A YANG Data Model for Routing Management"</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/* Identities */</span>
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L66C11 */</span><span id="L66C11"></span><span style="color:var(--color-yang-id);">ipv4-unicast</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L67C9 */</span><span id="L67C9"></span><span style="color:var(--color-yang-id);">rt:ipv4</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity represents the IPv4 unicast address family."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L72C11 */</span><span id="L72C11"></span><span style="color:var(--color-yang-id);">/rt:routing/rt:ribs/rt:rib/rt:routes/rt:route"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L73C10 */</span><span id="L73C10"></span><span style="color:var(--color-yang-id);">derived-from-or-self(../../rt:address-family, "
+       + "'v4ur:ipv4-unicast')"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This augment is valid only for IPv4 unicast."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This leaf augments an IPv4 unicast route."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L80C9 */</span><span id="L80C9"></span><span style="color:var(--color-yang-id);">destination-prefix</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L81C11 */</span><span id="L81C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L299C10">inet:ipv4-prefix</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"IPv4 destination prefix."</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L87C11 */</span><span id="L87C11"></span><span style="color:var(--color-yang-id);">/rt:routing/rt:ribs/rt:rib/rt:routes/rt:route/"
+        + "rt:next-hop/rt:next-hop-options/rt:simple-next-hop"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L89C10 */</span><span id="L89C10"></span><span style="color:var(--color-yang-id);">derived-from-or-self(../../../rt:address-family, "
+       + "'v4ur:ipv4-unicast')"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This augment is valid only for IPv4 unicast."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augments the 'simple-next-hop' case in IPv4 unicast routes."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L96C9 */</span><span id="L96C9"></span><span style="color:var(--color-yang-id);">next-hop-address</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L97C11 */</span><span id="L97C11"></span><span style="color:var(--color-yang-id);">inet:ipv4-address</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"IPv4 address of the next hop."</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L103C11 */</span><span id="L103C11"></span><span style="color:var(--color-yang-id);">/rt:routing/rt:ribs/rt:rib/rt:routes/rt:route/"
+        + "rt:next-hop/rt:next-hop-options/rt:next-hop-list/"
+        + "rt:next-hop-list/rt:next-hop"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L106C10 */</span><span id="L106C10"></span><span style="color:var(--color-yang-id);">derived-from-or-self(../../../../../rt:address-family, "
+       + "'v4ur:ipv4-unicast')"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This augment is valid only for IPv4 unicast."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This leaf augments the 'next-hop-list' case of IPv4 unicast
+       routes."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L114C9 */</span><span id="L114C9"></span><span style="color:var(--color-yang-id);">address</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L115C11 */</span><span id="L115C11"></span><span style="color:var(--color-yang-id);">inet:ipv4-address</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"IPv4 address of the next hop."</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span>
+    "<span style="color:var(--color-yang-comment);">/* L122C5 */</span><span id="L122C5"></span><span style="color:var(--color-yang-id);">/rt:routing/rt:ribs/rt:rib/rt:active-route/rt:input"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L123C10 */</span><span id="L123C10"></span><span style="color:var(--color-yang-id);">derived-from-or-self(../rt:address-family, "
+       + "'v4ur:ipv4-unicast')"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This augment is valid only for IPv4 unicast RIBs."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This augment adds the input parameter of the 'active-route'
+       action."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L131C9 */</span><span id="L131C9"></span><span style="color:var(--color-yang-id);">destination-address</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L132C11 */</span><span id="L132C11"></span><span style="color:var(--color-yang-id);">inet:ipv4-address</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"IPv4 destination address."</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L138C11 */</span><span id="L138C11"></span><span style="color:var(--color-yang-id);">/rt:routing/rt:ribs/rt:rib/rt:active-route/"
+        + "rt:output/rt:route"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L140C10 */</span><span id="L140C10"></span><span style="color:var(--color-yang-id);">derived-from-or-self(../../rt:address-family, "
+       + "'v4ur:ipv4-unicast')"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This augment is valid only for IPv4 unicast."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This augment adds the destination prefix to the reply of the
+       'active-route' action."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L148C9 */</span><span id="L148C9"></span><span style="color:var(--color-yang-id);">destination-prefix</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L149C11 */</span><span id="L149C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L299C10">inet:ipv4-prefix</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"IPv4 destination prefix."</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L155C11 */</span><span id="L155C11"></span><span style="color:var(--color-yang-id);">/rt:routing/rt:ribs/rt:rib/rt:active-route/"
+        + "rt:output/rt:route/rt:next-hop/rt:next-hop-options/"
+        + "rt:simple-next-hop"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L158C10 */</span><span id="L158C10"></span><span style="color:var(--color-yang-id);">derived-from-or-self(../../../rt:address-family, "
+       + "'v4ur:ipv4-unicast')"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This augment is valid only for IPv4 unicast."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augments the 'simple-next-hop' case in the reply to the
+       'active-route' action."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L166C9 */</span><span id="L166C9"></span><span style="color:var(--color-yang-id);">next-hop-address</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L167C11 */</span><span id="L167C11"></span><span style="color:var(--color-yang-id);">inet:ipv4-address</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"IPv4 address of the next hop."</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L173C11 */</span><span id="L173C11"></span><span style="color:var(--color-yang-id);">/rt:routing/rt:ribs/rt:rib/rt:active-route/"
+        + "rt:output/rt:route/rt:next-hop/rt:next-hop-options/"
+        + "rt:next-hop-list/rt:next-hop-list/rt:next-hop"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L176C10 */</span><span id="L176C10"></span><span style="color:var(--color-yang-id);">derived-from-or-self(../../../../../rt:address-family, "
+       + "'v4ur:ipv4-unicast')"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This augment is valid only for IPv4 unicast."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augments the 'next-hop-list' case in the reply to the
+       'active-route' action."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L184C9 */</span><span id="L184C9"></span><span style="color:var(--color-yang-id);">next-hop-address</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L185C11 */</span><span id="L185C11"></span><span style="color:var(--color-yang-id);">inet:ipv4-address</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"IPv4 address of the next hop."</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L191C11 */</span><span id="L191C11"></span><span style="color:var(--color-yang-id);">/rt:routing/rt:control-plane-protocols/"
+        + "rt:control-plane-protocol/rt:static-routes"</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This augment defines the 'static' pseudo-protocol
+       with data specific to IPv4 unicast."</span>;
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L196C14 */</span><span id="L196C14"></span><span style="color:var(--color-yang-id);">ipv4</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Support for a 'static' pseudo-protocol instance
+         consists of a list of routes."</span>;
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L200C11 */</span><span id="L200C11"></span><span style="color:var(--color-yang-id);">route</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"destination-prefix"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A list of static routes."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L204C13 */</span><span id="L204C13"></span><span style="color:var(--color-yang-id);">destination-prefix</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L205C15 */</span><span id="L205C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L299C10">inet:ipv4-prefix</a></span>;
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L206C20 */</span><span id="L206C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"IPv4 destination prefix."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L210C13 */</span><span id="L210C13"></span><span style="color:var(--color-yang-id);">description</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L211C15 */</span><span id="L211C15"></span><span style="color:var(--color-yang-id);">string</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Textual description of the route."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L215C18 */</span><span id="L215C18"></span><span style="color:var(--color-yang-id);">next-hop</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Support for next-hop."</span>;
+          <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L218C15 */</span><span id="L218C15"></span><span style="color:var(--color-yang-id);">rt:next-hop-content</span> {
+            <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L219C21 */</span><span id="L219C21"></span><span style="color:var(--color-yang-id);">next-hop-options/simple-next-hop"</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Augments the 'simple-next-hop' case in IPv4 static
+                 routes."</span>;
+              <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L223C19 */</span><span id="L223C19"></span><span style="color:var(--color-yang-id);">next-hop-address</span> {
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L224C21 */</span><span id="L224C21"></span><span style="color:var(--color-yang-id);">inet:ipv4-address</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"IPv4 address of the next hop."</span>;
+              }
+            }
+            <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L229C21 */</span><span id="L229C21"></span><span style="color:var(--color-yang-id);">next-hop-options/next-hop-list/next-hop-list/"
+                  + "next-hop"</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Augments the 'next-hop-list' case in IPv4 static
+                 routes."</span>;
+              <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L234C19 */</span><span id="L234C19"></span><span style="color:var(--color-yang-id);">next-hop-address</span> {
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L235C21 */</span><span id="L235C21"></span><span style="color:var(--color-yang-id);">inet:ipv4-address</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"IPv4 address of the next hop."</span>;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * The subsequent data nodes are obviated and obsoleted
+   * by the Network Management Datastore Architecture
+   * as described in RFC 8342.
+   */</span>
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L251C11 */</span><span id="L251C11"></span><span style="color:var(--color-yang-id);">/rt:routing-state/rt:ribs/rt:rib/rt:routes/rt:route"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L252C10 */</span><span id="L252C10"></span><span style="color:var(--color-yang-id);">derived-from-or-self(../../rt:address-family, "
+         + "'v4ur:ipv4-unicast')"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This augment is valid only for IPv4 unicast."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L257C11 */</span><span id="L257C11"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This leaf augments an IPv4 unicast route."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L260C9 */</span><span id="L260C9"></span><span style="color:var(--color-yang-id);">destination-prefix</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L261C11 */</span><span id="L261C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L299C10">inet:ipv4-prefix</a></span>;
+      <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L262C13 */</span><span id="L262C13"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"IPv4 destination prefix."</span>;
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L267C11 */</span><span id="L267C11"></span><span style="color:var(--color-yang-id);">/rt:routing-state/rt:ribs/rt:rib/rt:routes/rt:route/"
+          + "rt:next-hop/rt:next-hop-options/rt:simple-next-hop"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L269C10 */</span><span id="L269C10"></span><span style="color:var(--color-yang-id);">derived-from-or-self(
+            ../../../rt:address-family, 'v4ur:ipv4-unicast')"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This augment is valid only for IPv4 unicast."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L274C11 */</span><span id="L274C11"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augments the 'simple-next-hop' case in IPv4 unicast routes."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L277C9 */</span><span id="L277C9"></span><span style="color:var(--color-yang-id);">next-hop-address</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L278C11 */</span><span id="L278C11"></span><span style="color:var(--color-yang-id);">inet:ipv4-address</span>;
+      <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L279C13 */</span><span id="L279C13"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"IPv4 address of the next hop."</span>;
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L284C11 */</span><span id="L284C11"></span><span style="color:var(--color-yang-id);">/rt:routing-state/rt:ribs/rt:rib/rt:routes/rt:route/"
+          + "rt:next-hop/rt:next-hop-options/rt:next-hop-list/"
+          + "rt:next-hop-list/rt:next-hop"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L287C10 */</span><span id="L287C10"></span><span style="color:var(--color-yang-id);">derived-from-or-self(../../../../../rt:address-family,
+            'v4ur:ipv4-unicast')"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This augment is valid only for IPv4 unicast."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L292C11 */</span><span id="L292C11"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This leaf augments the 'next-hop-list' case of IPv4 unicast
+       routes."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L296C9 */</span><span id="L296C9"></span><span style="color:var(--color-yang-id);">address</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L297C11 */</span><span id="L297C11"></span><span style="color:var(--color-yang-id);">inet:ipv4-address</span>;
+      <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L298C13 */</span><span id="L298C13"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"IPv4 address of the next hop."</span>;
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L303C11 */</span><span id="L303C11"></span><span style="color:var(--color-yang-id);">/rt:routing-state/rt:ribs/rt:rib/rt:active-route/"
+          + "rt:input"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L305C10 */</span><span id="L305C10"></span><span style="color:var(--color-yang-id);">derived-from-or-self(../rt:address-family,
+            'v4ur:ipv4-unicast')"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This augment is valid only for IPv4 unicast RIBs."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L310C11 */</span><span id="L310C11"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This augment adds the input parameter of the 'active-route'
+       action."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L314C9 */</span><span id="L314C9"></span><span style="color:var(--color-yang-id);">destination-address</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L315C11 */</span><span id="L315C11"></span><span style="color:var(--color-yang-id);">inet:ipv4-address</span>;
+      <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L316C13 */</span><span id="L316C13"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"IPv4 destination address."</span>;
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L321C11 */</span><span id="L321C11"></span><span style="color:var(--color-yang-id);">/rt:routing-state/rt:ribs/rt:rib/rt:active-route/"
+          + "rt:output/rt:route"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L323C10 */</span><span id="L323C10"></span><span style="color:var(--color-yang-id);">derived-from-or-self(../../rt:address-family,
+            'v4ur:ipv4-unicast')"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This augment is valid only for IPv4 unicast."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L328C11 */</span><span id="L328C11"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This augment adds the destination prefix to the reply of the
+       'active-route' action."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L332C9 */</span><span id="L332C9"></span><span style="color:var(--color-yang-id);">destination-prefix</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L333C11 */</span><span id="L333C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-inet-types#L299C10">inet:ipv4-prefix</a></span>;
+      <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L334C13 */</span><span id="L334C13"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"IPv4 destination prefix."</span>;
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L339C11 */</span><span id="L339C11"></span><span style="color:var(--color-yang-id);">/rt:routing-state/rt:ribs/rt:rib/rt:active-route/"
+          + "rt:output/rt:route/rt:next-hop/rt:next-hop-options/"
+          + "rt:simple-next-hop"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L342C10 */</span><span id="L342C10"></span><span style="color:var(--color-yang-id);">derived-from-or-self(../../../rt:address-family,
+            'v4ur:ipv4-unicast')"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This augment is valid only for IPv4 unicast."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L347C11 */</span><span id="L347C11"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augments the 'simple-next-hop' case in the reply to the
+       'active-route' action."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L351C9 */</span><span id="L351C9"></span><span style="color:var(--color-yang-id);">next-hop-address</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L352C11 */</span><span id="L352C11"></span><span style="color:var(--color-yang-id);">inet:ipv4-address</span>;
+      <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L353C13 */</span><span id="L353C13"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"IPv4 address of the next hop."</span>;
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L358C11 */</span><span id="L358C11"></span><span style="color:var(--color-yang-id);">/rt:routing-state/rt:ribs/rt:rib/rt:active-route/"
+          + "rt:output/rt:route/rt:next-hop/rt:next-hop-options/"
+          + "rt:next-hop-list/rt:next-hop-list/rt:next-hop"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L361C10 */</span><span id="L361C10"></span><span style="color:var(--color-yang-id);">derived-from-or-self(../../../../../rt:address-family,
+            'v4ur:ipv4-unicast')"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This augment is valid only for IPv4 unicast."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L366C11 */</span><span id="L366C11"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augments the 'next-hop-list' case in the reply to the
+       'active-route' action."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L370C9 */</span><span id="L370C9"></span><span style="color:var(--color-yang-id);">next-hop-address</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L371C11 */</span><span id="L371C11"></span><span style="color:var(--color-yang-id);">inet:ipv4-address</span>;
+      <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L372C13 */</span><span id="L372C13"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"IPv4 address of the next hop."</span>;
+    }
+  }
+}

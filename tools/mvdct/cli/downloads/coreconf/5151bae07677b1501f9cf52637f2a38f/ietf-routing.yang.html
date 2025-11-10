@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ietf-routing</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-text);">"1.1"</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:ietf:params:xml:ns:yang:ietf-routing"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-text);">"rt"</span>;
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L6C9 */</span><span id="L6C9"></span><span style="color:var(--color-yang-id);">ietf-yang-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-text);">"yang"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L10C9 */</span><span id="L10C9"></span><span style="color:var(--color-yang-id);">ietf-interfaces</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-text);">"if"</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"An 'ietf-interfaces' module version that is compatible with
+       the Network Management Datastore Architecture (NMDA)
+       is required."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IETF NETMOD (Network Modeling) Working Group"</span>;
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG Web:   <https://datatracker.ietf.org/wg/netmod/>
+     WG List:  <mailto:rtgwg@ietf.org>
+
+     Editor:   Ladislav Lhotka
+               <mailto:lhotka@nic.cz>
+               Acee Lindem
+               <mailto:acee@cisco.com>
+               Yingzhen Qu
+               <mailto:yingzhen.qu@huawei.com>"</span>;
+
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This YANG module defines essential components for the management
+     of a routing subsystem.  The model fully conforms to the Network
+     Management Datastore Architecture (NMDA).
+
+     Copyright (c) 2018 IETF Trust and the persons
+     identified as authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Simplified BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+     This version of this YANG module is part of RFC 8349; see
+     the RFC itself for full legal notices."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L48C11 */</span><span id="L48C11"></span><span style="color:var(--color-yang-id);">2018-03-13</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Network Management Datastore Architecture (NMDA) revision."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 8349: A YANG Data Model for Routing Management
+                 (NMDA Version)"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L56C11 */</span><span id="L56C11"></span><span style="color:var(--color-yang-id);">2016-11-04</span> {
+       <span style="color:var(--color-yang-keyword);">description</span>
+         <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+       <span style="color:var(--color-yang-keyword);">reference</span>
+         <span style="color:var(--color-yang-text);">"RFC 8022: A YANG Data Model for Routing Management"</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/* Features */</span>
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L64C10 */</span><span id="L64C10"></span><span style="color:var(--color-yang-id);">multiple-ribs</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This feature indicates that the server supports
+       user-defined RIBs.
+
+       Servers that do not advertise this feature SHOULD provide
+       exactly one system-controlled RIB per supported address family
+       and also make it the default RIB.  This RIB then appears as an
+       entry in the list '/routing/ribs/rib'."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L75C10 */</span><span id="L75C10"></span><span style="color:var(--color-yang-id);">router-id</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This feature indicates that the server supports an explicit
+       32-bit router ID that is used by some routing protocols.
+
+       Servers that do not advertise this feature set a router ID
+       algorithmically, usually to one of the configured IPv4
+       addresses.  However, this algorithm is implementation
+       specific."</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/* Identities */</span>
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L88C11 */</span><span id="L88C11"></span><span style="color:var(--color-yang-id);">address-family</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Base identity from which identities describing address
+       families are derived."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L93C11 */</span><span id="L93C11"></span><span style="color:var(--color-yang-id);">ipv4</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L94C9 */</span><span id="L94C9"></span><span style="color:var(--color-yang-id);">address-family</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity represents an IPv4 address family."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L99C11 */</span><span id="L99C11"></span><span style="color:var(--color-yang-id);">ipv6</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L100C9 */</span><span id="L100C9"></span><span style="color:var(--color-yang-id);">address-family</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity represents an IPv6 address family."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L105C11 */</span><span id="L105C11"></span><span style="color:var(--color-yang-id);">control-plane-protocol</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Base identity from which control-plane protocol identities are
+       derived."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L111C11 */</span><span id="L111C11"></span><span style="color:var(--color-yang-id);">routing-protocol</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L112C9 */</span><span id="L112C9"></span><span style="color:var(--color-yang-id);">control-plane-protocol</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Identity from which Layer 3 routing protocol identities are
+       derived."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L118C11 */</span><span id="L118C11"></span><span style="color:var(--color-yang-id);">direct</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L119C9 */</span><span id="L119C9"></span><span style="color:var(--color-yang-id);">routing-protocol</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Routing pseudo-protocol that provides routes to directly
+       connected networks."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L125C11 */</span><span id="L125C11"></span><span style="color:var(--color-yang-id);">static</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L126C9 */</span><span id="L126C9"></span><span style="color:var(--color-yang-id);">routing-protocol</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"'Static' routing pseudo-protocol."</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/* Type Definitions */</span>
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L133C10 */</span><span id="L133C10"></span><span style="color:var(--color-yang-id);">route-preference</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L134C9 */</span><span id="L134C9"></span><span style="color:var(--color-yang-id);">uint32</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This type is used for route preferences."</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/* Groupings */</span>
+
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L141C11 */</span><span id="L141C11"></span><span style="color:var(--color-yang-id);">address-family</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This grouping provides a leaf identifying an address
+       family."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L145C9 */</span><span id="L145C9"></span><span style="color:var(--color-yang-id);">address-family</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L146C11 */</span><span id="L146C11"></span><span style="color:var(--color-yang-id);">identityref</span> {
+        <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L147C13 */</span><span id="L147C13"></span><span style="color:var(--color-yang-id);">address-family</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L149C16 */</span><span id="L149C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Address family."</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L155C11 */</span><span id="L155C11"></span><span style="color:var(--color-yang-id);">router-id</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This grouping provides a router ID."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L158C9 */</span><span id="L158C9"></span><span style="color:var(--color-yang-id);">router-id</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L159C11 */</span><span id="L159C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L463C10">yang:dotted-quad</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"A 32-bit number in the form of a dotted quad that is used by
+         some routing protocols identifying a router."</span>;
+      <span style="color:var(--color-yang-keyword);">reference</span>
+        <span style="color:var(--color-yang-text);">"RFC 2328: OSPF Version 2"</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L168C11 */</span><span id="L168C11"></span><span style="color:var(--color-yang-id);">special-next-hop</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This grouping provides a leaf with an enumeration of special
+       next hops."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L172C9 */</span><span id="L172C9"></span><span style="color:var(--color-yang-id);">special-next-hop</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L173C11 */</span><span id="L173C11"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+        <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L174C13 */</span><span id="L174C13"></span><span style="color:var(--color-yang-id);">blackhole</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Silently discard the packet."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L178C13 */</span><span id="L178C13"></span><span style="color:var(--color-yang-id);">unreachable</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Discard the packet and notify the sender with an error
+             message indicating that the destination host is
+             unreachable."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L184C13 */</span><span id="L184C13"></span><span style="color:var(--color-yang-id);">prohibit</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Discard the packet and notify the sender with an error
+             message indicating that the communication is
+             administratively prohibited."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L190C13 */</span><span id="L190C13"></span><span style="color:var(--color-yang-id);">receive</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The packet will be received by the local system."</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Options for special next hops."</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L200C11 */</span><span id="L200C11"></span><span style="color:var(--color-yang-id);">next-hop-content</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Generic parameters of next hops in static routes."</span>;
+    <span style="color:var(--color-yang-keyword);">choice</span> <span style="color:var(--color-yang-comment);">/* L203C11 */</span><span id="L203C11"></span><span style="color:var(--color-yang-id);">next-hop-options</span> {
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L204C16 */</span><span id="L204C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Options for next hops in static routes.
+
+         It is expected that further cases will be added through
+         augments from other modules."</span>;
+      <span style="color:var(--color-yang-keyword);">case</span> <span style="color:var(--color-yang-comment);">/* L210C11 */</span><span id="L210C11"></span><span style="color:var(--color-yang-id);">simple-next-hop</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This case represents a simple next hop consisting of the
+           next-hop address and/or outgoing interface.
+
+           Modules for address families MUST augment this case with a
+           leaf containing a next-hop address of that address
+           family."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L218C13 */</span><span id="L218C13"></span><span style="color:var(--color-yang-id);">outgoing-interface</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L219C15 */</span><span id="L219C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L55C10">if:interface-ref</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Name of the outgoing interface."</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">case</span> <span style="color:var(--color-yang-comment);">/* L224C11 */</span><span id="L224C11"></span><span style="color:var(--color-yang-id);">special-next-hop</span> {
+        <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L225C13 */</span><span id="L225C13"></span><span style="color:var(--color-yang-id);">special-next-hop</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">case</span> <span style="color:var(--color-yang-comment);">/* L227C11 */</span><span id="L227C11"></span><span style="color:var(--color-yang-id);">next-hop-list</span> {
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L228C18 */</span><span id="L228C18"></span><span style="color:var(--color-yang-id);">next-hop-list</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Container for multiple next hops."</span>;
+          <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L231C15 */</span><span id="L231C15"></span><span style="color:var(--color-yang-id);">next-hop</span> {
+            <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"index"</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"An entry in a next-hop list.
+
+               Modules for address families MUST augment this list
+               with a leaf containing a next-hop address of that
+               address family."</span>;
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L239C17 */</span><span id="L239C17"></span><span style="color:var(--color-yang-id);">index</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L240C19 */</span><span id="L240C19"></span><span style="color:var(--color-yang-id);">string</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"A user-specified identifier utilized to uniquely
+                 reference the next-hop entry in the next-hop list.
+                 The value of this index has no semantic meaning
+                 other than for referencing the entry."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L247C17 */</span><span id="L247C17"></span><span style="color:var(--color-yang-id);">outgoing-interface</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L248C19 */</span><span id="L248C19"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L55C10">if:interface-ref</a></span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Name of the outgoing interface."</span>;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L258C11 */</span><span id="L258C11"></span><span style="color:var(--color-yang-id);">next-hop-state-content</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Generic state parameters of next hops."</span>;
+    <span style="color:var(--color-yang-keyword);">choice</span> <span style="color:var(--color-yang-comment);">/* L261C11 */</span><span id="L261C11"></span><span style="color:var(--color-yang-id);">next-hop-options</span> {
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L262C16 */</span><span id="L262C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Options for next hops.
+
+         It is expected that further cases will be added through
+         augments from other modules, e.g., for recursive
+         next hops."</span>;
+      <span style="color:var(--color-yang-keyword);">case</span> <span style="color:var(--color-yang-comment);">/* L269C11 */</span><span id="L269C11"></span><span style="color:var(--color-yang-id);">simple-next-hop</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This case represents a simple next hop consisting of the
+           next-hop address and/or outgoing interface.
+
+           Modules for address families MUST augment this case with a
+           leaf containing a next-hop address of that address
+           family."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L277C13 */</span><span id="L277C13"></span><span style="color:var(--color-yang-id);">outgoing-interface</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L278C15 */</span><span id="L278C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L55C10">if:interface-ref</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Name of the outgoing interface."</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">case</span> <span style="color:var(--color-yang-comment);">/* L283C11 */</span><span id="L283C11"></span><span style="color:var(--color-yang-id);">special-next-hop</span> {
+        <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L284C13 */</span><span id="L284C13"></span><span style="color:var(--color-yang-id);">special-next-hop</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">case</span> <span style="color:var(--color-yang-comment);">/* L286C11 */</span><span id="L286C11"></span><span style="color:var(--color-yang-id);">next-hop-list</span> {
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L287C18 */</span><span id="L287C18"></span><span style="color:var(--color-yang-id);">next-hop-list</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Container for multiple next hops."</span>;
+          <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L290C15 */</span><span id="L290C15"></span><span style="color:var(--color-yang-id);">next-hop</span> {
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"An entry in a next-hop list.
+
+               Modules for address families MUST augment this list
+               with a leaf containing a next-hop address of that
+               address family."</span>;
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L297C17 */</span><span id="L297C17"></span><span style="color:var(--color-yang-id);">outgoing-interface</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L298C19 */</span><span id="L298C19"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L55C10">if:interface-ref</a></span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Name of the outgoing interface."</span>;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L308C11 */</span><span id="L308C11"></span><span style="color:var(--color-yang-id);">route-metadata</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Common route metadata."</span>;
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L311C9 */</span><span id="L311C9"></span><span style="color:var(--color-yang-id);">source-protocol</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L312C11 */</span><span id="L312C11"></span><span style="color:var(--color-yang-id);">identityref</span> {
+        <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L313C13 */</span><span id="L313C13"></span><span style="color:var(--color-yang-id);">routing-protocol</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L315C16 */</span><span id="L315C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Type of the routing protocol from which the route
+         originated."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L320C9 */</span><span id="L320C9"></span><span style="color:var(--color-yang-id);">active</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L321C11 */</span><span id="L321C11"></span><span style="color:var(--color-yang-id);">empty</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"The presence of this leaf indicates that the route is
+         preferred among all routes in the same RIB that have the
+         same destination prefix."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L327C9 */</span><span id="L327C9"></span><span style="color:var(--color-yang-id);">last-updated</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L328C11 */</span><span id="L328C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L300C10">yang:date-and-time</a></span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Timestamp of the last modification of the route.  If the
+         route was never modified, it is the time when the route was
+         inserted into the RIB."</span>;
+    }
+  }
+
+  <span style="color:var(--color-yang-comment);">/* Data nodes */</span>
+
+  <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L338C12 */</span><span id="L338C12"></span><span style="color:var(--color-yang-id);">routing</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Configuration parameters for the routing subsystem."</span>;
+    <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L341C9 */</span><span id="L341C9"></span><span style="color:var(--color-yang-id);">router-id</span> {
+      <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-text);">"router-id"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Support for the global router ID.  Routing protocols
+         that use a router ID can use this parameter or override it
+         with another value."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L348C14 */</span><span id="L348C14"></span><span style="color:var(--color-yang-id);">interfaces</span> {
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L349C13 */</span><span id="L349C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Network-layer interfaces used for routing."</span>;
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L352C16 */</span><span id="L352C16"></span><span style="color:var(--color-yang-id);">interface</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L353C13 */</span><span id="L353C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L55C10">if:interface-ref</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Each entry is a reference to the name of a configured
+           network-layer interface."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L359C14 */</span><span id="L359C14"></span><span style="color:var(--color-yang-id);">control-plane-protocols</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Support for control-plane protocol instances."</span>;
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L362C11 */</span><span id="L362C11"></span><span style="color:var(--color-yang-id);">control-plane-protocol</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"type name"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Each entry contains a control-plane protocol instance."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L366C13 */</span><span id="L366C13"></span><span style="color:var(--color-yang-id);">type</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L367C15 */</span><span id="L367C15"></span><span style="color:var(--color-yang-id);">identityref</span> {
+            <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L368C17 */</span><span id="L368C17"></span><span style="color:var(--color-yang-id);">control-plane-protocol</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Type of the control-plane protocol -- an identity
+             derived from the 'control-plane-protocol'
+             base identity."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L375C13 */</span><span id="L375C13"></span><span style="color:var(--color-yang-id);">name</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L376C15 */</span><span id="L376C15"></span><span style="color:var(--color-yang-id);">string</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An arbitrary name of the control-plane protocol
+             instance."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L381C13 */</span><span id="L381C13"></span><span style="color:var(--color-yang-id);">description</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L382C15 */</span><span id="L382C15"></span><span style="color:var(--color-yang-id);">string</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Textual description of the control-plane protocol
+             instance."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L387C18 */</span><span id="L387C18"></span><span style="color:var(--color-yang-id);">static-routes</span> {
+          <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L388C16 */</span><span id="L388C16"></span><span style="color:var(--color-yang-id);">derived-from-or-self(../type, 'rt:static')"</span> {
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"This container is only valid for the 'static' routing
+               protocol."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Support for the 'static' pseudo-protocol.
+
+             Address-family-specific modules augment this node with
+             their lists of routes."</span>;
+        }
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L401C14 */</span><span id="L401C14"></span><span style="color:var(--color-yang-id);">ribs</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Support for RIBs."</span>;
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L404C11 */</span><span id="L404C11"></span><span style="color:var(--color-yang-id);">rib</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"name"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Each entry contains a configuration for a RIB identified
+           by the 'name' key.
+
+           Entries having the same key as a system-controlled entry
+           in the list '/routing/ribs/rib' are used for
+           configuring parameters of that entry.  Other entries
+           define additional user-controlled RIBs."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L414C13 */</span><span id="L414C13"></span><span style="color:var(--color-yang-id);">name</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L415C15 */</span><span id="L415C15"></span><span style="color:var(--color-yang-id);">string</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The name of the RIB.
+
+             For system-controlled entries, the value of this leaf
+             must be the same as the name of the corresponding entry
+             in the operational state.
+
+             For user-controlled entries, an arbitrary name can be
+             used."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L426C13 */</span><span id="L426C13"></span><span style="color:var(--color-yang-id);">address-family</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The address family of the system-controlled RIB."</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L431C13 */</span><span id="L431C13"></span><span style="color:var(--color-yang-id);">default-rib</span> {
+          <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-text);">"multiple-ribs"</span>;
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L433C15 */</span><span id="L433C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"true"</span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L435C17 */</span><span id="L435C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"This flag has the value of 'true' if and only if the RIB
+             is the default RIB for the given address family.
+
+             By default, control-plane protocols place their routes
+             in the default RIBs."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L443C18 */</span><span id="L443C18"></span><span style="color:var(--color-yang-id);">routes</span> {
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L444C17 */</span><span id="L444C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Current contents of the RIB."</span>;
+          <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L447C15 */</span><span id="L447C15"></span><span style="color:var(--color-yang-id);">route</span> {
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A RIB route entry.  This data node MUST be augmented
+               with information specific to routes of each address
+               family."</span>;
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L452C17 */</span><span id="L452C17"></span><span style="color:var(--color-yang-id);">route-preference</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L453C19 */</span><span id="L453C19"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-routing#L133C10">route-preference</a></span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"This route attribute, also known as 'administrative
+                 distance', allows for selecting the preferred route
+                 among routes with the same destination prefix.  A
+                 smaller value indicates a route that is
+                 more preferred."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L461C22 */</span><span id="L461C22"></span><span style="color:var(--color-yang-id);">next-hop</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Route's next-hop attribute."</span>;
+              <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L464C19 */</span><span id="L464C19"></span><span style="color:var(--color-yang-id);">next-hop-state-content</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L466C17 */</span><span id="L466C17"></span><span style="color:var(--color-yang-id);">route-metadata</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">action</span> <span style="color:var(--color-yang-comment);">/* L469C15 */</span><span id="L469C15"></span><span style="color:var(--color-yang-id);">active-route</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Return the active RIB route that is used for the
+             destination address.
+
+             Address-family-specific modules MUST augment input
+             parameters with a leaf named 'destination-address'."</span>;
+          <span style="color:var(--color-yang-keyword);">output</span> {
+            <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L477C22 */</span><span id="L477C22"></span><span style="color:var(--color-yang-id);">route</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The active RIB route for the specified destination.
+
+                 If no route exists in the RIB for the destination
+                 address, no output is returned.
+
+                 Address-family-specific modules MUST augment this
+                 container with appropriate route contents."</span>;
+              <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L486C24 */</span><span id="L486C24"></span><span style="color:var(--color-yang-id);">next-hop</span> {
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Route's next-hop attribute."</span>;
+                <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L489C21 */</span><span id="L489C21"></span><span style="color:var(--color-yang-id);">next-hop-state-content</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L491C19 */</span><span id="L491C19"></span><span style="color:var(--color-yang-id);">route-metadata</span>;
+            }
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L495C13 */</span><span id="L495C13"></span><span style="color:var(--color-yang-id);">description</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L496C15 */</span><span id="L496C15"></span><span style="color:var(--color-yang-id);">string</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Textual description of the RIB."</span>;
+        }
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * The subsequent data nodes are obviated and obsoleted
+   * by the Network Management Datastore Architecture
+   * as described in RFC 8342.
+   */</span>
+  <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L509C12 */</span><span id="L509C12"></span><span style="color:var(--color-yang-id);">routing-state</span> {
+    <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L510C11 */</span><span id="L510C11"></span><span style="color:var(--color-yang-id);">false</span>;
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L511C11 */</span><span id="L511C11"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"State data of the routing subsystem."</span>;
+    <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L514C9 */</span><span id="L514C9"></span><span style="color:var(--color-yang-id);">router-id</span> {
+      <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L515C13 */</span><span id="L515C13"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Global router ID.
+
+         It may be either configured or assigned algorithmically by
+         the implementation."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L522C14 */</span><span id="L522C14"></span><span style="color:var(--color-yang-id);">interfaces</span> {
+      <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L523C13 */</span><span id="L523C13"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Network-layer interfaces used for routing."</span>;
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L526C16 */</span><span id="L526C16"></span><span style="color:var(--color-yang-id);">interface</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L527C13 */</span><span id="L527C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-interfaces#L656C10">if:interface-state-ref</a></span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L528C15 */</span><span id="L528C15"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Each entry is a reference to the name of a configured
+           network-layer interface."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L534C14 */</span><span id="L534C14"></span><span style="color:var(--color-yang-id);">control-plane-protocols</span> {
+      <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L535C13 */</span><span id="L535C13"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Container for the list of routing protocol instances."</span>;
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L538C11 */</span><span id="L538C11"></span><span style="color:var(--color-yang-id);">control-plane-protocol</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"type name"</span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L540C15 */</span><span id="L540C15"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"State data of a control-plane protocol instance.
+
+           An implementation MUST provide exactly one
+           system-controlled instance of the 'direct'
+           pseudo-protocol.  Instances of other control-plane
+           protocols MAY be created by configuration."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L548C13 */</span><span id="L548C13"></span><span style="color:var(--color-yang-id);">type</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L549C15 */</span><span id="L549C15"></span><span style="color:var(--color-yang-id);">identityref</span> {
+            <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L550C17 */</span><span id="L550C17"></span><span style="color:var(--color-yang-id);">control-plane-protocol</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L552C17 */</span><span id="L552C17"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Type of the control-plane protocol."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L556C13 */</span><span id="L556C13"></span><span style="color:var(--color-yang-id);">name</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L557C15 */</span><span id="L557C15"></span><span style="color:var(--color-yang-id);">string</span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L558C17 */</span><span id="L558C17"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The name of the control-plane protocol instance.
+
+             For system-controlled instances, this name is
+             persistent, i.e., it SHOULD NOT change across
+             reboots."</span>;
+        }
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L568C14 */</span><span id="L568C14"></span><span style="color:var(--color-yang-id);">ribs</span> {
+      <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L569C13 */</span><span id="L569C13"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Container for RIBs."</span>;
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L572C11 */</span><span id="L572C11"></span><span style="color:var(--color-yang-id);">rib</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"name"</span>;
+        <span style="color:var(--color-yang-keyword);">min-elements</span> <span style="color:var(--color-yang-comment);">/* L574C21 */</span><span id="L574C21"></span><span style="color:var(--color-yang-id);">1</span>;
+        <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L575C15 */</span><span id="L575C15"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Each entry represents a RIB identified by the 'name'
+           key.  All routes in a RIB MUST belong to the same address
+           family.
+
+           An implementation SHOULD provide one system-controlled
+           default RIB for each supported address family."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L583C13 */</span><span id="L583C13"></span><span style="color:var(--color-yang-id);">name</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L584C15 */</span><span id="L584C15"></span><span style="color:var(--color-yang-id);">string</span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L585C17 */</span><span id="L585C17"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The name of the RIB."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L589C13 */</span><span id="L589C13"></span><span style="color:var(--color-yang-id);">address-family</span> {
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L590C17 */</span><span id="L590C17"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The address family of the RIB."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L594C13 */</span><span id="L594C13"></span><span style="color:var(--color-yang-id);">default-rib</span> {
+          <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-text);">"multiple-ribs"</span>;
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L596C15 */</span><span id="L596C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"true"</span>;
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L598C17 */</span><span id="L598C17"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"This flag has the value of 'true' if and only if the
+             RIB is the default RIB for the given address family.
+
+             By default, control-plane protocols place their routes
+             in the default RIBs."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L606C18 */</span><span id="L606C18"></span><span style="color:var(--color-yang-id);">routes</span> {
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L607C17 */</span><span id="L607C17"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Current contents of the RIB."</span>;
+          <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L610C15 */</span><span id="L610C15"></span><span style="color:var(--color-yang-id);">route</span> {
+            <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L611C19 */</span><span id="L611C19"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A RIB route entry.  This data node MUST be augmented
+               with information specific to routes of each address
+               family."</span>;
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L616C17 */</span><span id="L616C17"></span><span style="color:var(--color-yang-id);">route-preference</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L617C19 */</span><span id="L617C19"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-routing#L133C10">route-preference</a></span>;
+              <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L618C21 */</span><span id="L618C21"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"This route attribute, also known as 'administrative
+                 distance', allows for selecting the preferred route
+                 among routes with the same destination prefix.  A
+                 smaller value indicates a route that is
+                 more preferred."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L626C22 */</span><span id="L626C22"></span><span style="color:var(--color-yang-id);">next-hop</span> {
+              <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L627C21 */</span><span id="L627C21"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Route's next-hop attribute."</span>;
+              <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L630C19 */</span><span id="L630C19"></span><span style="color:var(--color-yang-id);">next-hop-state-content</span> {
+                <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L631C23 */</span><span id="L631C23"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Route's next-hop attribute operational state."</span>;
+              }
+            }
+            <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L636C17 */</span><span id="L636C17"></span><span style="color:var(--color-yang-id);">route-metadata</span> {
+              <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L637C21 */</span><span id="L637C21"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Route metadata."</span>;
+            }
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">action</span> <span style="color:var(--color-yang-comment);">/* L643C15 */</span><span id="L643C15"></span><span style="color:var(--color-yang-id);">active-route</span> {
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L644C17 */</span><span id="L644C17"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Return the active RIB route that is used for the
+             destination address.
+
+             Address-family-specific modules MUST augment input
+             parameters with a leaf named 'destination-address'."</span>;
+          <span style="color:var(--color-yang-keyword);">output</span> {
+            <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L652C22 */</span><span id="L652C22"></span><span style="color:var(--color-yang-id);">route</span> {
+              <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L653C21 */</span><span id="L653C21"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The active RIB route for the specified
+                 destination.
+
+                 If no route exists in the RIB for the destination
+                 address, no output is returned.
+
+                 Address-family-specific modules MUST augment this
+                 container with appropriate route contents."</span>;
+              <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L663C24 */</span><span id="L663C24"></span><span style="color:var(--color-yang-id);">next-hop</span> {
+                <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L664C23 */</span><span id="L664C23"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Route's next-hop attribute."</span>;
+                <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L667C21 */</span><span id="L667C21"></span><span style="color:var(--color-yang-id);">next-hop-state-content</span> {
+                  <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L668C25 */</span><span id="L668C25"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+                  <span style="color:var(--color-yang-keyword);">description</span>
+                    <span style="color:var(--color-yang-text);">"Active route state data."</span>;
+                }
+              }
+              <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L673C19 */</span><span id="L673C19"></span><span style="color:var(--color-yang-id);">route-metadata</span> {
+                <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L674C23 */</span><span id="L674C23"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Active route metadata."</span>;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

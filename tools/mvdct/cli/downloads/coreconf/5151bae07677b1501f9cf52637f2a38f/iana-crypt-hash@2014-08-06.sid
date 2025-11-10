@@ -1,0 +1,36 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 17000,
+      "size": 1000
+    }
+  ],
+  "module-name": "iana-crypt-hash",
+  "module-revision": "2014-08-06",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "iana-crypt-hash",
+      "status": "unstable",
+      "sid": 17000
+    },
+    {
+      "namespace": "feature",
+      "identifier": "crypt-hash-md5",
+      "status": "unstable",
+      "sid": 17001
+    },
+    {
+      "namespace": "feature",
+      "identifier": "crypt-hash-sha-256",
+      "status": "unstable",
+      "sid": 17002
+    },
+    {
+      "namespace": "feature",
+      "identifier": "crypt-hash-sha-512",
+      "status": "unstable",
+      "sid": 17003
+    }
+  ]
+}

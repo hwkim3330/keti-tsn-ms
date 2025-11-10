@@ -1,0 +1,420 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 8000,
+      "size": 1000
+    }
+  ],
+  "module-name": "mchp-velocitysp-port",
+  "module-revision": "2025-06-30",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "mchp-velocitysp-port",
+      "status": "unstable",
+      "sid": 8000
+    },
+    {
+      "namespace": "feature",
+      "identifier": "trunk_vlan",
+      "status": "unstable",
+      "sid": 8001
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-mirror",
+      "status": "unstable",
+      "sid": 8002
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-mirror/config",
+      "status": "unstable",
+      "sid": 8003
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-mirror/config/role/mirrored/mirrored",
+      "status": "unstable",
+      "sid": 8004
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-mirror/config/role/mirrored/mirrored/egress",
+      "status": "unstable",
+      "sid": 8005
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-mirror/config/role/mirrored/mirrored/ingress",
+      "status": "unstable",
+      "sid": 8006
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-mirror/config/role/monitor/monitor",
+      "status": "unstable",
+      "sid": 8007
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-mirror/config/role/monitor/monitor/forwarding",
+      "status": "unstable",
+      "sid": 8008
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-mirror/config/role/monitor/monitor/vid",
+      "status": "unstable",
+      "sid": 8009
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port",
+      "status": "unstable",
+      "sid": 8010
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/config",
+      "status": "unstable",
+      "sid": 8011
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/config/duplex",
+      "status": "unstable",
+      "sid": 8012
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/config/max-frame-length",
+      "status": "unstable",
+      "sid": 8013
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/config/phy-clock-role",
+      "status": "unstable",
+      "sid": 8014
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/config/speed",
+      "status": "unstable",
+      "sid": 8015
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics",
+      "status": "unstable",
+      "sid": 8016
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/clear",
+      "status": "unstable",
+      "sid": 8017
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/clear-statistics",
+      "status": "unstable",
+      "sid": 8018
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/rx-1024-1518-octets",
+      "status": "unstable",
+      "sid": 8019
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/rx-128-255-octets",
+      "status": "unstable",
+      "sid": 8020
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/rx-1519-max-octets",
+      "status": "unstable",
+      "sid": 8021
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/rx-256-511-octets",
+      "status": "unstable",
+      "sid": 8022
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/rx-512-1023-octets",
+      "status": "unstable",
+      "sid": 8023
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/rx-64-octets",
+      "status": "unstable",
+      "sid": 8024
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/rx-65-127-octets",
+      "status": "unstable",
+      "sid": 8025
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/rx-fragments",
+      "status": "unstable",
+      "sid": 8026
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/rx-jabbers",
+      "status": "unstable",
+      "sid": 8027
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/rx-mm-asm-errors",
+      "status": "unstable",
+      "sid": 8028
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/rx-mm-asm-packets",
+      "status": "unstable",
+      "sid": 8029
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/rx-mm-fragments",
+      "status": "unstable",
+      "sid": 8030
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/rx-mm-smd-errors",
+      "status": "unstable",
+      "sid": 8031
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/traffic-class",
+      "status": "unstable",
+      "sid": 8032
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/traffic-class/rx-packets",
+      "status": "unstable",
+      "sid": 8033
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/traffic-class/traffic-class",
+      "status": "unstable",
+      "sid": 8034
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/traffic-class/tx-packets",
+      "status": "unstable",
+      "sid": 8035
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/tx-1024-1518-octets",
+      "status": "unstable",
+      "sid": 8036
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/tx-128-255-octets",
+      "status": "unstable",
+      "sid": 8037
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/tx-1519-max-octets",
+      "status": "unstable",
+      "sid": 8038
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/tx-256-511-octets",
+      "status": "unstable",
+      "sid": 8039
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/tx-512-1023-octets",
+      "status": "unstable",
+      "sid": 8040
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/tx-64-octets",
+      "status": "unstable",
+      "sid": 8041
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/tx-65-127-octets",
+      "status": "unstable",
+      "sid": 8042
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/tx-mm-fragments",
+      "status": "unstable",
+      "sid": 8043
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/statistics/tx-mm-holds",
+      "status": "unstable",
+      "sid": 8044
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/status",
+      "status": "unstable",
+      "sid": 8045
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/status/flow-control",
+      "status": "unstable",
+      "sid": 8046
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-port/status/oper-info",
+      "status": "unstable",
+      "sid": 8047
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos",
+      "status": "unstable",
+      "sid": 8048
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config",
+      "status": "unstable",
+      "sid": 8049
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config/traffic-class-schedulers-bandwidth",
+      "status": "unstable",
+      "sid": 8050
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config/traffic-class-shapers",
+      "status": "unstable",
+      "sid": 8051
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config/traffic-class-shapers/traffic-class",
+      "status": "unstable",
+      "sid": 8052
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config/traffic-class-shapers/type/credit-based/credit-based",
+      "status": "unstable",
+      "sid": 8053
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config/traffic-class-shapers/type/credit-based/credit-based/idle-slope",
+      "status": "unstable",
+      "sid": 8054
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config/traffic-class-shapers/type/single-leaky-bucket/single-leaky-bucket",
+      "status": "unstable",
+      "sid": 8055
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config/traffic-class-shapers/type/single-leaky-bucket/single-leaky-bucket/committed-burst-size",
+      "status": "unstable",
+      "sid": 8056
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config/traffic-class-shapers/type/single-leaky-bucket/single-leaky-bucket/committed-information-rate",
+      "status": "unstable",
+      "sid": 8057
+    },
+    {
+      "namespace": "feature",
+      "identifier": "frame_selector",
+      "status": "unstable",
+      "sid": 8058
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config/port-policers",
+      "status": "unstable",
+      "sid": 8059
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config/port-policers/frame-selector",
+      "status": "unstable",
+      "sid": 8060
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config/port-policers/index",
+      "status": "unstable",
+      "sid": 8061
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config/port-policers/type/bit-rate/bit-rate",
+      "status": "unstable",
+      "sid": 8062
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config/port-policers/type/bit-rate/bit-rate/burst-size",
+      "status": "unstable",
+      "sid": 8063
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config/port-policers/type/bit-rate/bit-rate/rate",
+      "status": "unstable",
+      "sid": 8064
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config/port-policers/type/frame-rate/frame-rate",
+      "status": "unstable",
+      "sid": 8065
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config/port-policers/type/frame-rate/frame-rate/burst-size",
+      "status": "unstable",
+      "sid": 8066
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/mchp-velocitysp-port:eth-qos/config/port-policers/type/frame-rate/frame-rate/rate",
+      "status": "unstable",
+      "sid": 8067
+    }
+  ]
+}

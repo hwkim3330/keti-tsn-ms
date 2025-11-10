@@ -1,0 +1,30 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 26000,
+      "size": 1000
+    }
+  ],
+  "module-name": "ieee802-dot1q-psfp",
+  "module-revision": "2023-03-16",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ieee802-dot1q-psfp",
+      "status": "unstable",
+      "sid": 26000
+    },
+    {
+      "namespace": "identity",
+      "identifier": "set-gate-and-ipv",
+      "status": "unstable",
+      "sid": 26001
+    },
+    {
+      "namespace": "feature",
+      "identifier": "psfp",
+      "status": "unstable",
+      "sid": 26002
+    }
+  ]
+}

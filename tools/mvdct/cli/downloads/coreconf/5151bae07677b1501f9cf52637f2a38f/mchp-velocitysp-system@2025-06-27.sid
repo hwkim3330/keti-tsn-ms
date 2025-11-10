@@ -1,0 +1,108 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 21000,
+      "size": 1000
+    }
+  ],
+  "module-name": "mchp-velocitysp-system",
+  "module-revision": "2025-06-27",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "mchp-velocitysp-system",
+      "status": "unstable",
+      "sid": 21000
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-system:system/authentication/user/mchp-velocitysp-system:coap-authorized-key",
+      "status": "unstable",
+      "sid": 21001
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-system:system/authentication/user/mchp-velocitysp-system:coap-authorized-key/key-data",
+      "status": "unstable",
+      "sid": 21002
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-system:system/authentication/user/mchp-velocitysp-system:coap-authorized-key/name",
+      "status": "unstable",
+      "sid": 21003
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-system:coap-server",
+      "status": "unstable",
+      "sid": 21004
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-system:coap-server/config",
+      "status": "unstable",
+      "sid": 21005
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-system:coap-server/config/security-mode",
+      "status": "unstable",
+      "sid": 21006
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-system:save-config",
+      "status": "unstable",
+      "sid": 21007
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-system:system/authentication/user/mchp-velocitysp-system:coap-authorized-key/access-control",
+      "status": "unstable",
+      "sid": 21008
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-system:system/authentication/user/mchp-velocitysp-system:coap-authorized-key/access-control/cc-rights",
+      "status": "unstable",
+      "sid": 21009
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-system:system/authentication/user/mchp-velocitysp-system:coap-authorized-key/access-control/dbg-rights",
+      "status": "unstable",
+      "sid": 21010
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-system:system/authentication/user/mchp-velocitysp-system:coap-authorized-key/access-control/fw-rights",
+      "status": "unstable",
+      "sid": 21011
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-system:system/authentication/user/mchp-velocitysp-system:coap-authorized-key/access-control/startup-config-rights",
+      "status": "unstable",
+      "sid": 21012
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-system:system/authentication/user/mchp-velocitysp-system:coap-authorized-key/access-control/well-known-rights",
+      "status": "unstable",
+      "sid": 21013
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-system:coap-server/config/ip-dtls-enable",
+      "status": "unstable",
+      "sid": 21014
+    },
+    {
+      "namespace": "data",
+      "identifier": "/mchp-velocitysp-system:coap-server/config/mup1-dtls-enable",
+      "status": "unstable",
+      "sid": 21015
+    }
+  ]
+}

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-psfp</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-text);">"1.1"</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-comment);">/* L3C12 */</span><span id="L3C12"></span><span style="color:var(--color-yang-id);">urn:ieee:std:802.1Q:yang:ieee802-dot1q-psfp</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">psfp</span>;
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L5C9 */</span><span id="L5C9"></span><span style="color:var(--color-yang-id);">ietf-yang-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L6C11 */</span><span id="L6C11"></span><span style="color:var(--color-yang-id);">yang</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L8C9 */</span><span id="L8C9"></span><span style="color:var(--color-yang-id);">ieee802-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L9C11 */</span><span id="L9C11"></span><span style="color:var(--color-yang-id);">ieee802</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L11C9 */</span><span id="L11C9"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L12C11 */</span><span id="L12C11"></span><span style="color:var(--color-yang-id);">dot1q-types</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L14C9 */</span><span id="L14C9"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-stream-filters-gates</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L15C11 */</span><span id="L15C11"></span><span style="color:var(--color-yang-id);">sfsg</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IEEE 802.1 Working Group"</span>;
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG-URL: http://www.ieee802.org/1/
+    WG-EMail: stds-802-1-l@ieee.org
+    
+    Contact: IEEE 802.1 Working Group Chair
+    Postal: C/O IEEE 802.1 Working Group
+    IEEE Standards Association
+    445 Hoes Lane
+    Piscataway, NJ 08854
+    USA
+    
+    E-mail: STDS-802-1-CHAIRS@IEEE.ORG"</span>;
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module provides management of 802.1Q bridge components that
+    support Per Stream Filtering and Policing (PSFP).
+    
+    Copyright (C) IEEE (2023).
+    
+    This version of this YANG module is part of IEEE Std 802.1Q; see the
+    standard itself for full legal notices."</span>;
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L39C11 */</span><span id="L39C11"></span><span style="color:var(--color-yang-id);">2023-03-16</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Published as part of IEEE Std 802.1Qcw-2023.
+      
+      The following reference statement identifies each referenced IEEE
+      Standard as updated by applicable amendments."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Q Bridges and Bridged Networks: 
+      IEEE Stds 802.1Q-2022, 802.1Qcw-2023."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L49C10 */</span><span id="L49C10"></span><span style="color:var(--color-yang-id);">psfp</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Per Stream Filtering and Policing supported."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L55C11 */</span><span id="L55C11"></span><span style="color:var(--color-yang-id);">set-gate-and-ipv</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L56C9 */</span><span id="L56C9"></span><span style="color:var(--color-yang-id);">dot1q-types:type-of-operation</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The StreamGateState parameter specifies a desired state, open or
+      closed, for the stream gate, and the IPV parameter specifies a desired
+      value of the IPV associated with the stream. On execution, the
+      StreamGateState and IPV parameter values are used to set the
+      operational values of the stream gate state and internal priority
+      specification parameters for the stream. After TimeInterval ticks has
+      elapsed since the completion of the previous stream gate control
+      operation in the stream gate control list, control passes to the next
+      stream gate control operation. The optional IntervalOctetMax parameter
+      specifies the maximum number of MSDU octets that are permitted to pass
+      the gate during the specified TimeInterval. If the IntervalOctetMax
+      parameter is omitted, there is no limit on the number of octets that
+      can pass the gate."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"8.6.5.4 of IEEE Std 802.1Q"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L74C11 */</span><span id="L74C11"></span><span style="color:var(--color-yang-id);">stream-gate-control-entries</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"A GateControlEntry consists of an operation name, followed by three
+      mandatory parameters and one optional parameter associated with the
+      operation. The first parameter is a gateStatesValue; the second
+      parameter is an IPV value; the third parameter is a timeIntervalValue;
+      and the fourth parameter is an IntervalOctetMaxValue.
+      IntervalOctetMaxValue is optional."</span>;
+    <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L82C9 */</span><span id="L82C9"></span><span style="color:var(--color-yang-id);">dot1q-types:base-gate-control-entries</span> {
+      <span style="color:var(--color-yang-keyword);">refine</span> <span style="color:var(--color-yang-text);">"gate-control-entry/operation-name"</span> {
+        <span style="color:var(--color-yang-keyword);">must</span>
+          <span style="color:var(--color-yang-text);">". = 'psfp:set-gate-and-ipv'"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">refine</span> <span style="color:var(--color-yang-text);">"gate-control-entry/time-interval-value"</span> {
+        <span style="color:var(--color-yang-keyword);">must</span>
+          <span style="color:var(--color-yang-text);">"(. <= ../../../../supported-interval-max )"</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L91C15 */</span><span id="L91C15"></span><span style="color:var(--color-yang-id);">gate-control-entry"</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Augment gate-control-entry from base-gate-control-entries with
+          parameters gate-state-value, ipv-spec and interval-octet-max."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L95C13 */</span><span id="L95C13"></span><span style="color:var(--color-yang-id);">gate-state-value</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L96C15 */</span><span id="L96C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-stream-filters-gates#L170C10">sfsg:gate-state-value-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L97C20 */</span><span id="L97C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The PSFPgateStatesValue indicates the desired gate state, open
+            or closed, for the stream gate."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.31.3.2.1 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L104C13 */</span><span id="L104C13"></span><span style="color:var(--color-yang-id);">ipv-spec</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L105C15 */</span><span id="L105C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-stream-filters-gates#L110C10">sfsg:ipv-spec-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L106C20 */</span><span id="L106C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The IPV value indicates the IPV to be associated with frames
+            that pass the gate."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.31.3.2.3 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L113C13 */</span><span id="L113C13"></span><span style="color:var(--color-yang-id);">interval-octet-max</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L114C15 */</span><span id="L114C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An unsigned integer, denoting a IntervalOctetMax in MSDU
+            octets. If this parameter is omitted, there is no maximum."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.31.3.2.5 of IEEE Std 802.1Qcw"</span>;
+        }
+      }
+    }
+  }
+  <span style="color:var(--color-yang-keyword);">grouping</span> <span style="color:var(--color-yang-comment);">/* L124C11 */</span><span id="L124C11"></span><span style="color:var(--color-yang-id);">psfp-parameters</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"psfp-parameters comprises all the parameters associated with
+      Per-Stream Filtering and Policing configuration."</span>;
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L128C14 */</span><span id="L128C14"></span><span style="color:var(--color-yang-id);">flow-meters</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"This container comprises all flow meter related nodes."</span>;
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L131C11 */</span><span id="L131C11"></span><span style="color:var(--color-yang-id);">flow-meter-instance-table</span> {
+        <span style="color:var(--color-yang-keyword);">must</span>
+          <span style="color:var(--color-yang-text);">"(count(.) <= ../max-flow-meter-instances)"</span> {
+          <span style="color:var(--color-yang-keyword);">error-message</span>
+            <span style="color:var(--color-yang-text);">"Number of elements in flow-meter-instance-table must not be"+
+            "greater than max-flow-meter-instances."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"flow-meter-instance-id"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"There is one Flow Meter Instance Table per Bridge component. Each
+          table row contains a set of parameters that defines a single Flow
+          Meter Instance. Tables can be created or removed dynamically in
+          implementations that support dynamic configuration of Bridge
+          components. Rows in the table can be created or removed
+          dynamically in implementations that support dynamic configuration
+          of flow meters."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"12.31.4 of IEEE Std 802.1Q"</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L149C13 */</span><span id="L149C13"></span><span style="color:var(--color-yang-id);">flow-meter-instance-id</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L150C15 */</span><span id="L150C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L151C20 */</span><span id="L151C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An integer table index that allows the Flow Meter to be
+            referenced from Stream Filter Instance Table entries."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.5 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L158C13 */</span><span id="L158C13"></span><span style="color:var(--color-yang-id);">committed-information-rate</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L159C15 */</span><span id="L159C15"></span><span style="color:var(--color-yang-id);">uint64</span>;
+          <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"bits/second"</span>;
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L161C20 */</span><span id="L161C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Committed information rate (CIR), in bits per second."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.5 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L167C13 */</span><span id="L167C13"></span><span style="color:var(--color-yang-id);">committed-burst-size</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L168C15 */</span><span id="L168C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"octets"</span>;
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L170C20 */</span><span id="L170C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Committed burst size (CBS), in octets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.5 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L176C13 */</span><span id="L176C13"></span><span style="color:var(--color-yang-id);">excess-information-rate</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L177C15 */</span><span id="L177C15"></span><span style="color:var(--color-yang-id);">uint64</span>;
+          <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"bits/second"</span>;
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L179C20 */</span><span id="L179C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Excess Information Rate (EIR), in bits per second."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.5 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L185C13 */</span><span id="L185C13"></span><span style="color:var(--color-yang-id);">excess-burst-size</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L186C15 */</span><span id="L186C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"octets"</span>;
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L188C20 */</span><span id="L188C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Excess burst size (EBS) per bandwidth profile flow, in octets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.5 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L194C13 */</span><span id="L194C13"></span><span style="color:var(--color-yang-id);">coupling-flag</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L195C15 */</span><span id="L195C15"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L196C17 */</span><span id="L196C17"></span><span style="color:var(--color-yang-id);">zero</span> {
+              <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L197C20 */</span><span id="L197C20"></span><span style="color:var(--color-yang-id);">0</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Uncoupled"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L201C17 */</span><span id="L201C17"></span><span style="color:var(--color-yang-id);">one</span> {
+              <span style="color:var(--color-yang-keyword);">value</span> <span style="color:var(--color-yang-comment);">/* L202C20 */</span><span id="L202C20"></span><span style="color:var(--color-yang-id);">1</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Coupled"</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L207C20 */</span><span id="L207C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Coupling flag (CF), which takes the value 0 or 1."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.5 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L213C13 */</span><span id="L213C13"></span><span style="color:var(--color-yang-id);">color-mode</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L214C15 */</span><span id="L214C15"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L215C17 */</span><span id="L215C17"></span><span style="color:var(--color-yang-id);">color-blind</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Color-blind (i.e., the color of a frame is ignored by the
+                bandwidth profile algorithm)."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L220C17 */</span><span id="L220C17"></span><span style="color:var(--color-yang-id);">color-aware</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Color-aware (i.e., the color of a frame is considered by
+                the bandwidth profile algorithm)."</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L226C20 */</span><span id="L226C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Color mode (CM), which takes the value color-blind or
+            color-aware, as specified in Bandwidth Profile Parameters and
+            Algorithm in MEF 10.3."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.5 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L234C13 */</span><span id="L234C13"></span><span style="color:var(--color-yang-id);">drop-on-yellow</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L235C15 */</span><span id="L235C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L236C20 */</span><span id="L236C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"DropOnYellow, which takes the value TRUE or FALSE. A value of
+            TRUE indicates that yellow frames are dropped (i.e., discarded);
+            a value of FALSE indicates that yellow frames will have the
+            drop_eligible parameter set to TRUE."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.5 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L245C13 */</span><span id="L245C13"></span><span style="color:var(--color-yang-id);">mark-all-frames-red-enable</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L246C15 */</span><span id="L246C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"MarkAllFramesRedEnable, which takes the value TRUE or FALSE. A
+            value of TRUE indicates that the MarkAllFramesRed function is
+            enabled; a value of FALSE indicates that the MarkAllFramesRed
+            function is disabled. The default value of
+            MarkAllFramesRedEnable is FALSE."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.5 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L257C13 */</span><span id="L257C13"></span><span style="color:var(--color-yang-id);">mark-all-frames-red</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L258C15 */</span><span id="L258C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"MarkAllFramesRed, which takes the value TRUE or FALSE. If
+            MarkAllFramesRedEnable is TRUE, a value of TRUE in
+            MarkAllFramesRed indicates that all frames are dropped (i.e.,
+            discarded). If MarkAllFramesRed is False, it has no effect. The
+            default value of MarkAllFramesRed is FALSE; if the operation of
+            the flow meter causes any frame to be discarded, then
+            MarkAllFramesRed is set TRUE."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.5 of IEEE Std 802.1Q"</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L272C11 */</span><span id="L272C11"></span><span style="color:var(--color-yang-id);">max-flow-meter-instances</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L273C13 */</span><span id="L273C13"></span><span style="color:var(--color-yang-id);">uint32</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The maximum number of Flow Meter instances supported by this
+          Bridge component. The object may optionally be read-only."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"12.31.1.3 of IEEE Std 802.1Q"</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L281C9 */</span><span id="L281C9"></span><span style="color:var(--color-yang-id);">sfsg:sfsg-parameters</span> {
+      <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L282C15 */</span><span id="L282C15"></span><span style="color:var(--color-yang-id);">stream-filters/stream-filter-instance-table"</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Augment the Bridge component Stream filter by frame counters."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L285C13 */</span><span id="L285C13"></span><span style="color:var(--color-yang-id);">matching-frames-count</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L286C15 */</span><span id="L286C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L287C17 */</span><span id="L287C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A count of frames matching both the stream_handle and priority
+            specifications."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.3 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L294C13 */</span><span id="L294C13"></span><span style="color:var(--color-yang-id);">passing-frames-count</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L295C15 */</span><span id="L295C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L296C17 */</span><span id="L296C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A count of frames that passed the stream gate."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.3 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L302C13 */</span><span id="L302C13"></span><span style="color:var(--color-yang-id);">not-passing-frames-count</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L303C15 */</span><span id="L303C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L304C17 */</span><span id="L304C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A count of frames that did not pass the stream gate."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.3 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L310C13 */</span><span id="L310C13"></span><span style="color:var(--color-yang-id);">red-frames-count</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L311C15 */</span><span id="L311C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L312C17 */</span><span id="L312C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A count of frames that were discarded as a result of the
+            operation of the flow meter."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.3 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L319C13 */</span><span id="L319C13"></span><span style="color:var(--color-yang-id);">passing-sdu-count</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L320C15 */</span><span id="L320C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L321C17 */</span><span id="L321C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A count of frames that passed the Maximum SDU size filter."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.3 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L327C13 */</span><span id="L327C13"></span><span style="color:var(--color-yang-id);">not-passing-sdu-count</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L328C15 */</span><span id="L328C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L329C17 */</span><span id="L329C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A count of frames that did not pass the Maximum SDU size
+            filter."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.3 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L336C13 */</span><span id="L336C13"></span><span style="color:var(--color-yang-id);">flow-meter-ref</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L337C15 */</span><span id="L337C15"></span><span style="color:var(--color-yang-id);">leafref</span> {
+            <span style="color:var(--color-yang-keyword);">path</span>
+              '<span style="color:var(--color-yang-comment);">/* L339C15 */</span><span id="L339C15"></span><span style="color:var(--color-yang-id);">..'+
+              '/..'+
+              '/..'+
+              '/flow-meters'+
+              '/flow-meter-instance-table'+
+              '/flow-meter-instance-id'</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Flow meter instance that is associated with the stream filter."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.5 and 12.31.2.6 of IEEE Std 802.1Q."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L351C13 */</span><span id="L351C13"></span><span style="color:var(--color-yang-id);">flow-meter-enable</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L352C15 */</span><span id="L352C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"If it is set to TRUE, flow-meter-instance-id identifies the
+            flow meter instance associated with the stream filter. If it is
+            set to FALSE, no flow meter instance is associated with the
+            stream filter."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.5 and 12.31.2.6 of IEEE Std 802.1Q."</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L362C15 */</span><span id="L362C15"></span><span style="color:var(--color-yang-id);">stream-gates"</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Augment the Bridge component Stream Gates by maximum control list
+          limits, as used for PTP-controlled open and close transitions"</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L366C13 */</span><span id="L366C13"></span><span style="color:var(--color-yang-id);">supported-list-max</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L367C15 */</span><span id="L367C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The maximum value supported by this Bridge component of the
+            AdminControlListLength and OperControlListLength parameters. It
+            is available for use by schedule computation software to
+            determine the Bridge component’s control list capacity prior to
+            computation. The object may optionally be read-only."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.31.1.4 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L377C18 */</span><span id="L377C18"></span><span style="color:var(--color-yang-id);">supported-cycle-max</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The maximum value supported by this Bridge component of the
+            AdminCycleTime and OperCycleTime parameters. The object may
+            optionally be read-only."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.31.1.5 of IEEE Std 802.1Qcw"</span>;
+          <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L384C15 */</span><span id="L384C15"></span><span style="color:var(--color-yang-id);">ieee802:rational-grouping</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L386C13 */</span><span id="L386C13"></span><span style="color:var(--color-yang-id);">supported-interval-max</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L387C15 */</span><span id="L387C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The maximum value supported by this Bridge component of the
+            TimeIntervalValue parameter. The object may optionally be
+            read-only."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.31.1.6 of IEEE Std 802.1Qcw"</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L396C15 */</span><span id="L396C15"></span><span style="color:var(--color-yang-id);">stream-gates/stream-gate-instance-table"</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Augment the Bridge component Stream Gate instances by
+           a) operational gate states
+           b) operational IPV values
+           c) PTP controlled open and close transitions
+           d) Management for PTP controlled open and close transitions"</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L403C13 */</span><span id="L403C13"></span><span style="color:var(--color-yang-id);">oper-gate-state</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L404C15 */</span><span id="L404C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-stream-filters-gates#L170C10">sfsg:gate-state-value-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L405C17 */</span><span id="L405C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The current operational state of the gate. The operational
+            state of the gate is set by the List Execute state machine, and
+            its initial value is determined by the value of the
+            administrative state of the gate."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.31.3.2.1 and 8.6.10.5 of IEEE Std 802.1Q."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L414C13 */</span><span id="L414C13"></span><span style="color:var(--color-yang-id);">oper-ipv</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L415C15 */</span><span id="L415C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-stream-filters-gates#L110C10">sfsg:ipv-spec-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The operational internal priority value specification."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.31.3.3, 8.6.10.7 and 8.6.5.4 of IEEE Std 802.1Q."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L421C18 */</span><span id="L421C18"></span><span style="color:var(--color-yang-id);">admin-control-list</span> {
+          <span style="color:var(--color-yang-keyword);">must</span>
+            <span style="color:var(--color-yang-text);">"(count(./gate-control-entry) <= ../../supported-list-max)"</span> {
+            <span style="color:var(--color-yang-keyword);">error-message</span>
+              <span style="color:var(--color-yang-text);">"Number of elements in admin-control-list must not be"+
+              "greater than supported-list-max"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The AdminControlList and OperControlList are ordered lists
+            containing AdminControlListLength or OperControlListLength
+            entries, respectively. Each entry represents a gate operation.
+            Each entry in the list is structured as a GateControlEntry."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.31.3.2, 12.31.3.2.2 and 8.6.9.4.2 of IEEE Std 802.1Q."</span>;
+          <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L435C15 */</span><span id="L435C15"></span><span style="color:var(--color-yang-id);">stream-gate-control-entries</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L437C18 */</span><span id="L437C18"></span><span style="color:var(--color-yang-id);">oper-control-list</span> {
+          <span style="color:var(--color-yang-keyword);">must</span>
+            <span style="color:var(--color-yang-text);">"(count(./gate-control-entry) <= ../../supported-list-max)"</span> {
+            <span style="color:var(--color-yang-keyword);">error-message</span>
+              <span style="color:var(--color-yang-text);">"Number of elements in oper-control-list must not be greater"+
+              "than supported-list-max"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L444C17 */</span><span id="L444C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The AdminControlList and OperControlList are ordered lists
+            containing AdminControlListLength or OperControlListLength
+            entries, respectively. Each entry represents a gate operation.
+            Each entry in the list is structured as a GateControlEntry."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.31.3.2, 12.31.3.2.2 and 8.6.9.4.18 of IEEE Std 802.1Q."</span>;
+          <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L452C15 */</span><span id="L452C15"></span><span style="color:var(--color-yang-id);">stream-gate-control-entries</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L454C18 */</span><span id="L454C18"></span><span style="color:var(--color-yang-id);">admin-cycle-time</span> {
+          <span style="color:var(--color-yang-keyword);">must</span>
+            <span style="color:var(--color-yang-text);">"(./numerator div ./denominator <= "+
+            "../../supported-cycle-max/numerator div "+
+            "../../supported-cycle-max/denominator)"</span> {
+            <span style="color:var(--color-yang-keyword);">error-message</span>
+              <span style="color:var(--color-yang-text);">"admin-cycle-time must not be greater than"+
+              "supported-cycle-max"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The administrative value of the gating cycle for the Port. This
+            value can be changed by management, and is used by the List
+            Config state machine to set the value of OperCycleTime. The
+            AdminCycleTime variable is a rational number of seconds, defined
+            by an integer numerator and an integer denominator."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.29.1.3 and 8.6.9.4.3 of IEEE Std 802.1Q."</span>;
+          <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L471C15 */</span><span id="L471C15"></span><span style="color:var(--color-yang-id);">ieee802:rational-grouping</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L473C18 */</span><span id="L473C18"></span><span style="color:var(--color-yang-id);">oper-cycle-time</span> {
+          <span style="color:var(--color-yang-keyword);">must</span>
+            <span style="color:var(--color-yang-text);">"(./numerator div ./denominator <= "+
+            "../../supported-cycle-max/numerator div "+
+            "../../supported-cycle-max/denominator)"</span> {
+            <span style="color:var(--color-yang-keyword);">error-message</span>
+              <span style="color:var(--color-yang-text);">"oper-cycle-time must not be greater than"+
+              "supported-cycle-max"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L482C17 */</span><span id="L482C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The operational value of the gating cycle for the Port. This
+            variable is set dynamically from the AdminCycleTime variable
+            under the control of the List Config state machine OperCycleTime
+            is used by the Cycle Timer state machine to enforce the cycle
+            time for the Port. The OperCycleTime variable is a rational
+            number of seconds, defined by an integer numerator and an
+            integer denominator."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.29.1.3 and 8.6.9.4.19 of IEEE Std 802.1Q."</span>;
+          <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L493C15 */</span><span id="L493C15"></span><span style="color:var(--color-yang-id);">ieee802:rational-grouping</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L495C13 */</span><span id="L495C13"></span><span style="color:var(--color-yang-id);">admin-cycle-time-extension</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L496C15 */</span><span id="L496C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"nanoseconds"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An integer number of nanoseconds, defining the maximum amount
+            of time by which the gating cycle for the Port is permitted to
+            be extended when a new cycle configuration is being installed.
+            This administrative value can be changed by management, and is
+            used by the List Config state machine to set the value of
+            OperCycleTimeExtension."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.9.4.4 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L508C13 */</span><span id="L508C13"></span><span style="color:var(--color-yang-id);">oper-cycle-time-extension</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L509C15 */</span><span id="L509C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"nanoseconds"</span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L511C17 */</span><span id="L511C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An integer number of nanoseconds, defining the maximum amount
+            of time by which the gating cycle for the Port is permitted to
+            be extended when a new cycle configuration is installed. This
+            operational value is set by the List Config state machine to the
+            value of AdminCycleTimeExtension. The value of
+            OperCycleTimeExtension is used by the SetCycleStartTime()
+            procedure."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.9.4.20 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L523C18 */</span><span id="L523C18"></span><span style="color:var(--color-yang-id);">admin-base-time</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The administrative value of base time, expressed as an IEEE
+            1588 precision time protocol (PTP) timescale (see IEEE Std
+            802.1AS-2011). This value can be changed by management, and is
+            used by the List Config state machine to set the value of
+            OperBaseTime."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.29.1.4 and 8.6.9.4.1 of IEEE Std 802.1Q."</span>;
+          <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L532C15 */</span><span id="L532C15"></span><span style="color:var(--color-yang-id);">ieee802:ptp-time-grouping</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L534C18 */</span><span id="L534C18"></span><span style="color:var(--color-yang-id);">oper-base-time</span> {
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L535C17 */</span><span id="L535C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The operational value of base time, expressed as a PTP
+            timescale (see IEEE Std 802.1AS-2011). This variable is used by
+            the List Config state machine."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.29.1.4 and 8.6.9.4.17 of IEEE Std 802.1Q."</span>;
+          <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L542C15 */</span><span id="L542C15"></span><span style="color:var(--color-yang-id);">ieee802:ptp-time-grouping</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L544C13 */</span><span id="L544C13"></span><span style="color:var(--color-yang-id);">config-change</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L545C15 */</span><span id="L545C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//mchp-velocitysp-bridge#L84C10">boolean</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A Boolean variable that acts as a start signal to the List
+            Config state machine that the administrative variable values for
+            the Port are ready to be copied into their corresponding
+            operational variables. This variable is set TRUE by management
+            and is set FALSE by the List Config state machine."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.9.4.7 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L555C18 */</span><span id="L555C18"></span><span style="color:var(--color-yang-id);">config-change-time</span> {
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L556C17 */</span><span id="L556C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The time at which the administrative variables that determine
+            the cycle are to be copied across to the corresponding
+            operational variables, expressed as a PTP timescale. The value
+            of this variable is set by the SetConfigChangeTime() procedure
+            in the List Config state machine."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.29.1.4 and 8.6.9.4.9 of IEEE Std 802.1Q."</span>;
+          <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L565C15 */</span><span id="L565C15"></span><span style="color:var(--color-yang-id);">ieee802:ptp-time-grouping</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L567C13 */</span><span id="L567C13"></span><span style="color:var(--color-yang-id);">tick-granularity</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L568C15 */</span><span id="L568C15"></span><span style="color:var(--color-yang-id);">uint32</span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L569C17 */</span><span id="L569C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Characteristics of an implementation’s cycle timer clock
+            (TickGranularity)."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.9.4.16 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L576C18 */</span><span id="L576C18"></span><span style="color:var(--color-yang-id);">current-time</span> {
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L577C17 */</span><span id="L577C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The current time maintained by the local system, expressed as a
+            PTP timescale (see IEEE Std 802.1AS-2011)."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"12.29.1.4 and 8.6.9.4.10 of IEEE Std 802.1Q."</span>;
+          <span style="color:var(--color-yang-keyword);">uses</span> <span style="color:var(--color-yang-comment);">/* L583C15 */</span><span id="L583C15"></span><span style="color:var(--color-yang-id);">ieee802:ptp-time-grouping</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L585C13 */</span><span id="L585C13"></span><span style="color:var(--color-yang-id);">config-pending</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L586C15 */</span><span id="L586C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L587C17 */</span><span id="L587C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A Boolean variable, set TRUE by the List Config state machine
+            to signal that there is a new cycle configuration awaiting
+            installation. The variable is set FALSE when the List Config
+            state machine has installed the new configuration. The variable
+            is used by the SetCycleStartTime() procedure to control the
+            length of the cycle that immediately precedes the first cycle
+            that uses the new configuration values. This value can be read
+            by management."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.9.3 and 8.6.9.4.8 of IEEE Std 802.1Q."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L600C13 */</span><span id="L600C13"></span><span style="color:var(--color-yang-id);">config-change-error</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L601C15 */</span><span id="L601C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L602C17 */</span><span id="L602C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"An error counter that is incremented if AdminBaseTime specifies
+            a time in the past, and the current schedule is running."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.9.3.1 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L609C13 */</span><span id="L609C13"></span><span style="color:var(--color-yang-id);">gate-closed-due-to-invalid-rx-enable</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L610C15 */</span><span id="L610C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A value of TRUE indicates that the GateClosedDueToInvalidRx
+            function is enabled; a value of FALSE indicates that the
+            GateClosedDueToInvalidRx function is disabled. The default value
+            of GateClosedDueToInvalidRxEnable is FALSE."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.4 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L620C13 */</span><span id="L620C13"></span><span style="color:var(--color-yang-id);">gate-closed-due-to-invalid-rx</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L621C15 */</span><span id="L621C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"If GateClosedDueToInvalidRxEnable is TRUE, a value of TRUE in
+            GateClosedDueToInvalidRx indicates that all frames are dropped
+            (i.e., the gate behaves as if the operational stream gate state
+            is Closed). If GateClosedDueToInvalidRx is FALSE, it has no
+            effect. The default value of GateClosedDueToInvalidRx is FALSE;
+            if any frame is discarded because the gate is in the Closed
+            state, then GateClosedDueToInvalidRx is set TRUE."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.4 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L634C13 */</span><span id="L634C13"></span><span style="color:var(--color-yang-id);">gate-closed-due-octets-exceeded-enable</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L635C15 */</span><span id="L635C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A value of TRUE indicates that the
+            GateClosedDueToOctetsExceeded function is enabled; a value of
+            FALSE indicates that the GateClosedDueToOctetsExceeded function
+            is disabled. The default value of GateClosedDueToOctetsExceed is
+            FALSE."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.4 of IEEE Std 802.1Q"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L646C13 */</span><span id="L646C13"></span><span style="color:var(--color-yang-id);">gate-closed-due-octets-exceeded</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L647C15 */</span><span id="L647C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"false"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"If GateClosedDueToOctetsExceededEnable is TRUE, a value of TRUE
+            in GateClosedDueToOctetsExceeded indicates that all frames are
+            dropped (i.e., the gate behaves as if the operational stream
+            gate state is Closed). If GateClosedDueToOctetsExceeded is
+            FALSE, it has no effect. The default value of
+            GateClosedDueToOctetsExceeded is FALSE; if any frame is
+            discarded because there are insufficient IntervalOctetsLeft,
+            then GateClosedDueToOctetsExceeded is set TRUE."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"8.6.5.4 of IEEE Std 802.1Q"</span>;
+        }
+      }
+    }
+  }
+}

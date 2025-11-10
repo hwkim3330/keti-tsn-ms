@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">mchp-velocitysp-port</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L2C15 */</span><span id="L2C15"></span><span style="color:var(--color-yang-id);">1.1</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:mchp:params:xml:ns:yang:velocitysp-port"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">lm-port</span>;
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L5C9 */</span><span id="L5C9"></span><span style="color:var(--color-yang-id);">ietf-yang-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L6C11 */</span><span id="L6C11"></span><span style="color:var(--color-yang-id);">yang</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L8C9 */</span><span id="L8C9"></span><span style="color:var(--color-yang-id);">ietf-interfaces</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L9C11 */</span><span id="L9C11"></span><span style="color:var(--color-yang-id);">if</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L11C9 */</span><span id="L11C9"></span><span style="color:var(--color-yang-id);">iana-if-type</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L12C11 */</span><span id="L12C11"></span><span style="color:var(--color-yang-id);">ianaif</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L14C9 */</span><span id="L14C9"></span><span style="color:var(--color-yang-id);">ieee802-dot1q-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L15C11 */</span><span id="L15C11"></span><span style="color:var(--color-yang-id);">dot1qtypes</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L17C9 */</span><span id="L17C9"></span><span style="color:var(--color-yang-id);">ieee802-ethernet-interface</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L18C11 */</span><span id="L18C11"></span><span style="color:var(--color-yang-id);">ieee802-eth-if</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module contains a collection of YANG definitions for
+     managing ports of MCHP systems running VelocitySP software."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L24C11 */</span><span id="L24C11"></span><span style="color:var(--color-yang-id);">2025-06-30</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Added extended VID type and default values."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L29C11 */</span><span id="L29C11"></span><span style="color:var(--color-yang-id);">2025-01-20</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Added Port Policers."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L34C11 */</span><span id="L34C11"></span><span style="color:var(--color-yang-id);">2024-12-20</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L39C10 */</span><span id="L39C10"></span><span style="color:var(--color-yang-id);">oper-info-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L40C9 */</span><span id="L40C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L41C11 */</span><span id="L41C11"></span><span style="color:var(--color-yang-id);">oper_speed_default_based</span>;     <span style="color:var(--color-yang-comment);">// Speed origins from default</span>
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L42C11 */</span><span id="L42C11"></span><span style="color:var(--color-yang-id);">oper_speed_mgmt_based</span>;        <span style="color:var(--color-yang-comment);">// Speed set by mgmt</span>
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L43C11 */</span><span id="L43C11"></span><span style="color:var(--color-yang-id);">oper_speed_sfp_based</span>;         <span style="color:var(--color-yang-comment);">// Speed set by sfp</span>
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L44C11 */</span><span id="L44C11"></span><span style="color:var(--color-yang-id);">oper_speed_sfp_not_supported</span>; <span style="color:var(--color-yang-comment);">// Illegal setup</span>
+    }
+    <span style="color:var(--color-yang-keyword);">description</span> <span style="color:var(--color-yang-text);">"Port speed origins/errors"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L49C10 */</span><span id="L49C10"></span><span style="color:var(--color-yang-id);">phy-clock-role-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L50C9 */</span><span id="L50C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L51C11 */</span><span id="L51C11"></span><span style="color:var(--color-yang-id);">phy_clock_auto</span>;     <span style="color:var(--color-yang-comment);">// Auto mode</span>
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L52C11 */</span><span id="L52C11"></span><span style="color:var(--color-yang-id);">phy_clock_leader</span>;   <span style="color:var(--color-yang-comment);">// Formerly master</span>
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L53C11 */</span><span id="L53C11"></span><span style="color:var(--color-yang-id);">phy_clock_follower</span>; <span style="color:var(--color-yang-comment);">// Formerly slave</span>
+    }
+    <span style="color:var(--color-yang-keyword);">description</span> <span style="color:var(--color-yang-text);">"Clock roles of the phy"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L58C10 */</span><span id="L58C10"></span><span style="color:var(--color-yang-id);">vid-ext</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L59C9 */</span><span id="L59C9"></span><span style="color:var(--color-yang-id);">uint16</span> {
+      <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0 .. 4095"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Extended VLAN ID type."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L66C10 */</span><span id="L66C10"></span><span style="color:var(--color-yang-id);">trunk_vlan</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This feature is the configuration of pushing a tag to mirrored
+       frames transmitted on the MONITOR port to support a trunk VLAN"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L72C10 */</span><span id="L72C10"></span><span style="color:var(--color-yang-id);">frame_selector</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This feature is the configuration of port policing frame selector,
+       the selection which frames are policed"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L78C11 */</span><span id="L78C11"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span>
+      "<span style="color:var(--color-yang-comment);">/* L80C7 */</span><span id="L80C7"></span><span style="color:var(--color-yang-id);">if:type = 'ianaif:ethernetCsmacd'"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Applies when an Ethernet bridge port."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment the interface model with the Ethernet bridge port"</span>;
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L86C14 */</span><span id="L86C14"></span><span style="color:var(--color-yang-id);">eth-port</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Ethernet port is an extension of the IETF Interfaces model (RFC7223)."</span>;
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L89C16 */</span><span id="L89C16"></span><span style="color:var(--color-yang-id);">config</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Container of configuration for each bridge port."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L92C13 */</span><span id="L92C13"></span><span style="color:var(--color-yang-id);">max-frame-length</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L93C15 */</span><span id="L93C15"></span><span style="color:var(--color-yang-id);">uint16</span> {
+            <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1518..10240"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"10240"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Maximum frame size accepted on the port, including FCS."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L100C13 */</span><span id="L100C13"></span><span style="color:var(--color-yang-id);">duplex</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L101C15 */</span><span id="L101C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-ethernet-interface#L55C10">ieee802-eth-if:duplex-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Operational duplex mode of the Ethernet interface."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L105C13 */</span><span id="L105C13"></span><span style="color:var(--color-yang-id);">speed</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L106C15 */</span><span id="L106C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-ethernet-interface#L44C10">ieee802-eth-if:eth-if-speed-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"Gb/s"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Administrative speed of the Ethernet interface.
+             If ieee802-eth-if:auto-negotiation is enabled this field is ignored.
+             If Fiber SFP is inserted this field is ignored.
+             If DAC SFP is inserted this field is used."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L114C13 */</span><span id="L114C13"></span><span style="color:var(--color-yang-id);">phy-clock-role</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L115C15 */</span><span id="L115C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//mchp-velocitysp-port#L49C10">phy-clock-role-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"phy_clock_auto"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Role of the phy clock Auto/Leader/Follower"</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L121C16 */</span><span id="L121C16"></span><span style="color:var(--color-yang-id);">status</span> {
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L122C15 */</span><span id="L122C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Container of status for each bridge port."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L125C13 */</span><span id="L125C13"></span><span style="color:var(--color-yang-id);">flow-control</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L126C15 */</span><span id="L126C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-ethernet-interface#L77C10">ieee802-eth-if:pause-fc-direction-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Operational flow control mode of the Ethernet interface."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L130C13 */</span><span id="L130C13"></span><span style="color:var(--color-yang-id);">oper-info</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L131C15 */</span><span id="L131C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//mchp-velocitysp-port#L39C10">oper-info-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Information of the operational status of the Ethernet interface."</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L136C16 */</span><span id="L136C16"></span><span style="color:var(--color-yang-id);">statistics</span> {
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L137C15 */</span><span id="L137C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Container of statistics for each bridge port."</span>;
+        <span style="color:var(--color-yang-keyword);">action</span> <span style="color:var(--color-yang-comment);">/* L140C15 */</span><span id="L140C15"></span><span style="color:var(--color-yang-id);">clear-statistics</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Clear port counters."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819 extension"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L146C13 */</span><span id="L146C13"></span><span style="color:var(--color-yang-id);">clear</span> {
+          <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L147C17 */</span><span id="L147C17"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L148C15 */</span><span id="L148C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Clear port counters."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819 extension"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L154C13 */</span><span id="L154C13"></span><span style="color:var(--color-yang-id);">rx-64-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L155C15 */</span><span id="L155C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of received packets with a length of 64 octets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819: Rx etherStatsPkts64Octets"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L161C13 */</span><span id="L161C13"></span><span style="color:var(--color-yang-id);">rx-65-127-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L162C15 */</span><span id="L162C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of received packets with a length of 65-127 octets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819: Rx etherStatsPkts65to127Octets"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L168C13 */</span><span id="L168C13"></span><span style="color:var(--color-yang-id);">rx-128-255-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L169C15 */</span><span id="L169C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of received packets with a length of 128-255 octets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819: Rx etherStatsPkts128to255Octets"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L175C13 */</span><span id="L175C13"></span><span style="color:var(--color-yang-id);">rx-256-511-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L176C15 */</span><span id="L176C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of received packets with a length of 256-511 octets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819: Rx etherStatsPkts256to511Octets"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L182C13 */</span><span id="L182C13"></span><span style="color:var(--color-yang-id);">rx-512-1023-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L183C15 */</span><span id="L183C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of received packets with a length of 512-1023 octets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819: Rx etherStatsPkts512to1023Octets"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L189C13 */</span><span id="L189C13"></span><span style="color:var(--color-yang-id);">rx-1024-1518-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L190C15 */</span><span id="L190C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of received packets with a length of 1024-1518 octets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819: Rx etherStatsPkts1024to1518Octets"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L196C13 */</span><span id="L196C13"></span><span style="color:var(--color-yang-id);">rx-1519-max-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L197C15 */</span><span id="L197C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of received packets with a length greater than 1518 octets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819 extension"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L203C13 */</span><span id="L203C13"></span><span style="color:var(--color-yang-id);">rx-fragments</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L204C15 */</span><span id="L204C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of received fragment packets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819: Rx etherStatsFragments"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L210C13 */</span><span id="L210C13"></span><span style="color:var(--color-yang-id);">rx-jabbers</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L211C15 */</span><span id="L211C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of received jabber packets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819: Rx etherStatsJabbers"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L217C13 */</span><span id="L217C13"></span><span style="color:var(--color-yang-id);">tx-64-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L218C15 */</span><span id="L218C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of transmitted packets with a length of 64 octets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819: Tx etherStatsPkts64Octets"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L224C13 */</span><span id="L224C13"></span><span style="color:var(--color-yang-id);">tx-65-127-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L225C15 */</span><span id="L225C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of transmitted packets with a length of 65-127 octets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819: Tx etherStatsPkts65to127Octets"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L231C13 */</span><span id="L231C13"></span><span style="color:var(--color-yang-id);">tx-128-255-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L232C15 */</span><span id="L232C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of transmitted packets with a length of 128-255 octets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819: Tx etherStatsPkts128to255Octets"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L238C13 */</span><span id="L238C13"></span><span style="color:var(--color-yang-id);">tx-256-511-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L239C15 */</span><span id="L239C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of transmitted packets with a length of 256-511 octets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819: Tx etherStatsPkts256to511Octets"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L245C13 */</span><span id="L245C13"></span><span style="color:var(--color-yang-id);">tx-512-1023-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L246C15 */</span><span id="L246C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of transmitted packets with a length of 512-1023 octets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819: Tx etherStatsPkts512to1023Octets"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L252C13 */</span><span id="L252C13"></span><span style="color:var(--color-yang-id);">tx-1024-1518-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L253C15 */</span><span id="L253C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of transmitted packets with a length of 1024-1518 octets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819: Tx etherStatsPkts1024to1518Octets"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L259C13 */</span><span id="L259C13"></span><span style="color:var(--color-yang-id);">tx-1519-max-octets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L260C15 */</span><span id="L260C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of transmitted packets with a length greater than 1518 octets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819 extension"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L266C13 */</span><span id="L266C13"></span><span style="color:var(--color-yang-id);">traffic-class</span> {
+          <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"traffic-class"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The counters for a traffic class."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"RFC 2819 extension"</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L272C15 */</span><span id="L272C15"></span><span style="color:var(--color-yang-id);">traffic-class</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L273C17 */</span><span id="L273C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L289C10">dot1qtypes:traffic-class-type</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The traffic class index."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"8.6.6 of IEEE Std 802.1Q-2018"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L279C15 */</span><span id="L279C15"></span><span style="color:var(--color-yang-id);">rx-packets</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L280C17 */</span><span id="L280C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The number of received packets for a given traffic class."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"RFC 2819 extension"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L286C15 */</span><span id="L286C15"></span><span style="color:var(--color-yang-id);">tx-packets</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L287C17 */</span><span id="L287C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The number of transmitted packets for a given traffic class."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"RFC 2819 extension"</span>;
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L294C13 */</span><span id="L294C13"></span><span style="color:var(--color-yang-id);">rx-mm-fragments</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L295C15 */</span><span id="L295C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of received mPackets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.3br-2016: aMACMergeFragCountRx"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L301C13 */</span><span id="L301C13"></span><span style="color:var(--color-yang-id);">rx-mm-asm-packets</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L302C15 */</span><span id="L302C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of received successfully reassembled packets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.3br-2016: aMACMergeFrameAssOkCount"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L308C13 */</span><span id="L308C13"></span><span style="color:var(--color-yang-id);">rx-mm-asm-errors</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L309C15 */</span><span id="L309C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of reassembly errors."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.3br-2016: aMACMergeFrameAssErrorCount"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L315C13 */</span><span id="L315C13"></span><span style="color:var(--color-yang-id);">rx-mm-smd-errors</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L316C15 */</span><span id="L316C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of received frames with SMD errors."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.3br-2016: aMACMergeFrameSmdErrorCount"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L322C13 */</span><span id="L322C13"></span><span style="color:var(--color-yang-id);">tx-mm-fragments</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L323C15 */</span><span id="L323C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of transmitted mPackets."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.3br-2016: aMACMergeFragCountTx"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L329C13 */</span><span id="L329C13"></span><span style="color:var(--color-yang-id);">tx-mm-holds</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L330C15 */</span><span id="L330C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The number of hold transitions."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.3br-2016: aMACMergeHoldCount"</span>;
+        }
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L338C14 */</span><span id="L338C14"></span><span style="color:var(--color-yang-id);">eth-qos</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Ethernet QOS is an extension of the IETF Interfaces model (RFC7223)."</span>;
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L341C16 */</span><span id="L341C16"></span><span style="color:var(--color-yang-id);">config</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Container of QOS configuration for each bridge port."</span>;
+        <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L344C13 */</span><span id="L344C13"></span><span style="color:var(--color-yang-id);">traffic-class-shapers</span> {
+          <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"traffic-class"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"This map associate the traffic-class
+            parameter to the traffic-class shaper configuration"</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L349C15 */</span><span id="L349C15"></span><span style="color:var(--color-yang-id);">traffic-class</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L350C17 */</span><span id="L350C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-dot1q-types#L289C10">dot1qtypes:traffic-class-type</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The traffic class index associated with a given traffic
+              class."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"8.6.6 of IEEE Std 802.1Q-2018"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">choice</span> <span style="color:var(--color-yang-comment);">/* L357C17 */</span><span id="L357C17"></span><span style="color:var(--color-yang-id);">type</span> {
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The shaper type"</span>;
+            <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L360C22 */</span><span id="L360C22"></span><span style="color:var(--color-yang-id);">single-leaky-bucket</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Container of the Single Leaky Bucket shaper configuration"</span>;
+              <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L363C19 */</span><span id="L363C19"></span><span style="color:var(--color-yang-id);">committed-information-rate</span> {
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L364C21 */</span><span id="L364C21"></span><span style="color:var(--color-yang-id);">uint32</span> {
+                    <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0..4294967295"</span>;
+                }
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"The Committed information rate in kilobits per second.
+                   The rate will be rounded to the nearest value supported"</span>;
+
+              }
+              <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L372C19 */</span><span id="L372C19"></span><span style="color:var(--color-yang-id);">committed-burst-size</span> {
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L373C21 */</span><span id="L373C21"></span><span style="color:var(--color-yang-id);">uint32</span> {
+                    <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0..4294967295"</span>;
+                }
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"The Committed Burst Size in bytes.
+                   The size will be rounded to the nearest value supported"</span>;
+              }
+            }
+            <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L381C22 */</span><span id="L381C22"></span><span style="color:var(--color-yang-id);">credit-based</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Container of the Credit based shaper configuration"</span>;
+              <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L384C19 */</span><span id="L384C19"></span><span style="color:var(--color-yang-id);">idle-slope</span> {
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L385C21 */</span><span id="L385C21"></span><span style="color:var(--color-yang-id);">uint32</span> {
+                    <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0..4294967295"</span>;
+                }
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"The Idle slope is the rate of credits that is accumulated
+                  (in kilobits per second)"</span>;
+                <span style="color:var(--color-yang-keyword);">reference</span>
+                  <span style="color:var(--color-yang-text);">"8.6.8.2 of IEEE Std 802.1Q-2018"</span>;
+              }
+            }
+          }
+        }
+        <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L397C18 */</span><span id="L397C18"></span><span style="color:var(--color-yang-id);">traffic-class-schedulers-bandwidth</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L398C15 */</span><span id="L398C15"></span><span style="color:var(--color-yang-id);">uint8</span> {
+              <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"0..100"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"This list contains the traffic-class scheduler bandwidth in percent.
+              The list only contains traffic-class that is part of Weighted Fairness queueing (DWRR).
+              The first traffic-class in the list is 0, the next is always one higher.
+              The traffic-class not in the list is strict scheduling."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L407C13 */</span><span id="L407C13"></span><span style="color:var(--color-yang-id);">port-policers</span> {
+          <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-text);">"index"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Multiple policers can be created on the same port.
+             The maximum number of policers is hardware dependent.
+             Which frames to be policed can be selected by 'frame_selector'.
+             In case a frame is selected by multiple polices the most conservative wins"</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L414C15 */</span><span id="L414C15"></span><span style="color:var(--color-yang-id);">index</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L415C17 */</span><span id="L415C17"></span><span style="color:var(--color-yang-id);">uint8</span> {
+              <span style="color:var(--color-yang-keyword);">range</span> <span style="color:var(--color-yang-text);">"1..max"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The index of the port policer."</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L422C15 */</span><span id="L422C15"></span><span style="color:var(--color-yang-id);">frame-selector</span> {
+            <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L423C23 */</span><span id="L423C23"></span><span style="color:var(--color-yang-id);">frame_selector</span>;
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L424C17 */</span><span id="L424C17"></span><span style="color:var(--color-yang-id);">bits</span> {
+              <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L425C18 */</span><span id="L425C18"></span><span style="color:var(--color-yang-id);">known-unicast</span> {
+                <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L426C25 */</span><span id="L426C25"></span><span style="color:var(--color-yang-id);">0</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Police known unicast frames."</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L430C18 */</span><span id="L430C18"></span><span style="color:var(--color-yang-id);">known-multicast</span> {
+                <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L431C25 */</span><span id="L431C25"></span><span style="color:var(--color-yang-id);">1</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Police known multicast frames."</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L435C18 */</span><span id="L435C18"></span><span style="color:var(--color-yang-id);">known-broadcast</span> {
+                <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L436C25 */</span><span id="L436C25"></span><span style="color:var(--color-yang-id);">2</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Police known broadcast frames."</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L440C18 */</span><span id="L440C18"></span><span style="color:var(--color-yang-id);">unknown-unicast</span> {
+                <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L441C25 */</span><span id="L441C25"></span><span style="color:var(--color-yang-id);">3</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Police unknown unicast frames."</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L445C18 */</span><span id="L445C18"></span><span style="color:var(--color-yang-id);">unknown-multicast</span> {
+                <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L446C25 */</span><span id="L446C25"></span><span style="color:var(--color-yang-id);">4</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Police unknown multicast frames."</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L450C18 */</span><span id="L450C18"></span><span style="color:var(--color-yang-id);">unknown-broadcast</span> {
+                <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L451C25 */</span><span id="L451C25"></span><span style="color:var(--color-yang-id);">5</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Police unknown broadcast frames."</span>;
+              }
+            }
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Selection of which frames are policed.
+               All ingress frames on the port are policed if all are selected.
+               Default is all bit set and on some platforms it cannot be changed."</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">choice</span> <span style="color:var(--color-yang-comment);">/* L461C17 */</span><span id="L461C17"></span><span style="color:var(--color-yang-id);">type</span> {
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The policer can be either a type frame or bit rate policer."</span>;
+            <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L464C22 */</span><span id="L464C22"></span><span style="color:var(--color-yang-id);">frame-rate</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Container of the frame rate policer."</span>;
+              <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L467C19 */</span><span id="L467C19"></span><span style="color:var(--color-yang-id);">rate</span> {
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L468C21 */</span><span id="L468C21"></span><span style="color:var(--color-yang-id);">uint32</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Frame rate (frames per second)."</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L472C19 */</span><span id="L472C19"></span><span style="color:var(--color-yang-id);">burst-size</span> {
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L473C21 */</span><span id="L473C21"></span><span style="color:var(--color-yang-id);">uint32</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Burst size (Bytes)."</span>;
+              }
+            }
+            <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L478C22 */</span><span id="L478C22"></span><span style="color:var(--color-yang-id);">bit-rate</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Container of the bit rate policer."</span>;
+              <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L481C19 */</span><span id="L481C19"></span><span style="color:var(--color-yang-id);">rate</span> {
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L482C21 */</span><span id="L482C21"></span><span style="color:var(--color-yang-id);">uint64</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Bit rate (bits per second)."</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L486C19 */</span><span id="L486C19"></span><span style="color:var(--color-yang-id);">burst-size</span> {
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L487C21 */</span><span id="L487C21"></span><span style="color:var(--color-yang-id);">uint32</span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"Burst size (Bytes)."</span>;
+              }
+            }
+          }
+        }
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L496C14 */</span><span id="L496C14"></span><span style="color:var(--color-yang-id);">eth-mirror</span> {
+      <span style="color:var(--color-yang-keyword);">presence</span>
+        <span style="color:var(--color-yang-text);">"Configures this ports role in the mirroring functionality. If not precent,
+         the role of this ports is NONE"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Ethernet MIRROR is an extension of the IETF Interfaces model (RFC7223).
+         This is supporting configuration of copying frames to a monitor port"</span>;
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L503C16 */</span><span id="L503C16"></span><span style="color:var(--color-yang-id);">config</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Container of MIRROR configuration for each bridge port.
+           It is implemented as a choice with a container for each role the port can have
+           in the Mirroring functionality.
+           Configuring a (role) case container changes the current role of the port.
+           Getting this (config) container will only return the case container of the current role.
+           Getting a case container of a not current role will return NOT FOUND"</span>;
+        <span style="color:var(--color-yang-keyword);">choice</span> <span style="color:var(--color-yang-comment);">/* L511C15 */</span><span id="L511C15"></span><span style="color:var(--color-yang-id);">role</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The interface mirror role configuration."</span>;
+          <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L514C20 */</span><span id="L514C20"></span><span style="color:var(--color-yang-id);">monitor</span> {
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"This is the MONITOR role configuration. Frames forwarded from the Mirrored interfaces are transmitted on this port.
+               Only one port can have this role"</span>;
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L518C17 */</span><span id="L518C17"></span><span style="color:var(--color-yang-id);">forwarding</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L519C19 */</span><span id="L519C19"></span><span style="color:var(--color-yang-id);">boolean</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Enable normal traffic forwarding to Monitor role interface"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L523C17 */</span><span id="L523C17"></span><span style="color:var(--color-yang-id);">vid</span> {
+                <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-comment);">/* L524C27 */</span><span id="L524C27"></span><span style="color:var(--color-yang-id);">trunk_vlan</span>;
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L525C21 */</span><span id="L525C21"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//mchp-velocitysp-port#L58C10">vid-ext</a></span>;
+                <span style="color:var(--color-yang-keyword);">description</span>
+                  <span style="color:var(--color-yang-text);">"The VLAN identifier used in a pushed TAG on transmitted
+                   mirrored frames to support a trunk VLAN. A VLAN tag is only pushed if
+                   value is not zero"</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L532C20 */</span><span id="L532C20"></span><span style="color:var(--color-yang-id);">mirrored</span> {
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"This is the MIRRORED role configuration. Ingress and/or egress frames on this interface is
+               forwarded to the MONITOR role interface. Multiple ports can have this role"</span>;
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L536C17 */</span><span id="L536C17"></span><span style="color:var(--color-yang-id);">ingress</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L537C19 */</span><span id="L537C19"></span><span style="color:var(--color-yang-id);">boolean</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Enable ingress frames to be forwarded to MONITOR role interface"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L541C17 */</span><span id="L541C17"></span><span style="color:var(--color-yang-id);">egress</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L542C19 */</span><span id="L542C19"></span><span style="color:var(--color-yang-id);">boolean</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Enable egress frames to be forwarded to MONITOR role interface"</span>;
+            }
+          }
+        }
+      }
+    }
+  }
+}

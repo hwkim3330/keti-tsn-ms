@@ -1,0 +1,2478 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 15000,
+      "size": 999
+    }
+  ],
+  "module-name": "ieee1588-ptp",
+  "module-revision": "2022-08-30",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ieee1588-ptp",
+      "status": "unstable",
+      "sid": 15000
+    },
+    {
+      "namespace": "identity",
+      "identifier": "atomic-clock",
+      "status": "unstable",
+      "sid": 15001
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-1-s",
+      "status": "unstable",
+      "sid": 15002
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-10-ms",
+      "status": "unstable",
+      "sid": 15003
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-10-ns",
+      "status": "unstable",
+      "sid": 15004
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-10-ps",
+      "status": "unstable",
+      "sid": 15005
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-10-s",
+      "status": "unstable",
+      "sid": 15006
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-10-us",
+      "status": "unstable",
+      "sid": 15007
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-100-ms",
+      "status": "unstable",
+      "sid": 15008
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-100-ns",
+      "status": "unstable",
+      "sid": 15009
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-100-ps",
+      "status": "unstable",
+      "sid": 15010
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-100-us",
+      "status": "unstable",
+      "sid": 15011
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-1000-fs",
+      "status": "unstable",
+      "sid": 15012
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-1000-ns",
+      "status": "unstable",
+      "sid": 15013
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-1000-ps",
+      "status": "unstable",
+      "sid": 15014
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-1000-us",
+      "status": "unstable",
+      "sid": 15015
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-25-ms",
+      "status": "unstable",
+      "sid": 15016
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-25-ns",
+      "status": "unstable",
+      "sid": 15017
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-25-us",
+      "status": "unstable",
+      "sid": 15018
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-250-ms",
+      "status": "unstable",
+      "sid": 15019
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-250-ns",
+      "status": "unstable",
+      "sid": 15020
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-250-ps",
+      "status": "unstable",
+      "sid": 15021
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-250-us",
+      "status": "unstable",
+      "sid": 15022
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-2500-fs",
+      "status": "unstable",
+      "sid": 15023
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-2500-ns",
+      "status": "unstable",
+      "sid": 15024
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-2500-ps",
+      "status": "unstable",
+      "sid": 15025
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-2500-us",
+      "status": "unstable",
+      "sid": 15026
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-25ps",
+      "status": "unstable",
+      "sid": 15027
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ca-time-accurate-to-gt-10-s",
+      "status": "unstable",
+      "sid": 15028
+    },
+    {
+      "namespace": "identity",
+      "identifier": "cc-application-specific-alternative-a",
+      "status": "unstable",
+      "sid": 15029
+    },
+    {
+      "namespace": "identity",
+      "identifier": "cc-application-specific-alternative-b",
+      "status": "unstable",
+      "sid": 15030
+    },
+    {
+      "namespace": "identity",
+      "identifier": "cc-application-specific-sync",
+      "status": "unstable",
+      "sid": 15031
+    },
+    {
+      "namespace": "identity",
+      "identifier": "cc-application-specific-sync-lost",
+      "status": "unstable",
+      "sid": 15032
+    },
+    {
+      "namespace": "identity",
+      "identifier": "cc-default",
+      "status": "unstable",
+      "sid": 15033
+    },
+    {
+      "namespace": "identity",
+      "identifier": "cc-primary-sync",
+      "status": "unstable",
+      "sid": 15034
+    },
+    {
+      "namespace": "identity",
+      "identifier": "cc-primary-sync-alternative-a",
+      "status": "unstable",
+      "sid": 15035
+    },
+    {
+      "namespace": "identity",
+      "identifier": "cc-primary-sync-alternative-b",
+      "status": "unstable",
+      "sid": 15036
+    },
+    {
+      "namespace": "identity",
+      "identifier": "cc-primary-sync-lost",
+      "status": "unstable",
+      "sid": 15037
+    },
+    {
+      "namespace": "identity",
+      "identifier": "cc-slave-only",
+      "status": "unstable",
+      "sid": 15038
+    },
+    {
+      "namespace": "identity",
+      "identifier": "clock-accuracy",
+      "status": "unstable",
+      "sid": 15039
+    },
+    {
+      "namespace": "identity",
+      "identifier": "clock-class",
+      "status": "unstable",
+      "sid": 15040
+    },
+    {
+      "namespace": "identity",
+      "identifier": "controlnet",
+      "status": "unstable",
+      "sid": 15041
+    },
+    {
+      "namespace": "identity",
+      "identifier": "devicenet",
+      "status": "unstable",
+      "sid": 15042
+    },
+    {
+      "namespace": "identity",
+      "identifier": "gnss",
+      "status": "unstable",
+      "sid": 15043
+    },
+    {
+      "namespace": "identity",
+      "identifier": "hand-set",
+      "status": "unstable",
+      "sid": 15044
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ieee802-3",
+      "status": "unstable",
+      "sid": 15045
+    },
+    {
+      "namespace": "identity",
+      "identifier": "internal-oscillator",
+      "status": "unstable",
+      "sid": 15046
+    },
+    {
+      "namespace": "identity",
+      "identifier": "network-protocol",
+      "status": "unstable",
+      "sid": 15047
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ntp",
+      "status": "unstable",
+      "sid": 15048
+    },
+    {
+      "namespace": "identity",
+      "identifier": "other",
+      "status": "unstable",
+      "sid": 15049
+    },
+    {
+      "namespace": "identity",
+      "identifier": "otn",
+      "status": "unstable",
+      "sid": 15050
+    },
+    {
+      "namespace": "identity",
+      "identifier": "profinet",
+      "status": "unstable",
+      "sid": 15051
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ptp",
+      "status": "unstable",
+      "sid": 15052
+    },
+    {
+      "namespace": "identity",
+      "identifier": "serial-time-code",
+      "status": "unstable",
+      "sid": 15053
+    },
+    {
+      "namespace": "identity",
+      "identifier": "terrestrial-radio",
+      "status": "unstable",
+      "sid": 15054
+    },
+    {
+      "namespace": "identity",
+      "identifier": "time-source",
+      "status": "unstable",
+      "sid": 15055
+    },
+    {
+      "namespace": "identity",
+      "identifier": "udp-ipv4",
+      "status": "unstable",
+      "sid": 15056
+    },
+    {
+      "namespace": "identity",
+      "identifier": "udp-ipv6",
+      "status": "unstable",
+      "sid": 15057
+    },
+    {
+      "namespace": "identity",
+      "identifier": "unknown",
+      "status": "unstable",
+      "sid": 15058
+    },
+    {
+      "namespace": "feature",
+      "identifier": "acceptable-master",
+      "status": "unstable",
+      "sid": 15059
+    },
+    {
+      "namespace": "feature",
+      "identifier": "alternate-master",
+      "status": "unstable",
+      "sid": 15060
+    },
+    {
+      "namespace": "feature",
+      "identifier": "alternate-timescale",
+      "status": "unstable",
+      "sid": 15061
+    },
+    {
+      "namespace": "feature",
+      "identifier": "asymmetry-correction",
+      "status": "unstable",
+      "sid": 15062
+    },
+    {
+      "namespace": "feature",
+      "identifier": "cmlds",
+      "status": "unstable",
+      "sid": 15063
+    },
+    {
+      "namespace": "feature",
+      "identifier": "enhanced-metrics",
+      "status": "unstable",
+      "sid": 15064
+    },
+    {
+      "namespace": "feature",
+      "identifier": "external-port-config",
+      "status": "unstable",
+      "sid": 15065
+    },
+    {
+      "namespace": "feature",
+      "identifier": "fault-log",
+      "status": "unstable",
+      "sid": 15066
+    },
+    {
+      "namespace": "feature",
+      "identifier": "grandmaster-cluster",
+      "status": "unstable",
+      "sid": 15067
+    },
+    {
+      "namespace": "feature",
+      "identifier": "holdover-upgrade",
+      "status": "unstable",
+      "sid": 15068
+    },
+    {
+      "namespace": "feature",
+      "identifier": "l1-sync",
+      "status": "unstable",
+      "sid": 15069
+    },
+    {
+      "namespace": "feature",
+      "identifier": "path-trace",
+      "status": "unstable",
+      "sid": 15070
+    },
+    {
+      "namespace": "feature",
+      "identifier": "performance-monitoring",
+      "status": "unstable",
+      "sid": 15071
+    },
+    {
+      "namespace": "feature",
+      "identifier": "slave-monitoring",
+      "status": "unstable",
+      "sid": 15072
+    },
+    {
+      "namespace": "feature",
+      "identifier": "timestamp-correction",
+      "status": "unstable",
+      "sid": 15073
+    },
+    {
+      "namespace": "feature",
+      "identifier": "unicast-discovery",
+      "status": "unstable",
+      "sid": 15074
+    },
+    {
+      "namespace": "feature",
+      "identifier": "unicast-negotiation",
+      "status": "unstable",
+      "sid": 15075
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp",
+      "status": "unstable",
+      "sid": 15076
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services",
+      "status": "unstable",
+      "sid": 15077
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds",
+      "status": "unstable",
+      "sid": 15078
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/default-ds",
+      "status": "unstable",
+      "sid": 15079
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/default-ds/clock-identity",
+      "status": "unstable",
+      "sid": 15080
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/default-ds/number-link-ports",
+      "status": "unstable",
+      "sid": 15081
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports",
+      "status": "unstable",
+      "sid": 15082
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port",
+      "status": "unstable",
+      "sid": 15083
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/asymmetry-correction-port-ds",
+      "status": "unstable",
+      "sid": 15084
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/asymmetry-correction-port-ds/constant-asymmetry",
+      "status": "unstable",
+      "sid": 15085
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/asymmetry-correction-port-ds/enable",
+      "status": "unstable",
+      "sid": 15086
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/asymmetry-correction-port-ds/scaled-delay-coefficient",
+      "status": "unstable",
+      "sid": 15087
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds",
+      "status": "unstable",
+      "sid": 15088
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/delay-asymmetry",
+      "status": "unstable",
+      "sid": 15089
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/domain-number",
+      "status": "unstable",
+      "sid": 15090
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/log-min-pdelay-req-interval",
+      "status": "unstable",
+      "sid": 15091
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/mean-link-delay",
+      "status": "unstable",
+      "sid": 15092
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/minor-version-number",
+      "status": "unstable",
+      "sid": 15093
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/port-identity",
+      "status": "unstable",
+      "sid": 15094
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/port-identity/clock-identity",
+      "status": "unstable",
+      "sid": 15095
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/port-identity/port-number",
+      "status": "unstable",
+      "sid": 15096
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/scaled-neighbor-rate-ratio",
+      "status": "unstable",
+      "sid": 15097
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/service-measurement-valid",
+      "status": "unstable",
+      "sid": 15098
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/link-port-ds/version-number",
+      "status": "unstable",
+      "sid": 15099
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds",
+      "status": "unstable",
+      "sid": 15100
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list",
+      "status": "unstable",
+      "sid": 15101
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list-peer-delay",
+      "status": "unstable",
+      "sid": 15102
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list-peer-delay/average-mean-link-delay",
+      "status": "unstable",
+      "sid": 15103
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list-peer-delay/index",
+      "status": "unstable",
+      "sid": 15104
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list-peer-delay/max-mean-link-delay",
+      "status": "unstable",
+      "sid": 15105
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list-peer-delay/min-mean-link-delay",
+      "status": "unstable",
+      "sid": 15106
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list-peer-delay/pm-time",
+      "status": "unstable",
+      "sid": 15107
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list-peer-delay/stddev-mean-link-delay",
+      "status": "unstable",
+      "sid": 15108
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/announce-foreign-rx",
+      "status": "unstable",
+      "sid": 15109
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/announce-rx",
+      "status": "unstable",
+      "sid": 15110
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/announce-tx",
+      "status": "unstable",
+      "sid": 15111
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/delay-req-rx",
+      "status": "unstable",
+      "sid": 15112
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/delay-req-tx",
+      "status": "unstable",
+      "sid": 15113
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/delay-resp-rx",
+      "status": "unstable",
+      "sid": 15114
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/delay-resp-tx",
+      "status": "unstable",
+      "sid": 15115
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/follow-up-rx",
+      "status": "unstable",
+      "sid": 15116
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/follow-up-tx",
+      "status": "unstable",
+      "sid": 15117
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/index",
+      "status": "unstable",
+      "sid": 15118
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/pdelay-req-rx",
+      "status": "unstable",
+      "sid": 15119
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/pdelay-req-tx",
+      "status": "unstable",
+      "sid": 15120
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/pdelay-resp-follow-up-rx",
+      "status": "unstable",
+      "sid": 15121
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/pdelay-resp-follow-up-tx",
+      "status": "unstable",
+      "sid": 15122
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/pdelay-resp-rx",
+      "status": "unstable",
+      "sid": 15123
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/pdelay-resp-tx",
+      "status": "unstable",
+      "sid": 15124
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/pm-time",
+      "status": "unstable",
+      "sid": 15125
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/sync-rx",
+      "status": "unstable",
+      "sid": 15126
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/performance-monitoring-port-ds/record-list/sync-tx",
+      "status": "unstable",
+      "sid": 15127
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/port-index",
+      "status": "unstable",
+      "sid": 15128
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/timestamp-correction-port-ds",
+      "status": "unstable",
+      "sid": 15129
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/timestamp-correction-port-ds/egress-latency",
+      "status": "unstable",
+      "sid": 15130
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/timestamp-correction-port-ds/ingress-latency",
+      "status": "unstable",
+      "sid": 15131
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/common-services/cmlds/ports/port/underlying-interface",
+      "status": "unstable",
+      "sid": 15132
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances",
+      "status": "unstable",
+      "sid": 15133
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance",
+      "status": "unstable",
+      "sid": 15134
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/acceptable-master-ds",
+      "status": "unstable",
+      "sid": 15135
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/acceptable-master-ds/list",
+      "status": "unstable",
+      "sid": 15136
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/acceptable-master-ds/list/acceptable-port-identity",
+      "status": "unstable",
+      "sid": 15137
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/acceptable-master-ds/list/acceptable-port-identity/clock-identity",
+      "status": "unstable",
+      "sid": 15138
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/acceptable-master-ds/list/acceptable-port-identity/port-number",
+      "status": "unstable",
+      "sid": 15139
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/acceptable-master-ds/list/alternate-priority1",
+      "status": "unstable",
+      "sid": 15140
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/acceptable-master-ds/list/index",
+      "status": "unstable",
+      "sid": 15141
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/acceptable-master-ds/max-table-size",
+      "status": "unstable",
+      "sid": 15142
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/alternate-timescale-ds",
+      "status": "unstable",
+      "sid": 15143
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/alternate-timescale-ds/list",
+      "status": "unstable",
+      "sid": 15144
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/alternate-timescale-ds/list/current-offset",
+      "status": "unstable",
+      "sid": 15145
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/alternate-timescale-ds/list/display-name",
+      "status": "unstable",
+      "sid": 15146
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/alternate-timescale-ds/list/enable",
+      "status": "unstable",
+      "sid": 15147
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/alternate-timescale-ds/list/jump-seconds",
+      "status": "unstable",
+      "sid": 15148
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/alternate-timescale-ds/list/key-field",
+      "status": "unstable",
+      "sid": 15149
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/alternate-timescale-ds/list/time-of-next-jump",
+      "status": "unstable",
+      "sid": 15150
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/alternate-timescale-ds/max-key",
+      "status": "unstable",
+      "sid": 15151
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/current-ds",
+      "status": "unstable",
+      "sid": 15152
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/current-ds/mean-delay",
+      "status": "unstable",
+      "sid": 15153
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/current-ds/mean-path-delay",
+      "status": "unstable",
+      "sid": 15154
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/current-ds/offset-from-master",
+      "status": "unstable",
+      "sid": 15155
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/current-ds/steps-removed",
+      "status": "unstable",
+      "sid": 15156
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/current-ds/synchronization-uncertain",
+      "status": "unstable",
+      "sid": 15157
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds",
+      "status": "unstable",
+      "sid": 15158
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/clock-identity",
+      "status": "unstable",
+      "sid": 15159
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/clock-quality",
+      "status": "unstable",
+      "sid": 15160
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/clock-quality/clock-accuracy",
+      "status": "unstable",
+      "sid": 15161
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/clock-quality/clock-class",
+      "status": "unstable",
+      "sid": 15162
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/clock-quality/offset-scaled-log-variance",
+      "status": "unstable",
+      "sid": 15163
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/current-time",
+      "status": "unstable",
+      "sid": 15164
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/current-time/nanoseconds-field",
+      "status": "unstable",
+      "sid": 15165
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/current-time/seconds-field",
+      "status": "unstable",
+      "sid": 15166
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/domain-number",
+      "status": "unstable",
+      "sid": 15167
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/external-port-config-enable",
+      "status": "unstable",
+      "sid": 15168
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/instance-enable",
+      "status": "unstable",
+      "sid": 15169
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/instance-type",
+      "status": "unstable",
+      "sid": 15170
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/max-steps-removed",
+      "status": "unstable",
+      "sid": 15171
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/number-ports",
+      "status": "unstable",
+      "sid": 15172
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/priority1",
+      "status": "unstable",
+      "sid": 15173
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/priority2",
+      "status": "unstable",
+      "sid": 15174
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/sdo-id",
+      "status": "unstable",
+      "sid": 15175
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/slave-only",
+      "status": "unstable",
+      "sid": 15176
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/default-ds/two-step-flag",
+      "status": "unstable",
+      "sid": 15177
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/description-ds",
+      "status": "unstable",
+      "sid": 15178
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/description-ds/manufacturer-identity",
+      "status": "unstable",
+      "sid": 15179
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/description-ds/product-description",
+      "status": "unstable",
+      "sid": 15180
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/description-ds/product-revision",
+      "status": "unstable",
+      "sid": 15181
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/description-ds/user-description",
+      "status": "unstable",
+      "sid": 15182
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/enhanced-metrics-ds",
+      "status": "unstable",
+      "sid": 15183
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/enhanced-metrics-ds/enable",
+      "status": "unstable",
+      "sid": 15184
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/fault-log-ds",
+      "status": "unstable",
+      "sid": 15185
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/fault-log-ds/fault-record-list",
+      "status": "unstable",
+      "sid": 15186
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/fault-log-ds/fault-record-list/description",
+      "status": "unstable",
+      "sid": 15187
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/fault-log-ds/fault-record-list/name",
+      "status": "unstable",
+      "sid": 15188
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/fault-log-ds/fault-record-list/severity",
+      "status": "unstable",
+      "sid": 15189
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/fault-log-ds/fault-record-list/time",
+      "status": "unstable",
+      "sid": 15190
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/fault-log-ds/fault-record-list/time/nanoseconds-field",
+      "status": "unstable",
+      "sid": 15191
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/fault-log-ds/fault-record-list/time/seconds-field",
+      "status": "unstable",
+      "sid": 15192
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/fault-log-ds/fault-record-list/value",
+      "status": "unstable",
+      "sid": 15193
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/fault-log-ds/number-of-fault-records",
+      "status": "unstable",
+      "sid": 15194
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/fault-log-ds/reset",
+      "status": "unstable",
+      "sid": 15195
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/grandmaster-cluster-ds",
+      "status": "unstable",
+      "sid": 15196
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/grandmaster-cluster-ds/log-query-interval",
+      "status": "unstable",
+      "sid": 15197
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/grandmaster-cluster-ds/max-table-size",
+      "status": "unstable",
+      "sid": 15198
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/grandmaster-cluster-ds/port-address",
+      "status": "unstable",
+      "sid": 15199
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/grandmaster-cluster-ds/port-address/address-field",
+      "status": "unstable",
+      "sid": 15200
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/grandmaster-cluster-ds/port-address/address-length",
+      "status": "unstable",
+      "sid": 15201
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/grandmaster-cluster-ds/port-address/index",
+      "status": "unstable",
+      "sid": 15202
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/grandmaster-cluster-ds/port-address/network-protocol",
+      "status": "unstable",
+      "sid": 15203
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/holdover-upgrade-ds",
+      "status": "unstable",
+      "sid": 15204
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/holdover-upgrade-ds/enable",
+      "status": "unstable",
+      "sid": 15205
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/instance-index",
+      "status": "unstable",
+      "sid": 15206
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds",
+      "status": "unstable",
+      "sid": 15207
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/grandmaster-clock-quality",
+      "status": "unstable",
+      "sid": 15208
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/grandmaster-clock-quality/clock-accuracy",
+      "status": "unstable",
+      "sid": 15209
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/grandmaster-clock-quality/clock-class",
+      "status": "unstable",
+      "sid": 15210
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/grandmaster-clock-quality/offset-scaled-log-variance",
+      "status": "unstable",
+      "sid": 15211
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/grandmaster-identity",
+      "status": "unstable",
+      "sid": 15212
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/grandmaster-priority1",
+      "status": "unstable",
+      "sid": 15213
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/grandmaster-priority2",
+      "status": "unstable",
+      "sid": 15214
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/observed-parent-clock-phase-change-rate",
+      "status": "unstable",
+      "sid": 15215
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/observed-parent-offset-scaled-log-variance",
+      "status": "unstable",
+      "sid": 15216
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/parent-port-identity",
+      "status": "unstable",
+      "sid": 15217
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/parent-port-identity/clock-identity",
+      "status": "unstable",
+      "sid": 15218
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/parent-port-identity/port-number",
+      "status": "unstable",
+      "sid": 15219
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/parent-stats",
+      "status": "unstable",
+      "sid": 15220
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/protocol-address",
+      "status": "unstable",
+      "sid": 15221
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/protocol-address/address-field",
+      "status": "unstable",
+      "sid": 15222
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/protocol-address/address-length",
+      "status": "unstable",
+      "sid": 15223
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/protocol-address/network-protocol",
+      "status": "unstable",
+      "sid": 15224
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/parent-ds/synchronization-uncertain",
+      "status": "unstable",
+      "sid": 15225
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/path-trace-ds",
+      "status": "unstable",
+      "sid": 15226
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/path-trace-ds/enable",
+      "status": "unstable",
+      "sid": 15227
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/path-trace-ds/list",
+      "status": "unstable",
+      "sid": 15228
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds",
+      "status": "unstable",
+      "sid": 15229
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/enable",
+      "status": "unstable",
+      "sid": 15230
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list",
+      "status": "unstable",
+      "sid": 15231
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/average-master-slave-delay",
+      "status": "unstable",
+      "sid": 15232
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/average-mean-path-delay",
+      "status": "unstable",
+      "sid": 15233
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/average-offset-from-master",
+      "status": "unstable",
+      "sid": 15234
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/average-slave-master-delay",
+      "status": "unstable",
+      "sid": 15235
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/index",
+      "status": "unstable",
+      "sid": 15236
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/maximum-master-slave-delay",
+      "status": "unstable",
+      "sid": 15237
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/maximum-mean-path-delay",
+      "status": "unstable",
+      "sid": 15238
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/maximum-offset-from-master",
+      "status": "unstable",
+      "sid": 15239
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/maximum-slave-master-delay",
+      "status": "unstable",
+      "sid": 15240
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/measurement-valid",
+      "status": "unstable",
+      "sid": 15241
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/minimum-master-slave-delay",
+      "status": "unstable",
+      "sid": 15242
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/minimum-mean-path-delay",
+      "status": "unstable",
+      "sid": 15243
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/minimum-offset-from-master",
+      "status": "unstable",
+      "sid": 15244
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/minimum-slave-master-delay",
+      "status": "unstable",
+      "sid": 15245
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/period-complete",
+      "status": "unstable",
+      "sid": 15246
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/pm-time",
+      "status": "unstable",
+      "sid": 15247
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/stddev-master-slave-delay",
+      "status": "unstable",
+      "sid": 15248
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/stddev-mean-path-delay",
+      "status": "unstable",
+      "sid": 15249
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/stddev-offset-from-master",
+      "status": "unstable",
+      "sid": 15250
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/performance-monitoring-ds/record-list/stddev-slave-master-delay",
+      "status": "unstable",
+      "sid": 15251
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports",
+      "status": "unstable",
+      "sid": 15252
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port",
+      "status": "unstable",
+      "sid": 15253
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/acceptable-master-port-ds",
+      "status": "unstable",
+      "sid": 15254
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/acceptable-master-port-ds/enable",
+      "status": "unstable",
+      "sid": 15255
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/alternate-master-port-ds",
+      "status": "unstable",
+      "sid": 15256
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/alternate-master-port-ds/log-alt-multicast-sync-interval",
+      "status": "unstable",
+      "sid": 15257
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/alternate-master-port-ds/number-of-alt-masters",
+      "status": "unstable",
+      "sid": 15258
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/alternate-master-port-ds/tx-alt-multicast-sync",
+      "status": "unstable",
+      "sid": 15259
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/asymmetry-correction-port-ds",
+      "status": "unstable",
+      "sid": 15260
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/asymmetry-correction-port-ds/constant-asymmetry",
+      "status": "unstable",
+      "sid": 15261
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/asymmetry-correction-port-ds/enable",
+      "status": "unstable",
+      "sid": 15262
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/asymmetry-correction-port-ds/scaled-delay-coefficient",
+      "status": "unstable",
+      "sid": 15263
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/common-services-port-ds",
+      "status": "unstable",
+      "sid": 15264
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/common-services-port-ds/cmlds-link-port-port-number",
+      "status": "unstable",
+      "sid": 15265
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/communication-cap-port-ds",
+      "status": "unstable",
+      "sid": 15266
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/communication-cap-port-ds/delay-resp",
+      "status": "unstable",
+      "sid": 15267
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/communication-cap-port-ds/delay-resp/multicast-capable",
+      "status": "unstable",
+      "sid": 15268
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/communication-cap-port-ds/delay-resp/unicast-capable",
+      "status": "unstable",
+      "sid": 15269
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/communication-cap-port-ds/delay-resp/unicast-negotiation-capable",
+      "status": "unstable",
+      "sid": 15270
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/communication-cap-port-ds/delay-resp/unicast-negotiation-required",
+      "status": "unstable",
+      "sid": 15271
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/communication-cap-port-ds/sync",
+      "status": "unstable",
+      "sid": 15272
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/communication-cap-port-ds/sync/multicast-capable",
+      "status": "unstable",
+      "sid": 15273
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/communication-cap-port-ds/sync/unicast-capable",
+      "status": "unstable",
+      "sid": 15274
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/communication-cap-port-ds/sync/unicast-negotiation-capable",
+      "status": "unstable",
+      "sid": 15275
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/communication-cap-port-ds/sync/unicast-negotiation-required",
+      "status": "unstable",
+      "sid": 15276
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/description-port-ds",
+      "status": "unstable",
+      "sid": 15277
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/description-port-ds/profile-identifier",
+      "status": "unstable",
+      "sid": 15278
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/description-port-ds/protocol-address",
+      "status": "unstable",
+      "sid": 15279
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/description-port-ds/protocol-address/address-field",
+      "status": "unstable",
+      "sid": 15280
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/description-port-ds/protocol-address/address-length",
+      "status": "unstable",
+      "sid": 15281
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/description-port-ds/protocol-address/network-protocol",
+      "status": "unstable",
+      "sid": 15282
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/external-port-config-port-ds",
+      "status": "unstable",
+      "sid": 15283
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/external-port-config-port-ds/desired-state",
+      "status": "unstable",
+      "sid": 15284
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds",
+      "status": "unstable",
+      "sid": 15285
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/congruent-is-required",
+      "status": "unstable",
+      "sid": 15286
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/enabled",
+      "status": "unstable",
+      "sid": 15287
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/is-congruent",
+      "status": "unstable",
+      "sid": 15288
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/is-rx-coherent",
+      "status": "unstable",
+      "sid": 15289
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/is-tx-coherent",
+      "status": "unstable",
+      "sid": 15290
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/l1sync-receipt-timeout",
+      "status": "unstable",
+      "sid": 15291
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/l1sync-state",
+      "status": "unstable",
+      "sid": 15292
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/link-alive",
+      "status": "unstable",
+      "sid": 15293
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/log-l1sync-interval",
+      "status": "unstable",
+      "sid": 15294
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/opt-params-enabled",
+      "status": "unstable",
+      "sid": 15295
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/peer-congruent-is-required",
+      "status": "unstable",
+      "sid": 15296
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/peer-is-congruent",
+      "status": "unstable",
+      "sid": 15297
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/peer-is-rx-coherent",
+      "status": "unstable",
+      "sid": 15298
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/peer-is-tx-coherent",
+      "status": "unstable",
+      "sid": 15299
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/peer-rx-coherent-is-required",
+      "status": "unstable",
+      "sid": 15300
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/peer-tx-coherent-is-required",
+      "status": "unstable",
+      "sid": 15301
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/rx-coherent-is-required",
+      "status": "unstable",
+      "sid": 15302
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-basic-port-ds/tx-coherent-is-required",
+      "status": "unstable",
+      "sid": 15303
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-opt-params-port-ds",
+      "status": "unstable",
+      "sid": 15304
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-opt-params-port-ds/frequency-offset-tx",
+      "status": "unstable",
+      "sid": 15305
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-opt-params-port-ds/frequency-offset-tx-timestamp",
+      "status": "unstable",
+      "sid": 15306
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-opt-params-port-ds/frequency-offset-tx-timestamp/nanoseconds-field",
+      "status": "unstable",
+      "sid": 15307
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-opt-params-port-ds/frequency-offset-tx-timestamp/seconds-field",
+      "status": "unstable",
+      "sid": 15308
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-opt-params-port-ds/frequency-offset-tx-valid",
+      "status": "unstable",
+      "sid": 15309
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-opt-params-port-ds/phase-offset-tx",
+      "status": "unstable",
+      "sid": 15310
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-opt-params-port-ds/phase-offset-tx-timestamp",
+      "status": "unstable",
+      "sid": 15311
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-opt-params-port-ds/phase-offset-tx-timestamp/nanoseconds-field",
+      "status": "unstable",
+      "sid": 15312
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-opt-params-port-ds/phase-offset-tx-timestamp/seconds-field",
+      "status": "unstable",
+      "sid": 15313
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-opt-params-port-ds/phase-offset-tx-valid",
+      "status": "unstable",
+      "sid": 15314
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/l1-sync-opt-params-port-ds/timestamps-corrected-tx",
+      "status": "unstable",
+      "sid": 15315
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds",
+      "status": "unstable",
+      "sid": 15316
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list",
+      "status": "unstable",
+      "sid": 15317
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list-peer-delay",
+      "status": "unstable",
+      "sid": 15318
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list-peer-delay/average-mean-link-delay",
+      "status": "unstable",
+      "sid": 15319
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list-peer-delay/index",
+      "status": "unstable",
+      "sid": 15320
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list-peer-delay/max-mean-link-delay",
+      "status": "unstable",
+      "sid": 15321
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list-peer-delay/min-mean-link-delay",
+      "status": "unstable",
+      "sid": 15322
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list-peer-delay/pm-time",
+      "status": "unstable",
+      "sid": 15323
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list-peer-delay/stddev-mean-link-delay",
+      "status": "unstable",
+      "sid": 15324
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/announce-foreign-rx",
+      "status": "unstable",
+      "sid": 15325
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/announce-rx",
+      "status": "unstable",
+      "sid": 15326
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/announce-tx",
+      "status": "unstable",
+      "sid": 15327
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/delay-req-rx",
+      "status": "unstable",
+      "sid": 15328
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/delay-req-tx",
+      "status": "unstable",
+      "sid": 15329
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/delay-resp-rx",
+      "status": "unstable",
+      "sid": 15330
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/delay-resp-tx",
+      "status": "unstable",
+      "sid": 15331
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/follow-up-rx",
+      "status": "unstable",
+      "sid": 15332
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/follow-up-tx",
+      "status": "unstable",
+      "sid": 15333
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/index",
+      "status": "unstable",
+      "sid": 15334
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/pdelay-req-rx",
+      "status": "unstable",
+      "sid": 15335
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/pdelay-req-tx",
+      "status": "unstable",
+      "sid": 15336
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/pdelay-resp-follow-up-rx",
+      "status": "unstable",
+      "sid": 15337
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/pdelay-resp-follow-up-tx",
+      "status": "unstable",
+      "sid": 15338
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/pdelay-resp-rx",
+      "status": "unstable",
+      "sid": 15339
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/pdelay-resp-tx",
+      "status": "unstable",
+      "sid": 15340
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/pm-time",
+      "status": "unstable",
+      "sid": 15341
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/sync-rx",
+      "status": "unstable",
+      "sid": 15342
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/performance-monitoring-port-ds/record-list/sync-tx",
+      "status": "unstable",
+      "sid": 15343
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds",
+      "status": "unstable",
+      "sid": 15344
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/announce-receipt-timeout",
+      "status": "unstable",
+      "sid": 15345
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/delay-asymmetry",
+      "status": "unstable",
+      "sid": 15346
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/delay-mechanism",
+      "status": "unstable",
+      "sid": 15347
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/log-announce-interval",
+      "status": "unstable",
+      "sid": 15348
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/log-min-delay-req-interval",
+      "status": "unstable",
+      "sid": 15349
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/log-min-pdelay-req-interval",
+      "status": "unstable",
+      "sid": 15350
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/log-sync-interval",
+      "status": "unstable",
+      "sid": 15351
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/master-only",
+      "status": "unstable",
+      "sid": 15352
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/mean-link-delay",
+      "status": "unstable",
+      "sid": 15353
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/minor-version-number",
+      "status": "unstable",
+      "sid": 15354
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/peer-mean-path-delay",
+      "status": "unstable",
+      "sid": 15355
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/port-enable",
+      "status": "unstable",
+      "sid": 15356
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/port-identity",
+      "status": "unstable",
+      "sid": 15357
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/port-identity/clock-identity",
+      "status": "unstable",
+      "sid": 15358
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/port-identity/port-number",
+      "status": "unstable",
+      "sid": 15359
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/port-state",
+      "status": "unstable",
+      "sid": 15360
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-ds/version-number",
+      "status": "unstable",
+      "sid": 15361
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/port-index",
+      "status": "unstable",
+      "sid": 15362
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/slave-monitoring-port-ds",
+      "status": "unstable",
+      "sid": 15363
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/slave-monitoring-port-ds/enable",
+      "status": "unstable",
+      "sid": 15364
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/slave-monitoring-port-ds/events-per-rx-sync-computed-tlv",
+      "status": "unstable",
+      "sid": 15365
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/slave-monitoring-port-ds/events-per-rx-sync-timing-tlv",
+      "status": "unstable",
+      "sid": 15366
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/slave-monitoring-port-ds/events-per-tx-timestamps-tlv",
+      "status": "unstable",
+      "sid": 15367
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/slave-monitoring-port-ds/rx-sync-computed-tlv-message-m",
+      "status": "unstable",
+      "sid": 15368
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/slave-monitoring-port-ds/rx-sync-timing-tlv-message-m",
+      "status": "unstable",
+      "sid": 15369
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/slave-monitoring-port-ds/tx-event-type",
+      "status": "unstable",
+      "sid": 15370
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/slave-monitoring-port-ds/tx-timestamps-tlv-message-m",
+      "status": "unstable",
+      "sid": 15371
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/timestamp-correction-port-ds",
+      "status": "unstable",
+      "sid": 15372
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/timestamp-correction-port-ds/egress-latency",
+      "status": "unstable",
+      "sid": 15373
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/timestamp-correction-port-ds/ingress-latency",
+      "status": "unstable",
+      "sid": 15374
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/underlying-interface",
+      "status": "unstable",
+      "sid": 15375
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/unicast-discovery-port-ds",
+      "status": "unstable",
+      "sid": 15376
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/unicast-discovery-port-ds/log-query-interval",
+      "status": "unstable",
+      "sid": 15377
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/unicast-discovery-port-ds/max-table-size",
+      "status": "unstable",
+      "sid": 15378
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/unicast-discovery-port-ds/port-address",
+      "status": "unstable",
+      "sid": 15379
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/unicast-discovery-port-ds/port-address/address-field",
+      "status": "unstable",
+      "sid": 15380
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/unicast-discovery-port-ds/port-address/address-length",
+      "status": "unstable",
+      "sid": 15381
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/unicast-discovery-port-ds/port-address/index",
+      "status": "unstable",
+      "sid": 15382
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/unicast-discovery-port-ds/port-address/network-protocol",
+      "status": "unstable",
+      "sid": 15383
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/unicast-negotiation-port-ds",
+      "status": "unstable",
+      "sid": 15384
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/ports/port/unicast-negotiation-port-ds/enable",
+      "status": "unstable",
+      "sid": 15385
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/time-properties-ds",
+      "status": "unstable",
+      "sid": 15386
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/time-properties-ds/current-utc-offset",
+      "status": "unstable",
+      "sid": 15387
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/time-properties-ds/current-utc-offset-valid",
+      "status": "unstable",
+      "sid": 15388
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/time-properties-ds/frequency-traceable",
+      "status": "unstable",
+      "sid": 15389
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/time-properties-ds/leap59",
+      "status": "unstable",
+      "sid": 15390
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/time-properties-ds/leap61",
+      "status": "unstable",
+      "sid": 15391
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/time-properties-ds/ptp-timescale",
+      "status": "unstable",
+      "sid": 15392
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/time-properties-ds/time-source",
+      "status": "unstable",
+      "sid": 15393
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/instances/instance/time-properties-ds/time-traceable",
+      "status": "unstable",
+      "sid": 15394
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/transparent-clock-default-ds",
+      "status": "unstable",
+      "sid": 15395
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/transparent-clock-default-ds/clock-identity",
+      "status": "unstable",
+      "sid": 15396
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/transparent-clock-default-ds/delay-mechanism",
+      "status": "unstable",
+      "sid": 15397
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/transparent-clock-default-ds/number-ports",
+      "status": "unstable",
+      "sid": 15398
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/transparent-clock-default-ds/primary-domain",
+      "status": "unstable",
+      "sid": 15399
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/transparent-clock-ports",
+      "status": "unstable",
+      "sid": 15400
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/transparent-clock-ports/port",
+      "status": "unstable",
+      "sid": 15401
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/transparent-clock-ports/port/port-ds",
+      "status": "unstable",
+      "sid": 15402
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/transparent-clock-ports/port/port-ds/faulty-flag",
+      "status": "unstable",
+      "sid": 15403
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/transparent-clock-ports/port/port-ds/log-min-pdelay-req-interval",
+      "status": "unstable",
+      "sid": 15404
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/transparent-clock-ports/port/port-ds/peer-mean-path-delay",
+      "status": "unstable",
+      "sid": 15405
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/transparent-clock-ports/port/port-ds/port-identity",
+      "status": "unstable",
+      "sid": 15406
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/transparent-clock-ports/port/port-ds/port-identity/clock-identity",
+      "status": "unstable",
+      "sid": 15407
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/transparent-clock-ports/port/port-ds/port-identity/port-number",
+      "status": "unstable",
+      "sid": 15408
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/transparent-clock-ports/port/port-index",
+      "status": "unstable",
+      "sid": 15409
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee1588-ptp:ptp/transparent-clock-ports/port/underlying-interface",
+      "status": "unstable",
+      "sid": 15410
+    }
+  ]
+}

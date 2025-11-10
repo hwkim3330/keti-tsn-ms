@@ -1,0 +1,18 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 4000,
+      "size": 1000
+    }
+  ],
+  "module-name": "ieee802-types",
+  "module-revision": "2023-04-19",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ieee802-types",
+      "status": "unstable",
+      "sid": 4000
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 29200,
+      "size": 100
+    }
+  ],
+  "module-name": "ietf-datastores",
+  "module-revision": "2018-02-14",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ietf-datastores",
+      "status": "unstable",
+      "sid": 29200
+    },
+    {
+      "namespace": "identity",
+      "identifier": "candidate",
+      "status": "unstable",
+      "sid": 29201
+    },
+    {
+      "namespace": "identity",
+      "identifier": "conventional",
+      "status": "unstable",
+      "sid": 29202
+    },
+    {
+      "namespace": "identity",
+      "identifier": "datastore",
+      "status": "unstable",
+      "sid": 29203
+    },
+    {
+      "namespace": "identity",
+      "identifier": "dynamic",
+      "status": "unstable",
+      "sid": 29204
+    },
+    {
+      "namespace": "identity",
+      "identifier": "intended",
+      "status": "unstable",
+      "sid": 29205
+    },
+    {
+      "namespace": "identity",
+      "identifier": "operational",
+      "status": "unstable",
+      "sid": 29206
+    },
+    {
+      "namespace": "identity",
+      "identifier": "running",
+      "status": "unstable",
+      "sid": 29207
+    },
+    {
+      "namespace": "identity",
+      "identifier": "startup",
+      "status": "unstable",
+      "sid": 29208
+    }
+  ]
+}

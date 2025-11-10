@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ieee802-ethernet-interface</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L2C15 */</span><span id="L2C15"></span><span style="color:var(--color-yang-id);">1.1</span>;
+
+  <span style="color:var(--color-yang-keyword);">namespace</span>
+    <span style="color:var(--color-yang-text);">"urn:ieee:std:802.3:yang:ieee802-ethernet-interface"</span>;
+
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L7C9 */</span><span id="L7C9"></span><span style="color:var(--color-yang-id);">ieee802-eth-if</span>;
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L9C9 */</span><span id="L9C9"></span><span style="color:var(--color-yang-id);">ietf-yang-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L10C11 */</span><span id="L10C11"></span><span style="color:var(--color-yang-id);">yang</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span> <span style="color:var(--color-yang-text);">"IETF RFC 6991"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L14C9 */</span><span id="L14C9"></span><span style="color:var(--color-yang-id);">ietf-interfaces</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L15C11 */</span><span id="L15C11"></span><span style="color:var(--color-yang-id);">if</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span> <span style="color:var(--color-yang-text);">"IETF RFC 8343"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L19C9 */</span><span id="L19C9"></span><span style="color:var(--color-yang-id);">iana-if-type</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L20C11 */</span><span id="L20C11"></span><span style="color:var(--color-yang-id);">ianaift</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span> <span style="color:var(--color-yang-text);">"http://www.iana.org/assignments/yang-parameters/
+      iana-if-type@2018-07-03.yang"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IEEE Std 802.3 Ethernet Working Group
+     Web URL: http://www.ieee802.org/3/"</span>;
+
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"Web URL: http://www.ieee802.org/3/"</span>;
+
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module contains YANG definitions for configuring IEEE Std
+     802.3 Ethernet Interfaces.
+     In this YANG module, 'Ethernet interface' can be interpreted
+     as referring to 'IEEE Std 802.3 compliant Ethernet
+     interfaces'."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L39C11 */</span><span id="L39C11"></span><span style="color:var(--color-yang-id);">2019-06-21</span>{
+    <span style="color:var(--color-yang-keyword);">description</span> <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span> <span style="color:var(--color-yang-text);">"IEEE Std 802.3-2018, unless dated explicitly"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L44C10 */</span><span id="L44C10"></span><span style="color:var(--color-yang-id);">eth-if-speed-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L45C9 */</span><span id="L45C9"></span><span style="color:var(--color-yang-id);">decimal64</span> {
+      <span style="color:var(--color-yang-keyword);">fraction-digits</span> <span style="color:var(--color-yang-comment);">/* L46C22 */</span><span id="L46C22"></span><span style="color:var(--color-yang-id);">3</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"Gb/s"</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Used to represent the configured, negotiated, or actual speed
+       of an Ethernet interface in Gigabits per second (Gb/s),
+       accurate to 3 decimal places (i.e., accurate to 1 Mb/s)."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L55C10 */</span><span id="L55C10"></span><span style="color:var(--color-yang-id);">duplex-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L56C9 */</span><span id="L56C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L57C11 */</span><span id="L57C11"></span><span style="color:var(--color-yang-id);">full</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Full duplex."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L61C11 */</span><span id="L61C11"></span><span style="color:var(--color-yang-id);">half</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Half duplex."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L65C11 */</span><span id="L65C11"></span><span style="color:var(--color-yang-id);">unknown</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Link is currently disconnected or initializing."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L70C12 */</span><span id="L70C12"></span><span style="color:var(--color-yang-id);">full</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Used to represent the configured, negotiated, or actual
+       duplex mode of an Ethernet interface."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span> <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.1.1.32, aDuplexStatus"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L77C10 */</span><span id="L77C10"></span><span style="color:var(--color-yang-id);">pause-fc-direction-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L78C9 */</span><span id="L78C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-text);">"disabled"</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Flow-control disabled in both ingress and egress
+           directions, i.e., PAUSE frames are not transmitted and
+           PAUSE frames received in the ingress direction are
+           discarded without processing."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-text);">"ingress-only"</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"PAUSE frame based flow control is enabled in the ingress
+           direction only, i.e., PAUSE frames may be transmitted to
+           reduce the ingress traffic flow, but PAUSE frames received
+           in the ingress direction are discarded without reducing
+           the egress traffic rate."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-text);">"egress-only"</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"PAUSE frame based flow control is enabled in the egress
+           direction only, i.e., PAUSE frames are not transmitted,
+           but PAUSE frames received in the ingress direction are
+           processed to reduce the egress traffic rate."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-text);">"bi-directional"</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"PAUSE frame based flow control is enabled in both ingress
+           and egress directions, i.e., PAUSE frames may be
+           transmitted to reduce the ingress traffic flow, and
+           PAUSE frames received on ingress are processed to reduce
+           the egress traffic rate."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-text);">"undefined"</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Link is currently disconnected or initializing."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Used to represent the configured, negotiated, or actual
+       PAUSE frame-based flow control setting."</span>;
+
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE Std 802.3.1, dot3PauseAdminMode and dot3PauseOperMode"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L122C10 */</span><span id="L122C10"></span><span style="color:var(--color-yang-id);">ethernet-pfc</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This device supports Ethernet priority flow-control."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">feature</span> <span style="color:var(--color-yang-comment);">/* L127C10 */</span><span id="L127C10"></span><span style="color:var(--color-yang-id);">ethernet-pause</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This device supports Ethernet PAUSE."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L132C11 */</span><span id="L132C11"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L133C10 */</span><span id="L133C10"></span><span style="color:var(--color-yang-id);">derived-from-or-self(if:type, 'ianaift:ethernetCsmacd')"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Applies to all P2P Ethernet interfaces."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment interface model with Ethernet interface
+       specific configuration nodes."</span>;
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L141C14 */</span><span id="L141C14"></span><span style="color:var(--color-yang-id);">ethernet</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Contains all Ethernet interface related configuration."</span>;
+
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L145C16 */</span><span id="L145C16"></span><span style="color:var(--color-yang-id);">auto-negotiation</span> {
+        <span style="color:var(--color-yang-keyword);">presence</span>
+          <span style="color:var(--color-yang-text);">"The presence of this container indicates that
+           auto-negotiation is supported on this Ethernet
+           interface."</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Contains auto-negotiation transmission parameters
+
+           This container contains a data node that allows the
+           advertised duplex value in the negotiation to be
+           restricted.
+
+           If not specified then the default behavior for the duplex
+           data node is to negotiate all available values for the
+           particular type of Ethernet PHY associated with the
+           interface.
+
+           If auto-negotiation is enabled, and PAUSE frame based flow
+           control has not been explicitly configured, then the
+           default PAUSE frame based flow control capabilities that
+           are negotiated allow for bi-directional or egress-only
+           PAUSE frame based flow control.
+
+           If auto-negotiation is enabled, and PAUSE frame based flow
+           control has been explicitly configured, then the
+           configuration settings restrict the values that may be
+           negotiated. However, it should be noted that the protocol
+           does not allow only egress PAUSE frame based flow control
+           to be negotiated without also allowing bi-directional
+           PAUSE frame based flow control."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"IEEE Std 802.3, Clause 28 and Annexes 28A-D"</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L178C13 */</span><span id="L178C13"></span><span style="color:var(--color-yang-id);">enable</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L179C15 */</span><span id="L179C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L180C18 */</span><span id="L180C18"></span><span style="color:var(--color-yang-id);">true</span>;
+
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Controls whether auto-negotiation is enabled or
+             disabled.
+             For interface types that support auto-negotiation then
+             it defaults to being enabled.
+
+             For interface types that do not support auto-negotiation,
+             the related configuration data is ignored."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L191C13 */</span><span id="L191C13"></span><span style="color:var(--color-yang-id);">negotiation-status</span> {
+          <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L192C16 */</span><span id="L192C16"></span><span style="color:var(--color-yang-id);">../enable = 'true'"</span>;
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L193C15 */</span><span id="L193C15"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L194C17 */</span><span id="L194C17"></span><span style="color:var(--color-yang-id);">in-progress</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The auto-negotiation protocol is running and
+                 negotiation is currently in-progress."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L199C17 */</span><span id="L199C17"></span><span style="color:var(--color-yang-id);">complete</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The auto-negotiation protocol has completed
+                 successfully."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L204C17 */</span><span id="L204C17"></span><span style="color:var(--color-yang-id);">failed</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The auto-negotiation protocol has failed."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L208C17 */</span><span id="L208C17"></span><span style="color:var(--color-yang-id);">unknown</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"The auto-negotiation status is not currently known,
+                 this could be because it is still negotiating or the
+                 protocol cannot run (e.g., if no medium is present)."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L214C17 */</span><span id="L214C17"></span><span style="color:var(--color-yang-id);">no-negotiation</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"No auto-negotiation is executed.
+                 The auto-negotation function is either not supported
+                 on this interface or has not been enabled."</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L221C17 */</span><span id="L221C17"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The status of the auto-negotiation protocol."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.3, 30.6.1.1.4, aAutoNegAutoConfig"</span>;
+        }
+
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L230C11 */</span><span id="L230C11"></span><span style="color:var(--color-yang-id);">duplex</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L231C13 */</span><span id="L231C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-ethernet-interface#L55C10">duplex-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Operational duplex mode of the Ethernet interface."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.1.1.32 aDuplexStatus"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L238C11 */</span><span id="L238C11"></span><span style="color:var(--color-yang-id);">speed</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L239C13 */</span><span id="L239C13"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-ethernet-interface#L44C10">eth-if-speed-type</a></span>;
+        <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-text);">"Gb/s"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Operational speed (data rate) of the Ethernet interface.
+           The default value is implementation-dependent."</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L246C16 */</span><span id="L246C16"></span><span style="color:var(--color-yang-id);">flow-control</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Holds the different types of Ethernet PAUSE frame based
+           flow control that can be enabled."</span>;
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L250C18 */</span><span id="L250C18"></span><span style="color:var(--color-yang-id);">pause</span> {
+          <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-text);">"ethernet-pause"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"IEEE Std 802.3 PAUSE frame based PAUSE frame based flow
+             control."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE Std 802.3, Annex 31B"</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L257C15 */</span><span id="L257C15"></span><span style="color:var(--color-yang-id);">direction</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L258C17 */</span><span id="L258C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ieee802-ethernet-interface#L77C10">pause-fc-direction-type</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Indicates which direction PAUSE frame based flow
+               control is enabled in, or whether it is disabled.
+               The default flow-control settings are vendor specific.
+               If auto-negotiation is enabled, then PAUSE based
+               flow-control is negotiated by default.
+               The default value is implementation-dependent."</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L268C20 */</span><span id="L268C20"></span><span style="color:var(--color-yang-id);">statistics</span> {
+            <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L269C19 */</span><span id="L269C19"></span><span style="color:var(--color-yang-id);">false</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Contains the number of PAUSE frames received or
+               transmitted."</span>;
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L273C17 */</span><span id="L273C17"></span><span style="color:var(--color-yang-id);">in-frames-pause</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L274C19 */</span><span id="L274C19"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+              <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L275C20 */</span><span id="L275C20"></span><span style="color:var(--color-yang-id);">frames</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"A count of PAUSE MAC Control frames transmitted on
+                 this Ethernet interface.
+
+                 Discontinuities in the values of counters in
+                 this container can occur at re-initialization of the
+                 management system, and at other times as indicated
+                 by the value of the 'discontinuity-time' leaf
+                 defined in the ietf-interfaces YANG module
+                 (IETF RFC 8343)."</span>;
+              <span style="color:var(--color-yang-keyword);">reference</span>
+                <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.4.3 aPAUSEMACCtrlFramesReceived"</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L289C17 */</span><span id="L289C17"></span><span style="color:var(--color-yang-id);">out-frames-pause</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L290C19 */</span><span id="L290C19"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+              <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L291C20 */</span><span id="L291C20"></span><span style="color:var(--color-yang-id);">frames</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"A count of PAUSE MAC Control frames transmitted on
+                 this Ethernet interface.
+
+                 Discontinuities in the values of counters in
+                 this container can occur at re-initialization of the
+                 management system, and at other times as indicated
+                 by the value of the 'discontinuity-time' leaf
+                 defined in the ietf-interfaces YANG module
+                 (IETF RFC 8343)."</span>;
+              <span style="color:var(--color-yang-keyword);">reference</span>
+                <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.4.2
+                 aPAUSEMACCtrlFramesTransmitted"</span>;
+            }
+          }
+        }
+
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L309C18 */</span><span id="L309C18"></span><span style="color:var(--color-yang-id);">pfc</span> {
+          <span style="color:var(--color-yang-keyword);">if-feature</span> <span style="color:var(--color-yang-text);">"ethernet-pfc"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"IEEE Std 802.3 Priority-based flow control."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE Std 802.3, Annex 31D"</span>;
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L316C15 */</span><span id="L316C15"></span><span style="color:var(--color-yang-id);">enable</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L317C17 */</span><span id="L317C17"></span><span style="color:var(--color-yang-id);">boolean</span>;
+
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"True indicates that IEEE Std 802.3 priority-based
+               flow control is enabled, false indicates that
+               IEEE Std 802.3 priority-based flow control is disabled.
+               For interfaces that have auto-negotiation,
+               the priority-based flow control is enabled by default."</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L327C20 */</span><span id="L327C20"></span><span style="color:var(--color-yang-id);">statistics</span> {
+            <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L328C19 */</span><span id="L328C19"></span><span style="color:var(--color-yang-id);">false</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"This container collects all statistics for
+               Ethernet interfaces."</span>;
+
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L333C17 */</span><span id="L333C17"></span><span style="color:var(--color-yang-id);">in-frames-pfc</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L334C19 */</span><span id="L334C19"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+              <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L335C20 */</span><span id="L335C20"></span><span style="color:var(--color-yang-id);">frames</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"A count of PFC MAC Control frames received on this
+                 Ethernet interface.
+
+                 Discontinuities in the values of counters in
+                 this container can occur at re-initialization of the
+                 management system, and at other times as indicated
+                 by the value of the 'discontinuity-time' leaf
+                 defined in the ietf-interfaces YANG module
+                 (IETF RFC 8343)."</span>;
+              <span style="color:var(--color-yang-keyword);">reference</span>
+                <span style="color:var(--color-yang-text);">"IEEE Std 802.3.1, dot3HCInPFCFrames"</span>;
+            }
+
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L350C17 */</span><span id="L350C17"></span><span style="color:var(--color-yang-id);">out-frames-pfc</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L351C19 */</span><span id="L351C19"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+              <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L352C20 */</span><span id="L352C20"></span><span style="color:var(--color-yang-id);">frames</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"A count of PFC MAC Control frames transmitted on
+                 this interface.
+
+                 Discontinuities in the values of counters in
+                 this container can occur at re-initialization of the
+                 management system, and at other times as indicated
+                 by the value of the 'discontinuity-time' leaf
+                 defined in the ietf-interfaces YANG module
+                 (IETF RFC 8343)."</span>;
+              <span style="color:var(--color-yang-keyword);">reference</span>
+                <span style="color:var(--color-yang-text);">"IEEE Std 802.3.1, dot3HCInPFCFrames"</span>;
+            }
+          }
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L369C13 */</span><span id="L369C13"></span><span style="color:var(--color-yang-id);">force-flow-control</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L370C15 */</span><span id="L370C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L371C18 */</span><span id="L371C18"></span><span style="color:var(--color-yang-id);">false</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Explicitly forces the local PAUSE frame based flow control
+             settings regardless of what has been negotiated.
+
+             Since the auto-negotiation of flow-control settings
+             does not allow all sane combinations to be negotiated
+             (e.g., consider a device that is only capable of sending
+             PAUSE frames connected to a peer device that is only
+             capable of receiving and acting on PAUSE frames) and
+             failing to agree on the flow-control settings does not
+             cause the auto-negotiation to fail completely, then it is
+             sometimes useful to be able to explicitly enable
+             particular PAUSE frame based flow control settings on
+             the local device regardless of what is being advertised
+             or negotiated."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE Std 802.3, Table 28B-3"</span>;
+        }
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L392C11 */</span><span id="L392C11"></span><span style="color:var(--color-yang-id);">max-frame-length</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L393C13 */</span><span id="L393C13"></span><span style="color:var(--color-yang-id);">uint16</span>;
+        <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L394C14 */</span><span id="L394C14"></span><span style="color:var(--color-yang-id);">octets</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L395C15 */</span><span id="L395C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"This indicates the MAC frame length (including FCS bytes)
+           at which frames are dropped for being too long."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.1.1.37 aMaxFrameLength"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L403C11 */</span><span id="L403C11"></span><span style="color:var(--color-yang-id);">mac-control-extension-control</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L404C13 */</span><span id="L404C13"></span><span style="color:var(--color-yang-id);">boolean</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L405C15 */</span><span id="L405C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"A value that identifies the current EXTENSION MAC Control
+           function, as specified in IEEE Std 802.3, Annex 31C."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.8.3 aEXTENSIONMACCtrlStatus
+           IEEE Std 802.3.1, dot3ExtensionMacCtrlStatus "</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L414C11 */</span><span id="L414C11"></span><span style="color:var(--color-yang-id);">frame-limit-slow-protocol</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L415C13 */</span><span id="L415C13"></span><span style="color:var(--color-yang-id);">uint64</span>;
+        <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L416C14 */</span><span id="L416C14"></span><span style="color:var(--color-yang-id);">f/s</span>;
+        <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-comment);">/* L417C16 */</span><span id="L417C16"></span><span style="color:var(--color-yang-id);">10</span>;
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L418C15 */</span><span id="L418C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The maximum number of Slow Protocol frames of a given
+           subtype that can be transmitted in a one second interval.
+           The default value is 10."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.1.1.38 aSlowProtocolFrameLimit"</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L427C16 */</span><span id="L427C16"></span><span style="color:var(--color-yang-id);">capabilities</span> {
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L428C15 */</span><span id="L428C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Container all Ethernet interface specific capabilities."</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L432C13 */</span><span id="L432C13"></span><span style="color:var(--color-yang-id);">auto-negotiation</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L433C15 */</span><span id="L433C15"></span><span style="color:var(--color-yang-id);">boolean</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Indicates whether auto-negotiation may be configured on
+             this interface."</span>;
+        }
+
+      }
+
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L441C16 */</span><span id="L441C16"></span><span style="color:var(--color-yang-id);">statistics</span> {
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L442C15 */</span><span id="L442C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Contains statistics specific to Ethernet interfaces.
+
+           Discontinuities in the values of counters in the
+           container can occur at re-initialization of the management
+           system, and at other times as indicated by the value of
+           the 'discontinuity-time' leaf defined in the
+           ietf-interfaces YANG module (IETF RFC 8343)."</span>;
+
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L452C18 */</span><span id="L452C18"></span><span style="color:var(--color-yang-id);">frame</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Contains frame statistics specific to Ethernet
+             interfaces.
+
+             All octet frame lengths include the 4 byte FCS.
+
+             Error counters are only reported once ... The count
+             represented by an instance of this object is incremented
+             when the frameCheckError status is returned by the MAC
+             service to the LLC (or other MAC user). Received frames
+             for which multiple error conditions pertain are,
+             according to the conventions of IEEE Std 802.3 Layer
+             Management, counted exclusively according to the error
+             status presented to the LLC.
+
+             A frame that is counted by an instance of this object is
+             also counted by the corresponding instance of 'in-errors'
+             leaf defined in the ietf-interfaces YANG module
+             (IETF RFC 8343).
+
+             Discontinuities in the values of counters in the
+             container can occur at re-initialization of the
+             management system, and at other times as indicated by
+             the value of the 'discontinuity-time' leaf defined in
+             the ietf-interfaces YANG module (IETF RFC 8343)."</span>;
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L479C15 */</span><span id="L479C15"></span><span style="color:var(--color-yang-id);">in-total-frames</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L480C17 */</span><span id="L480C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L481C18 */</span><span id="L481C18"></span><span style="color:var(--color-yang-id);">frames</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The total number of frames (including bad frames)
+               received on the Ethernet interface.
+
+               This counter is calculated by summing the following
+               IEEE Std 802.3, Clause 30 counters:
+               aFramesReceivedOK +
+               aFrameCheckSequenceErrors +
+               aAlignmentErrors +
+               aFrameTooLongErrors +
+               aFramesLostDueToIntMACRcvError
+
+               Also see the 'description' statement associated with
+               the parent 'statistics' container for additional
+               common semantics related to this counter."</span>;
+
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE Std 802.3, Clause 30 counters, as specified
+               in the description above."</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L503C15 */</span><span id="L503C15"></span><span style="color:var(--color-yang-id);">in-total-octets</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L504C17 */</span><span id="L504C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L505C18 */</span><span id="L505C18"></span><span style="color:var(--color-yang-id);">octets</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The total number of octets of data (including those in
+               bad frames) received on the Ethernet interface.
+
+               Includes the 4-octet FCS.
+
+               Also see the 'description' statement associated with
+               the parent 'statistics' container for additional
+               common semantics related to this counter."</span>;
+
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IETF RFC 2819, etherStatsOctets"</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L520C15 */</span><span id="L520C15"></span><span style="color:var(--color-yang-id);">in-frames</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L521C17 */</span><span id="L521C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L522C18 */</span><span id="L522C18"></span><span style="color:var(--color-yang-id);">frames</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A count of frames (including unicast, multicast and
+               broadcast) that have been successfully received on the
+               Ethernet interface.
+
+               This count does not include frames received with
+               frame-too-long, FCS, length or alignment errors, or
+               frames lost due to internal MAC sublayer error.
+
+               Also see the 'description' statement associated with
+               the parent 'statistics' container for additional
+               common semantics related to this counter."</span>;
+
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.1.1.5 aFramesReceivedOK"</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L540C15 */</span><span id="L540C15"></span><span style="color:var(--color-yang-id);">in-multicast-frames</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L541C17 */</span><span id="L541C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L542C18 */</span><span id="L542C18"></span><span style="color:var(--color-yang-id);">frames</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A count of multicast frames that have been
+               successfully received on the Ethernet interface.
+
+               This counter represents a subset of the frames counted
+               by in-frames.
+
+               This count does not include frames received with
+               frame-too-long, FCS, length or alignment errors, or
+               frames lost due to internal MAC sublayer error.
+
+               Also see the 'description' statement associated with
+               the parent 'statistics' container for additional
+               common semantics related to this counter."</span>;
+
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.1.1.21 aMulticastFramesReceivedOK"</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L562C15 */</span><span id="L562C15"></span><span style="color:var(--color-yang-id);">in-broadcast-frames</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L563C17 */</span><span id="L563C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L564C18 */</span><span id="L564C18"></span><span style="color:var(--color-yang-id);">frames</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A count of broadcast frames that have been
+               successfully received on the Ethernet interface.
+
+               This counter represents a subset of the frames counted
+               by in-frames.
+
+               This count does not include frames received with
+               frame-too-long, FCS, length or alignment errors, or
+               frames lost due to internal MAC sublayer error.
+
+               Also see the 'description' statement associated with
+               the parent 'statistics' container for additional
+               common semantics related to this counter."</span>;
+
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.1.1.22 aBroadcastFramesReceivedOK"</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L584C15 */</span><span id="L584C15"></span><span style="color:var(--color-yang-id);">in-error-fcs-frames</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L585C17 */</span><span id="L585C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L586C18 */</span><span id="L586C18"></span><span style="color:var(--color-yang-id);">frames</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A count of receive frames that are of valid length,
+               but do not pass the FCS check, regardless of whether
+               or not the frames are an integral number of octets in
+               length.
+
+               This count effectively comprises
+               aFrameCheckSequenceErrors and aAlignmentErrors added
+               together.
+
+               Also see the 'description' statement associated with
+               the parent 'statistics' container for additional
+               common semantics related to this counter."</span>;
+
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.1.1.6 aFrameCheckSequenceErrors;
+               IEEE Std 802.3, 30.3.1.1.7 aAlignmentErrors"</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L606C15 */</span><span id="L606C15"></span><span style="color:var(--color-yang-id);">in-error-undersize-frames</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L607C17 */</span><span id="L607C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L608C18 */</span><span id="L608C18"></span><span style="color:var(--color-yang-id);">frames</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A count of frames received on a particular Ethernet
+               interface that are less than 64 bytes in length, and
+               are discarded.
+
+               This counter is incremented regardless of whether the
+               frame passes the FCS check.
+
+               Also see the 'description' statement associated with
+               the parent 'statistics' container for additional
+               common semantics related to this counter."</span>;
+
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IETF RFC 2819, etherStatsUndersizePkts and
+               etherStatsFragments"</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L626C15 */</span><span id="L626C15"></span><span style="color:var(--color-yang-id);">in-error-oversize-frames</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L627C17 */</span><span id="L627C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L628C18 */</span><span id="L628C18"></span><span style="color:var(--color-yang-id);">frames</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A count of frames received on a particular Ethernet
+               interface that exceed the maximum permitted frame
+               size, that is specified in max-frame-length, and are
+               discarded.
+
+               This counter is incremented regardless of whether the
+               frame passes the FCS check.
+
+               Also see the 'description' statement associated with
+               the parent 'statistics' container for additional
+               common semantics related to this counter."</span>;
+
+            <span style="color:var(--color-yang-keyword);">reference</span> <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.1.1.25 aFrameTooLongErrors"</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L645C15 */</span><span id="L645C15"></span><span style="color:var(--color-yang-id);">in-error-mac-internal-frames</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L646C17 */</span><span id="L646C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L647C18 */</span><span id="L647C18"></span><span style="color:var(--color-yang-id);">frames</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A count of frames for which reception on a particular
+               Ethernet interface fails due to an internal MAC
+               sublayer receive error.
+
+               A frame is only counted by an instance of this object
+               if it is not counted by the corresponding instance of
+               either the in-error-fcs-frames, in-error-undersize-frames,
+               or in-error-oversize-frames.  The precise meaning of the
+               count represented by an instance of this object is
+               implementation-specific.
+
+               In particular, an instance of this object may
+               represent a count of receive errors on a particular
+               Ethernet interface that are not otherwise counted.
+
+               Also see the 'description' statement associated with
+               the parent 'statistics' container for additional
+               common semantics related to this counter."</span>;
+
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.1.1.15
+               aFramesLostDueToIntMACRcvError"</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L673C15 */</span><span id="L673C15"></span><span style="color:var(--color-yang-id);">out-frames</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L674C17 */</span><span id="L674C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L675C18 */</span><span id="L675C18"></span><span style="color:var(--color-yang-id);">frames</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A count of frames (including unicast, multicast and
+               broadcast) that have been successfully transmitted on
+               the Ethernet interface.
+
+               Also see the 'description' statement associated with
+               the parent 'statistics' container for additional
+               common semantics related to this counter."</span>;
+
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.1.1.2 aFramesTransmittedOK"</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L689C15 */</span><span id="L689C15"></span><span style="color:var(--color-yang-id);">out-multicast-frames</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L690C17 */</span><span id="L690C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L691C18 */</span><span id="L691C18"></span><span style="color:var(--color-yang-id);">frames</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A count of multicast frames that have been
+               successfully transmitted on the Ethernet interface.
+
+               This counter represents a subset of the frames counted
+               by out-frames.
+
+               Also see the 'description' statement associated with
+               the parent 'statistics' container for additional
+               common semantics related to this counter."</span>;
+
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.1.1.18 aMulticastFramesXmittedOK"</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L707C15 */</span><span id="L707C15"></span><span style="color:var(--color-yang-id);">out-broadcast-frames</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L708C17 */</span><span id="L708C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L709C18 */</span><span id="L709C18"></span><span style="color:var(--color-yang-id);">frames</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A count of broadcast frames that have been
+               successfully transmitted on the Ethernet interface.
+
+               This counter represents a subset of the frames counted
+               by out-frames.
+
+               Also see the 'description' statement associated with
+               the parent 'statistics' container for additional
+               common semantics related to this counter."</span>;
+
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.1.1.19 aBroadcastFramesXmittedOK"</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L725C15 */</span><span id="L725C15"></span><span style="color:var(--color-yang-id);">out-error-mac-internal-frames</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L726C17 */</span><span id="L726C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L727C18 */</span><span id="L727C18"></span><span style="color:var(--color-yang-id);">frames</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A count of frames for which transmission on a
+               particular Ethernet interface fails due to an internal
+               MAC sublayer transmit error.
+
+               The precise meaning of the count represented by an
+               instance of this object is implementation-specific. In
+               particular, an instance of this object may represent a
+               count of transmission errors on a particular Ethernet
+               interface that are not otherwise counted.
+
+               Also see the 'description' statement associated with
+               the parent 'statistics' container for additional
+               common semantics related to this counter."</span>;
+
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.1.1.12
+               aFramesLostDueToIntMACXmitError"</span>;
+          }
+        }
+
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L749C18 */</span><span id="L749C18"></span><span style="color:var(--color-yang-id);">phy</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Ethernet statistics related to the PHY layer.
+
+             Discontinuities in the values of counters in the
+             container can occur at re-initialization of the
+             management system, and at other times as indicated by
+             the value of the 'discontinuity-time' leaf defined in
+             the ietf-interfaces YANG module (IETF RFC 8343)."</span>;
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L759C15 */</span><span id="L759C15"></span><span style="color:var(--color-yang-id);">in-error-symbol</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L760C17 */</span><span id="L760C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L761C18 */</span><span id="L761C18"></span><span style="color:var(--color-yang-id);">errors</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A count of the number of symbol errors that have
+               occurred.
+
+               For the precise definition of when the symbol error
+               counter is incremented, please see the 'description'
+               text associated with aSymbolErrorDuringCarrier,
+               specified in IEEE Std 802.3, 30.3.2.1.5.
+
+               Also see the 'description' statement associated with
+               the parent 'phy-statistics' container for additional
+               common semantics related to this counter."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.2.1.5 aSymbolErrorDuringCarrier"</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L778C20 */</span><span id="L778C20"></span><span style="color:var(--color-yang-id);">lpi</span> {
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"Physical Ethernet statistics for the energy efficiency
+               related low power idle indications."</span>;
+
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L783C17 */</span><span id="L783C17"></span><span style="color:var(--color-yang-id);">in-lpi-transitions</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L784C19 */</span><span id="L784C19"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+              <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L785C20 */</span><span id="L785C20"></span><span style="color:var(--color-yang-id);">transitions</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"A count of occurrences of the transition from
+                 DEASSERT to ASSERT of the LPI_INDICATE
+                 parameter. The indication reflects the state of the
+                 PHY according to the requirements of the RS (see
+                 IEEE Std 802.3, 22.7, 35.4, and 46.4).
+
+                 Also see the 'description' statement associated with
+                 the parent 'phy-statistics' container for additional
+                 common semantics related to this counter."</span>;
+
+              <span style="color:var(--color-yang-keyword);">reference</span>
+                <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.2.1.11 aReceiveLPITransitions"</span>;
+            }
+
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L801C17 */</span><span id="L801C17"></span><span style="color:var(--color-yang-id);">in-lpi-time</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L802C19 */</span><span id="L802C19"></span><span style="color:var(--color-yang-id);">decimal64</span> {
+                <span style="color:var(--color-yang-keyword);">fraction-digits</span> <span style="color:var(--color-yang-comment);">/* L803C32 */</span><span id="L803C32"></span><span style="color:var(--color-yang-id);">6</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L805C20 */</span><span id="L805C20"></span><span style="color:var(--color-yang-id);">seconds</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"A count reflecting the total amount of time (in
+                 seconds) that the LPI_REQUEST parameter has the
+                 value ASSERT.  The request is indicated to the PHY
+                 according to the requirements of the RS (see IEEE Std
+                 802.3, 22.7, 35.4, and 46.4).
+
+                 Also see the 'description' statement associated with
+                 the parent 'phy-statistics' container for additional
+                 common semantics related to this counter."</span>;
+
+              <span style="color:var(--color-yang-keyword);">reference</span>
+                <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.2.1.9 aReceiveLPIMicroseconds"</span>;
+            }
+
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L821C17 */</span><span id="L821C17"></span><span style="color:var(--color-yang-id);">out-lpi-transitions</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L822C19 */</span><span id="L822C19"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+              <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L823C20 */</span><span id="L823C20"></span><span style="color:var(--color-yang-id);">transitions</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"A count of occurrences of the transition from state
+                 LPI_DEASSERTED to state LPI_ASSERTED in the LPI
+                 transmit state diagram of the RS. The state
+                 transition corresponds to the assertion of the
+                 LPI_REQUEST parameter. The request is indicated to
+                 the PHY according to the requirements of the RS (see
+                 IEEE Std 802.3, 22.7, 35.4, 46.4.)
+
+                 Also see the 'description' statement associated with
+                 the parent 'phy-statistics' container for additional
+                 common semantics related to this counter."</span>;
+
+              <span style="color:var(--color-yang-keyword);">reference</span>
+                <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.2.1.10 aTransmitLPITransitions"</span>;
+            }
+
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L841C17 */</span><span id="L841C17"></span><span style="color:var(--color-yang-id);">out-lpi-time</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L842C19 */</span><span id="L842C19"></span><span style="color:var(--color-yang-id);">decimal64</span> {
+                <span style="color:var(--color-yang-keyword);">fraction-digits</span> <span style="color:var(--color-yang-comment);">/* L843C32 */</span><span id="L843C32"></span><span style="color:var(--color-yang-id);">6</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L845C20 */</span><span id="L845C20"></span><span style="color:var(--color-yang-id);">seconds</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"A count reflecting the total amount of time (in
+                 seconds) that the LPI_INDICATION parameter has the
+                 value ASSERT.  The request is indicated to the PHY
+                 according to the requirements of the RS (see IEEE
+                 802.3, 22.7, 35.4, and 46.4).
+
+                 Also see the 'description' statement associated with
+                 the parent 'phy-statistics' container for additional
+                 common semantics related to this counter."</span>;
+
+              <span style="color:var(--color-yang-keyword);">reference</span>
+                <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.2.1.8 aTransmitLPIMicroseconds"</span>;
+            }
+          }
+        }
+
+        <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L863C18 */</span><span id="L863C18"></span><span style="color:var(--color-yang-id);">mac-control</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A group of statistics specific to MAC Control operation
+             of selected Ethernet interfaces.
+
+             Discontinuities in the values of counters in the
+             container can occur at re-initialization of the
+             management system, and at other times as indicated by
+             the value of the 'discontinuity-time' leaf defined in
+             the ietf-interfaces YANG module (IETF RFC 8343)."</span>;
+
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE Std 802.3.1, dot3ExtensionTable"</span>;
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L877C15 */</span><span id="L877C15"></span><span style="color:var(--color-yang-id);">in-frames-mac-control-unknown</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L878C17 */</span><span id="L878C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L879C18 */</span><span id="L879C18"></span><span style="color:var(--color-yang-id);">frames</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"A count of MAC Control frames with an unsupported
+               opcode received on this Ethernet interface.
+
+               Frames counted against this counter are also counted
+               against in-discards defined in the ietf-interfaces
+               YANG module (IETF RFC 8343).
+
+               Also see the 'description' statement associated with
+               the parent 'mac-control-statistics' container for
+               additional semantics."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.3.5 aUnsupportedOpcodesReceived"</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L895C15 */</span><span id="L895C15"></span><span style="color:var(--color-yang-id);">in-frames-mac-control-extension</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L896C17 */</span><span id="L896C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L897C18 */</span><span id="L897C18"></span><span style="color:var(--color-yang-id);">frames</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The count of Extension MAC Control frames received on
+               this Ethernet interface.
+
+               Also see the 'description' statement associated with
+               the parent 'mac-control-statistics' container for
+               additional semantics."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.8.2
+               aEXTENSIONMACCtrlFramesReceived"</span>;
+          }
+
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L910C15 */</span><span id="L910C15"></span><span style="color:var(--color-yang-id);">out-frames-mac-control-extension</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L911C17 */</span><span id="L911C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">units</span> <span style="color:var(--color-yang-comment);">/* L912C18 */</span><span id="L912C18"></span><span style="color:var(--color-yang-id);">frames</span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The count of Extension MAC Control frames transmitted
+               on this Ethernet interface.
+
+               Also see the 'description' statement associated with
+               the parent 'mac-control-statistics' container for
+               additional semantics."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE Std 802.3, 30.3.8.1
+               aEXTENSIONMACCtrlFramesTransmitted"</span>;
+          }
+        }
+      }
+    }
+  }
+}

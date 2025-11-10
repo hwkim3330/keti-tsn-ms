@@ -1,0 +1,24 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 25000,
+      "size": 1000
+    }
+  ],
+  "module-name": "ieee802-dot1q-stream-filters-gates",
+  "module-revision": "2023-01-24",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ieee802-dot1q-stream-filters-gates",
+      "status": "unstable",
+      "sid": 25000
+    },
+    {
+      "namespace": "feature",
+      "identifier": "closed-gate-state",
+      "status": "unstable",
+      "sid": 25001
+    }
+  ]
+}

@@ -1,0 +1,420 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 24000,
+      "size": 899
+    }
+  ],
+  "module-name": "ieee802-dot1cb-stream-identification",
+  "module-revision": "2021-12-08",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ieee802-dot1cb-stream-identification",
+      "status": "unstable",
+      "sid": 24000
+    },
+    {
+      "namespace": "identity",
+      "identifier": "dmac-vlan-stream-identification",
+      "status": "unstable",
+      "sid": 24001
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ip-stream-identification",
+      "status": "unstable",
+      "sid": 24002
+    },
+    {
+      "namespace": "identity",
+      "identifier": "null-stream-identification",
+      "status": "unstable",
+      "sid": 24003
+    },
+    {
+      "namespace": "identity",
+      "identifier": "smac-vlan-stream-identification",
+      "status": "unstable",
+      "sid": 24004
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity",
+      "status": "unstable",
+      "sid": 24005
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/handle",
+      "status": "unstable",
+      "sid": 24006
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/in-facing",
+      "status": "unstable",
+      "sid": 24007
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/in-facing/input-port",
+      "status": "unstable",
+      "sid": 24008
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/in-facing/output-port",
+      "status": "unstable",
+      "sid": 24009
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/index",
+      "status": "unstable",
+      "sid": 24010
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/out-facing",
+      "status": "unstable",
+      "sid": 24011
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/out-facing/input-port",
+      "status": "unstable",
+      "sid": 24012
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/out-facing/output-port",
+      "status": "unstable",
+      "sid": 24013
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/dmac-vlan-stream-identification/dmac-vlan-stream-identification",
+      "status": "unstable",
+      "sid": 24014
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/dmac-vlan-stream-identification/dmac-vlan-stream-identification/down",
+      "status": "unstable",
+      "sid": 24015
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/dmac-vlan-stream-identification/dmac-vlan-stream-identification/down/destination-mac",
+      "status": "unstable",
+      "sid": 24016
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/dmac-vlan-stream-identification/dmac-vlan-stream-identification/down/priority",
+      "status": "unstable",
+      "sid": 24017
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/dmac-vlan-stream-identification/dmac-vlan-stream-identification/down/tagged",
+      "status": "unstable",
+      "sid": 24018
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/dmac-vlan-stream-identification/dmac-vlan-stream-identification/down/vlan",
+      "status": "unstable",
+      "sid": 24019
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/dmac-vlan-stream-identification/dmac-vlan-stream-identification/identification-type",
+      "status": "unstable",
+      "sid": 24020
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/dmac-vlan-stream-identification/dmac-vlan-stream-identification/identification-type/oui-cid",
+      "status": "unstable",
+      "sid": 24021
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/dmac-vlan-stream-identification/dmac-vlan-stream-identification/identification-type/type-number",
+      "status": "unstable",
+      "sid": 24022
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/dmac-vlan-stream-identification/dmac-vlan-stream-identification/up",
+      "status": "unstable",
+      "sid": 24023
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/dmac-vlan-stream-identification/dmac-vlan-stream-identification/up/destination-mac",
+      "status": "unstable",
+      "sid": 24024
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/dmac-vlan-stream-identification/dmac-vlan-stream-identification/up/priority",
+      "status": "unstable",
+      "sid": 24025
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/dmac-vlan-stream-identification/dmac-vlan-stream-identification/up/tagged",
+      "status": "unstable",
+      "sid": 24026
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/dmac-vlan-stream-identification/dmac-vlan-stream-identification/up/vlan",
+      "status": "unstable",
+      "sid": 24027
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/ip-stream-identification/ip-stream-identification",
+      "status": "unstable",
+      "sid": 24028
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/ip-stream-identification/ip-stream-identification/destination-mac",
+      "status": "unstable",
+      "sid": 24029
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/ip-stream-identification/ip-stream-identification/destination-port",
+      "status": "unstable",
+      "sid": 24030
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/ip-stream-identification/ip-stream-identification/dscp",
+      "status": "unstable",
+      "sid": 24031
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/ip-stream-identification/ip-stream-identification/identification-type",
+      "status": "unstable",
+      "sid": 24032
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/ip-stream-identification/ip-stream-identification/identification-type/oui-cid",
+      "status": "unstable",
+      "sid": 24033
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/ip-stream-identification/ip-stream-identification/identification-type/type-number",
+      "status": "unstable",
+      "sid": 24034
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/ip-stream-identification/ip-stream-identification/ip-destination",
+      "status": "unstable",
+      "sid": 24035
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/ip-stream-identification/ip-stream-identification/ip-source",
+      "status": "unstable",
+      "sid": 24036
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/ip-stream-identification/ip-stream-identification/next-protocol",
+      "status": "unstable",
+      "sid": 24037
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/ip-stream-identification/ip-stream-identification/source-port",
+      "status": "unstable",
+      "sid": 24038
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/ip-stream-identification/ip-stream-identification/tagged",
+      "status": "unstable",
+      "sid": 24039
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/ip-stream-identification/ip-stream-identification/vlan",
+      "status": "unstable",
+      "sid": 24040
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/null-stream-identification/null-stream-identification",
+      "status": "unstable",
+      "sid": 24041
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/null-stream-identification/null-stream-identification/destination-mac",
+      "status": "unstable",
+      "sid": 24042
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/null-stream-identification/null-stream-identification/identification-type",
+      "status": "unstable",
+      "sid": 24043
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/null-stream-identification/null-stream-identification/identification-type/oui-cid",
+      "status": "unstable",
+      "sid": 24044
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/null-stream-identification/null-stream-identification/identification-type/type-number",
+      "status": "unstable",
+      "sid": 24045
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/null-stream-identification/null-stream-identification/tagged",
+      "status": "unstable",
+      "sid": 24046
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/null-stream-identification/null-stream-identification/vlan",
+      "status": "unstable",
+      "sid": 24047
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/organization-specific/organization-specific",
+      "status": "unstable",
+      "sid": 24048
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/organization-specific/organization-specific/identification-type",
+      "status": "unstable",
+      "sid": 24049
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/organization-specific/organization-specific/identification-type/oui-cid",
+      "status": "unstable",
+      "sid": 24050
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/organization-specific/organization-specific/identification-type/type-number",
+      "status": "unstable",
+      "sid": 24051
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/smac-vlan-stream-identification/smac-vlan-stream-identification",
+      "status": "unstable",
+      "sid": 24052
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/smac-vlan-stream-identification/smac-vlan-stream-identification/identification-type",
+      "status": "unstable",
+      "sid": 24053
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/smac-vlan-stream-identification/smac-vlan-stream-identification/identification-type/oui-cid",
+      "status": "unstable",
+      "sid": 24054
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/smac-vlan-stream-identification/smac-vlan-stream-identification/identification-type/type-number",
+      "status": "unstable",
+      "sid": 24055
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/smac-vlan-stream-identification/smac-vlan-stream-identification/source-mac",
+      "status": "unstable",
+      "sid": 24056
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/smac-vlan-stream-identification/smac-vlan-stream-identification/tagged",
+      "status": "unstable",
+      "sid": 24057
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ieee802-dot1cb-stream-identification:stream-identity/parameters/smac-vlan-stream-identification/smac-vlan-stream-identification/vlan",
+      "status": "unstable",
+      "sid": 24058
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/statistics/ieee802-dot1cb-stream-identification:stream-id",
+      "status": "unstable",
+      "sid": 24059
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/statistics/ieee802-dot1cb-stream-identification:stream-id/per-port-counters",
+      "status": "unstable",
+      "sid": 24060
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/statistics/ieee802-dot1cb-stream-identification:stream-id/per-port-counters/input-pkts",
+      "status": "unstable",
+      "sid": 24061
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/statistics/ieee802-dot1cb-stream-identification:stream-id/per-port-counters/output-pkts",
+      "status": "unstable",
+      "sid": 24062
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/statistics/ieee802-dot1cb-stream-identification:stream-id/per-port-per-stream-counters",
+      "status": "unstable",
+      "sid": 24063
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/statistics/ieee802-dot1cb-stream-identification:stream-id/per-port-per-stream-counters/direction-out-facing",
+      "status": "unstable",
+      "sid": 24064
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/statistics/ieee802-dot1cb-stream-identification:stream-id/per-port-per-stream-counters/handle",
+      "status": "unstable",
+      "sid": 24065
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/statistics/ieee802-dot1cb-stream-identification:stream-id/per-port-per-stream-counters/input-pkts",
+      "status": "unstable",
+      "sid": 24066
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-interfaces:interfaces/interface/statistics/ieee802-dot1cb-stream-identification:stream-id/per-port-per-stream-counters/output-pkts",
+      "status": "unstable",
+      "sid": 24067
+    }
+  ]
+}

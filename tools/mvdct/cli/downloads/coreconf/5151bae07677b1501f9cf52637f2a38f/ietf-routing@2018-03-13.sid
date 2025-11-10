@@ -1,0 +1,522 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 12000,
+      "size": 999
+    }
+  ],
+  "module-name": "ietf-routing",
+  "module-revision": "2018-03-13",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ietf-routing",
+      "status": "unstable",
+      "sid": 12000
+    },
+    {
+      "namespace": "identity",
+      "identifier": "address-family",
+      "status": "unstable",
+      "sid": 12001
+    },
+    {
+      "namespace": "identity",
+      "identifier": "control-plane-protocol",
+      "status": "unstable",
+      "sid": 12002
+    },
+    {
+      "namespace": "identity",
+      "identifier": "direct",
+      "status": "unstable",
+      "sid": 12003
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ipv4",
+      "status": "unstable",
+      "sid": 12004
+    },
+    {
+      "namespace": "identity",
+      "identifier": "ipv6",
+      "status": "unstable",
+      "sid": 12005
+    },
+    {
+      "namespace": "identity",
+      "identifier": "routing-protocol",
+      "status": "unstable",
+      "sid": 12006
+    },
+    {
+      "namespace": "identity",
+      "identifier": "static",
+      "status": "unstable",
+      "sid": 12007
+    },
+    {
+      "namespace": "feature",
+      "identifier": "multiple-ribs",
+      "status": "unstable",
+      "sid": 12008
+    },
+    {
+      "namespace": "feature",
+      "identifier": "router-id",
+      "status": "unstable",
+      "sid": 12009
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing",
+      "status": "unstable",
+      "sid": 12010
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state",
+      "status": "unstable",
+      "sid": 12011
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/control-plane-protocols",
+      "status": "unstable",
+      "sid": 12012
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/control-plane-protocols/control-plane-protocol",
+      "status": "unstable",
+      "sid": 12013
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/control-plane-protocols/control-plane-protocol/name",
+      "status": "unstable",
+      "sid": 12014
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/control-plane-protocols/control-plane-protocol/type",
+      "status": "unstable",
+      "sid": 12015
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/interfaces",
+      "status": "unstable",
+      "sid": 12016
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/interfaces/interface",
+      "status": "unstable",
+      "sid": 12017
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs",
+      "status": "unstable",
+      "sid": 12018
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib",
+      "status": "unstable",
+      "sid": 12019
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/active-route",
+      "status": "unstable",
+      "sid": 12020
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/active-route/output/route",
+      "status": "unstable",
+      "sid": 12021
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/active-route/output/route/active",
+      "status": "unstable",
+      "sid": 12022
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/active-route/output/route/last-updated",
+      "status": "unstable",
+      "sid": 12023
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/active-route/output/route/next-hop",
+      "status": "unstable",
+      "sid": 12024
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/active-route/output/route/next-hop/next-hop-options/next-hop-list/next-hop-list",
+      "status": "unstable",
+      "sid": 12025
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/active-route/output/route/next-hop/next-hop-options/next-hop-list/next-hop-list/next-hop",
+      "status": "unstable",
+      "sid": 12026
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/active-route/output/route/next-hop/next-hop-options/next-hop-list/next-hop-list/next-hop/outgoing-interface",
+      "status": "unstable",
+      "sid": 12027
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/active-route/output/route/next-hop/next-hop-options/simple-next-hop/outgoing-interface",
+      "status": "unstable",
+      "sid": 12028
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/active-route/output/route/next-hop/next-hop-options/special-next-hop/special-next-hop",
+      "status": "unstable",
+      "sid": 12029
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/active-route/output/route/source-protocol",
+      "status": "unstable",
+      "sid": 12030
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/address-family",
+      "status": "unstable",
+      "sid": 12031
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/default-rib",
+      "status": "unstable",
+      "sid": 12032
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/name",
+      "status": "unstable",
+      "sid": 12033
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/routes",
+      "status": "unstable",
+      "sid": 12034
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/routes/route",
+      "status": "unstable",
+      "sid": 12035
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/routes/route/active",
+      "status": "unstable",
+      "sid": 12036
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/routes/route/last-updated",
+      "status": "unstable",
+      "sid": 12037
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/routes/route/next-hop",
+      "status": "unstable",
+      "sid": 12038
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/routes/route/next-hop/next-hop-options/next-hop-list/next-hop-list",
+      "status": "unstable",
+      "sid": 12039
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/routes/route/next-hop/next-hop-options/next-hop-list/next-hop-list/next-hop",
+      "status": "unstable",
+      "sid": 12040
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/routes/route/next-hop/next-hop-options/next-hop-list/next-hop-list/next-hop/outgoing-interface",
+      "status": "unstable",
+      "sid": 12041
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/routes/route/next-hop/next-hop-options/simple-next-hop/outgoing-interface",
+      "status": "unstable",
+      "sid": 12042
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/routes/route/next-hop/next-hop-options/special-next-hop/special-next-hop",
+      "status": "unstable",
+      "sid": 12043
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/routes/route/route-preference",
+      "status": "unstable",
+      "sid": 12044
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/ribs/rib/routes/route/source-protocol",
+      "status": "unstable",
+      "sid": 12045
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing-state/router-id",
+      "status": "unstable",
+      "sid": 12046
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/control-plane-protocols",
+      "status": "unstable",
+      "sid": 12047
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/control-plane-protocols/control-plane-protocol",
+      "status": "unstable",
+      "sid": 12048
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/control-plane-protocols/control-plane-protocol/description",
+      "status": "unstable",
+      "sid": 12049
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/control-plane-protocols/control-plane-protocol/name",
+      "status": "unstable",
+      "sid": 12050
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/control-plane-protocols/control-plane-protocol/static-routes",
+      "status": "unstable",
+      "sid": 12051
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/control-plane-protocols/control-plane-protocol/type",
+      "status": "unstable",
+      "sid": 12052
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/interfaces",
+      "status": "unstable",
+      "sid": 12053
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/interfaces/interface",
+      "status": "unstable",
+      "sid": 12054
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs",
+      "status": "unstable",
+      "sid": 12055
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib",
+      "status": "unstable",
+      "sid": 12056
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/active-route",
+      "status": "unstable",
+      "sid": 12057
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/active-route/output/route",
+      "status": "unstable",
+      "sid": 12058
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/active-route/output/route/active",
+      "status": "unstable",
+      "sid": 12059
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/active-route/output/route/last-updated",
+      "status": "unstable",
+      "sid": 12060
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/active-route/output/route/next-hop",
+      "status": "unstable",
+      "sid": 12061
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/active-route/output/route/next-hop/next-hop-options/next-hop-list/next-hop-list",
+      "status": "unstable",
+      "sid": 12062
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/active-route/output/route/next-hop/next-hop-options/next-hop-list/next-hop-list/next-hop",
+      "status": "unstable",
+      "sid": 12063
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/active-route/output/route/next-hop/next-hop-options/next-hop-list/next-hop-list/next-hop/outgoing-interface",
+      "status": "unstable",
+      "sid": 12064
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/active-route/output/route/next-hop/next-hop-options/simple-next-hop/outgoing-interface",
+      "status": "unstable",
+      "sid": 12065
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/active-route/output/route/next-hop/next-hop-options/special-next-hop/special-next-hop",
+      "status": "unstable",
+      "sid": 12066
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/active-route/output/route/source-protocol",
+      "status": "unstable",
+      "sid": 12067
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/address-family",
+      "status": "unstable",
+      "sid": 12068
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/default-rib",
+      "status": "unstable",
+      "sid": 12069
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/description",
+      "status": "unstable",
+      "sid": 12070
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/name",
+      "status": "unstable",
+      "sid": 12071
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/routes",
+      "status": "unstable",
+      "sid": 12072
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/routes/route",
+      "status": "unstable",
+      "sid": 12073
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/routes/route/active",
+      "status": "unstable",
+      "sid": 12074
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/routes/route/last-updated",
+      "status": "unstable",
+      "sid": 12075
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/routes/route/next-hop",
+      "status": "unstable",
+      "sid": 12076
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/routes/route/next-hop/next-hop-options/next-hop-list/next-hop-list",
+      "status": "unstable",
+      "sid": 12077
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/routes/route/next-hop/next-hop-options/next-hop-list/next-hop-list/next-hop",
+      "status": "unstable",
+      "sid": 12078
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/routes/route/next-hop/next-hop-options/next-hop-list/next-hop-list/next-hop/outgoing-interface",
+      "status": "unstable",
+      "sid": 12079
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/routes/route/next-hop/next-hop-options/simple-next-hop/outgoing-interface",
+      "status": "unstable",
+      "sid": 12080
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/routes/route/next-hop/next-hop-options/special-next-hop/special-next-hop",
+      "status": "unstable",
+      "sid": 12081
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/routes/route/route-preference",
+      "status": "unstable",
+      "sid": 12082
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/ribs/rib/routes/route/source-protocol",
+      "status": "unstable",
+      "sid": 12083
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-routing:routing/router-id",
+      "status": "unstable",
+      "sid": 12084
+    }
+  ]
+}

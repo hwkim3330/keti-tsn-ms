@@ -1,0 +1,18 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 12999,
+      "size": 1
+    }
+  ],
+  "module-name": "ietf-routing-dev",
+  "module-revision": "2024-04-12",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ietf-routing-dev",
+      "status": "unstable",
+      "sid": 12999
+    }
+  ]
+}

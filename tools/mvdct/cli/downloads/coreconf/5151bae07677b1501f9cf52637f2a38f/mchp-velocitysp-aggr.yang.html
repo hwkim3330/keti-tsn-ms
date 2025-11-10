@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">mchp-velocitysp-aggr</span> {
+  <span style="color:var(--color-yang-keyword);">yang-version</span> <span style="color:var(--color-yang-comment);">/* L2C15 */</span><span id="L2C15"></span><span style="color:var(--color-yang-id);">1.1</span>;
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:mchp:params:xml:ns:yang:velocitysp-aggr"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L4C9 */</span><span id="L4C9"></span><span style="color:var(--color-yang-id);">lm-aggr</span>;
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L5C9 */</span><span id="L5C9"></span><span style="color:var(--color-yang-id);">ietf-yang-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-text);">"yang"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L8C9 */</span><span id="L8C9"></span><span style="color:var(--color-yang-id);">ieee802-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-text);">"ieee"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L11C9 */</span><span id="L11C9"></span><span style="color:var(--color-yang-id);">ietf-interfaces</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L12C11 */</span><span id="L12C11"></span><span style="color:var(--color-yang-id);">if</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L14C9 */</span><span id="L14C9"></span><span style="color:var(--color-yang-id);">iana-if-type</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L15C11 */</span><span id="L15C11"></span><span style="color:var(--color-yang-id);">ianaif</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This module contains a collection of YANG definitions for managing
+     link aggregations of MCHP systems running VelocitySP software."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L21C11 */</span><span id="L21C11"></span><span style="color:var(--color-yang-id);">2025-06-30</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Added default values."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L26C11 */</span><span id="L26C11"></span><span style="color:var(--color-yang-id);">2023-10-19</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L31C12 */</span><span id="L31C12"></span><span style="color:var(--color-yang-id);">aggr-system</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Link aggregation system information."</span>;
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L34C14 */</span><span id="L34C14"></span><span style="color:var(--color-yang-id);">config</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Container of configuration for the system."</span>;
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L37C11 */</span><span id="L37C11"></span><span style="color:var(--color-yang-id);">system-priority</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L38C13 */</span><span id="L38C13"></span><span style="color:var(--color-yang-id);">uint16</span>;
+        <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"32768"</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"The priority of the aggregating system."</span>;
+        <span style="color:var(--color-yang-keyword);">reference</span>
+          <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.2.1.2"</span>;
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L48C11 */</span><span id="L48C11"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span>
+      "<span style="color:var(--color-yang-comment);">/* L50C7 */</span><span id="L50C7"></span><span style="color:var(--color-yang-id);">if:type = 'ianaif:ethernetCsmacd'"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Applies when an Ethernet bridge port."</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment the interface model with the Ethernet bridge port"</span>;
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L56C14 */</span><span id="L56C14"></span><span style="color:var(--color-yang-id);">aggr-port</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Ethernet port extension of the IETF Interfaces model (RFC7223)."</span>;
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L59C16 */</span><span id="L59C16"></span><span style="color:var(--color-yang-id);">config</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Container of configuration for each bridge port."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L62C13 */</span><span id="L62C13"></span><span style="color:var(--color-yang-id);">group</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L63C15 */</span><span id="L63C15"></span><span style="color:var(--color-yang-id);">uint16</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"0"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Aggregator group number. The first group has number zero.
+             For a system with N ports, N/2 groups are supported."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L69C13 */</span><span id="L69C13"></span><span style="color:var(--color-yang-id);">mode</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L70C15 */</span><span id="L70C15"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L71C17 */</span><span id="L71C17"></span><span style="color:var(--color-yang-id);">disabled</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Link aggregation is disabled."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L75C17 */</span><span id="L75C17"></span><span style="color:var(--color-yang-id);">enabled</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Link aggregation is statically enabled."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L79C17 */</span><span id="L79C17"></span><span style="color:var(--color-yang-id);">lacp-active</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"LACP is enabled in active mode."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L83C17 */</span><span id="L83C17"></span><span style="color:var(--color-yang-id);">lacp-passive</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"LACP is enabled in passive mode."</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"disabled"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Aggregation mode for port."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L92C13 */</span><span id="L92C13"></span><span style="color:var(--color-yang-id);">lacp-timeout</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L93C15 */</span><span id="L93C15"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L94C17 */</span><span id="L94C17"></span><span style="color:var(--color-yang-id);">slow</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Timeout is 30 seconds."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L98C17 */</span><span id="L98C17"></span><span style="color:var(--color-yang-id);">fast</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Timeout is 1 second."</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"fast"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"LACP timeout for port."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L107C13 */</span><span id="L107C13"></span><span style="color:var(--color-yang-id);">port-priority</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L108C15 */</span><span id="L108C15"></span><span style="color:var(--color-yang-id);">uint16</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"32768"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The priority value assigned to this port."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.2.1.15"</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L116C16 */</span><span id="L116C16"></span><span style="color:var(--color-yang-id);">status</span> {
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L117C15 */</span><span id="L117C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Container of status for each bridge port."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L120C13 */</span><span id="L120C13"></span><span style="color:var(--color-yang-id);">actor-system-priority</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L121C15 */</span><span id="L121C15"></span><span style="color:var(--color-yang-id);">uint16</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Operational value of system priority."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.2.1.2"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L127C13 */</span><span id="L127C13"></span><span style="color:var(--color-yang-id);">actor-system-mac</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L128C15 */</span><span id="L128C15"></span><span style="color:var(--color-yang-id);">ieee:mac-address</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Operational value of actor system MAC address."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.2.1.3"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L134C13 */</span><span id="L134C13"></span><span style="color:var(--color-yang-id);">actor-key</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L135C15 */</span><span id="L135C15"></span><span style="color:var(--color-yang-id);">uint16</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Operational value of the actor key."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.2.1.5"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L141C13 */</span><span id="L141C13"></span><span style="color:var(--color-yang-id);">actor-port-priority</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L142C15 */</span><span id="L142C15"></span><span style="color:var(--color-yang-id);">uint16</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Operational value of the actor port priority."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.2.1.15"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L148C13 */</span><span id="L148C13"></span><span style="color:var(--color-yang-id);">actor-port</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L149C15 */</span><span id="L149C15"></span><span style="color:var(--color-yang-id);">uint16</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The actor port number locally assigned."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.2.1.14"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L155C13 */</span><span id="L155C13"></span><span style="color:var(--color-yang-id);">actor-state</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L156C15 */</span><span id="L156C15"></span><span style="color:var(--color-yang-id);">bits</span> {
+            <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L157C16 */</span><span id="L157C16"></span><span style="color:var(--color-yang-id);">lacp-activity</span> {
+              <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L158C23 */</span><span id="L158C23"></span><span style="color:var(--color-yang-id);">0</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"LACP activity actor state."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L162C16 */</span><span id="L162C16"></span><span style="color:var(--color-yang-id);">lacp-timeout</span> {
+              <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L163C23 */</span><span id="L163C23"></span><span style="color:var(--color-yang-id);">1</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"LACP timeout actor state."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L167C16 */</span><span id="L167C16"></span><span style="color:var(--color-yang-id);">aggregation</span> {
+              <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L168C23 */</span><span id="L168C23"></span><span style="color:var(--color-yang-id);">2</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Aggregation actor state."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L172C16 */</span><span id="L172C16"></span><span style="color:var(--color-yang-id);">synchronization</span> {
+              <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L173C23 */</span><span id="L173C23"></span><span style="color:var(--color-yang-id);">3</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Synchronization actor state."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L177C16 */</span><span id="L177C16"></span><span style="color:var(--color-yang-id);">collecting</span> {
+              <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L178C23 */</span><span id="L178C23"></span><span style="color:var(--color-yang-id);">4</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Collecting actor state."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L182C16 */</span><span id="L182C16"></span><span style="color:var(--color-yang-id);">distributing</span> {
+              <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L183C23 */</span><span id="L183C23"></span><span style="color:var(--color-yang-id);">5</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Distributing actor state."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L187C16 */</span><span id="L187C16"></span><span style="color:var(--color-yang-id);">defaulted</span> {
+              <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L188C23 */</span><span id="L188C23"></span><span style="color:var(--color-yang-id);">6</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Defaulted actor state."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L192C16 */</span><span id="L192C16"></span><span style="color:var(--color-yang-id);">expired</span> {
+              <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L193C23 */</span><span id="L193C23"></span><span style="color:var(--color-yang-id);">7</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Expired actor state."</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Operational value of actor state."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.2.1.21"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L203C13 */</span><span id="L203C13"></span><span style="color:var(--color-yang-id);">partner-system-priority</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L204C15 */</span><span id="L204C15"></span><span style="color:var(--color-yang-id);">uint16</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Operational value of system priority."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.2.1.7"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L210C13 */</span><span id="L210C13"></span><span style="color:var(--color-yang-id);">partner-system-mac</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L211C15 */</span><span id="L211C15"></span><span style="color:var(--color-yang-id);">ieee:mac-address</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Operational value of partner system MAC address."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.2.1.8"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L217C13 */</span><span id="L217C13"></span><span style="color:var(--color-yang-id);">partner-key</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L218C15 */</span><span id="L218C15"></span><span style="color:var(--color-yang-id);">uint16</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Operational value of the partner key."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.2.1.11"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L224C13 */</span><span id="L224C13"></span><span style="color:var(--color-yang-id);">partner-port-priority</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L225C15 */</span><span id="L225C15"></span><span style="color:var(--color-yang-id);">uint16</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Operational value of the partner port priority."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.2.1.19"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L231C13 */</span><span id="L231C13"></span><span style="color:var(--color-yang-id);">partner-port</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L232C15 */</span><span id="L232C15"></span><span style="color:var(--color-yang-id);">uint16</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The partner port number locally assigned."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.2.1.17"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L238C13 */</span><span id="L238C13"></span><span style="color:var(--color-yang-id);">partner-state</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L239C15 */</span><span id="L239C15"></span><span style="color:var(--color-yang-id);">bits</span> {
+            <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L240C16 */</span><span id="L240C16"></span><span style="color:var(--color-yang-id);">lacp-activity</span> {
+              <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L241C23 */</span><span id="L241C23"></span><span style="color:var(--color-yang-id);">0</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"LACP activity partner state."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L245C16 */</span><span id="L245C16"></span><span style="color:var(--color-yang-id);">lacp-timeout</span> {
+              <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L246C23 */</span><span id="L246C23"></span><span style="color:var(--color-yang-id);">1</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"LACP timeout partner state."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L250C16 */</span><span id="L250C16"></span><span style="color:var(--color-yang-id);">aggregation</span> {
+              <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L251C23 */</span><span id="L251C23"></span><span style="color:var(--color-yang-id);">2</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Aggregation partner state."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L255C16 */</span><span id="L255C16"></span><span style="color:var(--color-yang-id);">synchronization</span> {
+              <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L256C23 */</span><span id="L256C23"></span><span style="color:var(--color-yang-id);">3</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Synchronization partner state."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L260C16 */</span><span id="L260C16"></span><span style="color:var(--color-yang-id);">collecting</span> {
+              <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L261C23 */</span><span id="L261C23"></span><span style="color:var(--color-yang-id);">4</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Collecting partner state."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L265C16 */</span><span id="L265C16"></span><span style="color:var(--color-yang-id);">distributing</span> {
+              <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L266C23 */</span><span id="L266C23"></span><span style="color:var(--color-yang-id);">5</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Distributing partner state."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L270C16 */</span><span id="L270C16"></span><span style="color:var(--color-yang-id);">defaulted</span> {
+              <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L271C23 */</span><span id="L271C23"></span><span style="color:var(--color-yang-id);">6</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Defaulted partner state."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L275C16 */</span><span id="L275C16"></span><span style="color:var(--color-yang-id);">expired</span> {
+              <span style="color:var(--color-yang-keyword);">position</span> <span style="color:var(--color-yang-comment);">/* L276C23 */</span><span id="L276C23"></span><span style="color:var(--color-yang-id);">7</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Expired partner state."</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Operational value of partner state."</span>;
+          <span style="color:var(--color-yang-keyword);">reference</span>
+            <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.2.1.23"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L286C13 */</span><span id="L286C13"></span><span style="color:var(--color-yang-id);">aggr-name</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L287C15 */</span><span id="L287C15"></span><span style="color:var(--color-yang-id);">string</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Operational aggregation interface name ('NONE' if not aggregated)."</span>;
+        }
+      }
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L292C16 */</span><span id="L292C16"></span><span style="color:var(--color-yang-id);">statistics</span> {
+        <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L293C15 */</span><span id="L293C15"></span><span style="color:var(--color-yang-id);">false</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Container of protocol statistics for each bridge port."</span>;
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L296C15 */</span><span id="L296C15"></span><span style="color:var(--color-yang-id);">rx-lacp-pdu</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L297C17 */</span><span id="L297C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The number of received valid LACPDUs."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.3.1.2"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L303C15 */</span><span id="L303C15"></span><span style="color:var(--color-yang-id);">rx-marker-pdu</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L304C17 */</span><span id="L304C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The number of received valid Marker PDUs."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.3.1.3"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L310C15 */</span><span id="L310C15"></span><span style="color:var(--color-yang-id);">rx-marker-response-pdu</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L311C17 */</span><span id="L311C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The number of received valid Marker Response PDUs."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.3.1.4"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L317C15 */</span><span id="L317C15"></span><span style="color:var(--color-yang-id);">rx-unknown</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L318C17 */</span><span id="L318C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The number of frames received unknown PDUs."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.3.1.5"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L324C15 */</span><span id="L324C15"></span><span style="color:var(--color-yang-id);">rx-illegal</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L325C17 */</span><span id="L325C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The number of frames received badly formed PDUs."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.3.1.6"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L331C15 */</span><span id="L331C15"></span><span style="color:var(--color-yang-id);">tx-lacp-pdu</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L332C17 */</span><span id="L332C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The number of transmitted LACPDUs."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.3.1.7"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L338C15 */</span><span id="L338C15"></span><span style="color:var(--color-yang-id);">tx-marker-pdu</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L339C17 */</span><span id="L339C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The number of transmitted Marker PDUs."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.3.1.8"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L345C15 */</span><span id="L345C15"></span><span style="color:var(--color-yang-id);">tx-marker-response-pdu</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L346C17 */</span><span id="L346C17"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L116C10">yang:counter64</a></span>;
+            <span style="color:var(--color-yang-keyword);">description</span>
+              <span style="color:var(--color-yang-text);">"The number of transmitted Marker Response PDUs."</span>;
+            <span style="color:var(--color-yang-keyword);">reference</span>
+              <span style="color:var(--color-yang-text);">"IEEE 802.1AX-2014, Clause 7.3.3.1.9"</span>;
+          }
+      }
+    }
+  }
+
+  <span style="color:var(--color-yang-keyword);">augment</span> "<span style="color:var(--color-yang-comment);">/* L356C11 */</span><span id="L356C11"></span><span style="color:var(--color-yang-id);">/if:interfaces/if:interface"</span> {
+    <span style="color:var(--color-yang-keyword);">when</span> "<span style="color:var(--color-yang-comment);">/* L357C10 */</span><span id="L357C10"></span><span style="color:var(--color-yang-id);">if:type = 'ianaif:ieee8023adLag'"</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Applies when an Ethernet bridge port aggregator."</span>;
+      }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Augment the interface model with the Ethernet bridge port aggregator."</span>;
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L363C14 */</span><span id="L363C14"></span><span style="color:var(--color-yang-id);">aggregator</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Ethernet aggregator extension of the IETF Interfaces model (RFC7223)."</span>;
+      <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L366C16 */</span><span id="L366C16"></span><span style="color:var(--color-yang-id);">config</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Container of configuration for each aggregator."</span>;
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L369C13 */</span><span id="L369C13"></span><span style="color:var(--color-yang-id);">max-bundle</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L370C15 */</span><span id="L370C15"></span><span style="color:var(--color-yang-id);">uint16</span>;
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"0"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The maximum number of active ports in an aggregator.
+             When the limit is reached, low priority ports will become standby.
+             The value zero means that no administrative limit is setup."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L377C13 */</span><span id="L377C13"></span><span style="color:var(--color-yang-id);">failover-mode</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L378C15 */</span><span id="L378C15"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L379C17 */</span><span id="L379C17"></span><span style="color:var(--color-yang-id);">revertive</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"When a higher priority port comes back up it will become active."</span>;
+            }
+            <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L383C17 */</span><span id="L383C17"></span><span style="color:var(--color-yang-id);">non-revertive</span> {
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"When a higher priority port comes back up it will become standby."</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"revertive"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Failover mode for aggregator. If a higher priority port goes down,
+            lower priority ports will become active. If the higher priority port
+            comes back up, the failover mode determines whether it becomes active."</span>;
+        }
+      }
+    }
+  }
+}

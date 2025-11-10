@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">iana-if-type</span> {
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:ietf:params:xml:ns:yang:iana-if-type"</span>;
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L3C9 */</span><span id="L3C9"></span><span style="color:var(--color-yang-id);">ianaift</span>;
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L5C9 */</span><span id="L5C9"></span><span style="color:var(--color-yang-id);">ietf-interfaces</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L6C11 */</span><span id="L6C11"></span><span style="color:var(--color-yang-id);">if</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">organization</span> <span style="color:var(--color-yang-text);">"IANA"</span>;
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"        Internet Assigned Numbers Authority
+
+     Postal: ICANN
+             12025 Waterfront Drive, Suite 300
+             Los Angeles, CA 90094-2536
+             United States
+
+     Tel:    +1 310 301 5800
+     <mailto:iana&iana.org>"</span>;
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"This YANG module defines YANG identities for IANA-registered
+     interface types.
+
+     This YANG module is maintained by IANA and reflects the
+     'ifType definitions' registry.
+
+     The latest revision of this YANG module can be obtained from
+     the IANA web site.
+
+     Requests for new values should be made to IANA via
+     email (iana&iana.org).
+
+     Copyright (c) 2014 IETF Trust and the persons identified as
+     authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Simplified BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (http://trustee.ietf.org/license-info).
+
+     The initial version of this YANG module is part of RFC 7224;
+     see the RFC itself for full legal notices."</span>;
+  <span style="color:var(--color-yang-keyword);">reference</span>
+    <span style="color:var(--color-yang-text);">"IANA 'ifType definitions' registry.
+     <http://www.iana.org/assignments/smi-numbers>"</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L49C11 */</span><span id="L49C11"></span><span style="color:var(--color-yang-id);">2017-01-19</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Registered ifType 289."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L54C11 */</span><span id="L54C11"></span><span style="color:var(--color-yang-id);">2016-11-23</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Registered ifTypes 283-288."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L59C11 */</span><span id="L59C11"></span><span style="color:var(--color-yang-id);">2016-06-09</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Registered ifType 282."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L63C11 */</span><span id="L63C11"></span><span style="color:var(--color-yang-id);">2016-05-03</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Registered ifType 281."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L67C11 */</span><span id="L67C11"></span><span style="color:var(--color-yang-id);">2015-06-12</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Corrected formatting issue."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L71C11 */</span><span id="L71C11"></span><span style="color:var(--color-yang-id);">2014-09-24</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Registered ifType 280."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L75C11 */</span><span id="L75C11"></span><span style="color:var(--color-yang-id);">2014-09-19</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Registered ifType 279."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L79C11 */</span><span id="L79C11"></span><span style="color:var(--color-yang-id);">2014-07-03</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Registered ifTypes 277-278."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L83C11 */</span><span id="L83C11"></span><span style="color:var(--color-yang-id);">2014-05-19</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Updated the contact address."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-comment);">/* L87C11 */</span><span id="L87C11"></span><span style="color:var(--color-yang-id);">2014-05-08</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Initial revision."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 7224: IANA Interface Type YANG Module"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L94C11 */</span><span id="L94C11"></span><span style="color:var(--color-yang-id);">iana-interface-type</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L95C9 */</span><span id="L95C9"></span><span style="color:var(--color-yang-id);">if:interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"This identity is used as a base for all interface types
+       defined in the 'ifType definitions' registry."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L101C11 */</span><span id="L101C11"></span><span style="color:var(--color-yang-id);">other</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L102C9 */</span><span id="L102C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L104C11 */</span><span id="L104C11"></span><span style="color:var(--color-yang-id);">regular1822</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L105C9 */</span><span id="L105C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L107C11 */</span><span id="L107C11"></span><span style="color:var(--color-yang-id);">hdh1822</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L108C9 */</span><span id="L108C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L110C11 */</span><span id="L110C11"></span><span style="color:var(--color-yang-id);">ddnX25</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L111C9 */</span><span id="L111C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L113C11 */</span><span id="L113C11"></span><span style="color:var(--color-yang-id);">rfc877x25</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L114C9 */</span><span id="L114C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 1382 - SNMP MIB Extension for the X.25 Packet Layer"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L118C11 */</span><span id="L118C11"></span><span style="color:var(--color-yang-id);">ethernetCsmacd</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L119C9 */</span><span id="L119C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"For all Ethernet-like interfaces, regardless of speed,
+       as per RFC 3635."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 3635 - Definitions of Managed Objects for the
+                  Ethernet-like Interface Types"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L127C11 */</span><span id="L127C11"></span><span style="color:var(--color-yang-id);">iso88023Csmacd</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L128C9 */</span><span id="L128C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L129C11 */</span><span id="L129C11"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Deprecated via RFC 3635.
+       Use ethernetCsmacd(6) instead."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 3635 - Definitions of Managed Objects for the
+                  Ethernet-like Interface Types"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L137C11 */</span><span id="L137C11"></span><span style="color:var(--color-yang-id);">iso88024TokenBus</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L138C9 */</span><span id="L138C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L140C11 */</span><span id="L140C11"></span><span style="color:var(--color-yang-id);">iso88025TokenRing</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L141C9 */</span><span id="L141C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L143C11 */</span><span id="L143C11"></span><span style="color:var(--color-yang-id);">iso88026Man</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L144C9 */</span><span id="L144C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L146C11 */</span><span id="L146C11"></span><span style="color:var(--color-yang-id);">starLan</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L147C9 */</span><span id="L147C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L148C11 */</span><span id="L148C11"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Deprecated via RFC 3635.
+       Use ethernetCsmacd(6) instead."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 3635 - Definitions of Managed Objects for the
+                  Ethernet-like Interface Types"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L156C11 */</span><span id="L156C11"></span><span style="color:var(--color-yang-id);">proteon10Mbit</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L157C9 */</span><span id="L157C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L159C11 */</span><span id="L159C11"></span><span style="color:var(--color-yang-id);">proteon80Mbit</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L160C9 */</span><span id="L160C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L162C11 */</span><span id="L162C11"></span><span style="color:var(--color-yang-id);">hyperchannel</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L163C9 */</span><span id="L163C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L165C11 */</span><span id="L165C11"></span><span style="color:var(--color-yang-id);">fddi</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L166C9 */</span><span id="L166C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 1512 - FDDI Management Information Base"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L170C11 */</span><span id="L170C11"></span><span style="color:var(--color-yang-id);">lapb</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L171C9 */</span><span id="L171C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 1381 - SNMP MIB Extension for X.25 LAPB"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L175C11 */</span><span id="L175C11"></span><span style="color:var(--color-yang-id);">sdlc</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L176C9 */</span><span id="L176C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L178C11 */</span><span id="L178C11"></span><span style="color:var(--color-yang-id);">ds1</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L179C9 */</span><span id="L179C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"DS1-MIB."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 4805 - Definitions of Managed Objects for the
+                  DS1, J1, E1, DS2, and E2 Interface Types"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L186C11 */</span><span id="L186C11"></span><span style="color:var(--color-yang-id);">e1</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L187C9 */</span><span id="L187C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L188C11 */</span><span id="L188C11"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Obsolete; see DS1-MIB."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 4805 - Definitions of Managed Objects for the
+                  DS1, J1, E1, DS2, and E2 Interface Types"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L195C11 */</span><span id="L195C11"></span><span style="color:var(--color-yang-id);">basicISDN</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L196C9 */</span><span id="L196C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"No longer used.  See also RFC 2127."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L200C11 */</span><span id="L200C11"></span><span style="color:var(--color-yang-id);">primaryISDN</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L201C9 */</span><span id="L201C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"No longer used.  See also RFC 2127."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L205C11 */</span><span id="L205C11"></span><span style="color:var(--color-yang-id);">propPointToPointSerial</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L206C9 */</span><span id="L206C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Proprietary serial."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L210C11 */</span><span id="L210C11"></span><span style="color:var(--color-yang-id);">ppp</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L211C9 */</span><span id="L211C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L213C11 */</span><span id="L213C11"></span><span style="color:var(--color-yang-id);">softwareLoopback</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L214C9 */</span><span id="L214C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L216C11 */</span><span id="L216C11"></span><span style="color:var(--color-yang-id);">eon</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L217C9 */</span><span id="L217C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"CLNP over IP."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L221C11 */</span><span id="L221C11"></span><span style="color:var(--color-yang-id);">ethernet3Mbit</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L222C9 */</span><span id="L222C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L224C11 */</span><span id="L224C11"></span><span style="color:var(--color-yang-id);">nsip</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L225C9 */</span><span id="L225C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"XNS over IP."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L229C11 */</span><span id="L229C11"></span><span style="color:var(--color-yang-id);">slip</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L230C9 */</span><span id="L230C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Generic SLIP."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L234C11 */</span><span id="L234C11"></span><span style="color:var(--color-yang-id);">ultra</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L235C9 */</span><span id="L235C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Ultra Technologies."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L239C11 */</span><span id="L239C11"></span><span style="color:var(--color-yang-id);">ds3</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L240C9 */</span><span id="L240C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"DS3-MIB."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 3896 - Definitions of Managed Objects for the
+                  DS3/E3 Interface Type"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L247C11 */</span><span id="L247C11"></span><span style="color:var(--color-yang-id);">sip</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L248C9 */</span><span id="L248C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"SMDS, coffee."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 1694 - Definitions of Managed Objects for SMDS
+                  Interfaces using SMIv2"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L255C11 */</span><span id="L255C11"></span><span style="color:var(--color-yang-id);">frameRelay</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L256C9 */</span><span id="L256C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"DTE only."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 2115 - Management Information Base for Frame Relay
+                  DTEs Using SMIv2"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L263C11 */</span><span id="L263C11"></span><span style="color:var(--color-yang-id);">rs232</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L264C9 */</span><span id="L264C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 1659 - Definitions of Managed Objects for RS-232-like
+                  Hardware Devices using SMIv2"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L269C11 */</span><span id="L269C11"></span><span style="color:var(--color-yang-id);">para</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L270C9 */</span><span id="L270C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Parallel-port."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 1660 - Definitions of Managed Objects for
+                  Parallel-printer-like Hardware Devices using
+                  SMIv2"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L278C11 */</span><span id="L278C11"></span><span style="color:var(--color-yang-id);">arcnet</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L279C9 */</span><span id="L279C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ARCnet."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L283C11 */</span><span id="L283C11"></span><span style="color:var(--color-yang-id);">arcnetPlus</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L284C9 */</span><span id="L284C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ARCnet Plus."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L288C11 */</span><span id="L288C11"></span><span style="color:var(--color-yang-id);">atm</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L289C9 */</span><span id="L289C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ATM cells."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L293C11 */</span><span id="L293C11"></span><span style="color:var(--color-yang-id);">miox25</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L294C9 */</span><span id="L294C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 1461 - SNMP MIB extension for Multiprotocol
+                  Interconnect over X.25"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L299C11 */</span><span id="L299C11"></span><span style="color:var(--color-yang-id);">sonet</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L300C9 */</span><span id="L300C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"SONET or SDH."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L304C11 */</span><span id="L304C11"></span><span style="color:var(--color-yang-id);">x25ple</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L305C9 */</span><span id="L305C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 2127 - ISDN Management Information Base using SMIv2"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L309C11 */</span><span id="L309C11"></span><span style="color:var(--color-yang-id);">iso88022llc</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L310C9 */</span><span id="L310C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L312C11 */</span><span id="L312C11"></span><span style="color:var(--color-yang-id);">localTalk</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L313C9 */</span><span id="L313C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L315C11 */</span><span id="L315C11"></span><span style="color:var(--color-yang-id);">smdsDxi</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L316C9 */</span><span id="L316C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L318C11 */</span><span id="L318C11"></span><span style="color:var(--color-yang-id);">frameRelayService</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L319C9 */</span><span id="L319C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"FRNETSERV-MIB."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 2954 - Definitions of Managed Objects for Frame
+                  Relay Service"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L326C11 */</span><span id="L326C11"></span><span style="color:var(--color-yang-id);">v35</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L327C9 */</span><span id="L327C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L329C11 */</span><span id="L329C11"></span><span style="color:var(--color-yang-id);">hssi</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L330C9 */</span><span id="L330C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L332C11 */</span><span id="L332C11"></span><span style="color:var(--color-yang-id);">hippi</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L333C9 */</span><span id="L333C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L335C11 */</span><span id="L335C11"></span><span style="color:var(--color-yang-id);">modem</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L336C9 */</span><span id="L336C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Generic modem."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L340C11 */</span><span id="L340C11"></span><span style="color:var(--color-yang-id);">aal5</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L341C9 */</span><span id="L341C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"AAL5 over ATM."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L345C11 */</span><span id="L345C11"></span><span style="color:var(--color-yang-id);">sonetPath</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L346C9 */</span><span id="L346C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L348C11 */</span><span id="L348C11"></span><span style="color:var(--color-yang-id);">sonetVT</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L349C9 */</span><span id="L349C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L351C11 */</span><span id="L351C11"></span><span style="color:var(--color-yang-id);">smdsIcip</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L352C9 */</span><span id="L352C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"SMDS InterCarrier Interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L356C11 */</span><span id="L356C11"></span><span style="color:var(--color-yang-id);">propVirtual</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L357C9 */</span><span id="L357C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Proprietary virtual/internal."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 2863 - The Interfaces Group MIB"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L363C11 */</span><span id="L363C11"></span><span style="color:var(--color-yang-id);">propMultiplexor</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L364C9 */</span><span id="L364C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Proprietary multiplexing."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 2863 - The Interfaces Group MIB"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L370C11 */</span><span id="L370C11"></span><span style="color:var(--color-yang-id);">ieee80212</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L371C9 */</span><span id="L371C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"100BaseVG."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L375C11 */</span><span id="L375C11"></span><span style="color:var(--color-yang-id);">fibreChannel</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L376C9 */</span><span id="L376C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Fibre Channel."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L380C11 */</span><span id="L380C11"></span><span style="color:var(--color-yang-id);">hippiInterface</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L381C9 */</span><span id="L381C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"HIPPI interfaces."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L385C11 */</span><span id="L385C11"></span><span style="color:var(--color-yang-id);">frameRelayInterconnect</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L386C9 */</span><span id="L386C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L387C11 */</span><span id="L387C11"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Obsolete; use either
+       frameRelay(32) or frameRelayService(44)."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L392C11 */</span><span id="L392C11"></span><span style="color:var(--color-yang-id);">aflane8023</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L393C9 */</span><span id="L393C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ATM Emulated LAN for 802.3."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L397C11 */</span><span id="L397C11"></span><span style="color:var(--color-yang-id);">aflane8025</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L398C9 */</span><span id="L398C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ATM Emulated LAN for 802.5."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L402C11 */</span><span id="L402C11"></span><span style="color:var(--color-yang-id);">cctEmul</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L403C9 */</span><span id="L403C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ATM Emulated circuit."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L407C11 */</span><span id="L407C11"></span><span style="color:var(--color-yang-id);">fastEther</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L408C9 */</span><span id="L408C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L409C11 */</span><span id="L409C11"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Obsoleted via RFC 3635.
+       ethernetCsmacd(6) should be used instead."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 3635 - Definitions of Managed Objects for the
+                  Ethernet-like Interface Types"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L417C11 */</span><span id="L417C11"></span><span style="color:var(--color-yang-id);">isdn</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L418C9 */</span><span id="L418C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ISDN and X.25."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 1356 - Multiprotocol Interconnect on X.25 and ISDN
+                  in the Packet Mode"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L425C11 */</span><span id="L425C11"></span><span style="color:var(--color-yang-id);">v11</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L426C9 */</span><span id="L426C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"CCITT V.11/X.21."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L430C11 */</span><span id="L430C11"></span><span style="color:var(--color-yang-id);">v36</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L431C9 */</span><span id="L431C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"CCITT V.36."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L435C11 */</span><span id="L435C11"></span><span style="color:var(--color-yang-id);">g703at64k</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L436C9 */</span><span id="L436C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"CCITT G703 at 64Kbps."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L440C11 */</span><span id="L440C11"></span><span style="color:var(--color-yang-id);">g703at2mb</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L441C9 */</span><span id="L441C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L442C11 */</span><span id="L442C11"></span><span style="color:var(--color-yang-id);">obsolete</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Obsolete; see DS1-MIB."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L446C11 */</span><span id="L446C11"></span><span style="color:var(--color-yang-id);">qllc</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L447C9 */</span><span id="L447C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"SNA QLLC."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L451C11 */</span><span id="L451C11"></span><span style="color:var(--color-yang-id);">fastEtherFX</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L452C9 */</span><span id="L452C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L453C11 */</span><span id="L453C11"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Obsoleted via RFC 3635.
+       ethernetCsmacd(6) should be used instead."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 3635 - Definitions of Managed Objects for the
+                  Ethernet-like Interface Types"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L461C11 */</span><span id="L461C11"></span><span style="color:var(--color-yang-id);">channel</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L462C9 */</span><span id="L462C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Channel."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L466C11 */</span><span id="L466C11"></span><span style="color:var(--color-yang-id);">ieee80211</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L467C9 */</span><span id="L467C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Radio spread spectrum."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L471C11 */</span><span id="L471C11"></span><span style="color:var(--color-yang-id);">ibm370parChan</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L472C9 */</span><span id="L472C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IBM System 360/370 OEMI Channel."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L476C11 */</span><span id="L476C11"></span><span style="color:var(--color-yang-id);">escon</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L477C9 */</span><span id="L477C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IBM Enterprise Systems Connection."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L481C11 */</span><span id="L481C11"></span><span style="color:var(--color-yang-id);">dlsw</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L482C9 */</span><span id="L482C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Data Link Switching."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L486C11 */</span><span id="L486C11"></span><span style="color:var(--color-yang-id);">isdns</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L487C9 */</span><span id="L487C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ISDN S/T interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L491C11 */</span><span id="L491C11"></span><span style="color:var(--color-yang-id);">isdnu</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L492C9 */</span><span id="L492C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ISDN U interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L496C11 */</span><span id="L496C11"></span><span style="color:var(--color-yang-id);">lapd</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L497C9 */</span><span id="L497C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Link Access Protocol D."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L501C11 */</span><span id="L501C11"></span><span style="color:var(--color-yang-id);">ipSwitch</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L502C9 */</span><span id="L502C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IP Switching Objects."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L506C11 */</span><span id="L506C11"></span><span style="color:var(--color-yang-id);">rsrb</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L507C9 */</span><span id="L507C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Remote Source Route Bridging."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L511C11 */</span><span id="L511C11"></span><span style="color:var(--color-yang-id);">atmLogical</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L512C9 */</span><span id="L512C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ATM Logical Port."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 3606 - Definitions of Supplemental Managed Objects
+                  for ATM Interface"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L519C11 */</span><span id="L519C11"></span><span style="color:var(--color-yang-id);">ds0</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L520C9 */</span><span id="L520C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Digital Signal Level 0."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 2494 - Definitions of Managed Objects for the DS0
+                  and DS0 Bundle Interface Type"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L527C11 */</span><span id="L527C11"></span><span style="color:var(--color-yang-id);">ds0Bundle</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L528C9 */</span><span id="L528C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Group of ds0s on the same ds1."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 2494 - Definitions of Managed Objects for the DS0
+                  and DS0 Bundle Interface Type"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L535C11 */</span><span id="L535C11"></span><span style="color:var(--color-yang-id);">bsc</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L536C9 */</span><span id="L536C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Bisynchronous Protocol."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L540C11 */</span><span id="L540C11"></span><span style="color:var(--color-yang-id);">async</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L541C9 */</span><span id="L541C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Asynchronous Protocol."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L545C11 */</span><span id="L545C11"></span><span style="color:var(--color-yang-id);">cnr</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L546C9 */</span><span id="L546C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Combat Net Radio."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L550C11 */</span><span id="L550C11"></span><span style="color:var(--color-yang-id);">iso88025Dtr</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L551C9 */</span><span id="L551C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ISO 802.5r DTR."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L555C11 */</span><span id="L555C11"></span><span style="color:var(--color-yang-id);">eplrs</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L556C9 */</span><span id="L556C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Ext Pos Loc Report Sys."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L560C11 */</span><span id="L560C11"></span><span style="color:var(--color-yang-id);">arap</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L561C9 */</span><span id="L561C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Appletalk Remote Access Protocol."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L565C11 */</span><span id="L565C11"></span><span style="color:var(--color-yang-id);">propCnls</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L566C9 */</span><span id="L566C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Proprietary Connectionless Protocol."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L570C11 */</span><span id="L570C11"></span><span style="color:var(--color-yang-id);">hostPad</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L571C9 */</span><span id="L571C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"CCITT-ITU X.29 PAD Protocol."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L575C11 */</span><span id="L575C11"></span><span style="color:var(--color-yang-id);">termPad</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L576C9 */</span><span id="L576C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"CCITT-ITU X.3 PAD Facility."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L580C11 */</span><span id="L580C11"></span><span style="color:var(--color-yang-id);">frameRelayMPI</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L581C9 */</span><span id="L581C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Multiproto Interconnect over FR."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L585C11 */</span><span id="L585C11"></span><span style="color:var(--color-yang-id);">x213</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L586C9 */</span><span id="L586C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"CCITT-ITU X213."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L590C11 */</span><span id="L590C11"></span><span style="color:var(--color-yang-id);">adsl</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L591C9 */</span><span id="L591C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Asymmetric Digital Subscriber Loop."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L595C11 */</span><span id="L595C11"></span><span style="color:var(--color-yang-id);">radsl</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L596C9 */</span><span id="L596C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Rate-Adapt. Digital Subscriber Loop."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L600C11 */</span><span id="L600C11"></span><span style="color:var(--color-yang-id);">sdsl</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L601C9 */</span><span id="L601C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Symmetric Digital Subscriber Loop."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L605C11 */</span><span id="L605C11"></span><span style="color:var(--color-yang-id);">vdsl</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L606C9 */</span><span id="L606C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Very H-Speed Digital Subscrib. Loop."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L610C11 */</span><span id="L610C11"></span><span style="color:var(--color-yang-id);">iso88025CRFPInt</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L611C9 */</span><span id="L611C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ISO 802.5 CRFP."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L615C11 */</span><span id="L615C11"></span><span style="color:var(--color-yang-id);">myrinet</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L616C9 */</span><span id="L616C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Myricom Myrinet."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L620C11 */</span><span id="L620C11"></span><span style="color:var(--color-yang-id);">voiceEM</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L621C9 */</span><span id="L621C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Voice recEive and transMit."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L625C11 */</span><span id="L625C11"></span><span style="color:var(--color-yang-id);">voiceFXO</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L626C9 */</span><span id="L626C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Voice Foreign Exchange Office."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L630C11 */</span><span id="L630C11"></span><span style="color:var(--color-yang-id);">voiceFXS</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L631C9 */</span><span id="L631C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Voice Foreign Exchange Station."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L635C11 */</span><span id="L635C11"></span><span style="color:var(--color-yang-id);">voiceEncap</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L636C9 */</span><span id="L636C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Voice encapsulation."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L640C11 */</span><span id="L640C11"></span><span style="color:var(--color-yang-id);">voiceOverIp</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L641C9 */</span><span id="L641C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Voice over IP encapsulation."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L645C11 */</span><span id="L645C11"></span><span style="color:var(--color-yang-id);">atmDxi</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L646C9 */</span><span id="L646C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ATM DXI."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L650C11 */</span><span id="L650C11"></span><span style="color:var(--color-yang-id);">atmFuni</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L651C9 */</span><span id="L651C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ATM FUNI."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L655C11 */</span><span id="L655C11"></span><span style="color:var(--color-yang-id);">atmIma</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L656C9 */</span><span id="L656C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ATM IMA."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L660C11 */</span><span id="L660C11"></span><span style="color:var(--color-yang-id);">pppMultilinkBundle</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L661C9 */</span><span id="L661C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"PPP Multilink Bundle."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L665C11 */</span><span id="L665C11"></span><span style="color:var(--color-yang-id);">ipOverCdlc</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L666C9 */</span><span id="L666C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IBM ipOverCdlc."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L670C11 */</span><span id="L670C11"></span><span style="color:var(--color-yang-id);">ipOverClaw</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L671C9 */</span><span id="L671C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IBM Common Link Access to Workstn."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L675C11 */</span><span id="L675C11"></span><span style="color:var(--color-yang-id);">stackToStack</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L676C9 */</span><span id="L676C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IBM stackToStack."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L680C11 */</span><span id="L680C11"></span><span style="color:var(--color-yang-id);">virtualIpAddress</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L681C9 */</span><span id="L681C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IBM VIPA."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L685C11 */</span><span id="L685C11"></span><span style="color:var(--color-yang-id);">mpc</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L686C9 */</span><span id="L686C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IBM multi-protocol channel support."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L690C11 */</span><span id="L690C11"></span><span style="color:var(--color-yang-id);">ipOverAtm</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L691C9 */</span><span id="L691C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IBM ipOverAtm."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 2320 - Definitions of Managed Objects for Classical IP
+                  and ARP Over ATM Using SMIv2 (IPOA-MIB)"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L698C11 */</span><span id="L698C11"></span><span style="color:var(--color-yang-id);">iso88025Fiber</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L699C9 */</span><span id="L699C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ISO 802.5j Fiber Token Ring."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L703C11 */</span><span id="L703C11"></span><span style="color:var(--color-yang-id);">tdlc</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L704C9 */</span><span id="L704C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IBM twinaxial data link control."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L708C11 */</span><span id="L708C11"></span><span style="color:var(--color-yang-id);">gigabitEthernet</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L709C9 */</span><span id="L709C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L710C11 */</span><span id="L710C11"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Obsoleted via RFC 3635.
+       ethernetCsmacd(6) should be used instead."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 3635 - Definitions of Managed Objects for the
+                  Ethernet-like Interface Types"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L718C11 */</span><span id="L718C11"></span><span style="color:var(--color-yang-id);">hdlc</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L719C9 */</span><span id="L719C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"HDLC."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L723C11 */</span><span id="L723C11"></span><span style="color:var(--color-yang-id);">lapf</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L724C9 */</span><span id="L724C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"LAP F."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L728C11 */</span><span id="L728C11"></span><span style="color:var(--color-yang-id);">v37</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L729C9 */</span><span id="L729C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"V.37."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L733C11 */</span><span id="L733C11"></span><span style="color:var(--color-yang-id);">x25mlp</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L734C9 */</span><span id="L734C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Multi-Link Protocol."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L738C11 */</span><span id="L738C11"></span><span style="color:var(--color-yang-id);">x25huntGroup</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L739C9 */</span><span id="L739C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"X25 Hunt Group."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L743C11 */</span><span id="L743C11"></span><span style="color:var(--color-yang-id);">transpHdlc</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L744C9 */</span><span id="L744C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Transp HDLC."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L748C11 */</span><span id="L748C11"></span><span style="color:var(--color-yang-id);">interleave</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L749C9 */</span><span id="L749C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Interleave channel."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L753C11 */</span><span id="L753C11"></span><span style="color:var(--color-yang-id);">fast</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L754C9 */</span><span id="L754C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Fast channel."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L758C11 */</span><span id="L758C11"></span><span style="color:var(--color-yang-id);">ip</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L759C9 */</span><span id="L759C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IP (for APPN HPR in IP networks)."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L763C11 */</span><span id="L763C11"></span><span style="color:var(--color-yang-id);">docsCableMaclayer</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L764C9 */</span><span id="L764C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"CATV Mac Layer."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L768C11 */</span><span id="L768C11"></span><span style="color:var(--color-yang-id);">docsCableDownstream</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L769C9 */</span><span id="L769C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"CATV Downstream interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L773C11 */</span><span id="L773C11"></span><span style="color:var(--color-yang-id);">docsCableUpstream</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L774C9 */</span><span id="L774C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"CATV Upstream interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L778C11 */</span><span id="L778C11"></span><span style="color:var(--color-yang-id);">a12MppSwitch</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L779C9 */</span><span id="L779C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Avalon Parallel Processor."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L783C11 */</span><span id="L783C11"></span><span style="color:var(--color-yang-id);">tunnel</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L784C9 */</span><span id="L784C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Encapsulation interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L788C11 */</span><span id="L788C11"></span><span style="color:var(--color-yang-id);">coffee</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L789C9 */</span><span id="L789C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Coffee pot."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 2325 - Coffee MIB"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L795C11 */</span><span id="L795C11"></span><span style="color:var(--color-yang-id);">ces</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L796C9 */</span><span id="L796C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Circuit Emulation Service."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L800C11 */</span><span id="L800C11"></span><span style="color:var(--color-yang-id);">atmSubInterface</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L801C9 */</span><span id="L801C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ATM Sub Interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L805C11 */</span><span id="L805C11"></span><span style="color:var(--color-yang-id);">l2vlan</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L806C9 */</span><span id="L806C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Layer 2 Virtual LAN using 802.1Q."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L810C11 */</span><span id="L810C11"></span><span style="color:var(--color-yang-id);">l3ipvlan</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L811C9 */</span><span id="L811C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Layer 3 Virtual LAN using IP."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L815C11 */</span><span id="L815C11"></span><span style="color:var(--color-yang-id);">l3ipxvlan</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L816C9 */</span><span id="L816C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Layer 3 Virtual LAN using IPX."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L820C11 */</span><span id="L820C11"></span><span style="color:var(--color-yang-id);">digitalPowerline</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L821C9 */</span><span id="L821C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IP over Power Lines."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L825C11 */</span><span id="L825C11"></span><span style="color:var(--color-yang-id);">mediaMailOverIp</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L826C9 */</span><span id="L826C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Multimedia Mail over IP."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L830C11 */</span><span id="L830C11"></span><span style="color:var(--color-yang-id);">dtm</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L831C9 */</span><span id="L831C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Dynamic synchronous Transfer Mode."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L835C11 */</span><span id="L835C11"></span><span style="color:var(--color-yang-id);">dcn</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L836C9 */</span><span id="L836C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Data Communications Network."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L840C11 */</span><span id="L840C11"></span><span style="color:var(--color-yang-id);">ipForward</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L841C9 */</span><span id="L841C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IP Forwarding Interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L845C11 */</span><span id="L845C11"></span><span style="color:var(--color-yang-id);">msdsl</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L846C9 */</span><span id="L846C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Multi-rate Symmetric DSL."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L850C11 */</span><span id="L850C11"></span><span style="color:var(--color-yang-id);">ieee1394</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L851C9 */</span><span id="L851C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IEEE1394 High Performance Serial Bus."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L856C11 */</span><span id="L856C11"></span><span style="color:var(--color-yang-id);">if-gsn</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L857C9 */</span><span id="L857C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"HIPPI-6400."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L861C11 */</span><span id="L861C11"></span><span style="color:var(--color-yang-id);">dvbRccMacLayer</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L862C9 */</span><span id="L862C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"DVB-RCC MAC Layer."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L866C11 */</span><span id="L866C11"></span><span style="color:var(--color-yang-id);">dvbRccDownstream</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L867C9 */</span><span id="L867C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"DVB-RCC Downstream Channel."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L871C11 */</span><span id="L871C11"></span><span style="color:var(--color-yang-id);">dvbRccUpstream</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L872C9 */</span><span id="L872C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"DVB-RCC Upstream Channel."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L876C11 */</span><span id="L876C11"></span><span style="color:var(--color-yang-id);">atmVirtual</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L877C9 */</span><span id="L877C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ATM Virtual Interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L881C11 */</span><span id="L881C11"></span><span style="color:var(--color-yang-id);">mplsTunnel</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L882C9 */</span><span id="L882C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"MPLS Tunnel Virtual Interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L886C11 */</span><span id="L886C11"></span><span style="color:var(--color-yang-id);">srp</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L887C9 */</span><span id="L887C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Spatial Reuse Protocol."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L891C11 */</span><span id="L891C11"></span><span style="color:var(--color-yang-id);">voiceOverAtm</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L892C9 */</span><span id="L892C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Voice over ATM."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L896C11 */</span><span id="L896C11"></span><span style="color:var(--color-yang-id);">voiceOverFrameRelay</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L897C9 */</span><span id="L897C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Voice Over Frame Relay."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L901C11 */</span><span id="L901C11"></span><span style="color:var(--color-yang-id);">idsl</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L902C9 */</span><span id="L902C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Digital Subscriber Loop over ISDN."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L906C11 */</span><span id="L906C11"></span><span style="color:var(--color-yang-id);">compositeLink</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L907C9 */</span><span id="L907C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Avici Composite Link Interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L911C11 */</span><span id="L911C11"></span><span style="color:var(--color-yang-id);">ss7SigLink</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L912C9 */</span><span id="L912C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"SS7 Signaling Link."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L916C11 */</span><span id="L916C11"></span><span style="color:var(--color-yang-id);">propWirelessP2P</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L917C9 */</span><span id="L917C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Prop. P2P wireless interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L921C11 */</span><span id="L921C11"></span><span style="color:var(--color-yang-id);">frForward</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L922C9 */</span><span id="L922C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Frame Forward Interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L926C11 */</span><span id="L926C11"></span><span style="color:var(--color-yang-id);">rfc1483</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L927C9 */</span><span id="L927C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Multiprotocol over ATM AAL5."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 1483 - Multiprotocol Encapsulation over ATM
+                  Adaptation Layer 5"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L934C11 */</span><span id="L934C11"></span><span style="color:var(--color-yang-id);">usb</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L935C9 */</span><span id="L935C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"USB Interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L939C11 */</span><span id="L939C11"></span><span style="color:var(--color-yang-id);">ieee8023adLag</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L940C9 */</span><span id="L940C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IEEE 802.3ad Link Aggregate."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L944C11 */</span><span id="L944C11"></span><span style="color:var(--color-yang-id);">bgppolicyaccounting</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L945C9 */</span><span id="L945C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"BGP Policy Accounting."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L949C11 */</span><span id="L949C11"></span><span style="color:var(--color-yang-id);">frf16MfrBundle</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L950C9 */</span><span id="L950C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"FRF.16 Multilink Frame Relay."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L954C11 */</span><span id="L954C11"></span><span style="color:var(--color-yang-id);">h323Gatekeeper</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L955C9 */</span><span id="L955C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"H323 Gatekeeper."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L959C11 */</span><span id="L959C11"></span><span style="color:var(--color-yang-id);">h323Proxy</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L960C9 */</span><span id="L960C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"H323 Voice and Video Proxy."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L964C11 */</span><span id="L964C11"></span><span style="color:var(--color-yang-id);">mpls</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L965C9 */</span><span id="L965C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"MPLS."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L969C11 */</span><span id="L969C11"></span><span style="color:var(--color-yang-id);">mfSigLink</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L970C9 */</span><span id="L970C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Multi-frequency signaling link."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L974C11 */</span><span id="L974C11"></span><span style="color:var(--color-yang-id);">hdsl2</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L975C9 */</span><span id="L975C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"High Bit-Rate DSL - 2nd generation."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L979C11 */</span><span id="L979C11"></span><span style="color:var(--color-yang-id);">shdsl</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L980C9 */</span><span id="L980C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Multirate HDSL2."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L984C11 */</span><span id="L984C11"></span><span style="color:var(--color-yang-id);">ds1FDL</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L985C9 */</span><span id="L985C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Facility Data Link (4Kbps) on a DS1."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L989C11 */</span><span id="L989C11"></span><span style="color:var(--color-yang-id);">pos</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L990C9 */</span><span id="L990C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Packet over SONET/SDH Interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L994C11 */</span><span id="L994C11"></span><span style="color:var(--color-yang-id);">dvbAsiIn</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L995C9 */</span><span id="L995C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"DVB-ASI Input."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L999C11 */</span><span id="L999C11"></span><span style="color:var(--color-yang-id);">dvbAsiOut</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1000C9 */</span><span id="L1000C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"DVB-ASI Output."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1004C11 */</span><span id="L1004C11"></span><span style="color:var(--color-yang-id);">plc</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1005C9 */</span><span id="L1005C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Power Line Communications."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1009C11 */</span><span id="L1009C11"></span><span style="color:var(--color-yang-id);">nfas</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1010C9 */</span><span id="L1010C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Non-Facility Associated Signaling."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1014C11 */</span><span id="L1014C11"></span><span style="color:var(--color-yang-id);">tr008</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1015C9 */</span><span id="L1015C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"TR008."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1019C11 */</span><span id="L1019C11"></span><span style="color:var(--color-yang-id);">gr303RDT</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1020C9 */</span><span id="L1020C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Remote Digital Terminal."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1024C11 */</span><span id="L1024C11"></span><span style="color:var(--color-yang-id);">gr303IDT</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1025C9 */</span><span id="L1025C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Integrated Digital Terminal."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1029C11 */</span><span id="L1029C11"></span><span style="color:var(--color-yang-id);">isup</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1030C9 */</span><span id="L1030C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ISUP."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1034C11 */</span><span id="L1034C11"></span><span style="color:var(--color-yang-id);">propDocsWirelessMaclayer</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1035C9 */</span><span id="L1035C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Cisco proprietary Maclayer."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1039C11 */</span><span id="L1039C11"></span><span style="color:var(--color-yang-id);">propDocsWirelessDownstream</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1040C9 */</span><span id="L1040C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Cisco proprietary Downstream."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1044C11 */</span><span id="L1044C11"></span><span style="color:var(--color-yang-id);">propDocsWirelessUpstream</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1045C9 */</span><span id="L1045C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Cisco proprietary Upstream."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1049C11 */</span><span id="L1049C11"></span><span style="color:var(--color-yang-id);">hiperlan2</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1050C9 */</span><span id="L1050C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"HIPERLAN Type 2 Radio Interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1054C11 */</span><span id="L1054C11"></span><span style="color:var(--color-yang-id);">propBWAp2Mp</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1055C9 */</span><span id="L1055C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"PropBroadbandWirelessAccesspt2Multipt (use of this value
+       for IEEE 802.16 WMAN interfaces as per IEEE Std 802.16f
+       is deprecated, and ieee80216WMAN(237) should be used
+       instead)."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1062C11 */</span><span id="L1062C11"></span><span style="color:var(--color-yang-id);">sonetOverheadChannel</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1063C9 */</span><span id="L1063C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"SONET Overhead Channel."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1067C11 */</span><span id="L1067C11"></span><span style="color:var(--color-yang-id);">digitalWrapperOverheadChannel</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1068C9 */</span><span id="L1068C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Digital Wrapper."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1072C11 */</span><span id="L1072C11"></span><span style="color:var(--color-yang-id);">aal2</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1073C9 */</span><span id="L1073C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ATM adaptation layer 2."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1077C11 */</span><span id="L1077C11"></span><span style="color:var(--color-yang-id);">radioMAC</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1078C9 */</span><span id="L1078C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"MAC layer over radio links."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1082C11 */</span><span id="L1082C11"></span><span style="color:var(--color-yang-id);">atmRadio</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1083C9 */</span><span id="L1083C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ATM over radio links."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1087C11 */</span><span id="L1087C11"></span><span style="color:var(--color-yang-id);">imt</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1088C9 */</span><span id="L1088C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Inter-Machine Trunks."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1092C11 */</span><span id="L1092C11"></span><span style="color:var(--color-yang-id);">mvl</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1093C9 */</span><span id="L1093C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Multiple Virtual Lines DSL."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1097C11 */</span><span id="L1097C11"></span><span style="color:var(--color-yang-id);">reachDSL</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1098C9 */</span><span id="L1098C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Long Reach DSL."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1102C11 */</span><span id="L1102C11"></span><span style="color:var(--color-yang-id);">frDlciEndPt</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1103C9 */</span><span id="L1103C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Frame Relay DLCI End Point."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1107C11 */</span><span id="L1107C11"></span><span style="color:var(--color-yang-id);">atmVciEndPt</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1108C9 */</span><span id="L1108C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"ATM VCI End Point."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1112C11 */</span><span id="L1112C11"></span><span style="color:var(--color-yang-id);">opticalChannel</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1113C9 */</span><span id="L1113C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Optical Channel."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1117C11 */</span><span id="L1117C11"></span><span style="color:var(--color-yang-id);">opticalTransport</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1118C9 */</span><span id="L1118C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Optical Transport."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1122C11 */</span><span id="L1122C11"></span><span style="color:var(--color-yang-id);">propAtm</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1123C9 */</span><span id="L1123C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Proprietary ATM."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1127C11 */</span><span id="L1127C11"></span><span style="color:var(--color-yang-id);">voiceOverCable</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1128C9 */</span><span id="L1128C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Voice Over Cable Interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1132C11 */</span><span id="L1132C11"></span><span style="color:var(--color-yang-id);">infiniband</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1133C9 */</span><span id="L1133C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Infiniband."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1137C11 */</span><span id="L1137C11"></span><span style="color:var(--color-yang-id);">teLink</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1138C9 */</span><span id="L1138C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"TE Link."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1142C11 */</span><span id="L1142C11"></span><span style="color:var(--color-yang-id);">q2931</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1143C9 */</span><span id="L1143C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Q.2931."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1147C11 */</span><span id="L1147C11"></span><span style="color:var(--color-yang-id);">virtualTg</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1148C9 */</span><span id="L1148C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Virtual Trunk Group."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1152C11 */</span><span id="L1152C11"></span><span style="color:var(--color-yang-id);">sipTg</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1153C9 */</span><span id="L1153C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"SIP Trunk Group."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1157C11 */</span><span id="L1157C11"></span><span style="color:var(--color-yang-id);">sipSig</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1158C9 */</span><span id="L1158C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"SIP Signaling."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1162C11 */</span><span id="L1162C11"></span><span style="color:var(--color-yang-id);">docsCableUpstreamChannel</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1163C9 */</span><span id="L1163C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"CATV Upstream Channel."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1167C11 */</span><span id="L1167C11"></span><span style="color:var(--color-yang-id);">econet</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1168C9 */</span><span id="L1168C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Acorn Econet."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1172C11 */</span><span id="L1172C11"></span><span style="color:var(--color-yang-id);">pon155</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1173C9 */</span><span id="L1173C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"FSAN 155Mb Symetrical PON interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1177C11 */</span><span id="L1177C11"></span><span style="color:var(--color-yang-id);">pon622</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1178C9 */</span><span id="L1178C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"FSAN 622Mb Symetrical PON interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1182C11 */</span><span id="L1182C11"></span><span style="color:var(--color-yang-id);">bridge</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1183C9 */</span><span id="L1183C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Transparent bridge interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1187C11 */</span><span id="L1187C11"></span><span style="color:var(--color-yang-id);">linegroup</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1188C9 */</span><span id="L1188C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Interface common to multiple lines."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1192C11 */</span><span id="L1192C11"></span><span style="color:var(--color-yang-id);">voiceEMFGD</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1193C9 */</span><span id="L1193C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Voice E&M Feature Group D."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1197C11 */</span><span id="L1197C11"></span><span style="color:var(--color-yang-id);">voiceFGDEANA</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1198C9 */</span><span id="L1198C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Voice FGD Exchange Access North American."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1202C11 */</span><span id="L1202C11"></span><span style="color:var(--color-yang-id);">voiceDID</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1203C9 */</span><span id="L1203C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Voice Direct Inward Dialing."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1207C11 */</span><span id="L1207C11"></span><span style="color:var(--color-yang-id);">mpegTransport</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1208C9 */</span><span id="L1208C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"MPEG transport interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1212C11 */</span><span id="L1212C11"></span><span style="color:var(--color-yang-id);">sixToFour</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1213C9 */</span><span id="L1213C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L1214C11 */</span><span id="L1214C11"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"6to4 interface (DEPRECATED)."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 4087 - IP Tunnel MIB"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1220C11 */</span><span id="L1220C11"></span><span style="color:var(--color-yang-id);">gtp</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1221C9 */</span><span id="L1221C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"GTP (GPRS Tunneling Protocol)."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1225C11 */</span><span id="L1225C11"></span><span style="color:var(--color-yang-id);">pdnEtherLoop1</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1226C9 */</span><span id="L1226C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Paradyne EtherLoop 1."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1230C11 */</span><span id="L1230C11"></span><span style="color:var(--color-yang-id);">pdnEtherLoop2</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1231C9 */</span><span id="L1231C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Paradyne EtherLoop 2."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1235C11 */</span><span id="L1235C11"></span><span style="color:var(--color-yang-id);">opticalChannelGroup</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1236C9 */</span><span id="L1236C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Optical Channel Group."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1240C11 */</span><span id="L1240C11"></span><span style="color:var(--color-yang-id);">homepna</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1241C9 */</span><span id="L1241C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"HomePNA ITU-T G.989."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1245C11 */</span><span id="L1245C11"></span><span style="color:var(--color-yang-id);">gfp</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1246C9 */</span><span id="L1246C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Generic Framing Procedure (GFP)."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1250C11 */</span><span id="L1250C11"></span><span style="color:var(--color-yang-id);">ciscoISLvlan</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1251C9 */</span><span id="L1251C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Layer 2 Virtual LAN using Cisco ISL."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1255C11 */</span><span id="L1255C11"></span><span style="color:var(--color-yang-id);">actelisMetaLOOP</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1256C9 */</span><span id="L1256C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Acteleis proprietary MetaLOOP High Speed Link."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1260C11 */</span><span id="L1260C11"></span><span style="color:var(--color-yang-id);">fcipLink</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1261C9 */</span><span id="L1261C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"FCIP Link."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1265C11 */</span><span id="L1265C11"></span><span style="color:var(--color-yang-id);">rpr</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1266C9 */</span><span id="L1266C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Resilient Packet Ring Interface Type."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1270C11 */</span><span id="L1270C11"></span><span style="color:var(--color-yang-id);">qam</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1271C9 */</span><span id="L1271C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"RF Qam Interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1275C11 */</span><span id="L1275C11"></span><span style="color:var(--color-yang-id);">lmp</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1276C9 */</span><span id="L1276C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Link Management Protocol."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 4327 - Link Management Protocol (LMP) Management
+                  Information Base (MIB)"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1283C11 */</span><span id="L1283C11"></span><span style="color:var(--color-yang-id);">cblVectaStar</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1284C9 */</span><span id="L1284C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Cambridge Broadband Networks Limited VectaStar."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1288C11 */</span><span id="L1288C11"></span><span style="color:var(--color-yang-id);">docsCableMCmtsDownstream</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1289C9 */</span><span id="L1289C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"CATV Modular CMTS Downstream Interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1293C11 */</span><span id="L1293C11"></span><span style="color:var(--color-yang-id);">adsl2</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1294C9 */</span><span id="L1294C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">status</span> <span style="color:var(--color-yang-comment);">/* L1295C11 */</span><span id="L1295C11"></span><span style="color:var(--color-yang-id);">deprecated</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Asymmetric Digital Subscriber Loop Version 2
+       (DEPRECATED/OBSOLETED - please use adsl2plus(238)
+       instead)."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 4706 - Definitions of Managed Objects for Asymmetric
+                  Digital Subscriber Line 2 (ADSL2)"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1304C11 */</span><span id="L1304C11"></span><span style="color:var(--color-yang-id);">macSecControlledIF</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1305C9 */</span><span id="L1305C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"MACSecControlled."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1309C11 */</span><span id="L1309C11"></span><span style="color:var(--color-yang-id);">macSecUncontrolledIF</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1310C9 */</span><span id="L1310C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"MACSecUncontrolled."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1314C11 */</span><span id="L1314C11"></span><span style="color:var(--color-yang-id);">aviciOpticalEther</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1315C9 */</span><span id="L1315C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Avici Optical Ethernet Aggregate."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1319C11 */</span><span id="L1319C11"></span><span style="color:var(--color-yang-id);">atmbond</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1320C9 */</span><span id="L1320C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"atmbond."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1324C11 */</span><span id="L1324C11"></span><span style="color:var(--color-yang-id);">voiceFGDOS</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1325C9 */</span><span id="L1325C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Voice FGD Operator Services."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1329C11 */</span><span id="L1329C11"></span><span style="color:var(--color-yang-id);">mocaVersion1</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1330C9 */</span><span id="L1330C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"MultiMedia over Coax Alliance (MoCA) Interface
+       as documented in information provided privately to IANA."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1335C11 */</span><span id="L1335C11"></span><span style="color:var(--color-yang-id);">ieee80216WMAN</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1336C9 */</span><span id="L1336C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IEEE 802.16 WMAN interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1340C11 */</span><span id="L1340C11"></span><span style="color:var(--color-yang-id);">adsl2plus</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1341C9 */</span><span id="L1341C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Asymmetric Digital Subscriber Loop Version 2 -
+       Version 2 Plus and all variants."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1346C11 */</span><span id="L1346C11"></span><span style="color:var(--color-yang-id);">dvbRcsMacLayer</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1347C9 */</span><span id="L1347C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"DVB-RCS MAC Layer."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 5728 - The SatLabs Group DVB-RCS MIB"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1353C11 */</span><span id="L1353C11"></span><span style="color:var(--color-yang-id);">dvbTdm</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1354C9 */</span><span id="L1354C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"DVB Satellite TDM."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 5728 - The SatLabs Group DVB-RCS MIB"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1360C11 */</span><span id="L1360C11"></span><span style="color:var(--color-yang-id);">dvbRcsTdma</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1361C9 */</span><span id="L1361C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"DVB-RCS TDMA."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 5728 - The SatLabs Group DVB-RCS MIB"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1367C11 */</span><span id="L1367C11"></span><span style="color:var(--color-yang-id);">x86Laps</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1368C9 */</span><span id="L1368C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"LAPS based on ITU-T X.86/Y.1323."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1372C11 */</span><span id="L1372C11"></span><span style="color:var(--color-yang-id);">wwanPP</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1373C9 */</span><span id="L1373C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"3GPP WWAN."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1377C11 */</span><span id="L1377C11"></span><span style="color:var(--color-yang-id);">wwanPP2</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1378C9 */</span><span id="L1378C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"3GPP2 WWAN."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1382C11 */</span><span id="L1382C11"></span><span style="color:var(--color-yang-id);">voiceEBS</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1383C9 */</span><span id="L1383C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Voice P-phone EBS physical interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1387C11 */</span><span id="L1387C11"></span><span style="color:var(--color-yang-id);">ifPwType</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1388C9 */</span><span id="L1388C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Pseudowire interface type."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 5601 - Pseudowire (PW) Management Information Base (MIB)"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1394C11 */</span><span id="L1394C11"></span><span style="color:var(--color-yang-id);">ilan</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1395C9 */</span><span id="L1395C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Internal LAN on a bridge per IEEE 802.1ap."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1399C11 */</span><span id="L1399C11"></span><span style="color:var(--color-yang-id);">pip</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1400C9 */</span><span id="L1400C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Provider Instance Port on a bridge per IEEE 802.1ah PBB."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1404C11 */</span><span id="L1404C11"></span><span style="color:var(--color-yang-id);">aluELP</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1405C9 */</span><span id="L1405C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Alcatel-Lucent Ethernet Link Protection."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1409C11 */</span><span id="L1409C11"></span><span style="color:var(--color-yang-id);">gpon</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1410C9 */</span><span id="L1410C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Gigabit-capable passive optical networks (G-PON) as per
+       ITU-T G.948."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1415C11 */</span><span id="L1415C11"></span><span style="color:var(--color-yang-id);">vdsl2</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1416C9 */</span><span id="L1416C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Very high speed digital subscriber line Version 2
+       (as per ITU-T Recommendation G.993.2)."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 5650 - Definitions of Managed Objects for Very High
+                  Speed Digital Subscriber Line 2 (VDSL2)"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1424C11 */</span><span id="L1424C11"></span><span style="color:var(--color-yang-id);">capwapDot11Profile</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1425C9 */</span><span id="L1425C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"WLAN Profile Interface."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 5834 - Control and Provisioning of Wireless Access
+                  Points (CAPWAP) Protocol Binding MIB for
+                  IEEE 802.11"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1433C11 */</span><span id="L1433C11"></span><span style="color:var(--color-yang-id);">capwapDot11Bss</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1434C9 */</span><span id="L1434C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"WLAN BSS Interface."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 5834 - Control and Provisioning of Wireless Access
+                  Points (CAPWAP) Protocol Binding MIB for
+                  IEEE 802.11"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1442C11 */</span><span id="L1442C11"></span><span style="color:var(--color-yang-id);">capwapWtpVirtualRadio</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1443C9 */</span><span id="L1443C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"WTP Virtual Radio Interface."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 5833 - Control and Provisioning of Wireless Access
+                  Points (CAPWAP) Protocol Base MIB"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1450C11 */</span><span id="L1450C11"></span><span style="color:var(--color-yang-id);">bits</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1451C9 */</span><span id="L1451C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"bitsport."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1455C11 */</span><span id="L1455C11"></span><span style="color:var(--color-yang-id);">docsCableUpstreamRfPort</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1456C9 */</span><span id="L1456C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"DOCSIS CATV Upstream RF Port."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1460C11 */</span><span id="L1460C11"></span><span style="color:var(--color-yang-id);">cableDownstreamRfPort</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1461C9 */</span><span id="L1461C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"CATV downstream RF Port."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1465C11 */</span><span id="L1465C11"></span><span style="color:var(--color-yang-id);">vmwareVirtualNic</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1466C9 */</span><span id="L1466C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"VMware Virtual Network Interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1470C11 */</span><span id="L1470C11"></span><span style="color:var(--color-yang-id);">ieee802154</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1471C9 */</span><span id="L1471C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"IEEE 802.15.4 WPAN interface."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEEE 802.15.4-2006"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1477C11 */</span><span id="L1477C11"></span><span style="color:var(--color-yang-id);">otnOdu</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1478C9 */</span><span id="L1478C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"OTN Optical Data Unit."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1482C11 */</span><span id="L1482C11"></span><span style="color:var(--color-yang-id);">otnOtu</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1483C9 */</span><span id="L1483C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"OTN Optical channel Transport Unit."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1487C11 */</span><span id="L1487C11"></span><span style="color:var(--color-yang-id);">ifVfiType</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1488C9 */</span><span id="L1488C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"VPLS Forwarding Instance Interface Type."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1492C11 */</span><span id="L1492C11"></span><span style="color:var(--color-yang-id);">g9981</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1493C9 */</span><span id="L1493C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"G.998.1 bonded interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1497C11 */</span><span id="L1497C11"></span><span style="color:var(--color-yang-id);">g9982</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1498C9 */</span><span id="L1498C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"G.998.2 bonded interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1502C11 */</span><span id="L1502C11"></span><span style="color:var(--color-yang-id);">g9983</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1503C9 */</span><span id="L1503C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"G.998.3 bonded interface."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1508C11 */</span><span id="L1508C11"></span><span style="color:var(--color-yang-id);">aluEpon</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1509C9 */</span><span id="L1509C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Ethernet Passive Optical Networks (E-PON)."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1513C11 */</span><span id="L1513C11"></span><span style="color:var(--color-yang-id);">aluEponOnu</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1514C9 */</span><span id="L1514C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"EPON Optical Network Unit."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1518C11 */</span><span id="L1518C11"></span><span style="color:var(--color-yang-id);">aluEponPhysicalUni</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1519C9 */</span><span id="L1519C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"EPON physical User to Network interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1523C11 */</span><span id="L1523C11"></span><span style="color:var(--color-yang-id);">aluEponLogicalLink</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1524C9 */</span><span id="L1524C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The emulation of a point-to-point link over the EPON
+       layer."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1529C11 */</span><span id="L1529C11"></span><span style="color:var(--color-yang-id);">aluGponOnu</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1530C9 */</span><span id="L1530C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"GPON Optical Network Unit."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"ITU-T G.984.2"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1536C11 */</span><span id="L1536C11"></span><span style="color:var(--color-yang-id);">aluGponPhysicalUni</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1537C9 */</span><span id="L1537C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"GPON physical User to Network interface."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"ITU-T G.984.2"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1543C11 */</span><span id="L1543C11"></span><span style="color:var(--color-yang-id);">vmwareNicTeam</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1544C9 */</span><span id="L1544C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"VMware NIC Team."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1548C11 */</span><span id="L1548C11"></span><span style="color:var(--color-yang-id);">docsOfdmDownstream</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1549C9 */</span><span id="L1549C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"CATV Downstream OFDM interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1553C11 */</span><span id="L1553C11"></span><span style="color:var(--color-yang-id);">docsOfdmaUpstream</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1554C9 */</span><span id="L1554C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"CATV Upstream OFDMA interface."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1558C11 */</span><span id="L1558C11"></span><span style="color:var(--color-yang-id);">gfast</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1559C9 */</span><span id="L1559C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"G.fast port."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"ITU-T G.9701"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1565C11 */</span><span id="L1565C11"></span><span style="color:var(--color-yang-id);">sdci</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1566C9 */</span><span id="L1566C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"SDCI (IO-Link)."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"IEC 61131-9 Edition 1.0 2013-09"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1572C11 */</span><span id="L1572C11"></span><span style="color:var(--color-yang-id);">xboxWireless</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1573C9 */</span><span id="L1573C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Xbox wireless."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1577C11 */</span><span id="L1577C11"></span><span style="color:var(--color-yang-id);">fastdsl</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1578C9 */</span><span id="L1578C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"FastDSL."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"BBF TR-355"</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1584C11 */</span><span id="L1584C11"></span><span style="color:var(--color-yang-id);">docsCableScte55d1FwdOob</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1585C9 */</span><span id="L1585C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Cable SCTE 55-1 OOB Forward Channel."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1589C11 */</span><span id="L1589C11"></span><span style="color:var(--color-yang-id);">docsCableScte55d1RetOob</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1590C9 */</span><span id="L1590C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Cable SCTE 55-1 OOB Return Channel."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1594C11 */</span><span id="L1594C11"></span><span style="color:var(--color-yang-id);">docsCableScte55d2DsOob</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1595C9 */</span><span id="L1595C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Cable SCTE 55-2 OOB Downstream Channel."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1599C11 */</span><span id="L1599C11"></span><span style="color:var(--color-yang-id);">docsCableScte55d2UsOob</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1600C9 */</span><span id="L1600C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Cable SCTE 55-2 OOB Upstream Channel."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1604C11 */</span><span id="L1604C11"></span><span style="color:var(--color-yang-id);">docsCableNdf</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1605C9 */</span><span id="L1605C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Cable Narrowband Digital Forward."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1609C11 */</span><span id="L1609C11"></span><span style="color:var(--color-yang-id);">docsCableNdr</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1610C9 */</span><span id="L1610C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Cable Narrowband Digital Return."</span>;
+  }
+  <span style="color:var(--color-yang-keyword);">identity</span> <span style="color:var(--color-yang-comment);">/* L1614C11 */</span><span id="L1614C11"></span><span style="color:var(--color-yang-id);">ptm</span> {
+    <span style="color:var(--color-yang-keyword);">base</span> <span style="color:var(--color-yang-comment);">/* L1615C9 */</span><span id="L1615C9"></span><span style="color:var(--color-yang-id);">iana-interface-type</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Packet Transfer Mode."</span>;
+  }
+}

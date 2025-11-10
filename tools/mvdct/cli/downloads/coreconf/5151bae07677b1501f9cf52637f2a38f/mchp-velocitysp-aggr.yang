@@ -1,0 +1,397 @@
+module mchp-velocitysp-aggr {
+  yang-version 1.1;
+  namespace "urn:mchp:params:xml:ns:yang:velocitysp-aggr";
+  prefix lm-aggr;
+  import ietf-yang-types {
+    prefix "yang";
+  }
+  import ieee802-types {
+    prefix "ieee";
+  }
+  import ietf-interfaces {
+    prefix if;
+  }
+  import iana-if-type {
+    prefix ianaif;
+  }
+  description
+    "This module contains a collection of YANG definitions for managing
+     link aggregations of MCHP systems running VelocitySP software.";
+
+  revision 2025-06-30 {
+    description
+      "Added default values.";
+  }
+
+  revision 2023-10-19 {
+    description
+      "Initial revision.";
+  }
+
+  container aggr-system {
+    description
+      "Link aggregation system information.";
+    container config {
+      description
+        "Container of configuration for the system.";
+      leaf system-priority {
+        type uint16;
+        default "32768";
+        description
+          "The priority of the aggregating system.";
+        reference
+          "IEEE 802.1AX-2014, Clause 7.3.2.1.2";
+      }
+    }
+  }
+
+  augment "/if:interfaces/if:interface" {
+    when
+      "if:type = 'ianaif:ethernetCsmacd'" {
+      description
+        "Applies when an Ethernet bridge port.";
+    }
+    description
+      "Augment the interface model with the Ethernet bridge port";
+    container aggr-port {
+      description
+        "Ethernet port extension of the IETF Interfaces model (RFC7223).";
+      container config {
+        description
+          "Container of configuration for each bridge port.";
+        leaf group {
+          type uint16;
+          default "0";
+          description
+            "Aggregator group number. The first group has number zero.
+             For a system with N ports, N/2 groups are supported.";
+        }
+        leaf mode {
+          type enumeration {
+            enum disabled {
+              description
+                "Link aggregation is disabled.";
+            }
+            enum enabled {
+              description
+                "Link aggregation is statically enabled.";
+            }
+            enum lacp-active {
+              description
+                "LACP is enabled in active mode.";
+            }
+            enum lacp-passive {
+              description
+                "LACP is enabled in passive mode.";
+            }
+          }
+          default "disabled";
+          description
+            "Aggregation mode for port.";
+        }
+        leaf lacp-timeout {
+          type enumeration {
+            enum slow {
+              description
+                "Timeout is 30 seconds.";
+            }
+            enum fast {
+              description
+                "Timeout is 1 second.";
+            }
+          }
+          default "fast";
+          description
+            "LACP timeout for port.";
+        }
+        leaf port-priority {
+          type uint16;
+          default "32768";
+          description
+            "The priority value assigned to this port.";
+          reference
+            "IEEE 802.1AX-2014, Clause 7.3.2.1.15";
+        }
+      }
+      container status {
+        config false;
+        description
+          "Container of status for each bridge port.";
+        leaf actor-system-priority {
+          type uint16;
+          description
+            "Operational value of system priority.";
+          reference
+            "IEEE 802.1AX-2014, Clause 7.3.2.1.2";
+        }
+        leaf actor-system-mac {
+          type ieee:mac-address;
+          description
+            "Operational value of actor system MAC address.";
+          reference
+            "IEEE 802.1AX-2014, Clause 7.3.2.1.3";
+        }
+        leaf actor-key {
+          type uint16;
+          description
+            "Operational value of the actor key.";
+          reference
+            "IEEE 802.1AX-2014, Clause 7.3.2.1.5";
+        }
+        leaf actor-port-priority {
+          type uint16;
+          description
+            "Operational value of the actor port priority.";
+          reference
+            "IEEE 802.1AX-2014, Clause 7.3.2.1.15";
+        }
+        leaf actor-port {
+          type uint16;
+          description
+            "The actor port number locally assigned.";
+          reference
+            "IEEE 802.1AX-2014, Clause 7.3.2.1.14";
+        }
+        leaf actor-state {
+          type bits {
+            bit lacp-activity {
+              position 0;
+              description
+                "LACP activity actor state.";
+            }
+            bit lacp-timeout {
+              position 1;
+              description
+                "LACP timeout actor state.";
+            }
+            bit aggregation {
+              position 2;
+              description
+                "Aggregation actor state.";
+            }
+            bit synchronization {
+              position 3;
+              description
+                "Synchronization actor state.";
+            }
+            bit collecting {
+              position 4;
+              description
+                "Collecting actor state.";
+            }
+            bit distributing {
+              position 5;
+              description
+                "Distributing actor state.";
+            }
+            bit defaulted {
+              position 6;
+              description
+                "Defaulted actor state.";
+            }
+            bit expired {
+              position 7;
+              description
+                "Expired actor state.";
+            }
+          }
+          description
+            "Operational value of actor state.";
+          reference
+            "IEEE 802.1AX-2014, Clause 7.3.2.1.21";
+        }
+        leaf partner-system-priority {
+          type uint16;
+          description
+            "Operational value of system priority.";
+          reference
+            "IEEE 802.1AX-2014, Clause 7.3.2.1.7";
+        }
+        leaf partner-system-mac {
+          type ieee:mac-address;
+          description
+            "Operational value of partner system MAC address.";
+          reference
+            "IEEE 802.1AX-2014, Clause 7.3.2.1.8";
+        }
+        leaf partner-key {
+          type uint16;
+          description
+            "Operational value of the partner key.";
+          reference
+            "IEEE 802.1AX-2014, Clause 7.3.2.1.11";
+        }
+        leaf partner-port-priority {
+          type uint16;
+          description
+            "Operational value of the partner port priority.";
+          reference
+            "IEEE 802.1AX-2014, Clause 7.3.2.1.19";
+        }
+        leaf partner-port {
+          type uint16;
+          description
+            "The partner port number locally assigned.";
+          reference
+            "IEEE 802.1AX-2014, Clause 7.3.2.1.17";
+        }
+        leaf partner-state {
+          type bits {
+            bit lacp-activity {
+              position 0;
+              description
+                "LACP activity partner state.";
+            }
+            bit lacp-timeout {
+              position 1;
+              description
+                "LACP timeout partner state.";
+            }
+            bit aggregation {
+              position 2;
+              description
+                "Aggregation partner state.";
+            }
+            bit synchronization {
+              position 3;
+              description
+                "Synchronization partner state.";
+            }
+            bit collecting {
+              position 4;
+              description
+                "Collecting partner state.";
+            }
+            bit distributing {
+              position 5;
+              description
+                "Distributing partner state.";
+            }
+            bit defaulted {
+              position 6;
+              description
+                "Defaulted partner state.";
+            }
+            bit expired {
+              position 7;
+              description
+                "Expired partner state.";
+            }
+          }
+          description
+            "Operational value of partner state.";
+          reference
+            "IEEE 802.1AX-2014, Clause 7.3.2.1.23";
+        }
+        leaf aggr-name {
+          type string;
+          description
+            "Operational aggregation interface name ('NONE' if not aggregated).";
+        }
+      }
+      container statistics {
+        config false;
+        description
+          "Container of protocol statistics for each bridge port.";
+          leaf rx-lacp-pdu {
+            type yang:counter64;
+            description
+              "The number of received valid LACPDUs.";
+            reference
+              "IEEE 802.1AX-2014, Clause 7.3.3.1.2";
+          }
+          leaf rx-marker-pdu {
+            type yang:counter64;
+            description
+              "The number of received valid Marker PDUs.";
+            reference
+              "IEEE 802.1AX-2014, Clause 7.3.3.1.3";
+          }
+          leaf rx-marker-response-pdu {
+            type yang:counter64;
+            description
+              "The number of received valid Marker Response PDUs.";
+            reference
+              "IEEE 802.1AX-2014, Clause 7.3.3.1.4";
+          }
+          leaf rx-unknown {
+            type yang:counter64;
+            description
+              "The number of frames received unknown PDUs.";
+            reference
+              "IEEE 802.1AX-2014, Clause 7.3.3.1.5";
+          }
+          leaf rx-illegal {
+            type yang:counter64;
+            description
+              "The number of frames received badly formed PDUs.";
+            reference
+              "IEEE 802.1AX-2014, Clause 7.3.3.1.6";
+          }
+          leaf tx-lacp-pdu {
+            type yang:counter64;
+            description
+              "The number of transmitted LACPDUs.";
+            reference
+              "IEEE 802.1AX-2014, Clause 7.3.3.1.7";
+          }
+          leaf tx-marker-pdu {
+            type yang:counter64;
+            description
+              "The number of transmitted Marker PDUs.";
+            reference
+              "IEEE 802.1AX-2014, Clause 7.3.3.1.8";
+          }
+          leaf tx-marker-response-pdu {
+            type yang:counter64;
+            description
+              "The number of transmitted Marker Response PDUs.";
+            reference
+              "IEEE 802.1AX-2014, Clause 7.3.3.1.9";
+          }
+      }
+    }
+  }
+
+  augment "/if:interfaces/if:interface" {
+    when "if:type = 'ianaif:ieee8023adLag'" {
+      description
+        "Applies when an Ethernet bridge port aggregator.";
+      }
+    description
+      "Augment the interface model with the Ethernet bridge port aggregator.";
+    container aggregator {
+      description
+        "Ethernet aggregator extension of the IETF Interfaces model (RFC7223).";
+      container config {
+        description
+          "Container of configuration for each aggregator.";
+        leaf max-bundle {
+          type uint16;
+          default "0";
+          description
+            "The maximum number of active ports in an aggregator.
+             When the limit is reached, low priority ports will become standby.
+             The value zero means that no administrative limit is setup.";
+        }
+        leaf failover-mode {
+          type enumeration {
+            enum revertive {
+              description
+                "When a higher priority port comes back up it will become active.";
+            }
+            enum non-revertive {
+              description
+                "When a higher priority port comes back up it will become standby.";
+            }
+          }
+          default "revertive";
+          description
+            "Failover mode for aggregator. If a higher priority port goes down,
+            lower priority ports will become active. If the higher priority port
+            comes back up, the failover mode determines whether it becomes active.";
+        }
+      }
+    }
+  }
+}

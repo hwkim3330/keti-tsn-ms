@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<span style="color:var(--color-yang-keyword);">module</span> <span style="color:var(--color-yang-comment);">/* L1C7 */</span><span id="L1C7"></span><span style="color:var(--color-yang-id);">ietf-netconf-acm</span> {
+
+  <span style="color:var(--color-yang-keyword);">namespace</span> <span style="color:var(--color-yang-text);">"urn:ietf:params:xml:ns:yang:ietf-netconf-acm"</span>;
+
+  <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L5C9 */</span><span id="L5C9"></span><span style="color:var(--color-yang-id);">nacm</span>;
+
+  <span style="color:var(--color-yang-keyword);">import</span> <span style="color:var(--color-yang-comment);">/* L7C9 */</span><span id="L7C9"></span><span style="color:var(--color-yang-id);">ietf-yang-types</span> {
+    <span style="color:var(--color-yang-keyword);">prefix</span> <span style="color:var(--color-yang-comment);">/* L8C11 */</span><span id="L8C11"></span><span style="color:var(--color-yang-id);">yang</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">organization</span>
+    <span style="color:var(--color-yang-text);">"IETF NETCONF (Network Configuration) Working Group"</span>;
+
+  <span style="color:var(--color-yang-keyword);">contact</span>
+    <span style="color:var(--color-yang-text);">"WG Web:   <https://datatracker.ietf.org/wg/netconf/>
+     WG List:  <mailto:netconf@ietf.org>
+
+     Author:   Andy Bierman
+               <mailto:andy@yumaworks.com>
+
+     Author:   Martin Bjorklund
+               <mailto:mbj@tail-f.com>"</span>;
+
+  <span style="color:var(--color-yang-keyword);">description</span>
+    <span style="color:var(--color-yang-text);">"Network Configuration Access Control Model.
+
+     Copyright (c) 2012 - 2018 IETF Trust and the persons
+     identified as authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Simplified BSD
+     License set forth in Section 4.c of the IETF Trust's
+     Legal Provisions Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC 8341; see
+     the RFC itself for full legal notices."</span>;
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-text);">"2018-02-14"</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Added support for YANG 1.1 actions and notifications tied to
+       data nodes.  Clarified how NACM extensions can be used by
+       other data models."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 8341: Network Configuration Access Control Model"</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">revision</span> <span style="color:var(--color-yang-text);">"2012-02-22"</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Initial version."</span>;
+    <span style="color:var(--color-yang-keyword);">reference</span>
+      <span style="color:var(--color-yang-text);">"RFC 6536: Network Configuration Protocol (NETCONF)
+                 Access Control Model"</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Extension statements
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">extension</span> <span style="color:var(--color-yang-comment);">/* L61C12 */</span><span id="L61C12"></span><span style="color:var(--color-yang-id);">default-deny-write</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Used to indicate that the data model node
+       represents a sensitive security system parameter.
+
+       If present, the NETCONF server will only allow the designated
+       'recovery session' to have write access to the node.  An
+       explicit access control rule is required for all other users.
+
+       If the NACM module is used, then it must be enabled (i.e.,
+       /nacm/enable-nacm object equals 'true'), or this extension
+       is ignored.
+
+       The 'default-deny-write' extension MAY appear within a data
+       definition statement.  It is ignored otherwise."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">extension</span> <span style="color:var(--color-yang-comment);">/* L78C12 */</span><span id="L78C12"></span><span style="color:var(--color-yang-id);">default-deny-all</span> {
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Used to indicate that the data model node
+       controls a very sensitive security system parameter.
+
+       If present, the NETCONF server will only allow the designated
+       'recovery session' to have read, write, or execute access to
+       the node.  An explicit access control rule is required for all
+       other users.
+
+       If the NACM module is used, then it must be enabled (i.e.,
+       /nacm/enable-nacm object equals 'true'), or this extension
+       is ignored.
+
+       The 'default-deny-all' extension MAY appear within a data
+       definition statement, 'rpc' statement, or 'notification'
+       statement.  It is ignored otherwise."</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Derived types
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L101C10 */</span><span id="L101C10"></span><span style="color:var(--color-yang-id);">user-name-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L102C9 */</span><span id="L102C9"></span><span style="color:var(--color-yang-id);">string</span> {
+      <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-text);">"1..max"</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"General-purpose username string."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L109C10 */</span><span id="L109C10"></span><span style="color:var(--color-yang-id);">matchall-string-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L110C9 */</span><span id="L110C9"></span><span style="color:var(--color-yang-id);">string</span> {
+      <span style="color:var(--color-yang-keyword);">pattern</span> <span style="color:var(--color-yang-text);">'\*'</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"The string containing a single asterisk '*' is used
+       to conceptually represent all possible values
+       for the particular leaf using this data type."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L119C10 */</span><span id="L119C10"></span><span style="color:var(--color-yang-id);">access-operations-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L120C9 */</span><span id="L120C9"></span><span style="color:var(--color-yang-id);">bits</span> {
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L121C10 */</span><span id="L121C10"></span><span style="color:var(--color-yang-id);">create</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Any protocol operation that creates a
+           new data node."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L126C10 */</span><span id="L126C10"></span><span style="color:var(--color-yang-id);">read</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Any protocol operation or notification that
+           returns the value of a data node."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L131C10 */</span><span id="L131C10"></span><span style="color:var(--color-yang-id);">update</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Any protocol operation that alters an existing
+           data node."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L136C10 */</span><span id="L136C10"></span><span style="color:var(--color-yang-id);">delete</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Any protocol operation that removes a data node."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">bit</span> <span style="color:var(--color-yang-comment);">/* L140C10 */</span><span id="L140C10"></span><span style="color:var(--color-yang-id);">exec</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Execution access to the specified protocol operation."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Access operation."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L149C10 */</span><span id="L149C10"></span><span style="color:var(--color-yang-id);">group-name-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L150C9 */</span><span id="L150C9"></span><span style="color:var(--color-yang-id);">string</span> {
+      <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-text);">"1..max"</span>;
+      <span style="color:var(--color-yang-keyword);">pattern</span> <span style="color:var(--color-yang-text);">'[^\*].*'</span>;
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Name of administrative group to which
+       users can be assigned."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L159C10 */</span><span id="L159C10"></span><span style="color:var(--color-yang-id);">action-type</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L160C9 */</span><span id="L160C9"></span><span style="color:var(--color-yang-id);">enumeration</span> {
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L161C11 */</span><span id="L161C11"></span><span style="color:var(--color-yang-id);">permit</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Requested action is permitted."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">enum</span> <span style="color:var(--color-yang-comment);">/* L165C11 */</span><span id="L165C11"></span><span style="color:var(--color-yang-id);">deny</span> {
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Requested action is denied."</span>;
+      }
+    }
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Action taken by the server when a particular
+       rule matches."</span>;
+  }
+
+  <span style="color:var(--color-yang-keyword);">typedef</span> <span style="color:var(--color-yang-comment);">/* L175C10 */</span><span id="L175C10"></span><span style="color:var(--color-yang-id);">node-instance-identifier</span> {
+    <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L176C9 */</span><span id="L176C9"></span><span style="color:var(--color-yang-id);">yang:xpath1.0</span>;
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Path expression used to represent a special
+       data node, action, or notification instance-identifier
+       string.
+
+       A node-instance-identifier value is an
+       unrestricted YANG instance-identifier expression.
+       All the same rules as an instance-identifier apply,
+       except that predicates for keys are optional.  If a key
+       predicate is missing, then the node-instance-identifier
+       represents all possible server instances for that key.
+
+       This XML Path Language (XPath) expression is evaluated in the
+       following context:
+
+          o  The set of namespace declarations are those in scope on
+             the leaf element where this type is used.
+
+          o  The set of variable bindings contains one variable,
+             'USER', which contains the name of the user of the
+             current session.
+
+          o  The function library is the core function library, but
+             note that due to the syntax restrictions of an
+             instance-identifier, no functions are allowed.
+
+          o  The context node is the root node in the data tree.
+
+       The accessible tree includes actions and notifications tied
+       to data nodes."</span>;
+  }
+
+  <span style="color:var(--color-yang-comment);">/*
+   * Data definition statements
+   */</span>
+
+  <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L213C12 */</span><span id="L213C12"></span><span style="color:var(--color-yang-id);">nacm</span> {
+    <span style="color:var(--color-yang-keyword);">nacm:default-deny-all</span>;
+
+    <span style="color:var(--color-yang-keyword);">description</span>
+      <span style="color:var(--color-yang-text);">"Parameters for NETCONF access control model."</span>;
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L219C9 */</span><span id="L219C9"></span><span style="color:var(--color-yang-id);">enable-nacm</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L220C11 */</span><span id="L220C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"true"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Enables or disables all NETCONF access control
+         enforcement.  If 'true', then enforcement
+         is enabled.  If 'false', then enforcement
+         is disabled."</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L229C9 */</span><span id="L229C9"></span><span style="color:var(--color-yang-id);">read-default</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L230C11 */</span><span id="L230C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-netconf-acm#L159C10">action-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"permit"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Controls whether read access is granted if
+         no appropriate rule is found for a
+         particular read request."</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L238C9 */</span><span id="L238C9"></span><span style="color:var(--color-yang-id);">write-default</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L239C11 */</span><span id="L239C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-netconf-acm#L159C10">action-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"deny"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Controls whether create, update, or delete access
+         is granted if no appropriate rule is found for a
+         particular write request."</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L247C9 */</span><span id="L247C9"></span><span style="color:var(--color-yang-id);">exec-default</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L248C11 */</span><span id="L248C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-netconf-acm#L159C10">action-type</a></span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"permit"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Controls whether exec access is granted if no appropriate
+         rule is found for a particular protocol operation request."</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L255C9 */</span><span id="L255C9"></span><span style="color:var(--color-yang-id);">enable-external-groups</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L256C11 */</span><span id="L256C11"></span><span style="color:var(--color-yang-id);">boolean</span>;
+      <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"true"</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Controls whether the server uses the groups reported by the
+         NETCONF transport layer when it assigns the user to a set of
+         NACM groups.  If this leaf has the value 'false', any group
+         names reported by the transport layer are ignored by the
+         server."</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L266C9 */</span><span id="L266C9"></span><span style="color:var(--color-yang-id);">denied-operations</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L267C11 */</span><span id="L267C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L90C10">yang:zero-based-counter32</a></span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L268C13 */</span><span id="L268C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L269C16 */</span><span id="L269C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Number of times since the server last restarted that a
+         protocol operation request was denied."</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L275C9 */</span><span id="L275C9"></span><span style="color:var(--color-yang-id);">denied-data-writes</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L276C11 */</span><span id="L276C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L90C10">yang:zero-based-counter32</a></span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L277C13 */</span><span id="L277C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L278C16 */</span><span id="L278C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Number of times since the server last restarted that a
+         protocol operation request to alter
+         a configuration datastore was denied."</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L285C9 */</span><span id="L285C9"></span><span style="color:var(--color-yang-id);">denied-notifications</span> {
+      <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L286C11 */</span><span id="L286C11"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-yang-types#L90C10">yang:zero-based-counter32</a></span>;
+      <span style="color:var(--color-yang-keyword);">config</span> <span style="color:var(--color-yang-comment);">/* L287C13 */</span><span id="L287C13"></span><span style="color:var(--color-yang-id);">false</span>;
+      <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L288C16 */</span><span id="L288C16"></span><span style="color:var(--color-yang-id);">true</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"Number of times since the server last restarted that
+         a notification was dropped for a subscription because
+         access to the event type was denied."</span>;
+    }
+
+    <span style="color:var(--color-yang-keyword);">container</span> <span style="color:var(--color-yang-comment);">/* L295C14 */</span><span id="L295C14"></span><span style="color:var(--color-yang-id);">groups</span> {
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"NETCONF access control groups."</span>;
+
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L299C11 */</span><span id="L299C11"></span><span style="color:var(--color-yang-id);">group</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-comment);">/* L300C12 */</span><span id="L300C12"></span><span style="color:var(--color-yang-id);">name</span>;
+
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"One NACM group entry.  This list will only contain
+           configured entries, not any entries learned from
+           any transport protocols."</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L307C13 */</span><span id="L307C13"></span><span style="color:var(--color-yang-id);">name</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L308C15 */</span><span id="L308C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-netconf-acm#L149C10">group-name-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Group name associated with this entry."</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L313C18 */</span><span id="L313C18"></span><span style="color:var(--color-yang-id);">user-name</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L314C15 */</span><span id="L314C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-netconf-acm#L101C10">user-name-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Each entry identifies the username of
+             a member of the group associated with
+             this entry."</span>;
+        }
+      }
+    }
+
+    <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L323C9 */</span><span id="L323C9"></span><span style="color:var(--color-yang-id);">rule-list</span> {
+      <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-comment);">/* L324C10 */</span><span id="L324C10"></span><span style="color:var(--color-yang-id);">name</span>;
+      <span style="color:var(--color-yang-keyword);">ordered-by</span> <span style="color:var(--color-yang-comment);">/* L325C17 */</span><span id="L325C17"></span><span style="color:var(--color-yang-id);">user</span>;
+      <span style="color:var(--color-yang-keyword);">description</span>
+        <span style="color:var(--color-yang-text);">"An ordered collection of access control rules."</span>;
+
+      <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L329C11 */</span><span id="L329C11"></span><span style="color:var(--color-yang-id);">name</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L330C13 */</span><span id="L330C13"></span><span style="color:var(--color-yang-id);">string</span> {
+          <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-text);">"1..max"</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"Arbitrary name assigned to the rule-list."</span>;
+      }
+      <span style="color:var(--color-yang-keyword);">leaf-list</span> <span style="color:var(--color-yang-comment);">/* L336C16 */</span><span id="L336C16"></span><span style="color:var(--color-yang-id);">group</span> {
+        <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L337C13 */</span><span id="L337C13"></span><span style="color:var(--color-yang-id);">union</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L338C15 */</span><span id="L338C15"></span><span style="color:var(--color-yang-id);">matchall-string-type</span>;
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L339C15 */</span><span id="L339C15"></span><span style="color:var(--color-yang-id);">group-name-type</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"List of administrative groups that will be
+           assigned the associated access rights
+           defined by the 'rule' list.
+
+           The string '*' indicates that all groups apply to the
+           entry."</span>;
+      }
+
+      <span style="color:var(--color-yang-keyword);">list</span> <span style="color:var(--color-yang-comment);">/* L350C11 */</span><span id="L350C11"></span><span style="color:var(--color-yang-id);">rule</span> {
+        <span style="color:var(--color-yang-keyword);">key</span> <span style="color:var(--color-yang-comment);">/* L351C12 */</span><span id="L351C12"></span><span style="color:var(--color-yang-id);">name</span>;
+        <span style="color:var(--color-yang-keyword);">ordered-by</span> <span style="color:var(--color-yang-comment);">/* L352C19 */</span><span id="L352C19"></span><span style="color:var(--color-yang-id);">user</span>;
+        <span style="color:var(--color-yang-keyword);">description</span>
+          <span style="color:var(--color-yang-text);">"One access control rule.
+
+           Rules are processed in user-defined order until a match is
+           found.  A rule matches if 'module-name', 'rule-type', and
+           'access-operations' match the request.  If a rule
+           matches, the 'action' leaf determines whether or not
+           access is granted."</span>;
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L362C13 */</span><span id="L362C13"></span><span style="color:var(--color-yang-id);">name</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L363C15 */</span><span id="L363C15"></span><span style="color:var(--color-yang-id);">string</span> {
+            <span style="color:var(--color-yang-keyword);">length</span> <span style="color:var(--color-yang-text);">"1..max"</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Arbitrary name assigned to the rule."</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L370C13 */</span><span id="L370C13"></span><span style="color:var(--color-yang-id);">module-name</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L371C15 */</span><span id="L371C15"></span><span style="color:var(--color-yang-id);">union</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L372C17 */</span><span id="L372C17"></span><span style="color:var(--color-yang-id);">matchall-string-type</span>;
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L373C17 */</span><span id="L373C17"></span><span style="color:var(--color-yang-id);">string</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"*"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Name of the module associated with this rule.
+
+             This leaf matches if it has the value '*' or if the
+             object being accessed is defined in the module with the
+             specified module name."</span>;
+        }
+        <span style="color:var(--color-yang-keyword);">choice</span> <span style="color:var(--color-yang-comment);">/* L383C15 */</span><span id="L383C15"></span><span style="color:var(--color-yang-id);">rule-type</span> {
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"This choice matches if all leafs present in the rule
+             match the request.  If no leafs are present, the
+             choice matches all requests."</span>;
+          <span style="color:var(--color-yang-keyword);">case</span> <span style="color:var(--color-yang-comment);">/* L388C15 */</span><span id="L388C15"></span><span style="color:var(--color-yang-id);">protocol-operation</span> {
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L389C17 */</span><span id="L389C17"></span><span style="color:var(--color-yang-id);">rpc-name</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L390C19 */</span><span id="L390C19"></span><span style="color:var(--color-yang-id);">union</span> {
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L391C21 */</span><span id="L391C21"></span><span style="color:var(--color-yang-id);">matchall-string-type</span>;
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L392C21 */</span><span id="L392C21"></span><span style="color:var(--color-yang-id);">string</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"This leaf matches if it has the value '*' or if
+                 its value equals the requested protocol operation
+                 name."</span>;
+            }
+          }
+          <span style="color:var(--color-yang-keyword);">case</span> <span style="color:var(--color-yang-comment);">/* L400C15 */</span><span id="L400C15"></span><span style="color:var(--color-yang-id);">notification</span> {
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L401C17 */</span><span id="L401C17"></span><span style="color:var(--color-yang-id);">notification-name</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L402C19 */</span><span id="L402C19"></span><span style="color:var(--color-yang-id);">union</span> {
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L403C21 */</span><span id="L403C21"></span><span style="color:var(--color-yang-id);">matchall-string-type</span>;
+                <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L404C21 */</span><span id="L404C21"></span><span style="color:var(--color-yang-id);">string</span>;
+              }
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"This leaf matches if it has the value '*' or if its
+                 value equals the requested notification name."</span>;
+            }
+          }
+
+          <span style="color:var(--color-yang-keyword);">case</span> <span style="color:var(--color-yang-comment);">/* L412C15 */</span><span id="L412C15"></span><span style="color:var(--color-yang-id);">data-node</span> {
+            <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L413C17 */</span><span id="L413C17"></span><span style="color:var(--color-yang-id);">path</span> {
+              <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L414C19 */</span><span id="L414C19"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-netconf-acm#L175C10">node-instance-identifier</a></span>;
+              <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L415C24 */</span><span id="L415C24"></span><span style="color:var(--color-yang-id);">true</span>;
+              <span style="color:var(--color-yang-keyword);">description</span>
+                <span style="color:var(--color-yang-text);">"Data node instance-identifier associated with the
+                 data node, action, or notification controlled by
+                 this rule.
+
+                 Configuration data or state data
+                 instance-identifiers start with a top-level
+                 data node.  A complete instance-identifier is
+                 required for this type of path value.
+
+                 The special value '/' refers to all possible
+                 datastore contents."</span>;
+            }
+          }
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L432C13 */</span><span id="L432C13"></span><span style="color:var(--color-yang-id);">access-operations</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L433C15 */</span><span id="L433C15"></span><span style="color:var(--color-yang-id);">union</span> {
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L434C17 */</span><span id="L434C17"></span><span style="color:var(--color-yang-id);">matchall-string-type</span>;
+            <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L435C17 */</span><span id="L435C17"></span><span style="color:var(--color-yang-id);">access-operations-type</span>;
+          }
+          <span style="color:var(--color-yang-keyword);">default</span> <span style="color:var(--color-yang-text);">"*"</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"Access operations associated with this rule.
+
+             This leaf matches if it has the value '*' or if the
+             bit corresponding to the requested operation is set."</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L445C13 */</span><span id="L445C13"></span><span style="color:var(--color-yang-id);">action</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L446C15 */</span><span id="L446C15"></span><span style="color:var(--color-yang-id);"><a href="library/coreconf/5151bae07677b1501f9cf52637f2a38f//ietf-netconf-acm#L159C10">action-type</a></span>;
+          <span style="color:var(--color-yang-keyword);">mandatory</span> <span style="color:var(--color-yang-comment);">/* L447C20 */</span><span id="L447C20"></span><span style="color:var(--color-yang-id);">true</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"The access control action associated with the
+             rule.  If a rule has been determined to match a
+             particular request, then this object is used
+             to determine whether to permit or deny the
+             request."</span>;
+        }
+
+        <span style="color:var(--color-yang-keyword);">leaf</span> <span style="color:var(--color-yang-comment);">/* L456C13 */</span><span id="L456C13"></span><span style="color:var(--color-yang-id);">comment</span> {
+          <span style="color:var(--color-yang-keyword);">type</span> <span style="color:var(--color-yang-comment);">/* L457C15 */</span><span id="L457C15"></span><span style="color:var(--color-yang-id);">string</span>;
+          <span style="color:var(--color-yang-keyword);">description</span>
+            <span style="color:var(--color-yang-text);">"A textual description of the access rule."</span>;
+        }
+      }
+    }
+  }
+}

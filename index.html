@@ -1977,11 +1977,21 @@
             infoEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading bridge configuration...</span>';
 
             try {
-                const response = await fetch(`${API_BASE}/bridge`);
-                const result = await response.json();
+                // GlobalDataService 사용 - 모든 탭이 동일한 데이터 공유
+                if (!GlobalDataService.latestData) {
+                    await GlobalDataService.update();
+                }
+                const boardData = GlobalDataService.latestData;
+                const result = boardData.bridge || {};
 
-                if (result.success) {
+                if (result.success && result.stdout) {
+                    const lastUpdate = new Date(boardData.timestamp).toLocaleString('ko-KR');
+
                     infoEl.innerHTML = `
+                        <div style="margin-bottom: 16px; padding: 10px 14px; background: #0066CC; color: white; border-radius: 8px; font-size: 13px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-sync-alt"></i>
+                            <span><strong>자동 갱신:</strong> ${lastUpdate} (15초마다 서버에서 수집)</span>
+                        </div>
                         <div>
                             <div style="padding: 12px; background: var(--keti-navy); color: white; border-radius: 8px 8px 0 0; font-weight: 600;">
                                 <i class="fas fa-code"></i> Raw mvdct Output - Bridge Configuration

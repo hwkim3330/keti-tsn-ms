@@ -8,7 +8,7 @@
 import express from 'express';
 import cors from 'cors';
 import { spawn } from 'child_process';
-import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
+import { readFileSync, readdirSync, statSync, existsSync, writeFileSync, mkdirSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -23,9 +23,9 @@ app.use(express.json());
 app.use(express.static(__dirname));
 
 // mvdct 실행 경로
-const MVDCT_PATH = join(__dirname, 'mvdct');
+const MVDCT_PATH = '/home/kim/Downloads/Microchip_VelocityDRIVE_CT-CLI-linux-2025.07.12/mvdct';
 const DEFAULT_DEVICE = '/dev/ttyACM0';
-const YANG_CATALOG_PATH = join(__dirname, 'wwwroot/downloads/coreconf/5151bae07677b1501f9cf52637f2a38f');
+const YANG_CATALOG_PATH = '/home/kim/Downloads/Microchip_VelocityDRIVE_CT-CLI-linux-2025.07.12/wwwroot/downloads/coreconf/5151bae07677b1501f9cf52637f2a38f';
 
 // 명령어 히스토리
 let commandHistory = [];
@@ -108,7 +108,9 @@ function executeMvdct(args) {
 function executeMvdctRaw(args) {
     return new Promise((resolve, reject) => {
         const startTime = Date.now();
-        const proc = spawn(MVDCT_PATH, args);
+        const proc = spawn(MVDCT_PATH, args, {
+            cwd: '/home/kim/Downloads/Microchip_VelocityDRIVE_CT-CLI-linux-2025.07.12'
+        });
 
         let stdout = '';
         let stderr = '';
@@ -303,50 +305,66 @@ app.get('/api/scheduler', async (req, res) => {
 });
 
 /**
- * API: CBS 설정
+ * API: CBS 설정 (Credit-Based Shaper)
+ * 새로운 YANG 경로 사용: mchp-velocitysp-port
  */
 app.post('/api/cbs/configure', async (req, res) => {
     try {
-        const { interface: iface, tc, idleSlope, sendSlope } = req.body;
+        const { interface: iface, trafficClass, idleSlope } = req.body;
 
-        const basePath = `/ieee802-dot1q-sched:interfaces/interface[name='${iface || 'eth0'}']/scheduler/traffic-class[index='${tc}']/credit-based-shaper`;
-
-        const results = [];
-
-        // idle-slope 설정
-        if (idleSlope !== undefined) {
-            const r1 = await executeMvdct([
-                'device', DEFAULT_DEVICE, 'set',
-                `${basePath}/idle-slope`, String(idleSlope),
-                '--console'
-            ]);
-            results.push(r1);
+        if (!iface || trafficClass === undefined || !idleSlope) {
+            return res.status(400).json({
+                success: false,
+                error: 'Missing required parameters: interface, trafficClass, idleSlope'
+            });
         }
 
-        // send-slope 설정
-        if (sendSlope !== undefined) {
-            const r2 = await executeMvdct([
-                'device', DEFAULT_DEVICE, 'set',
-                `${basePath}/send-slope`, String(sendSlope),
-                '--console'
-            ]);
-            results.push(r2);
-        }
+        const path = `/ietf-interfaces:interfaces/interface[name='${iface}']/mchp-velocitysp-port:eth-qos/config/traffic-class-shapers`;
 
-        // CBS 활성화
-        const r3 = await executeMvdct([
+        // CBS 설정 - credit-based shaper with idle-slope
+        const result = await executeMvdct([
             'device', DEFAULT_DEVICE, 'set',
-            `${basePath}/admin-idleslope-enabled`, 'true',
+            path,
+            JSON.stringify({
+                "traffic-class": trafficClass,
+                "credit-based": {
+                    "idle-slope": idleSlope
+                }
+            }),
             '--console'
         ]);
-        results.push(r3);
 
         res.json({
-            success: results.every(r => r.success),
-            results
+            success: result.success,
+            result,
+            config: {
+                interface: iface,
+                trafficClass,
+                idleSlope
+            }
         });
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+/**
+ * API: CBS 설정 가져오기
+ */
+app.get('/api/cbs/config/:interface', async (req, res) => {
+    try {
+        const iface = req.params.interface;
+        const path = `/ietf-interfaces:interfaces/interface[name='${iface}']/mchp-velocitysp-port:eth-qos/config/traffic-class-shapers`;
+
+        const result = await executeMvdct([
+            'device', DEFAULT_DEVICE, 'get',
+            path,
+            '--console'
+        ]);
+
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
     }
 });
 
@@ -461,6 +479,216 @@ app.post('/api/priority/configure', async (req, res) => {
         });
     } catch (error) {
         res.status(500).json(error);
+    }
+});
+
+/**
+ * API: PCP Decoding Map 설정 (PCP → Priority 매핑)
+ */
+app.post('/api/pcp/decoding/configure', async (req, res) => {
+    try {
+        const { interface: iface, priorityMap } = req.body;
+
+        if (!iface || !priorityMap || !Array.isArray(priorityMap)) {
+            return res.status(400).json({
+                success: false,
+                error: 'Missing required parameters: interface, priorityMap (array)'
+            });
+        }
+
+        const basePath = `/ietf-interfaces:interfaces/interface[name='${iface}']/ieee802-dot1q-bridge:bridge-port/pcp-decoding-table/pcp-decoding-map[pcp='8P0D']`;
+
+        // Create empty priority-map first
+        await executeMvdct([
+            'device', DEFAULT_DEVICE, 'set',
+            `/ietf-interfaces:interfaces/interface[name='${iface}']/ieee802-dot1q-bridge:bridge-port/pcp-decoding-table/pcp-decoding-map`,
+            JSON.stringify({ pcp: "8P0D" }),
+            '--console'
+        ]);
+
+        // Set priority map
+        const result = await executeMvdct([
+            'device', DEFAULT_DEVICE, 'set',
+            `${basePath}/priority-map`,
+            JSON.stringify(priorityMap),
+            '--console'
+        ]);
+
+        res.json({
+            success: result.success,
+            result,
+            config: { interface: iface, priorityMap }
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+/**
+ * API: PCP Encoding Map 설정 (Priority → PCP 매핑)
+ */
+app.post('/api/pcp/encoding/configure', async (req, res) => {
+    try {
+        const { interface: iface, priorityMap } = req.body;
+
+        if (!iface || !priorityMap || !Array.isArray(priorityMap)) {
+            return res.status(400).json({
+                success: false,
+                error: 'Missing required parameters: interface, priorityMap (array)'
+            });
+        }
+
+        const basePath = `/ietf-interfaces:interfaces/interface[name='${iface}']/ieee802-dot1q-bridge:bridge-port/pcp-encoding-table/pcp-encoding-map[pcp='8P0D']`;
+
+        // Create empty priority-map first
+        await executeMvdct([
+            'device', DEFAULT_DEVICE, 'set',
+            `/ietf-interfaces:interfaces/interface[name='${iface}']/ieee802-dot1q-bridge:bridge-port/pcp-encoding-table/pcp-encoding-map`,
+            JSON.stringify({ pcp: "8P0D" }),
+            '--console'
+        ]);
+
+        // Set priority map
+        const result = await executeMvdct([
+            'device', DEFAULT_DEVICE, 'set',
+            `${basePath}/priority-map`,
+            JSON.stringify(priorityMap),
+            '--console'
+        ]);
+
+        res.json({
+            success: result.success,
+            result,
+            config: { interface: iface, priorityMap }
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+/**
+ * API: Default Priority 설정
+ */
+app.post('/api/port/default-priority', async (req, res) => {
+    try {
+        const { interface: iface, priority } = req.body;
+
+        if (!iface || priority === undefined) {
+            return res.status(400).json({
+                success: false,
+                error: 'Missing required parameters: interface, priority'
+            });
+        }
+
+        const result = await executeMvdct([
+            'device', DEFAULT_DEVICE, 'set',
+            `/ietf-interfaces:interfaces/interface[name='${iface}']/ieee802-dot1q-bridge:bridge-port/default-priority`,
+            String(priority),
+            '--console'
+        ]);
+
+        res.json({
+            success: result.success,
+            result,
+            config: { interface: iface, defaultPriority: priority }
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+/**
+ * API: 전체 YANG 데이터 가져오기
+ */
+app.get('/api/yang/full', async (req, res) => {
+    try {
+        const result = await executeMvdct([
+            'device', DEFAULT_DEVICE, 'fetch', '/',
+            '--console'
+        ]);
+
+        res.json({
+            success: result.success,
+            yangData: result.stdout,
+            timestamp: new Date().toISOString(),
+            device: DEFAULT_DEVICE
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+/**
+ * API: 특정 YANG 경로 데이터 가져오기
+ */
+app.post('/api/yang/fetch', async (req, res) => {
+    try {
+        const { path } = req.body;
+
+        if (!path) {
+            return res.status(400).json({
+                success: false,
+                error: 'Missing required parameter: path'
+            });
+        }
+
+        const result = await executeMvdct([
+            'device', DEFAULT_DEVICE, 'fetch', path,
+            '--console'
+        ]);
+
+        res.json({
+            success: result.success,
+            path,
+            yangData: result.stdout,
+            timestamp: new Date().toISOString()
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+/**
+ * API: YAML 설정 파일로 일괄 적용 (IPATCH)
+ */
+app.post('/api/config/apply-yaml', async (req, res) => {
+    try {
+        const { yamlConfig, configFile } = req.body;
+
+        let configPath;
+
+        if (configFile) {
+            // 파일 경로가 제공된 경우
+            configPath = join(__dirname, configFile);
+        } else if (yamlConfig) {
+            // YAML 내용이 제공된 경우, 임시 파일 생성
+            const tempFile = join(__dirname, `temp-config-${Date.now()}.yaml`);
+            writeFileSync(tempFile, yamlConfig);
+            configPath = tempFile;
+        } else {
+            return res.status(400).json({
+                success: false,
+                error: 'Missing required parameter: yamlConfig or configFile'
+            });
+        }
+
+        const result = await executeMvdct([
+            'device', DEFAULT_DEVICE, 'ipatch', configPath,
+            '--console'
+        ]);
+
+        // 임시 파일 삭제
+        if (yamlConfig && existsSync(configPath)) {
+            require('fs').unlinkSync(configPath);
+        }
+
+        res.json({
+            success: result.success,
+            result,
+            timestamp: new Date().toISOString()
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
     }
 });
 
@@ -701,17 +929,173 @@ app.get('/', (req, res) => {
     res.sendFile(join(__dirname, 'index.html'));
 });
 
+// ============================================
+// Periodic Board Info Polling & Storage
+// ============================================
+
+const BOARD_DATA_DIR = join(__dirname, 'board-data');
+const POLLING_INTERVAL = 5000; // 5초마다 폴링
+let latestBoardData = null;
+
+// 저장 디렉토리 생성
+if (!existsSync(BOARD_DATA_DIR)) {
+    mkdirSync(BOARD_DATA_DIR, { recursive: true });
+}
+
+/**
+ * 보드 정보 수집
+ */
+async function collectBoardInfo() {
+    try {
+        const data = {
+            timestamp: new Date().toISOString(),
+            system: null,
+            interfaces: null,
+            bridge: null,
+            scheduler: null,
+            error: null
+        };
+
+        try {
+            // 시스템 정보
+            const systemResult = await executeMvdct([
+                'device', DEFAULT_DEVICE, 'get',
+                '/ietf-system:system-state/platform',
+                '--console'
+            ]);
+            data.system = systemResult;
+        } catch (err) {
+            data.error = { system: err.message };
+        }
+
+        try {
+            // 인터페이스 정보
+            const interfacesResult = await executeMvdct([
+                'device', DEFAULT_DEVICE, 'get',
+                '/ietf-interfaces:interfaces',
+                '--console'
+            ]);
+            data.interfaces = interfacesResult;
+        } catch (err) {
+            data.error = { ...data.error, interfaces: err.message };
+        }
+
+        try {
+            // 브리지 정보
+            const bridgeResult = await executeMvdct([
+                'device', DEFAULT_DEVICE, 'get',
+                '/ieee802-dot1q-bridge:bridges',
+                '--console'
+            ]);
+            data.bridge = bridgeResult;
+        } catch (err) {
+            data.error = { ...data.error, bridge: err.message };
+        }
+
+        latestBoardData = data;
+
+        // 파일로 저장
+        const filename = `board-snapshot-${Date.now()}.json`;
+        const filepath = join(BOARD_DATA_DIR, filename);
+        writeFileSync(filepath, JSON.stringify(data, null, 2));
+
+        // 오래된 파일 정리 (최근 100개만 유지)
+        const files = readdirSync(BOARD_DATA_DIR)
+            .filter(f => f.startsWith('board-snapshot-'))
+            .sort()
+            .reverse();
+
+        files.slice(100).forEach(f => {
+            try {
+                const oldFile = join(BOARD_DATA_DIR, f);
+                if (existsSync(oldFile)) {
+                    require('fs').unlinkSync(oldFile);
+                }
+            } catch (err) {
+                // 삭제 실패는 무시
+            }
+        });
+
+        return data;
+    } catch (error) {
+        console.error('[POLLING ERROR]', error.message);
+        return null;
+    }
+}
+
+/**
+ * API: 최신 보드 데이터 조회
+ */
+app.get('/api/board/latest', (req, res) => {
+    if (latestBoardData) {
+        res.json(latestBoardData);
+    } else {
+        res.status(404).json({ error: 'No data available yet' });
+    }
+});
+
+/**
+ * API: 저장된 스냅샷 목록
+ */
+app.get('/api/board/snapshots', (req, res) => {
+    try {
+        const files = readdirSync(BOARD_DATA_DIR)
+            .filter(f => f.startsWith('board-snapshot-'))
+            .sort()
+            .reverse()
+            .slice(0, 50); // 최근 50개
+
+        res.json({ files, count: files.length });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+/**
+ * API: 특정 스냅샷 조회
+ */
+app.get('/api/board/snapshot/:filename', (req, res) => {
+    try {
+        const filepath = join(BOARD_DATA_DIR, req.params.filename);
+        if (existsSync(filepath)) {
+            const data = JSON.parse(readFileSync(filepath, 'utf8'));
+            res.json(data);
+        } else {
+            res.status(404).json({ error: 'Snapshot not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // 서버 시작
 app.listen(PORT, '0.0.0.0', () => {
     console.log('╔══════════════════════════════════════════════════════╗');
-    console.log('║  LAN9662 VelocityDRIVE Web Control Server           ║');
+    console.log('║  LAN966x VelocityDRIVE Web Control Server           ║');
+    console.log('║  Supports: LAN9662, LAN9668, LAN9692                ║');
     console.log('╚══════════════════════════════════════════════════════╝');
     console.log('');
     console.log(`📡 Device: ${DEFAULT_DEVICE}`);
     console.log(`🔧 mvdct: ${MVDCT_PATH}`);
     console.log(`🌐 Server: http://localhost:${PORT}`);
     console.log(`🌐 Network: http://<your-ip>:${PORT}`);
+    console.log(`📊 Polling: Every ${POLLING_INTERVAL/1000}s`);
+    console.log(`💾 Storage: ${BOARD_DATA_DIR}`);
     console.log('');
     console.log('Press Ctrl+C to stop the server');
     console.log('─────────────────────────────────────────────────────');
+
+    // 주기적 폴링 시작
+    console.log('[POLLING] Starting periodic board info collection...');
+
+    // 즉시 첫 데이터 수집
+    collectBoardInfo().then(() => {
+        console.log('[POLLING] Initial data collected');
+    });
+
+    // 주기적 폴링 설정
+    setInterval(async () => {
+        await collectBoardInfo();
+        console.log(`[POLLING] Data collected at ${new Date().toLocaleTimeString()}`);
+    }, POLLING_INTERVAL);
 });

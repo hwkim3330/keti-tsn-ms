@@ -4,7 +4,6 @@ package-lock.json
 
 # Logs
 *.log
-last_log.mvdct.json
 
 # Test files
 *.bin
@@ -23,12 +22,7 @@ session.json
 !README.yaml
 
 # Microchip binaries (keep only what's needed)
-*.dll
-*.so
 createdump
-mvdct.cli
-mvdct.deps.json
-mvdct.runtimeconfig.json
 
 # Language packs (if not needed)
 cs/
@@ -61,4 +55,4 @@ Thumbs.db
 *.code-workspace
 
 # Claude
-.claude/
+.claude/board-data/

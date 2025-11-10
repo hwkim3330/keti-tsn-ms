@@ -2834,34 +2834,55 @@
             }
 
             try {
-                let configData = { 'traffic-class': parseInt(tc) };
-
                 if (mode === 'cbs') {
+                    // Use dedicated CBS API
                     const idleSlope = parseInt(document.getElementById('cbs-idle-slope').value);
-                    configData['credit-based'] = { 'idle-slope': idleSlope };
+
+                    const response = await fetch(`${API_BASE}/cbs/configure`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            interface: iface,
+                            trafficClass: parseInt(tc),
+                            idleSlope: idleSlope
+                        })
+                    });
+
+                    const result = await response.json();
+                    if (result.success) {
+                        alert(`✓ Applied CBS shaper to TC${tc}\nIdle Slope: ${(idleSlope/1000).toFixed(0)} Mbps`);
+                        loadCurrentShapers();
+                    } else {
+                        alert(`✗ Failed: ${result.error || 'Unknown error'}`);
+                    }
                 } else if (mode === 'slb') {
+                    // Use generic set API for SLB
                     const cir = parseInt(document.getElementById('slb-cir').value);
                     const cbs = parseInt(document.getElementById('slb-cbs').value);
-                    configData['single-leaky-bucket'] = {
-                        'committed-information-rate': cir,
-                        'committed-burst-size': cbs
+
+                    const configData = {
+                        'traffic-class': parseInt(tc),
+                        'single-leaky-bucket': {
+                            'committed-information-rate': cir,
+                            'committed-burst-size': cbs
+                        }
                     };
-                }
 
-                const path = `/ietf-interfaces:interfaces/interface[name='${iface}']/mchp-velocitysp-port:eth-qos/config/traffic-class-shapers`;
+                    const path = `/ietf-interfaces:interfaces/interface[name='${iface}']/mchp-velocitysp-port:eth-qos/config/traffic-class-shapers`;
 
-                const response = await fetch(`${API_BASE}/set`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ path, value: configData })
-                });
+                    const response = await fetch(`${API_BASE}/set`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ path, value: configData })
+                    });
 
-                const result = await response.json();
-                if (result.success) {
-                    alert(`✓ Applied ${mode.toUpperCase()} shaper to TC${tc}`);
-                    loadCurrentShapers();
-                } else {
-                    alert(`✗ Failed: ${result.stderr || result.error}`);
+                    const result = await response.json();
+                    if (result.success) {
+                        alert(`✓ Applied SLB shaper to TC${tc}\nCIR: ${(cir/1000).toFixed(0)} Mbps, CBS: ${cbs} bytes`);
+                        loadCurrentShapers();
+                    } else {
+                        alert(`✗ Failed: ${result.stderr || result.error}`);
+                    }
                 }
             } catch (error) {
                 alert(`✗ Error: ${error.message}`);

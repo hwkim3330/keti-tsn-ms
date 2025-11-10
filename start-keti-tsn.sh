@@ -14,9 +14,9 @@ echo "╚═══════════════════════�
 echo ""
 
 # Check if device is connected
-if [ ! -e "/dev/ttyACM0" ]; then
+if [ ! -e "/dev/ttyACM1" ] && [ ! -e "/dev/ttyACM0" ]; then
     echo "⚠️  경고: LAN9662 디바이스가 연결되지 않았습니다!"
-    echo "   /dev/ttyACM0을 찾을 수 없습니다."
+    echo "   /dev/ttyACM* 을 찾을 수 없습니다."
     echo ""
     echo "계속하시겠습니까? (y/n)"
     read -r response
@@ -46,5 +46,5 @@ echo ""
 # Open browser after 2 seconds
 (sleep 2 && xdg-open http://localhost:8080 2>/dev/null) &
 
-# Start Node.js server
-node web-server.js
+# Start Node.js server (Official mup1cc)
+node web-server-mup1cc.js

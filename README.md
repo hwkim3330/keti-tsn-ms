@@ -1,6 +1,17 @@
 # KETI TSN Management System
 
-A professional web-based management interface for Microchip VelocityDRIVE platforms (LAN9662, LAN9668, etc.), developed for Korea Electronics Technology Institute (KETI).
+A professional web-based management interface for **Microchip VelocityDRIVE LAN966x series** (LAN9662, LAN9668, LAN9692), developed for Korea Electronics Technology Institute (KETI).
+
+## 🚀 Quick Start (2 Commands)
+
+```bash
+git clone https://github.com/hwkim3330/keti-tsn-ms.git
+cd keti-tsn-ms && npm install && ./start-server.sh
+```
+
+Open **http://localhost:8080** in your browser - Ready to go! ✅
+
+> **No external dependencies**: All JS/CSS libraries included (Font Awesome, Chart.js). Works 100% offline.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Node.js](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
@@ -80,9 +91,10 @@ KETI TSN Management System provides an intuitive web interface for configuring a
                  │ Protocol: MUP1 (Microchip UART Protocol #1)
                  │ Format: >TYPE[DATA]<CHECKSUM
 ┌────────────────▼───────────────────────────────────────────────────┐
-│              LAN9662 TSN Switch Board                              │
+│         LAN966x Series TSN Switch Board                            │
+│      (LAN9662, LAN9668, LAN9692 supported)                         │
 │                   /dev/ttyACM0                                     │
-│  • 24 Gigabit Ethernet ports                                       │
+│  • Up to 24 Gigabit Ethernet ports                                 │
 │  • IEEE 802.1Qav CBS, 802.1Qbv TAS support                         │
 │  • YANG data model (ietf-interfaces, ieee802-dot1q-bridge)         │
 └────────────────────────────────────────────────────────────────────┘
@@ -134,7 +146,7 @@ KETI TSN Management System provides an intuitive web interface for configuring a
 - Linux system (Ubuntu 20.04+ recommended)
 - Node.js 18.0.0 or higher
 - npm package manager
-- LAN9662 board connected via USB serial
+- LAN966x board (LAN9662/LAN9668/LAN9692) connected via USB serial
 
 ### Setup
 

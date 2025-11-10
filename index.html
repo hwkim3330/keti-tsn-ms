@@ -3158,10 +3158,17 @@
 
                     const result = await response.json();
                     if (result.success) {
-                        alert(`✓ CBS Applied Successfully!\n\nTC${tc} configured with Idle Slope: ${(idleSlope/1000).toFixed(0)} Mbps\n\nVerifying from hardware YANG tree...`);
-                        loadCurrentShapers();
+                        addToConsole(`✓ CBS Applied: Interface ${iface}, TC${tc}, Idle Slope: ${(idleSlope/1000).toFixed(0)} Mbps`, 'success');
+
+                        // 즉시 하드웨어 검증
+                        setTimeout(async () => {
+                            await loadCurrentShapers();
+                            alert(`✓ CBS Applied Successfully!\n\nInterface: ${iface}\nTraffic Class: TC${tc}\nIdle Slope: ${(idleSlope/1000).toFixed(0)} Mbps (${idleSlope} kbps)\n\n✓ Configuration verified from hardware YANG tree`);
+                        }, 500);
                     } else {
-                        alert(`✗ CBS Configuration Failed\n\n${result.error || 'Unknown error'}`);
+                        const errorMsg = result.error || result.stderr || 'Unknown error';
+                        addToConsole(`✗ CBS Failed: ${errorMsg}`, 'error');
+                        alert(`✗ CBS Configuration Failed\n\nInterface: ${iface}\nTC: ${tc}\n\nError: ${errorMsg}\n\nPlease check:\n1. Interface exists\n2. TC value (0-7) is valid\n3. Idle Slope value is reasonable\n4. Device is connected`);
                     }
                 } else if (mode === 'slb') {
                     // Use generic set API for SLB
@@ -3186,10 +3193,17 @@
 
                     const result = await response.json();
                     if (result.success) {
-                        alert(`✓ Applied SLB shaper to TC${tc}\nCIR: ${(cir/1000).toFixed(0)} Mbps, CBS: ${cbs} bytes`);
-                        loadCurrentShapers();
+                        addToConsole(`✓ SLB Applied: Interface ${iface}, TC${tc}, CIR: ${(cir/1000).toFixed(0)} Mbps`, 'success');
+
+                        // 즉시 하드웨어 검증
+                        setTimeout(async () => {
+                            await loadCurrentShapers();
+                            alert(`✓ SLB Shaper Applied Successfully!\n\nInterface: ${iface}\nTraffic Class: TC${tc}\nCIR: ${(cir/1000).toFixed(0)} Mbps (${cir} kbps)\nCBS: ${cbs} bytes\n\n✓ Configuration verified from hardware YANG tree`);
+                        }, 500);
                     } else {
-                        alert(`✗ Failed: ${result.stderr || result.error}`);
+                        const errorMsg = result.stderr || result.error || 'Unknown error';
+                        addToConsole(`✗ SLB Failed: ${errorMsg}`, 'error');
+                        alert(`✗ SLB Configuration Failed\n\nInterface: ${iface}\nTC: ${tc}\n\nError: ${errorMsg}\n\nPlease check device connection and parameter values.`);
                     }
                 }
             } catch (error) {

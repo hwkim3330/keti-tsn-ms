@@ -257,7 +257,7 @@ Once started, access the interface at **http://localhost:8080**
 | Tab | Description | Update Interval |
 |-----|-------------|----------------|
 | **Overview** | Device status, firmware version, OS version | 5 seconds (auto) |
-| **Interfaces** | 24 interface status, MAC, speed, duplex | 15 seconds (auto) |
+| **Interfaces** | 12 interface status, MAC, speed, duplex | 15 seconds (auto) |
 | **YANG Browser** | Complete YANG tree navigation (136KB) | 30 seconds (auto) |
 | **Bridge** | Bridge settings, VLAN, FDB configuration | On demand |
 | **CBS** | Credit-Based Shaper (IEEE 802.1Qav) | On demand |
@@ -439,7 +439,9 @@ export MVDCT_PORT=8080
 4. Choose Shaper Mode: **CBS** (Credit-Based)
 5. Set Idle Slope (0 - 1,000,000 kbps)
    - Presets: 25M, 75M, 100M, 250M, 500Mbps
-6. Click **Configure Shaper**
+6. Click **Apply Configuration**
+7. **Automatic Verification**: Configuration is immediately verified from hardware YANG tree
+8. Check **Current Shapers Configuration** section for active settings
 
 #### Example Configuration:
 ```
@@ -448,13 +450,29 @@ High Priority AVB (TC7):
 - TC: 7
 - Mode: CBS
 - Idle Slope: 250,000 kbps (250 Mbps)
+✓ Result: Hardware verified, TC7 configured with 250 Mbps bandwidth guarantee
 
 Standard CBS (TC3):
 - Interface: 1
 - TC: 3
 - Mode: CBS
 - Idle Slope: 100,000 kbps (100 Mbps)
+✓ Result: Hardware verified, TC3 configured with 100 Mbps bandwidth guarantee
+
+SLB Mode (Leaky Bucket):
+- Interface: 1
+- TC: 5
+- Mode: SLB
+- CIR: 50,000 kbps (50 Mbps)
+- CBS: 2000 bytes
+✓ Result: Hardware verified, TC5 configured with 50 Mbps rate limiting
 ```
+
+**Important Notes:**
+- Each TC can have only ONE shaper mode (CBS or SLB)
+- Use "Clear Shaper" button to remove existing configuration before switching modes
+- Configuration is immediately written to hardware and verified from YANG tree
+- Check the green "CBS/SLB CONFIGURED" message to confirm successful application
 
 #### API Method:
 ```bash

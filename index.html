@@ -1477,9 +1477,17 @@
             interfaces: [],
             updateCallbacks: [],
             isUpdating: false,
+            lastUpdateTime: 0,
+            cacheValidDuration: 10000, // 10초 캐시 유효
 
-            // 데이터 업데이트
-            async update() {
+            // 데이터 업데이트 (캐시 체크 추가)
+            async update(forceUpdate = false) {
+                // 캐시가 유효하면 업데이트 생략
+                const now = Date.now();
+                if (!forceUpdate && this.latestData && (now - this.lastUpdateTime < this.cacheValidDuration)) {
+                    return; // 캐시 사용
+                }
+
                 if (this.isUpdating) return;
                 this.isUpdating = true;
 
@@ -1707,10 +1715,8 @@
             infoEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading device information...</span>';
 
             try {
-                // GlobalDataService 사용 - 모든 탭이 동일한 데이터 공유
-                if (!GlobalDataService.latestData) {
-                    await GlobalDataService.update();
-                }
+                // GlobalDataService 사용 - 캐시 체크 후 필요시에만 업데이트
+                await GlobalDataService.update();
                 const boardData = GlobalDataService.latestData;
                 const result = boardData.system || {};
 
@@ -1779,10 +1785,8 @@
             infoEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading interfaces...</span>';
 
             try {
-                // GlobalDataService 사용 - 모든 탭이 동일한 데이터 공유
-                if (!GlobalDataService.latestData) {
-                    await GlobalDataService.update();
-                }
+                // GlobalDataService 사용 - 캐시 체크 후 필요시에만 업데이트
+                await GlobalDataService.update();
                 const boardData = GlobalDataService.latestData;
                 const result = boardData.interfaces || {};
 
@@ -1977,10 +1981,8 @@
             infoEl.innerHTML = '<div class="loading"></div> <span style="color: var(--text-secondary); margin-left: 12px;">Loading bridge configuration...</span>';
 
             try {
-                // GlobalDataService 사용 - 모든 탭이 동일한 데이터 공유
-                if (!GlobalDataService.latestData) {
-                    await GlobalDataService.update();
-                }
+                // GlobalDataService 사용 - 캐시 체크 후 필요시에만 업데이트
+                await GlobalDataService.update();
                 const boardData = GlobalDataService.latestData;
                 const result = boardData.bridge || {};
 

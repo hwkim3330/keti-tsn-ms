@@ -1131,10 +1131,12 @@ app.get('/', (req, res) => {
 // ============================================
 
 const BOARD_DATA_DIR = join(__dirname, 'board-data');
-const POLLING_INTERVAL = 15000; // 15초마다 폴링 (변경됨)
+const POLLING_INTERVAL = 15000; // 15초마다 폴링
 const FULL_YANG_INTERVAL = 30000; // 30초마다 전체 YANG 수집
+const SNAPSHOT_INTERVAL = 60000; // 60초마다 스냅샷 저장 (파일 저장 최적화)
 let latestBoardData = null;
 let latestFullYang = null;
+let lastSnapshotTime = 0;
 
 // 정적 정보 캐시 (시작 시 한 번만 조회)
 let cachedStaticInfo = {
@@ -1221,27 +1223,31 @@ async function collectBoardInfo() {
 
         latestBoardData = data;
 
-        // 파일로 저장
-        const filename = `board-snapshot-${Date.now()}.json`;
-        const filepath = join(BOARD_DATA_DIR, filename);
-        writeFileSync(filepath, JSON.stringify(data, null, 2));
+        // 파일 저장 최적화: 60초에 1번만 저장 (메모리 캐시는 15초마다 갱신)
+        const now = Date.now();
+        if (now - lastSnapshotTime >= SNAPSHOT_INTERVAL) {
+            const filename = `board-snapshot-${now}.json`;
+            const filepath = join(BOARD_DATA_DIR, filename);
+            writeFileSync(filepath, JSON.stringify(data, null, 2));
+            lastSnapshotTime = now;
 
-        // 오래된 파일 정리 (최근 100개만 유지)
-        const files = readdirSync(BOARD_DATA_DIR)
-            .filter(f => f.startsWith('board-snapshot-'))
-            .sort()
-            .reverse();
+            // 오래된 파일 정리 (최근 50개만 유지 - 50분치)
+            const files = readdirSync(BOARD_DATA_DIR)
+                .filter(f => f.startsWith('board-snapshot-'))
+                .sort()
+                .reverse();
 
-        files.slice(100).forEach(f => {
-            try {
-                const oldFile = join(BOARD_DATA_DIR, f);
-                if (existsSync(oldFile)) {
-                    require('fs').unlinkSync(oldFile);
+            files.slice(50).forEach(f => {
+                try {
+                    const oldFile = join(BOARD_DATA_DIR, f);
+                    if (existsSync(oldFile)) {
+                        require('fs').unlinkSync(oldFile);
+                    }
+                } catch (err) {
+                    // 삭제 실패는 무시
                 }
-            } catch (err) {
-                // 삭제 실패는 무시
-            }
-        });
+            });
+        }
 
         return data;
     } catch (error) {

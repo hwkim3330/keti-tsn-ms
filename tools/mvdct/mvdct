@@ -1,5 +1,6 @@
 #!/bin/sh
 # Get the directory where this script is located
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-"$SCRIPT_DIR/mvdct.cli" "$@"
+# Use self-contained binary from publish directory
+"$SCRIPT_DIR/publish/mvdct" "$@"
 echo

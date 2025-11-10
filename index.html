@@ -2231,8 +2231,8 @@
             for (let i = 0; i < lines.length; i++) {
                 const line = lines[i];
 
-                // Detect new interface
-                if (line.includes('- enabled:') || line.includes('- name:')) {
+                // Detect new interface (YANG format: "- enabled:" marks new interface entry)
+                if (line.includes('- enabled:')) {
                     if (currentInterface && currentInterface.name) {
                         interfaces.push(currentInterface);
                     }

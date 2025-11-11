@@ -108,6 +108,62 @@
             color: var(--apple-red);
         }
 
+        .device-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .device-selector label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .device-selector select {
+            padding: 6px 32px 6px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.2s ease;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L6 6L11 1" stroke="%236E6E73" stroke-width="2" stroke-linecap="round"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+
+        .device-selector select:hover {
+            border-color: var(--apple-blue);
+        }
+
+        .device-selector select:focus {
+            border-color: var(--apple-blue);
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+
+        .refresh-btn {
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--bg-secondary);
+            border-color: var(--apple-blue);
+            color: var(--apple-blue);
+        }
+
         .status-dot {
             width: 6px;
             height: 6px;
@@ -758,6 +814,15 @@
                     <div class="logo-title">TSN Management System</div>
                     <div class="logo-subtitle">Microchip VelocityDRIVE Control</div>
                 </div>
+            </div>
+            <div class="device-selector">
+                <label for="device-select"><i class="fa fa-microchip"></i> Device:</label>
+                <select id="device-select" onchange="onDeviceChange()">
+                    <option value="">Detecting...</option>
+                </select>
+                <button class="refresh-btn" onclick="refreshDevices()" title="Refresh devices">
+                    <i class="fa fa-refresh"></i>
+                </button>
             </div>
             <div id="status-indicator" class="status-badge disconnected">
                 <span class="status-dot"></span>
@@ -1467,6 +1532,58 @@
 
     <script>
         const API_BASE = window.location.origin + '/api';
+        let selectedDevice = null; // 현재 선택된 디바이스
+
+        // ========================================
+        // Multi-Device Management
+        // ========================================
+
+        /**
+         * 연결된 모든 디바이스 목록 가져오기
+         */
+        async function refreshDevices() {
+            try {
+                const response = await fetch(`${API_BASE}/devices`);
+                const result = await response.json();
+
+                const select = document.getElementById('device-select');
+                select.innerHTML = '';
+
+                if (result.success && result.devices.length > 0) {
+                    result.devices.forEach((device, index) => {
+                        const option = document.createElement('option');
+                        option.value = device;
+                        option.text = device + (index === 0 ? ' (default)' : '');
+                        select.appendChild(option);
+                    });
+                    selectedDevice = result.devices[0];
+                    select.value = selectedDevice;
+                } else {
+                    const option = document.createElement('option');
+                    option.value = '';
+                    option.text = 'No devices found';
+                    select.appendChild(option);
+                    selectedDevice = null;
+                }
+
+                // 디바이스 변경 후 상태 체크
+                await checkStatus();
+            } catch (error) {
+                console.error('[DEVICE] Failed to refresh devices:', error);
+                const select = document.getElementById('device-select');
+                select.innerHTML = '<option value="">Error loading devices</option>';
+            }
+        }
+
+        /**
+         * 디바이스 선택 변경 핸들러
+         */
+        async function onDeviceChange() {
+            const select = document.getElementById('device-select');
+            selectedDevice = select.value;
+            console.log('[DEVICE] Changed to:', selectedDevice);
+            await checkStatus();
+        }
 
         // ========================================
         // 통합 데이터 서비스 - 모든 탭이 같은 YANG 데이터 사용
@@ -1658,13 +1775,18 @@
 
         async function checkStatus() {
             try {
-                const response = await fetch(`${API_BASE}/status`);
+                // 선택된 디바이스를 query parameter로 전달
+                const url = selectedDevice
+                    ? `${API_BASE}/status?device=${encodeURIComponent(selectedDevice)}`
+                    : `${API_BASE}/status`;
+                const response = await fetch(url);
                 const result = await response.json();
 
                 const statusEl = document.getElementById('status-indicator');
                 if (result.connected) {
                     statusEl.className = 'status-badge connected';
-                    statusEl.innerHTML = '<span class="status-dot"></span><span>Connected</span>';
+                    const deviceName = result.device ? ` (${result.device.split('/').pop()})` : '';
+                    statusEl.innerHTML = `<span class="status-dot"></span><span>Connected${deviceName}</span>`;
                 } else {
                     statusEl.className = 'status-badge disconnected';
                     statusEl.innerHTML = '<span class="status-dot"></span><span>Disconnected</span>';
@@ -4024,7 +4146,8 @@
         }
 
         window.onload = function() {
-            checkStatus();
+            // 디바이스 목록 초기화 (내부에서 checkStatus 호출)
+            refreshDevices();
             setInterval(checkStatus, 5000);
 
             for (let i = 0; i < 8; i++) {

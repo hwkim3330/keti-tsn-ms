@@ -7,7 +7,7 @@
 
 import express from 'express';
 import cors from 'cors';
-import { spawn } from 'child_process';
+import { spawn, execSync } from 'child_process';
 import { readFileSync, readdirSync, statSync, existsSync, writeFileSync, mkdirSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -25,7 +25,53 @@ app.use(express.static(__dirname));
 
 // mvdct 실행 경로 (저장소에 포함됨)
 const MVDCT_PATH = join(__dirname, 'tools', 'mvdct', 'mvdct');
-const DEFAULT_DEVICE = '/dev/ttyACM0';
+
+// ============================================
+// Multi-Board Auto-Detection
+// ============================================
+
+/**
+ * 시리얼 포트 자동 감지
+ * /dev/ttyACM*, /dev/ttyUSB* 등 검색
+ */
+function detectSerialPorts() {
+    const ports = [];
+
+    try {
+        // /dev/ttyACM* 찾기
+        try {
+            const acmPorts = execSync('ls /dev/ttyACM* 2>/dev/null || true', { encoding: 'utf-8' });
+            if (acmPorts.trim()) {
+                ports.push(...acmPorts.trim().split('\n'));
+            }
+        } catch (e) {
+            // ACM 포트 없음
+        }
+
+        // /dev/ttyUSB* 찾기
+        try {
+            const usbPorts = execSync('ls /dev/ttyUSB* 2>/dev/null || true', { encoding: 'utf-8' });
+            if (usbPorts.trim()) {
+                ports.push(...usbPorts.trim().split('\n'));
+            }
+        } catch (e) {
+            // USB 포트 없음
+        }
+    } catch (err) {
+        console.error('[PORT DETECT] Error:', err.message);
+    }
+
+    return ports.filter(p => p && p.trim());
+}
+
+/**
+ * 연결된 보드 목록 (자동 감지)
+ */
+let connectedDevices = detectSerialPorts();
+const DEFAULT_DEVICE = connectedDevices.length > 0 ? connectedDevices[0] : '/dev/ttyACM0';
+
+console.log('[DEVICE] Auto-detected serial ports:', connectedDevices);
+console.log('[DEVICE] Default device:', DEFAULT_DEVICE);
 
 // 명령어 히스토리
 let commandHistory = [];
@@ -202,14 +248,32 @@ function executeMvdctRaw(args) {
 }
 
 /**
- * API: 디바이스 상태 확인
+ * API: 연결된 디바이스 목록
+ */
+app.get('/api/devices', (req, res) => {
+    // 실시간 재검색
+    const refreshed = detectSerialPorts();
+    connectedDevices = refreshed;
+
+    res.json({
+        success: true,
+        devices: connectedDevices,
+        default: DEFAULT_DEVICE,
+        count: connectedDevices.length
+    });
+});
+
+/**
+ * API: 디바이스 상태 확인 (멀티 보드 지원)
  */
 app.get('/api/status', async (req, res) => {
     try {
-        const result = await executeMvdct(['device', DEFAULT_DEVICE, 'get', '/ietf-system:system-state/platform', '--console']);
+        const device = req.query.device || DEFAULT_DEVICE;
+
+        const result = await executeMvdct(['device', device, 'get', '/ietf-system:system-state/platform', '--console']);
         res.json({
             connected: result.success,
-            device: DEFAULT_DEVICE,
+            device: device,
             ...result
         });
     } catch (error) {
@@ -218,26 +282,36 @@ app.get('/api/status', async (req, res) => {
 });
 
 /**
- * API: YANG GET 명령
+ * API: YANG GET 명령 (멀티 보드 지원)
  */
 app.post('/api/get', async (req, res) => {
     try {
-        const { path } = req.body;
-        const result = await executeMvdct(['device', DEFAULT_DEVICE, 'get', path, '--console']);
-        res.json(result);
+        const { path, device } = req.body;
+        const targetDevice = device || DEFAULT_DEVICE;
+
+        const result = await executeMvdct(['device', targetDevice, 'get', path, '--console']);
+        res.json({
+            ...result,
+            device: targetDevice
+        });
     } catch (error) {
         res.status(500).json(error);
     }
 });
 
 /**
- * API: YANG SET 명령
+ * API: YANG SET 명령 (멀티 보드 지원)
  */
 app.post('/api/set', async (req, res) => {
     try {
-        const { path, value } = req.body;
-        const result = await executeMvdct(['device', DEFAULT_DEVICE, 'set', path, value, '--console']);
-        res.json(result);
+        const { path, value, device } = req.body;
+        const targetDevice = device || DEFAULT_DEVICE;
+
+        const result = await executeMvdct(['device', targetDevice, 'set', path, value, '--console']);
+        res.json({
+            ...result,
+            device: targetDevice
+        });
     } catch (error) {
         res.status(500).json(error);
     }
